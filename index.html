@@ -3,14 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Météo Le Croisic</title>
-</head>
-<body>
-    <h1>Bienvenue sur le site référence de la météo au Croisic</h1>
+    <title>Météo au Croisic</title>
     <style>
-        .center-text {
+        /* Style pour centrer le titre */
+        h1 {
             text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Style pour le menu horizontal */
+        nav {
+            display: flex;
+            justify-content: center; /* Centrer le menu horizontalement */
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        nav a {
+            margin: 0 15px; /* Espacement entre les liens */
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #007BFF; /* Couleur au survol */
         }
     </style>
+</head>
+<body>
+
+    <h1>Météo au Croisic</h1>
+
+    <nav>
+        <a href="#radar">Radar des pluies</a>
+        <a href="#station">Station météo</a>
+        <a href="#webcam">Webcam</a>
+    </nav>
+
 </body>
 </html>
