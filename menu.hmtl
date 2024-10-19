@@ -1,0 +1,6 @@
+<nav>
+    <a href="previsions.html">Prévisions</a>
+    <a href="#radar">Radar des pluies</a>
+    <a href="station.html">Station météo</a>
+    <a href="#webcam">Webcam</a>
+</nav>
