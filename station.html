@@ -5,32 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Station Météo - Météo au Croisic</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+        /* Style pour la section du titre */
         header {
             background-color: hsl(223, 82%, 47%);
             padding: 20px;
             text-align: center;
         }
+
         h1 {
             margin: 0;
-            color: #fff; /* Couleur du texte en blanc */
+            color: #fff; /* Couleur du texte en blanc pour contraster avec le fond */
             font-size: 48px; /* Taille de police plus grande */
+            font-family: Arial, sans-serif;
+            text-decoration: none;
         }
+
+        /* Style pour le menu horizontal */
         nav {
             display: flex;
             justify-content: center; /* Centrer le menu horizontalement */
             background-color: #f0f0f0;
-            padding: 15px;
+            padding: 10px;
         }
+
         nav a {
-            margin: 0 20px; /* Espacement entre les liens */
+            margin: 0 15px; /* Espacement entre les liens */
             text-decoration: none;
             color: #333;
             font-weight: bold;
             font-size: 24px; /* Taille de police plus grande */
+            font-family: Arial, sans-serif;
         }
+
         nav a:hover {
             color: #007BFF; /* Couleur au survol */
         }
@@ -38,10 +44,12 @@
 </head>
 <body>
 
-    <header>
-        <a href="index.html">Météo au Croisic</a>
-    </header>
-    
+<header>
+    <a href="index.html">
+        <h1>Météo au Croisic</h1>
+    </a>
+</header>
+
 
     <nav>
         <a href="#radar">Radar des pluies</a>
