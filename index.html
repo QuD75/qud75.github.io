@@ -8,6 +8,7 @@
     <script>
         // Fonction pour charger le menu
         function loadMenu() {
+            console.log("Création du menu...");
             fetch('menu.html')
                 .then(response => response.text())
                 .then(data => {
