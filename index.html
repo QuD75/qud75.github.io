@@ -18,23 +18,19 @@
 
         // Fonction pour récupérer les données de l'API
         async function fetchWeatherData() {
-            try {
-                const response = await fetch('https://api.openweathermap.org/data/3.0/onecall?lat=47.291688&lon=-2.520130&units=metric&exclude=minutely,hourly,daily,alerts&appid=3019a6c49cea102650053a8919b5fa54');
-                if (!response.ok) {
-                    throw new Error('Erreur de réseau : ' + response.status);
-                }
-                const data = await response.json();
-                displayWeatherData(data); // Appelle la fonction pour afficher les données
-            } catch (error) {
-                console.error('Erreur:', error);
-                document.getElementById('weather-info').innerText = 'Erreur de chargement des données.';
-            }
+            const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+            const apiUrl = 'https://api.openweathermap.org/data/3.0/onecall?lat=47.2916&lon=-2.5201&units=metric&exclude=minutely,hourly,daily,alerts&appid=3019a6c49cea102650053a8919b5fa54';
+            fetch(proxyUrl + apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => console.error('Erreur:', error));
         }
 
         // Fonction pour afficher les données sur la page
         function displayWeatherData(data) {
             const temp = data.current.temp;
-            console.log = "température : " + temp;
 
             // Met à jour le DOM avec les valeurs
             document.getElementById('weather-info').innerHTML = `
