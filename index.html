@@ -34,6 +34,7 @@
         // Fonction pour afficher les données sur la page
         function displayWeatherData(data) {
             const temp = data.current.temp;
+            console.log = "température : " + temp;
 
             // Met à jour le DOM avec les valeurs
             document.getElementById('weather-info').innerHTML = `
