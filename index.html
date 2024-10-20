@@ -18,6 +18,7 @@
 
         // Fonction pour récupérer les données de l'API
         function fetchWeatherData() {
+            console.log("Appel à l'API commencé");
             try {
                 const response = fetch('https://api.openweathermap.org/data/3.0/onecall?lat=47.291688&lon=-2.520130&units=metric&exclude=minutely,hourly,daily,alerts&appid=3019a6c49cea102650053a8919b5fa54');
                 if (!response.ok) {
