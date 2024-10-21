@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const formatTime = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
 
     // Fonction pour générer le graphique
-    const displayPrecipitationData = (minutelyData) => {
+    const displayPrecipitationData = (minutely) => {
         const labels = [];
         const dataPoints = [];
 
-        minutelyData.forEach(data => {
+        minutely.forEach(data => {
             const time = formatTime(data.dt);
             const precipitation = parseFloat(data.precipitation.toFixed(1));
 
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateChart(labels, dataPoints);
     };
 
-    // Fonction pour générer le graphique
+    // Fonction pour afficher le graphique
     const generateChart = (labels, dataPoints) => {
         const ctx = document.getElementById('precipitation-chart').getContext('2d');
         
@@ -105,9 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Récupération des données et affichage
-    const precipitationData = extractTemperatureAndPrecipitation(hourlyData);
-    displayWeatherData(precipitationData);
+    
 
     // Récupération des données météo via l'API
     fetch(apiUrl)
@@ -118,8 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
             if (data.minutely?.length) {
                 displayPrecipitationData(data.minutely);
-            } else {
+            }
+            else {
                 console.error("Aucune donnée de précipitation disponible.");
+            }
+            if (data.hourly?.length){
+                displayWeatherData(extractTemperatureAndPrecipitation(data));
+            }
+            else {
+                console.error("Aucune donnée de prévision disponible.");
             }
         })
         .catch(error => console.error("Erreur lors de la récupération des données :", error));
