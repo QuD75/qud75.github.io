@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les données de précipitations
     function displayPrecipitationData(minutelyData) {
-        const tableBody = document.getElementById('precipitation-data');
+        const tableBody = document.getElementById('precipitation-1h');
         tableBody.innerHTML = ''; // Clear any existing data
     
         // Met à jour le titre de la colonne "Temps" en "Heure"
