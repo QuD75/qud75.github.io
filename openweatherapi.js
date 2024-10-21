@@ -7,15 +7,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     // Fonction pour formater l'heure
-    const formatTime = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    const formatTimeGraphiqueHeure = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
 
+    // Fonction pour formater l'heure
+    const formatTimeWeather24h = timestamp => new Date(timestamp * 1000).getHours() + 'h';
+    
     // Fonction pour générer le graphique
     const displayPrecipitationData = (minutely) => {
         const labels = [];
         const dataPoints = [];
 
         minutely.forEach(data => {
-            const time = formatTime(data.dt);
+            const time = formatTimeGraphiqueHeure(data.dt);
             const precipitation = parseFloat(data.precipitation.toFixed(1));
 
             // Ajout des données pour le graphique
@@ -74,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const precipitation = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
             
             return {
-                time: formatTime(data.dt), // Format de l'heure
+                time: formatTimeWeather24h(data.dt), // Format de l'heure
                 temperature,
                 precipitation
             };
