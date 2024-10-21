@@ -1,5 +1,4 @@
-/* Style global reste inchangé */
-
+/* Style global*/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -10,7 +9,7 @@ body {
     min-height: 100vh;
 }
 
-/* En-tête reste inchangé */
+/* En-tête*/
 header {
     background-color: #0073e6;
     color: white;
@@ -23,7 +22,7 @@ header h1 {
     font-size: 2.5em;
 }
 
-/* Menu de navigation reste inchangé */
+/* Menu de navigation*/
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -76,7 +75,7 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-/* Contenu principal reste inchangé */
+/* Contenu principal*/
 main {
     padding: 20px;
     text-align: center;
@@ -95,12 +94,15 @@ main p {
 
 /* Tableau des précipitations */
 table {
-    width: 100%;
+    width: 33%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: 10px;
+    margin-right: auto;
 }
 
 table th, table td {
+    width: 50%;
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
@@ -115,7 +117,7 @@ table td {
     background-color: #f9f9f9;
 }
 
-/* Pied de page reste inchangé */
+/* Pied de page*/
 footer {
     background-color: #0073e6;
     color: white;
