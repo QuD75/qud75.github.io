@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Créer et ajouter une cellule de vent
             const windCell = document.createElement('td');
-            windCell.textContent = item.wind.toFixed(0);
+            windCell.textContent = (item.wind * 3.6).toFixed(0);
             windRow.appendChild(windCell);
         });
     }
