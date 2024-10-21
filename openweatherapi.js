@@ -6,10 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // URL de l'API OpenWeatherMap
     const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
-    // Fonction pour formater l'heure
+    // Fonctions pour formater l'heure
     const formatTimeGraphiqueHeure = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-
-    // Fonction pour formater l'heure
     const formatTimeWeather24h = timestamp => new Date(timestamp * 1000).getHours() + 'h';
     
     // Fonction pour générer le graphique
@@ -104,6 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
             // Créer et ajouter une cellule de précipitation
             const rainCell = document.createElement('td');
             rainCell.textContent = item.precipitation.toFixed(1);
+            // Colorier en bleu clair si précipitations > 0
+            if (item.precipitation > 0) {
+                rainCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
+            }
             precipitationRow.appendChild(rainCell);
         });
     }
