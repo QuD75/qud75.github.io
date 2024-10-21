@@ -31,6 +31,17 @@
         </section>
     </main>
 
+    <div id="precipitation-container" style="display: flex;">
+        <table id="precipitation-table">
+            <!-- Ton tableau ici -->
+        </table>
+        
+        <!-- Canvas pour le graphique -->
+        <div style="margin-right: 10px; flex-grow: 1;">
+            <canvas id="precipitation-chart" width="400" height="400"></canvas>
+        </div>
+    </div>
+
     <footer>
         <a href="mentions-legales.html">Mentions légales</a> | 
         <a href="contact.html">Contact</a>
@@ -50,6 +61,9 @@
 
     <!-- Script pour charger les précipitations à 1h -->
     <script src="previsions-pluie-1h.js"></script>
-    
+
+    <!-- Script pour insérer un graphique-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 </html>

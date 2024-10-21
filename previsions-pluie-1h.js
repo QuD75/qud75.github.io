@@ -47,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tableBody.appendChild(row);
         });
     }
-    
 
     // Appel à l'API pour récupérer les données météo
     fetch(apiUrl)
@@ -60,4 +59,39 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
         .catch(error => console.error("Erreur lors de la récupération des données :", error));
+
+    // Génère le graphique en utilisant Chart.js
+    const ctx = document.getElementById('precipitation-chart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels, // Les heures sur l'axe des abscisses
+            datasets: [{
+                label: 'Précipitations (mm)',
+                data: dataPoints, // Les précipitations sur l'axe des ordonnées
+                borderColor: 'rgba(0, 123, 255, 1)',
+                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                fill: true,
+                tension: 0.1 // Adoucir les courbes
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Heure'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Précipitations (mm)'
+                    },
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    
 });
