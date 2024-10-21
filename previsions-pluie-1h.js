@@ -49,6 +49,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 }]
             },
             options: {
+                plugins: {
+                    legend: {
+                        display: false // Ne pas afficher la légende
+                    }
+                },
                 scales: {
                     x: {
                         title: { display: true, text: 'Heure' }
