@@ -4,6 +4,9 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Assure que le contenu occupe toute la hauteur de la page */
 }
 
 /* En-tête */
@@ -49,6 +52,7 @@ nav ul li a:hover {
 main {
     padding: 20px;
     text-align: center;
+    flex: 1; /* Le contenu principal prend tout l'espace restant */
 }
 
 main h2 {
@@ -67,9 +71,8 @@ footer {
     color: white;
     padding: 10px 0;
     text-align: center;
-    position: absolute;
-    bottom: 0;
     width: 100%;
+    position: relative; /* Assure que le footer est toujours au bas, mais se déplace si la page est plus longue */
 }
 
 footer a {
