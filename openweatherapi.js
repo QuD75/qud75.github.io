@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour extraire les données de température et de précipitation
     function extractTemperatureAndPrecipitation(hourly) {
-        return hourly.map(data => {
+        return hourly.hourly.slice(0, 24).map(data => {
             const temperature = data.temp; // Température
             const precipitation = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
             
