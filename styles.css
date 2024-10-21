@@ -16,7 +16,6 @@ header {
     padding: 20px 0;
     text-align: center;
 }
-
 header h1 {
     margin: 0;
     font-size: 2.5em;
@@ -31,18 +30,15 @@ nav ul {
     justify-content: center;
     background-color: #005bb5;
 }
-
 nav ul li {
     margin: 0 15px;
 }
-
 nav ul li a {
     text-decoration: none;
     color: white;
     font-size: 1.2em;
     padding: 10px;
 }
-
 nav ul li a:hover {
     background-color: #004494;
     border-radius: 5px;
@@ -58,18 +54,15 @@ nav ul li a:hover {
     background-color: #004494;
     margin-top: 20px;
 }
-
 .sub-menu ul li {
     margin: 0 10px;
 }
-
 .sub-menu ul li a {
     text-decoration: none;
     color: white;
     font-size: 1em;
     padding: 8px;
 }
-
 .sub-menu ul li a:hover {
     background-color: #003366;
     border-radius: 5px;
@@ -81,12 +74,10 @@ main {
     text-align: center;
     flex: 1;
 }
-
 main h2 {
     font-size: 2em;
     color: #333;
 }
-
 main p {
     font-size: 1.2em;
     color: #666;
@@ -100,21 +91,35 @@ table {
     margin-left: 10%;
     margin-right: auto;
 }
-
 table th, table td {
     width: 50%;
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
 }
-
 table th {
     background-color: #0073e6;
     color: white;
 }
-
 table td {
     background-color: #f9f9f9;
+}
+
+/* Ajoutez des styles pour le conteneur principal */
+#precipitation-container {
+    display: flex; /* Utiliser flexbox pour aligner les éléments */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: flex-start; /* Aligner les éléments en haut */
+    margin-top: 20px; /* Espace au-dessus du conteneur */
+}
+/* Style pour le conteneur du graphique */
+.chart-container {
+    margin-left: 20px; /* Espace entre le tableau et le graphique */
+}
+/* Style pour le graphique */
+canvas {
+    max-width: 400px; /* Limite la largeur du graphique */
+    height: auto; /* Ajuste la hauteur automatiquement */
 }
 
 /* Pied de page*/
@@ -127,12 +132,10 @@ footer {
     position: relative;
     bottom: 0;
 }
-
 footer a {
     color: white;
     text-decoration: none;
 }
-
 footer a:hover {
     text-decoration: underline;
 }
