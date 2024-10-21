@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Fonction pour extraire les données de température et de précipitation
-    function extractTemperatureAndPrecipitation(hourly) {
+    function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
             const temperature = data.temp; // Température
             const rain = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Créer et ajouter une cellule de vent
             const windCell = document.createElement('td');
             windCell.textContent = item.wind.toFixed(0);
-            windRow.appendChild(tempCell);
+            windRow.appendChild(windCell);
         });
     }
 
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error("Aucune donnée de précipitation disponible.");
             }
             if (data.hourly?.length){
-                displayWeatherData(extractTemperatureAndPrecipitation(data.hourly));
+                displayWeatherData(extractWeather24h(data.hourly));
             }
             else {
                 console.error("Aucune donnée de prévision disponible.");
