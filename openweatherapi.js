@@ -72,12 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function extractTemperatureAndPrecipitation(hourly) {
         return hourly.slice(0, 24).map(data => {
             const temperature = data.temp; // Température
-            const precipitation = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
+            const rain = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
+            const wind = data.wind_speed;
             
             return {
                 time: formatTimeWeather24h(data.dt), // Format de l'heure
                 temperature,
-                precipitation
+                rain,
+                wind
             };
         });
     }
@@ -86,7 +88,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayWeatherData(data) {
         const hoursRow = document.getElementById('hours-row');
         const temperatureRow = document.getElementById('temperature-row');
-        const precipitationRow = document.getElementById('precipitation-row');
+        const rainRow = document.getElementById('rain-row');
+        const windRow = document.getElementById('wind-row');
 
         data.forEach(item => {
             // Créer et ajouter une cellule d'heure
@@ -101,12 +104,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Créer et ajouter une cellule de précipitation
             const rainCell = document.createElement('td');
-            rainCell.textContent = item.precipitation.toFixed(1);
+            rainCell.textContent = item.rain.toFixed(1);
             // Colorier en bleu clair si précipitations > 0
-            if (item.precipitation > 0) {
+            if (item.rain > 0) {
                 rainCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
             }
-            precipitationRow.appendChild(rainCell);
+            rainRow.appendChild(rainCell);
+
+            // Créer et ajouter une cellule de vent
+            const windCell = document.createElement('td');
+            windCell.textContent = item.wind.toFixed(0);
+            windRow.appendChild(tempCell);
         });
     }
 
