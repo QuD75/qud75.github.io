@@ -8,11 +8,12 @@
 </head>
 <body>
     <header>
-        <h1><a href="index.html" style="color: white; text-decoration: none;">Météo au Croisic</a></h1>
+        <h1>
+            <a href="index.html" class="header-link">Météo au Croisic</a>
+        </h1>
     </header>
 
-    <!-- Conteneur pour le menu -->
-    <div id="menu-container"></div>
+    <nav id="menu-container"></nav>
 
     <main>
         <section id="precipitation-1h">
@@ -29,18 +30,16 @@
                 </tbody>
             </table>
         </section>
-    </main>
 
-    <div id="precipitation-container" style="display: flex;">
-        <table id="precipitation-table">
-            <!-- Ton tableau ici -->
-        </table>
-        
-        <!-- Canvas pour le graphique -->
-        <div style="margin-right: 10px; flex-grow: 1;">
-            <canvas id="precipitation-chart" width="400" height="400"></canvas>
+        <div id="precipitation-container">
+            <table id="precipitation-table">
+                <!-- Ton tableau ici -->
+            </table>
+            <div class="chart-container">
+                <canvas id="precipitation-chart" width="400" height="400"></canvas>
+            </div>
         </div>
-    </div>
+    </main>
 
     <footer>
         <a href="mentions-legales.html">Mentions légales</a> | 
@@ -49,7 +48,7 @@
 
     <!-- Script pour charger le menu -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             fetch('menu.html')
                 .then(response => response.text())
                 .then(data => {
@@ -62,8 +61,7 @@
     <!-- Script pour charger les précipitations à 1h -->
     <script src="previsions-pluie-1h.js"></script>
 
-    <!-- Script pour insérer un graphique-->
+    <!-- Script pour insérer un graphique -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </body>
 </html>
