@@ -74,12 +74,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const temperature = data.temp; // Température
             const rain = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
             const wind = data.wind_speed;
+            const pressure = data.pressure;
             
             return {
                 time: formatTimeWeather24h(data.dt), // Format de l'heure
                 temperature,
                 rain,
-                wind
+                wind,
+                pressure
             };
         });
     }
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const temperatureRow = document.getElementById('temperature-row');
         const rainRow = document.getElementById('rain-row');
         const windRow = document.getElementById('wind-row');
+        const pressureRow = document.getElementById('pressure-row');
 
         data.forEach(item => {
             // Créer et ajouter une cellule d'heure
@@ -115,6 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const windCell = document.createElement('td');
             windCell.textContent = (item.wind * 3.6).toFixed(0);
             windRow.appendChild(windCell);
+
+            // Créer et ajouter une cellule de pression
+            const pressionCell = document.createElement('td');
+            pressionCell.textContent = item.pressure;
+            pressureRow.appendChild(pressionCell);
         });
     }
 
