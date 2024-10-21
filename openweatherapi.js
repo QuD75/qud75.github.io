@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error("Aucune donnée de précipitation disponible.");
             }
             if (data.hourly?.length){
-                displayWeatherData(extractTemperatureAndPrecipitation(data));
+                displayWeatherData(extractTemperatureAndPrecipitation(data.hourly));
             }
             else {
                 console.error("Aucune donnée de prévision disponible.");
