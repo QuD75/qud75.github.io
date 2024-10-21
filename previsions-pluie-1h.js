@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonction pour afficher les données de précipitations
     function displayPrecipitationData(minutelyData) {
         const tableBody = document.getElementById('precipitation-data-1h');
+        const labels = []; // Pour stocker les heures
+        const dataPoints = []; // Pour stocker les précipitations
         tableBody.innerHTML = ''; // Clear any existing data
     
         minutelyData.forEach(data => {
@@ -46,6 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Ajoute la ligne au tableau
             tableBody.appendChild(row);
         });
+
+        // Génération du graphique après avoir obtenu les labels et dataPoints
+        generateChart(labels, dataPoints);
     }
 
     // Appel à l'API pour récupérer les données météo
@@ -95,8 +100,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    // Génération du graphique après avoir obtenu les labels et dataPoints
-    generateChart(labels, dataPoints);
     
 });
