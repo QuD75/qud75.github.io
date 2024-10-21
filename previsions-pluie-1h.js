@@ -16,19 +16,33 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayPrecipitationData(minutelyData) {
         const tableBody = document.getElementById('precipitation-data');
         tableBody.innerHTML = ''; // Clear any existing data
-
+    
         minutelyData.forEach(data => {
             const row = document.createElement('tr');
             const time = formatTime(data.dt);
             const precipitation = data.precipitation.toFixed(2);
-
-            row.innerHTML = `
-                <td>${time}</td>
-                <td>${precipitation} mm</td>
-            `;
+    
+            // Crée les cellules pour l'heure et la précipitation
+            const timeCell = document.createElement('td');
+            timeCell.textContent = time;
+    
+            const precipitationCell = document.createElement('td');
+            precipitationCell.textContent = `${precipitation} mm`;
+    
+            // Applique une couleur de fond si la précipitation est strictement supérieure à 0
+            if (data.precipitation > 0) {
+                precipitationCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
+            }
+    
+            // Ajoute les cellules à la ligne
+            row.appendChild(timeCell);
+            row.appendChild(precipitationCell);
+    
+            // Ajoute la ligne au tableau
             tableBody.appendChild(row);
         });
     }
+    
 
     // Appel à l'API pour récupérer les données météo
     fetch(apiUrl)
