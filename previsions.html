@@ -5,6 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prévisions - Météo Croisic</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        // Fonction pour récupérer les données de l'API et les insérer dans le tableau
+        async function fetchPrecipitations() {
+            const apiUrl = "https://api.openweathermap.org/data/3.0/onecall?units=metric&exclude=daily,alerts&appid=3019a6c49cea102650053a8919b5fa54&lat=47.2917&lon=-2.5201";
+            
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                const minutely = data.minutely;
+
+                let tableBody = document.getElementById('precipitation-data');
+
+                minutely.forEach(item => {
+                    let date = new Date(item.dt * 1000);  // Convertir timestamp en date
+                    let time = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});  // Extraire l'heure et minutes
+
+                    // Créer une nouvelle ligne
+                    let row = document.createElement('tr');
+
+                    // Insérer l'heure
+                    let timeCell = document.createElement('td');
+                    timeCell.textContent = time;
+                    row.appendChild(timeCell);
+
+                    // Insérer la précipitation
+                    let precipitationCell = document.createElement('td');
+                    precipitationCell.textContent = item.precipitation + " mm";
+                    row.appendChild(precipitationCell);
+
+                    // Ajouter la ligne au tableau
+                    tableBody.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error('Erreur lors de la récupération des données météo:', error);
+            }
+        }
+
+        // Appel de la fonction lorsque la page est chargée
+        window.onload = fetchPrecipitations;
+    </script>
 </head>
 <body>
     <!-- Bannière avec titre -->
@@ -23,8 +64,20 @@
 
     <!-- Contenu principal de la page Prévisions -->
     <main>
-        <h2>Prévisions Météo pour les 5 prochains jours</h2>
-        <p>Les prévisions seront affichées ici.</p>
+        <h2>Prévisions des précipitations à venir</h2>
+        <p>Voici un tableau des précipitations à venir pour la prochaine heure, minute par minute :</p>
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Heure</th>
+                    <th>Précipitation (mm)</th>
+                </tr>
+            </thead>
+            <tbody id="precipitation-data">
+                <!-- Les données de l'API seront insérées ici -->
+            </tbody>
+        </table>
     </main>
 
     <!-- Pied de page -->
