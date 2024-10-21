@@ -3,29 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Station Météo - Météo au Croisic</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Lien vers le fichier CSS -->
-    <script>
-        // Fonction pour charger le menu
-        function loadMenu() {
-            fetch('menu.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('menu-container').innerHTML = data;
-                })
-                .catch(error => console.error('Erreur de chargement du menu:', error));
-        }
-    </script>
+    <title>Station météo - Météo Croisic</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="loadMenu()">
-
+<body>
+    <!-- Bannière avec titre -->
     <header>
-        <a href="index.html">
-            <h1>Météo au Croisic</h1>
-        </a>
+        <h1>Météo au Croisic</h1>
+        <!-- Menu de navigation -->
+        <nav>
+            <ul>
+                <li><a href="previsions.html">Prévisions</a></li>
+                <li><a href="station.html">Station météo</a></li>
+                <li><a href="webcam.html">Webcam</a></li>
+                <li><a href="climat.html">Climat Croisic</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div id="menu-container"></div> <!-- Conteneur pour le menu -->
+    <!-- Contenu principal de la page Station météo -->
+    <main>
+        <h2>Données en direct de la Station météo</h2>
+        <p>Les données de la station météo seront affichées ici.</p>
+    </main>
 
+    <!-- Pied de page -->
+    <footer>
+        <a href="mentions.html">Mentions légales</a> | 
+        <a href="contact.html">Contact</a>
+    </footer>
 </body>
 </html>
