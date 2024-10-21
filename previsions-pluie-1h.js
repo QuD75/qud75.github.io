@@ -11,10 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour générer le tableau et le graphique
     const displayPrecipitationData = (minutelyData) => {
-        const tableBody = document.getElementById('precipitation-data-1h');
         const labels = [];
         const dataPoints = [];
-        tableBody.innerHTML = ''; // Effacer les données existantes
 
         minutelyData.forEach(data => {
             const time = formatTime(data.dt);
