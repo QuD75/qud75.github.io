@@ -83,25 +83,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les données dans le tableau HTML
     function displayWeatherData(data) {
-        const tableBody = document.getElementById('weather-data-body');
-        tableBody.innerHTML = ''; // Efface le contenu précédent
+        const hoursRow = document.getElementById('hours-row');
+        const temperatureRow = document.getElementById('temperature-row');
+        const precipitationRow = document.getElementById('precipitation-row');
 
         data.forEach(item => {
-            const row = document.createElement('tr');
-            
-            const timeCell = document.createElement('td');
-            timeCell.textContent = item.time;
-            
-            const tempCell = document.createElement('td');
-            tempCell.textContent = item.temperature.toFixed(1); // Affiche la température avec 1 décimale
-            
-            const rainCell = document.createElement('td');
-            rainCell.textContent = item.precipitation.toFixed(1); // Affiche les précipitations avec 1 décimale
+            // Créer et ajouter une cellule d'heure
+            const hourCell = document.createElement('th');
+            hourCell.textContent = item.time;
+            hoursRow.appendChild(hourCell);
 
-            row.appendChild(timeCell);
-            row.appendChild(tempCell);
-            row.appendChild(rainCell);
-            tableBody.appendChild(row);
+            // Créer et ajouter une cellule de température
+            const tempCell = document.createElement('td');
+            tempCell.textContent = item.temperature.toFixed(1);
+            temperatureRow.appendChild(tempCell);
+
+            // Créer et ajouter une cellule de précipitation
+            const rainCell = document.createElement('td');
+            rainCell.textContent = item.precipitation.toFixed(1);
+            precipitationRow.appendChild(rainCell);
         });
     }
 

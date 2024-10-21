@@ -20,19 +20,25 @@
             <canvas id="precipitation-chart"></canvas>
         </div>
 
-        <div id =weather-one-day>
+        <div>
             <h3>Météo pour les prochaines 24h</h3>
-            <section id="weather-one-day-tab">
-                <table>
+            <section>
+                <table id="weather-data" class="weather-table">
                     <thead>
-                        <tr>
-                            <th>Heure</th>
-                            <th>Température (°C)</th>
-                            <th>Précipitations (mm)</th>
+                        <tr id="hours-row">
+                            <!-- Les heures seront insérées ici -->
+                            <th>Paramètre</th>
                         </tr>
                     </thead>
-                    <tbody id="weather-data-body">
-                        <!-- Les données seront insérées ici par du JavaScript -->
+                    <tbody>
+                        <tr id="temperature-row">
+                            <!-- Les températures seront insérées ici -->
+                            <td>Température (°C)</td>
+                        </tr>
+                        <tr id="precipitation-row">
+                            <!-- Les précipitations seront insérées ici -->
+                            <td>Précipitations (mm)</td>
+                        </tr>
                     </tbody>
                 </table>
             </section>
