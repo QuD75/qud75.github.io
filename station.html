@@ -10,16 +10,10 @@
     <!-- Bannière avec titre -->
     <header>
         <h1>Météo au Croisic</h1>
-        <!-- Menu de navigation -->
-        <nav>
-            <ul>
-                <li><a href="previsions.html">Prévisions</a></li>
-                <li><a href="station.html">Station météo</a></li>
-                <li><a href="webcam.html">Webcam</a></li>
-                <li><a href="climat.html">Climat Croisic</a></li>
-            </ul>
-        </nav>
     </header>
+
+    <!-- Conteneur pour le menu -->
+    <div id="menu-container"></div>
 
     <!-- Contenu principal de la page Station météo -->
     <main>
@@ -32,5 +26,17 @@
         <a href="mentions.html">Mentions légales</a> | 
         <a href="contact.html">Contact</a>
     </footer>
+
+    <!-- Script pour charger le menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('menu.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('menu-container').innerHTML = data;
+                })
+                .catch(error => console.error('Erreur lors du chargement du menu:', error));
+        });
+    </script>
 </body>
 </html>

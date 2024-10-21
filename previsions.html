@@ -11,23 +11,8 @@
         <h1>Météo au Croisic</h1>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="previsions.html">Prévisions</a></li>
-            <li><a href="station-meteo.html">Station météo</a></li>
-            <li><a href="webcam.html">Webcam</a></li>
-            <li><a href="climat.html">Climat Croisic</a></li>
-        </ul>
-    </nav>
-
-    <!-- Sous-menu pour Prévisions -->
-    <nav class="sub-menu">
-        <ul>
-            <li><a href="#precipitation-1h">Prévisions de pluie à 1h</a></li>
-            <!-- Tu pourras ajouter d'autres sections ici si nécessaire -->
-        </ul>
-    </nav>
+    <!-- Conteneur pour le menu -->
+    <div id="menu-container"></div>
 
     <main>
         <section id="precipitation-1h">
@@ -51,6 +36,20 @@
         <a href="contact.html">Contact</a>
     </footer>
 
+    <!-- Script pour charger le menu -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('menu.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('menu-container').innerHTML = data;
+                })
+                .catch(error => console.error('Erreur lors du chargement du menu:', error));
+        });
+    </script>
+
+    <!-- Script pour charger les précipitations à 1h -->
     <script src="previsions-pluie-1h.js"></script>
+    
 </body>
 </html>
