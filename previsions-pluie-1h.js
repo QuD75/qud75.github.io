@@ -14,18 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les données de précipitations
     function displayPrecipitationData(minutelyData) {
-        const tableBody = document.getElementById('precipitation-1h');
+        const tableBody = document.getElementById('precipitation-data');
         tableBody.innerHTML = ''; // Clear any existing data
     
-        // Met à jour le titre de la colonne "Temps" en "Heure"
-        const tableHeader = document.querySelector('#precipitation-table thead tr th:first-child');
-        tableHeader.textContent = 'Heure';
-    
-        // Boucle à travers les données minute par minute
         minutelyData.forEach(data => {
             const row = document.createElement('tr');
             const time = formatTime(data.dt);
-            const precipitation = data.precipitation.toFixed(1); // Arrondi à 1 chiffre après la virgule
+            const precipitation = data.precipitation.toFixed(1);
     
             // Crée les cellules pour l'heure et la précipitation
             const timeCell = document.createElement('td');
@@ -52,7 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tableBody.appendChild(row);
         });
     }
-    
     
 
     // Appel à l'API pour récupérer les données météo
