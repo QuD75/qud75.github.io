@@ -17,10 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const tableBody = document.getElementById('precipitation-data');
         tableBody.innerHTML = ''; // Clear any existing data
     
+        // Met à jour le titre de la colonne "Temps" en "Heure"
+        const tableHeader = document.querySelector('#precipitation-table thead tr th:first-child');
+        tableHeader.textContent = 'Heure';
+    
+        // Boucle à travers les données minute par minute
         minutelyData.forEach(data => {
             const row = document.createElement('tr');
             const time = formatTime(data.dt);
-            const precipitation = data.precipitation.toFixed(2);
+            const precipitation = data.precipitation.toFixed(1); // Arrondi à 1 chiffre après la virgule
     
             // Crée les cellules pour l'heure et la précipitation
             const timeCell = document.createElement('td');
@@ -29,9 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const precipitationCell = document.createElement('td');
             precipitationCell.textContent = `${precipitation} mm`;
     
-            // Applique une couleur de fond si la précipitation est strictement supérieure à 0
-            if (data.precipitation > 0) {
+            // Applique une couleur en fonction de la quantité de précipitation
+            if (data.precipitation > 0 && data.precipitation < 0.5) {
                 precipitationCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
+            } else if (data.precipitation >= 0.5 && data.precipitation < 1) {
+                precipitationCell.style.backgroundColor = '#6495ED'; // Bleu normal
+            } else if (data.precipitation >= 1) {
+                precipitationCell.style.backgroundColor = '#00008B'; // Bleu foncé
+                precipitationCell.style.color = 'white'; // Texte blanc pour lisibilité
             }
     
             // Ajoute les cellules à la ligne
@@ -42,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tableBody.appendChild(row);
         });
     }
+    
     
 
     // Appel à l'API pour récupérer les données météo
