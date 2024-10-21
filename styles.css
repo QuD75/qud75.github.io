@@ -84,7 +84,7 @@ main p {
 }
 
 /* Style pour le conteneur du graphique */
-.chart-container {
+#precipitation-container {
     margin-left: auto;
     margin-right: auto;
 }
