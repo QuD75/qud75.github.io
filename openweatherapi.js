@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lon = -2.5201;
 
     // URL de l'API OpenWeatherMap
-    const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&exclude=daily,alerts&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     // Fonction pour formater l'heure
     const formatTime = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
