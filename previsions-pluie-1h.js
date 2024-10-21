@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonction pour formater l'heure
     const formatTime = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
 
-    // Fonction pour générer le tableau et le graphique
+    // Fonction pour générer le graphique
     const displayPrecipitationData = (minutelyData) => {
         const labels = [];
         const dataPoints = [];
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
                 labels,
                 datasets: [{
