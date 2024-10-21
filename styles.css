@@ -83,16 +83,10 @@ main p {
     color: #666;
 }
 
-/* Ajoutez des styles pour le conteneur principal */
-#precipitation-container {
-    display: flex; /* Utiliser flexbox pour aligner les éléments */
-    justify-content: space-between; /* Espace entre les éléments */
-    align-items: flex-start; /* Aligner les éléments en haut */
-    margin-top: 20px; /* Espace au-dessus du conteneur */
-}
 /* Style pour le conteneur du graphique */
 .chart-container {
-    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 /* Style pour le graphique */
 canvas {
