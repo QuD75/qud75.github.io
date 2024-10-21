@@ -104,7 +104,7 @@ main p {
 }
 
 .weather-table th, .weather-table td {
-    padding: 10px;
+    padding: auto;
     text-align: center;
     border: 1px solid #ddd;
 }
