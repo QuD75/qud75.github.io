@@ -92,11 +92,11 @@ main p {
 }
 /* Style pour le conteneur du graphique */
 .chart-container {
-    margin-left: 20px; /* Espace entre le tableau et le graphique */
+    align-items: center;
 }
 /* Style pour le graphique */
 canvas {
-    max-width: 400px; /* Limite la largeur du graphique */
+    max-width: 50%; /* Limite la largeur du graphique */
     height: auto; /* Ajuste la hauteur automatiquement */
 }
 
