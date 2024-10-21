@@ -1,4 +1,5 @@
-/* Style global */
+/* Style global reste inchangé */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,10 +7,10 @@ body {
     background-color: #f0f0f0;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Assure que le corps occupe toute la hauteur de la fenêtre */
+    min-height: 100vh;
 }
 
-/* En-tête */
+/* En-tête reste inchangé */
 header {
     background-color: #0073e6;
     color: white;
@@ -22,7 +23,7 @@ header h1 {
     font-size: 2.5em;
 }
 
-/* Menu de navigation */
+/* Menu de navigation reste inchangé */
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -48,11 +49,38 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-/* Contenu principal */
+/* Sous-menu spécifique à la page Prévisions */
+.sub-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #004494;
+    margin-top: 20px;
+}
+
+.sub-menu ul li {
+    margin: 0 10px;
+}
+
+.sub-menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1em;
+    padding: 8px;
+}
+
+.sub-menu ul li a:hover {
+    background-color: #003366;
+    border-radius: 5px;
+}
+
+/* Contenu principal reste inchangé */
 main {
     padding: 20px;
     text-align: center;
-    flex: 1; /* Prend l'espace restant pour repousser le footer en bas */
+    flex: 1;
 }
 
 main h2 {
@@ -65,14 +93,36 @@ main p {
     color: #666;
 }
 
-/* Pied de page */
+/* Tableau des précipitations */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+table th {
+    background-color: #0073e6;
+    color: white;
+}
+
+table td {
+    background-color: #f9f9f9;
+}
+
+/* Pied de page reste inchangé */
 footer {
     background-color: #0073e6;
     color: white;
     padding: 10px 0;
     text-align: center;
     width: 100%;
-    position: relative; /* Relatif au contenu de la page */
+    position: relative;
     bottom: 0;
 }
 
