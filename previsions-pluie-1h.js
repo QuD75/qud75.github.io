@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lat = 47.2917;
     const lon = -2.5201;
 
-        // URL de l'API OpenWeatherMap
-        const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&exclude=daily,alerts&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    // URL de l'API OpenWeatherMap
+    const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&exclude=daily,alerts&lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     // Fonction pour formater l'heure
     function formatTime(timestamp) {
@@ -60,38 +60,43 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => console.error("Erreur lors de la récupération des données :", error));
 
-    // Génère le graphique en utilisant Chart.js
-    const ctx = document.getElementById('precipitation-chart').getContext('2d');
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: labels, // Les heures sur l'axe des abscisses
-            datasets: [{
-                label: 'Précipitations (mm)',
-                data: dataPoints, // Les précipitations sur l'axe des ordonnées
-                borderColor: 'rgba(0, 123, 255, 1)',
-                backgroundColor: 'rgba(0, 123, 255, 0.2)',
-                fill: true,
-                tension: 0.1 // Adoucir les courbes
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Précipitations (mm)'
+    // Fonction pour générer le graphique
+    function generateChart(labels, dataPoints) {
+        const ctx = document.getElementById('precipitation-chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels, // Les heures sur l'axe des abscisses
+                datasets: [{
+                    label: 'Précipitations (mm)',
+                    data: dataPoints, // Les précipitations sur l'axe des ordonnées
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                    fill: true,
+                    tension: 0.1 // Adoucir les courbes
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Heure'
+                        }
                     },
-                    beginAtZero: true
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Précipitations (mm)'
+                        },
+                        beginAtZero: true
+                    }
                 }
             }
-        }
-    });
+        });
+    }
+
+    // Génération du graphique après avoir obtenu les labels et dataPoints
+    generateChart(labels, dataPoints);
     
 });
