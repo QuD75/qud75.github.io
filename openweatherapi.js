@@ -67,6 +67,48 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // Fonction pour extraire les données de température et de précipitation
+    function extractTemperatureAndPrecipitation(hourly) {
+        return hourly.map(data => {
+            const temperature = data.temp; // Température
+            const precipitation = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
+            
+            return {
+                time: formatTime(data.dt), // Format de l'heure
+                temperature,
+                precipitation
+            };
+        });
+    }
+
+    // Fonction pour afficher les données dans le tableau HTML
+    function displayWeatherData(data) {
+        const tableBody = document.getElementById('weather-data-body');
+        tableBody.innerHTML = ''; // Efface le contenu précédent
+
+        data.forEach(item => {
+            const row = document.createElement('tr');
+            
+            const timeCell = document.createElement('td');
+            timeCell.textContent = item.time;
+            
+            const tempCell = document.createElement('td');
+            tempCell.textContent = item.temperature.toFixed(1); // Affiche la température avec 1 décimale
+            
+            const rainCell = document.createElement('td');
+            rainCell.textContent = item.precipitation.toFixed(1); // Affiche les précipitations avec 1 décimale
+
+            row.appendChild(timeCell);
+            row.appendChild(tempCell);
+            row.appendChild(rainCell);
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Récupération des données et affichage
+    const precipitationData = extractTemperatureAndPrecipitation(hourlyData);
+    displayWeatherData(precipitationData);
+
     // Récupération des données météo via l'API
     fetch(apiUrl)
         .then(response => {
