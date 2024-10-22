@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pressureRow.appendChild(pressionCell);
 
             const weatherCell = document.createElement('td');
-            weatherCell.textContent = item.pressure;
+            weatherCell.textContent = item.weather;
             weatherRow.appendChild(weatherCell);
         });
 
