@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateChart(labels, dataPoints);
     };
 
-    // Fonction pour afficher le graphique
+    // Fonction pour remplir le graphique
     const generateChart = (labels, dataPoints) => {
         const ctx = document.getElementById('precipitation-chart').getContext('2d');
         
@@ -103,8 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Fonction pour afficher les données dans le tableau HTML
-    function displayWeatherData(data) {
+    // Fonction pour afficher les données 24h dans le tableau HTML
+    function displayWeather24h(data) {
         const daysRow = document.getElementById('days-row');
         const hoursRow = document.getElementById('hours-row');
         const temperatureRow = document.getElementById('temperature-row');
@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         mergeDaysRow();
     }
 
+    // Fonction pour trouver la bonne icone du temps
     function getWeatherIcon(weather){
         if (weather === "01d") return "icons/01d@2x.png";
         else if (weather === "01n") return "icons/weather/01n@2x.png";
@@ -195,7 +196,9 @@ document.addEventListener('DOMContentLoaded', () => {
         else return "icons/question-mark.png";
     }
 
+    // Fonction pour trouver la bonne icone de direction du vent
     function getWindDirectionIcon(wind_deg) {
+        console.log("Direction vent : " + wind_deg);
         const directions = [
             { min: 348.75, max: 360, icon: 'icons/wind/n.png' },
             { min: 0, max: 11.25, icon: 'icons/wind/n' },
@@ -225,6 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return 'icons/question-mark.png';
     }
 
+    // Fonction pour colorier les cellules de température
     function getTemperatureColor(temperature) {
         if (temperature < 0) {
             // Bleu pour les températures froides
@@ -238,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Fonction pour colorier les cellules de vent
     function getWindColor(wind) {
         if (wind <= 20) {
             // Bleu pour le vent faible
@@ -251,6 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Fonction pour fusionner la ligne d'en-tête avec la date du jour
     function mergeDaysRow() {
         const daysRow = document.getElementById('days-row');
         let previousCell = null;
@@ -279,7 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayPrecipitationData(data.minutely);
             }
             if (data.hourly?.length){
-                displayWeatherData(extractWeather24h(data.hourly));
+                displayWeather24h(extractWeather24h(data.hourly));
             }
         })
         .catch(error => console.error("Erreur lors de la récupération des données :", error));
