@@ -72,8 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
             const temperature = data.temp; // Température
-            const rain = data.rain ? (data.rain["1h"] || 0) : 0; // Précipitation, ou 0 s'il n'y en a pas
+            const rain = data.rain ? (data.rain["1h"] || 0) : 0;
             const wind = data.wind_speed;
+            const windGust = data.wind_gust ? data.wind_gust : 0;
             const pressure = data.pressure;
             
             return {
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 temperature,
                 rain,
                 wind,
+                windGust,
                 pressure
             };
         });
@@ -92,20 +94,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const temperatureRow = document.getElementById('temperature-row');
         const rainRow = document.getElementById('rain-row');
         const windRow = document.getElementById('wind-row');
+        const windGustRow = document.getElementById('wind-gust-row');
         const pressureRow = document.getElementById('pressure-row');
 
         data.forEach(item => {
-            // Créer et ajouter une cellule d'heure
             const hourCell = document.createElement('th');
             hourCell.textContent = item.time;
             hoursRow.appendChild(hourCell);
 
-            // Créer et ajouter une cellule de température
             const tempCell = document.createElement('td');
             tempCell.textContent = item.temperature.toFixed(1);
             temperatureRow.appendChild(tempCell);
 
-            // Créer et ajouter une cellule de précipitation
             const rainCell = document.createElement('td');
             rainCell.textContent = item.rain.toFixed(1);
             // Colorier en bleu clair si précipitations > 0
@@ -114,12 +114,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             rainRow.appendChild(rainCell);
 
-            // Créer et ajouter une cellule de vent
             const windCell = document.createElement('td');
             windCell.textContent = (item.wind * 3.6).toFixed(0);
             windRow.appendChild(windCell);
 
-            // Créer et ajouter une cellule de pression
+            const windGustCell = document.createElement('td');
+            windGustCell.textContent = (item.windGust * 3.6).toFixed(0);
+            windGustRow.appendChild(windGustCell);
+
             const pressionCell = document.createElement('td');
             pressionCell.textContent = item.pressure;
             pressureRow.appendChild(pressionCell);
@@ -138,14 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (data.minutely?.length) {
                 displayPrecipitationData(data.minutely);
             }
-            else {
-                console.error("Aucune donnée de précipitation disponible.");
-            }
             if (data.hourly?.length){
                 displayWeatherData(extractWeather24h(data.hourly));
-            }
-            else {
-                console.error("Aucune donnée de prévision disponible.");
             }
         })
         .catch(error => console.error("Erreur lors de la récupération des données :", error));
