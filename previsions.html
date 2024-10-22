@@ -22,35 +22,31 @@
 
         <div>
             <h3>Météo pour les prochaines 24h</h3>
-            <section class="tab-responsive">
-                <table class="weather-table">
-                    <thead>
-                        <tr id="days-row">
-                            <th>Paramètres</th>
-                        </tr>
-                        <tr id="hours-row">
-                            <th>Paramètres</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="temperature-row">
-                            <td>Température (°C)</td>
-                        </tr>
-                        <tr id="rain-row">
-                            <td>Précipitations (mm)</td>
-                        </tr>
-                        <tr id="wind-row">
-                            <td>Vent moyen (km/h)</td>
-                        </tr>
-                        <tr id="wind-gust-row">
-                            <td>Vent rafales (km/h)</td>
-                        </tr>
-                        <tr id="pressure-row">
-                            <td>Pression (hPa)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+            <table class="weather-table">
+                <thead>
+                    <tr id="days-row">
+                        <th rowspan="2">Paramètres</th> <!-- Fusion sur 2 lignes -->
+                    </tr>
+                    <tr id="hours-row"></tr> <!-- Ligne des heures sans la cellule Paramètres -->
+                </thead>
+                <tbody>
+                    <tr id="temperature-row">
+                        <td>Température (°C)</td>
+                    </tr>
+                    <tr id="rain-row">
+                        <td>Précipitations (mm)</td>
+                    </tr>
+                    <tr id="wind-row">
+                        <td>Vent moyen (km/h)</td>
+                    </tr>
+                    <tr id="wind-gust-row">
+                        <td>Vent rafales (km/h)</td>
+                    </tr>
+                    <tr id="pressure-row">
+                        <td>Pression (hPa)</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
 
