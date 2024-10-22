@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // URL de l'API OpenWeatherMap
     const apiKey = '3019a6c49cea102650053a8919b5fa54';
     const lat = 47.2917;
     const lon = -2.5201;
-
-    // URL de l'API OpenWeatherMap
     const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     // Fonctions pour formater l'heure
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonction pour extraire les données 24h
     function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
-            const temperature = data.temp.toFixed(1); // Température
+            const temperature = data.temp.toFixed(1);
             const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
             const wind = data.wind_speed*3.6;
             const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const windDirectionIcon = document.createElement('img');
             windDirectionIcon.style.width = "30px";
             windDirectionIcon.style.height = "30px";
-            windDirectionIcon.src = getWindDirectionIcon(data.windDirection);
+            windDirectionIcon.src = getWindDirectionIcon(item.windDirection);
             windDirectionCell.appendChild(windDirectionIcon);
             windDirectionRow.appendChild(windDirectionCell);
 
@@ -198,7 +198,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour trouver la bonne icone de direction du vent
     function getWindDirectionIcon(wind_deg) {
-        console.log("Direction vent : " + wind_deg);
         const directions = [
             { min: 348.75, max: 360, icon: 'icons/wind/n.png' },
             { min: 0, max: 11.25, icon: 'icons/wind/n' },
