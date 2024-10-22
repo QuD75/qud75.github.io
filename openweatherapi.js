@@ -119,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
             windRow.appendChild(windCell);
 
             const windGustCell = document.createElement('td');
-            windGustCell.textContent = (item.windGust * 3.6).toFixed(0);
+            windGustCell.textContent = (Math.max(item.windGust, item.wind) * 3.6).toFixed(0);
             windGustRow.appendChild(windGustCell);
 
             const pressionCell = document.createElement('td');
