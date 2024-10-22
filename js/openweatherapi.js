@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour trouver la bonne icone du temps
     function getWeatherIcon(weather){
-        if (weather === "01d") return "icons/01d@2x.png";
+        if (weather === "01d") return "icons/weather/01d@2x.png";
         else if (weather === "01n") return "icons/weather/01n@2x.png";
         else if (weather === "02d") return "icons/weather/02d@2x.png";
         else if (weather === "02n") return "icons/weather/02n@2x.png";
