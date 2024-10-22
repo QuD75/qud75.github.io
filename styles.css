@@ -44,30 +44,6 @@ nav ul li a:hover {
     border-radius: 5px;
 }
 
-/* Sous-menu spécifique à la page Prévisions */
-.sub-menu ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #004494;
-    margin-top: 20px;
-}
-.sub-menu ul li {
-    margin: 0 10px;
-}
-.sub-menu ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1em;
-    padding: 8px;
-}
-.sub-menu ul li a:hover {
-    background-color: #003366;
-    border-radius: 5px;
-}
-
 /* Contenu principal*/
 main {
     padding: 20px;
@@ -90,16 +66,10 @@ main p {
     height: 50%;
 }
 
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Ajoute une inertie au défilement sur mobile */
-}
-
 .weather-table {
-    width: 100%;
+    width: 70%;
     border-collapse: collapse;
-    margin: 0 auto;
+    margin: auto;
     table-layout: auto;
 }
 
