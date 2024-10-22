@@ -198,10 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return `rgb(0, ${Math.round(255 * (wind / 20))}, 255)`;
         } else if (wind > 20 && wind <= 50) {
             // Vert pour le vent moyen
-            return `rgb(${Math.round(255 * (wind / 20))}, 255, 0)`;
+            return `rgb(0, 255, ${Math.round(255 - ((wind - 20) * 255 / 30))})`;
         } else {
             // Rouge pour le vent fort
-            return `rgb(255, ${Math.round(255 - (wind - 20) * 255 / 15)}, 0)`;
+            return `rgb(255, ${Math.round(255 - ((wind - 50) * 255 / 50))}, 0)`;
         }
     }
 
