@@ -181,26 +181,43 @@ document.addEventListener('DOMContentLoaded', () => {
     function getTemperatureColor(temperature) {
         if (temperature < -10) {
             return '#00008B'; // Bleu foncé pour très froid
-        } else if (temperature >= -10 && temperature < 0) {
-            return '#4169E1'; // Bleu royal pour froid
-        } else if (temperature >= 0 && temperature < 5) {
+        } else if (temperature >= -10 && temperature < -7) {
+            return '#1E90FF'; // Bleu royal pour froid
+        } else if (temperature >= -7 && temperature < -4) {
             return '#00BFFF'; // Bleu clair pour frais
-        } else if (temperature >= 5 && temperature < 10) {
+        } else if (temperature >= -4 && temperature < -1) {
             return '#00FF7F'; // Vert printemps pour frais
-        } else if (temperature >= 10 && temperature < 15) {
-            return '#7FFF00'; // Vert lime pour tempéré
-        } else if (temperature >= 15 && temperature < 20) {
+        } else if (temperature >= -1 && temperature < 2) {
+            return '#7FFF00'; // Vert lime pour tempéré frais
+        } else if (temperature >= 2 && temperature < 5) {
+            return '#ADFF2F'; // Vert jaunâtre pour tempéré
+        } else if (temperature >= 5 && temperature < 8) {
             return '#FFFF00'; // Jaune pour tempéré
-        } else if (temperature >= 20 && temperature < 25) {
+        } else if (temperature >= 8 && temperature < 11) {
             return '#FFD700'; // Jaune doré pour chaud
-        } else if (temperature >= 25 && temperature < 30) {
-            return '#FFA500'; // Orange pour chaud
-        } else if (temperature >= 30 && temperature < 35) {
+        } else if (temperature >= 11 && temperature < 14) {
+            return '#FFA500'; // Orange clair pour chaud
+        } else if (temperature >= 14 && temperature < 17) {
+            return '#FF8C00'; // Orange foncé pour très chaud
+        } else if (temperature >= 17 && temperature < 20) {
             return '#FF4500'; // Rouge pour très chaud
+        } else if (temperature >= 20 && temperature < 23) {
+            return '#FF0000'; // Rouge vif pour canicule
+        } else if (temperature >= 23 && temperature < 26) {
+            return '#B22222'; // Rouge foncé pour extrêmes
+        } else if (temperature >= 26 && temperature < 29) {
+            return '#8B0000'; // Rouge sombre pour extrêmes
         } else {
-            return '#B22222'; // Rouge foncé pour canicule
+            return '#4B0082'; // Indigo pour des températures extrêmement élevées
         }
     }
+    
+    // Lorsque tu ajoutes une cellule de température
+    const temperatureCell = document.createElement('td');
+    temperatureCell.textContent = item.temperature.toFixed(1);
+    temperatureCell.style.backgroundColor = getTemperatureColor(item.temperature); // Appliquer la couleur
+    temperatureRow.appendChild(temperatureCell);
+    
 
     function mergeDaysRow() {
         const daysRow = document.getElementById('days-row');
