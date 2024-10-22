@@ -81,10 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonction pour extraire les données 24h
     function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
-            const temperature = data.temp; // Température
-            const rain = data.rain ? (data.rain["1h"] || 0) : 0;
-            const wind = data.wind_speed;
-            const windGust = data.wind_gust ? data.wind_gust : 0;
+            const temperature = data.temp.toFixed(1); // Température
+            const rain = data.rain ? (data.rain["1h"].toFixed(1) || 0) : 0;
+            const wind = data.wind_speed*3.6;
+            const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
             const pressure = data.pressure;
             const weather = data.weather[0].icon;
             
@@ -123,23 +123,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const tempCell = document.createElement('td');
             tempCell.style.backgroundColor = getTemperatureColor(item.temperature);
-            tempCell.textContent = item.temperature.toFixed(1);
+            tempCell.textContent = item.temperature;
             temperatureRow.appendChild(tempCell);
 
             const rainCell = document.createElement('td');
-            rainCell.textContent = item.rain.toFixed(1);
-            // Colorier en bleu clair si précipitations > 0
+            rainCell.textContent = item.rain;
             if (item.rain > 0) {
                 rainCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
             }
             rainRow.appendChild(rainCell);
 
             const windCell = document.createElement('td');
-            windCell.textContent = (item.wind * 3.6).toFixed(0);
+            windCell.style.backgroundColor = getWindColor(item.wind);
+            windCell.textContent = item.wind.toFixed(0);
             windRow.appendChild(windCell);
 
             const windGustCell = document.createElement('td');
-            windGustCell.textContent = (Math.max(item.windGust, item.wind) * 3.6).toFixed(0);
+            windGustCell.style.backgroundColor = getWindColor(item.windGust);
+            windGustCell.textContent = (Math.max(item.windGust, item.wind)).toFixed(0);
             windGustRow.appendChild(windGustCell);
 
             const pressionCell = document.createElement('td');
@@ -188,6 +189,19 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             // Rouge pour les températures chaudes
             return `rgb(255, ${Math.round(255 - (temperature - 20) * 255 / 15)}, 0)`;
+        }
+    }
+
+    function getWindColor(wind) {
+        if (wind <= 20) {
+            // Bleu pour le vent faible
+            return `rgb(0, ${Math.round(255 * (temperature / 20))}, 0)`;
+        } else if (wind > 20 && win <= 50) {
+            // Vert pour le vent moyen
+            return `rgb(${Math.round(255 * (wind / 20))}, 255, 0)`;
+        } else {
+            // Rouge pour le vent fort
+            return `rgb(255, ${Math.round(255 - (wind - 20) * 255 / 15)}, 0)`;
         }
     }
 
