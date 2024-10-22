@@ -146,6 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pressureRow.appendChild(pressionCell);
 
             const weatherCell = document.createElement('td');
+            weatherCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
             const weatherIcon = document.createElement('img');
             weatherIcon.style.width = "30px";
             weatherIcon.style.height = "30px";
