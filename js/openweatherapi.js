@@ -210,14 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             return '#4B0082'; // Indigo pour des températures extrêmement élevées
         }
-    }
-    
-    // Lorsque tu ajoutes une cellule de température
-    const temperatureCell = document.createElement('td');
-    temperatureCell.textContent = item.temperature.toFixed(1);
-    temperatureCell.style.backgroundColor = getTemperatureColor(item.temperature); // Appliquer la couleur
-    temperatureRow.appendChild(temperatureCell);
-    
+    }    
 
     function mergeDaysRow() {
         const daysRow = document.getElementById('days-row');
