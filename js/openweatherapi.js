@@ -149,17 +149,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const weatherIcon = document.createElement('img');
             weatherIcon.style.width = "30px";
             weatherIcon.style.height = "30px";
-            if (item.weather === "01d"){
-                weatherIcon.src = "icons/01d@2x.png";
-                weatherIcon.alt = "ciel dégagé";
-            }
-            else if (item.weather === "01n"){
-                weatherIcon.src = "icons/01n@2x.png";
-                weatherIcon.alt = "ciel dégagé";
-            } else {
-                weatherIcon.src = "icons/question-mark.png";
-                weatherIcon.alt = "inconnu";
-            }
+            if (item.weather === "01d") weatherIcon.src = "icons/01d@2x.png";
+            else if (item.weather === "01n") weatherIcon.src = "icons/01n@2x.png";
+            else if (item.weather === "02d") weatherIcon.src = "icons/02d@2x.png";
+            else if (item.weather === "02n") weatherIcon.src = "icons/02n@2x.png";
+            else if (item.weather === "03d") weatherIcon.src = "icons/03d@2x.png";
+            else if (item.weather === "03n") weatherIcon.src = "icons/03n@2x.png";
+            else if (item.weather === "04d") weatherIcon.src = "icons/04d@2x.png";
+            else if (item.weather === "04n") weatherIcon.src = "icons/04n@2x.png";
+            else if (item.weather === "09d") weatherIcon.src = "icons/09d@2x.png";
+            else if (item.weather === "09n") weatherIcon.src = "icons/09n@2x.png";
+            else if (item.weather === "10d") weatherIcon.src = "icons/10d@2x.png";
+            else if (item.weather === "10n") weatherIcon.src = "icons/10n@2x.png";
+            else if (item.weather === "11d") weatherIcon.src = "icons/11d@2x.png";
+            else if (item.weather === "11n") weatherIcon.src = "icons/11n@2x.png";
+            else if (item.weather === "13d") weatherIcon.src = "icons/13d@2x.png";
+            else if (item.weather === "13n") weatherIcon.src = "icons/13n@2x.png";
+            else if (item.weather === "50d") weatherIcon.src = "icons/50d@2x.png";
+            else if (item.weather === "50n") weatherIcon.src = "icons/50n@2x.png";
+            else weatherIcon.src = "icons/question-mark.png";
+            
             weatherCell.appendChild(weatherIcon);
             weatherRow.appendChild(weatherCell);
         });
