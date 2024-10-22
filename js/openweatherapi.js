@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
             const temperature = data.temp.toFixed(1); // Température
-            const rain = data.rain ? (data.rain["1h"].toFixed(1) || 0.0) : 0.0;
+            const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
             const wind = data.wind_speed*3.6;
             const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
             const pressure = data.pressure;
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             temperatureRow.appendChild(tempCell);
 
             const rainCell = document.createElement('td');
-            rainCell.textContent = item.rain;
+            rainCell.textContent = item.rain.toFixed(1);
             if (item.rain > 0) {
                 rainCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
             }
