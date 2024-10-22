@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Fonction pour extraire les données de température et de précipitation
+    // Fonction pour extraire les données 24h
     function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
             const temperature = data.temp; // Température
@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const wind = data.wind_speed;
             const windGust = data.wind_gust ? data.wind_gust : 0;
             const pressure = data.pressure;
+            const weather = data.weather.icon;
             
             return {
                 day: formatDayWeather(data.dt),
@@ -94,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 rain,
                 wind,
                 windGust,
-                pressure
+                pressure,
+                weather
             };
         });
     }
@@ -108,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const windRow = document.getElementById('wind-row');
         const windGustRow = document.getElementById('wind-gust-row');
         const pressureRow = document.getElementById('pressure-row');
+        const weatherRow = document.getElementById('weather-row');
 
         data.forEach(item => {
             const dayCell = document.createElement('th');
@@ -141,6 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const pressionCell = document.createElement('td');
             pressionCell.textContent = item.pressure;
             pressureRow.appendChild(pressionCell);
+
+            const weatherCell = document.createElement('td');
+            weatherCell.textContent = item.pressure;
+            weatherRow.appendChild(weatherCell);
         });
 
         mergeDaysRow();
