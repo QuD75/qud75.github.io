@@ -147,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function mergeDaysRow() {
-        console.log("fusion des cellules ...");
         const daysRow = document.getElementById('days-row');
         let previousCell = null;
         let colspan = 1;
@@ -168,8 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 colspan = 1;
             }
         }
-    
-        console.log("Fusion terminée.");
     }
 
     // Récupération des données météo via l'API
