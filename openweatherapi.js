@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function mergeDaysRow() {
+        console.log("fusion des celulles ...");
         const daysRow = document.getElementById('days-row');
         let previousCell = null;
         let colspan = 1;
