@@ -146,6 +146,32 @@ document.addEventListener('DOMContentLoaded', () => {
         mergeDaysRow();
     }
 
+    function mergeDaysRow() {
+        console.log("fusion des cellules ...");
+        const daysRow = document.getElementById('days-row');
+        let previousCell = null;
+        let colspan = 1;
+    
+        for (let i = 1; i < daysRow.children.length; i++) { // Commence à 1 car le premier <th> est "Paramètres"
+            const currentCell = daysRow.children[i];
+    
+            // Utiliser trim() pour éviter les problèmes d'espaces
+            if (previousCell && previousCell.textContent.trim() === currentCell.textContent.trim()) {
+                console.log("en cours...");
+                // Supprimer la cellule actuelle et augmenter le colspan de la cellule précédente
+                previousCell.colSpan = ++colspan;
+                currentCell.remove();
+                i--; // Compense la suppression de la cellule
+            } else {
+                // Réinitialiser la fusion pour la nouvelle cellule
+                previousCell = currentCell;
+                colspan = 1;
+            }
+        }
+    
+        console.log("Fusion terminée.");
+    }
+
     // Récupération des données météo via l'API
     fetch(apiUrl)
         .then(response => {
