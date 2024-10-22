@@ -9,6 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonctions pour formater l'heure
     const formatTimeGraphiqueHeure = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
     const formatTimeWeather24h = timestamp => new Date(timestamp * 1000).getHours() + 'h';
+    const formatDayWeather = timestamp => {
+        const date = new Date(timestamp * 1000);  // Convertir le timestamp en millisecondes
+        const jour = date.getDate();  // Obtenir le jour du mois
+    
+        // Tableau des mois en français
+        const moisFrancais = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+    
+        const mois = moisFrancais[date.getMonth()];  // Obtenir le mois correspondant
+        return `${jour} ${mois}`;  // Retourner la date sous le format "JJ mois"
+    };
+    
     
     // Fonction pour générer le graphique
     const displayPrecipitationData = (minutely) => {
@@ -78,7 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const pressure = data.pressure;
             
             return {
-                time: formatTimeWeather24h(data.dt), // Format de l'heure
+                day: formatDayWeather(data.dt),
+                hour: formatTimeWeather24h(data.dt),
                 temperature,
                 rain,
                 wind,
@@ -90,6 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les données dans le tableau HTML
     function displayWeatherData(data) {
+        const daysRow = document.getElementById('days-row');
         const hoursRow = document.getElementById('hours-row');
         const temperatureRow = document.getElementById('temperature-row');
         const rainRow = document.getElementById('rain-row');
@@ -98,8 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const pressureRow = document.getElementById('pressure-row');
 
         data.forEach(item => {
+            const dayCell = document.createElement('th');
+            dayCell.textContent = item.day;
+            daysRow.appendChild(dayCell);
+
             const hourCell = document.createElement('th');
-            hourCell.textContent = item.time;
+            hourCell.textContent = item.hour;
             hoursRow.appendChild(hourCell);
 
             const tempCell = document.createElement('td');
