@@ -9,7 +9,7 @@
 <body>
     <!-- Bannière avec titre -->
     <header>
-        <h1><a href="index.html" style="color: white; text-decoration: none;">Météo au Croisic</a></h1>
+        <h1><a href="html/index.html" style="color: white; text-decoration: none;">Météo au Croisic</a></h1>
     </header>
 
     <!-- Conteneur pour le menu -->
@@ -28,15 +28,6 @@
     </footer>
 
     <!-- Script pour charger le menu -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('menu.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('menu-container').innerHTML = data;
-                })
-                .catch(error => console.error('Erreur lors du chargement du menu:', error));
-        });
-    </script>
+    <script src="js/menu.js"></script>
 </body>
 </html>
