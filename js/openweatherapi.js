@@ -153,9 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 weatherIcon.src = "icons/01d@2x.png";
                 weatherIcon.alt = "ciel dégagé";
             }
-            if (item.weather === "01n"){
+            else if (item.weather === "01n"){
                 weatherIcon.src = "icons/01n@2x.png";
                 weatherIcon.alt = "ciel dégagé";
+            } else {
+                weatherIcon.src = "icons/question-mark.png";
+                weatherIcon.alt = "inconnu";
             }
             weatherCell.appendChild(weatherIcon);
             weatherRow.appendChild(weatherCell);
