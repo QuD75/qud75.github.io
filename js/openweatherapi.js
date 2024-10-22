@@ -182,12 +182,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (temperature < -10) {
             return '#00008B'; // Bleu foncé pour très froid
         } else if (temperature >= -10 && temperature < 0) {
-            return '#1E90FF'; // Bleu clair pour froid
-        } else if (temperature >= 0 && temperature < 10) {
-            return '#00FF00'; // Vert pour frais
-        } else if (temperature >= 10 && temperature < 20) {
+            return '#4169E1'; // Bleu royal pour froid
+        } else if (temperature >= 0 && temperature < 5) {
+            return '#00BFFF'; // Bleu clair pour frais
+        } else if (temperature >= 5 && temperature < 10) {
+            return '#00FF7F'; // Vert printemps pour frais
+        } else if (temperature >= 10 && temperature < 15) {
+            return '#7FFF00'; // Vert lime pour tempéré
+        } else if (temperature >= 15 && temperature < 20) {
             return '#FFFF00'; // Jaune pour tempéré
-        } else if (temperature >= 20 && temperature < 30) {
+        } else if (temperature >= 20 && temperature < 25) {
+            return '#FFD700'; // Jaune doré pour chaud
+        } else if (temperature >= 25 && temperature < 30) {
             return '#FFA500'; // Orange pour chaud
         } else if (temperature >= 30 && temperature < 35) {
             return '#FF4500'; // Rouge pour très chaud
