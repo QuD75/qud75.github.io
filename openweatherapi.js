@@ -142,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
             pressionCell.textContent = item.pressure;
             pressureRow.appendChild(pressionCell);
         });
+
+        mergeDaysRow();
     }
 
     function mergeDaysRow() {
@@ -152,9 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
         for (let i = 1; i < daysRow.children.length; i++) { // Commence à 1 car le premier <th> est "Paramètres"
             const currentCell = daysRow.children[i];
-    
+
             if (previousCell && previousCell.textContent === currentCell.textContent) {
-                console.log("en cours...");
                 // Supprimer la cellule actuelle et augmenter le colspan de la cellule précédente
                 previousCell.colSpan = ++colspan;
                 currentCell.remove();
@@ -164,13 +165,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 previousCell = currentCell;
                 colspan = 1;
             }
+
+            console.log("Comparaison :", previousCell.textContent.trim(), "et", currentCell.textContent.trim());
+
         }
     }
-
-    // Appel de la fonction après que le DOM soit entièrement chargé
-    window.onload = function() {
-    mergeDaysRow();
-    };
 
     // Récupération des données météo via l'API
     fetch(apiUrl)
