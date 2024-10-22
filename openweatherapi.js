@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${jour} ${mois}`;  // Retourner la date sous le format "JJ mois"
     };
     
-    
     // Fonction pour générer le graphique
     const displayPrecipitationData = (minutely) => {
         const labels = [];
@@ -145,7 +144,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function mergeDaysRow() {
+        const daysRow = document.getElementById('days-row');
+        let previousCell = null;
+        let colspan = 1;
     
+        for (let i = 1; i < daysRow.children.length; i++) { // Commence à 1 car le premier <th> est "Paramètres"
+            const currentCell = daysRow.children[i];
+    
+            if (previousCell && previousCell.textContent === currentCell.textContent) {
+                // Supprimer la cellule actuelle et augmenter le colspan de la cellule précédente
+                previousCell.colSpan = ++colspan;
+                currentCell.remove();
+                i--; // Compense la suppression de la cellule
+            } else {
+                // Réinitialiser la fusion pour la nouvelle cellule
+                previousCell = currentCell;
+                colspan = 1;
+            }
+        }
+    }
+
+    // Appel de la fonction après que le DOM soit entièrement chargé
+    window.onload = function() {
+    mergeDaysRow();
+    };
 
     // Récupération des données météo via l'API
     fetch(apiUrl)
