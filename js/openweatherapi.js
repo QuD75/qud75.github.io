@@ -146,7 +146,18 @@ document.addEventListener('DOMContentLoaded', () => {
             pressureRow.appendChild(pressionCell);
 
             const weatherCell = document.createElement('td');
-            weatherCell.textContent = item.weather;
+            const weatherIcon = document.createElement('img');
+            weatherIcon.style.width = "30px";
+            weatherIcon.style.height = "30px";
+            if (item.weather === "01d"){
+                weatherIcon.src = "icons/01d@2x.png";
+                weatherIcon.alt = "ciel dégagé";
+            }
+            if (item.weather === "01n"){
+                weatherIcon.src = "icons/01n@2x.png";
+                weatherIcon.alt = "ciel dégagé";
+            }
+            weatherCell.appendChild(weatherIcon);
             weatherRow.appendChild(weatherCell);
         });
 
@@ -157,18 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const daysRow = document.getElementById('days-row');
         let previousCell = null;
         let colspan = 1;
-    
-        for (let i = 1; i < daysRow.children.length; i++) { // Commence à 1 car le premier <th> est "Paramètres"
+        for (let i = 1; i < daysRow.children.length; i++) {
             const currentCell = daysRow.children[i];
-    
-            // Utiliser trim() pour éviter les problèmes d'espaces
             if (previousCell && previousCell.textContent.trim() === currentCell.textContent.trim()) {
-                // Supprimer la cellule actuelle et augmenter le colspan de la cellule précédente
                 previousCell.colSpan = ++colspan;
                 currentCell.remove();
-                i--; // Compense la suppression de la cellule
+                i--; 
             } else {
-                // Réinitialiser la fusion pour la nouvelle cellule
                 previousCell = currentCell;
                 colspan = 1;
             }
