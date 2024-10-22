@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
             const wind = data.wind_speed*3.6;
             const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
+            const windDirection = data.wind_deg;
             const pressure = data.pressure;
             const weather = data.weather[0].icon;
             
@@ -95,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 rain,
                 wind,
                 windGust,
+                windDirection,
                 pressure,
                 weather
             };
@@ -109,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const rainRow = document.getElementById('rain-row');
         const windRow = document.getElementById('wind-row');
         const windGustRow = document.getElementById('wind-gust-row');
+        const windDirectionRow = document.getElementById('wind-direction-row');
         const pressureRow = document.getElementById('pressure-row');
         const weatherRow = document.getElementById('weather-row');
 
@@ -142,6 +145,15 @@ document.addEventListener('DOMContentLoaded', () => {
             windGustCell.style.backgroundColor = getWindColor(item.windGust);
             windGustCell.textContent = (Math.max(item.windGust, item.wind)).toFixed(0);
             windGustRow.appendChild(windGustCell);
+
+            const windDirectionCell = document.createElement('td');
+            windDirectionCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
+            const windDirectionIcon = document.createElement('img');
+            windDirectionIcon.style.width = "30px";
+            windDirectionIcon.style.height = "30px";
+            weatherIcon.src = "icons/question-mark.png";
+            windDirectionCell.appendChild(windDirectionIcon);
+            windDirectionRow.appendChild(windDirectionCell);
 
             const pressionCell = document.createElement('td');
             pressionCell.textContent = item.pressure;
