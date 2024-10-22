@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const jour = date.getDate();  // Obtenir le jour du mois
     
         // Tableau des mois en français
-        const moisFrancais = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+        const moisFrancais = ["jan", "fév", "mars", "avr", "mai", "juin", "juil", "août", "sept", "oct", "nov", "déc"];
     
         const mois = moisFrancais[date.getMonth()];  // Obtenir le mois correspondant
         return `${jour} ${mois}`;  // Retourner la date sous le format "JJ mois"
