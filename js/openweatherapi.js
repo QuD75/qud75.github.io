@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const wind = data.wind_speed;
             const windGust = data.wind_gust ? data.wind_gust : 0;
             const pressure = data.pressure;
-            const weather = data.weather.icon;
+            const weather = data.weather[0].icon;
             
             return {
                 day: formatDayWeather(data.dt),
@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
             // Utiliser trim() pour éviter les problèmes d'espaces
             if (previousCell && previousCell.textContent.trim() === currentCell.textContent.trim()) {
-                console.log("en cours...");
                 // Supprimer la cellule actuelle et augmenter le colspan de la cellule précédente
                 previousCell.colSpan = ++colspan;
                 currentCell.remove();
