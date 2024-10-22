@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hoursRow.appendChild(hourCell);
 
             const tempCell = document.createElement('td');
+            tempCell.style.backgroundColor = getTemperatureColor(item.temperature);
             tempCell.textContent = item.temperature.toFixed(1);
             temperatureRow.appendChild(tempCell);
 
@@ -175,6 +176,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         mergeDaysRow();
+    }
+
+    function getTemperatureColor(temperature) {
+        if (temperature < -10) {
+            return '#00008B'; // Bleu foncé pour très froid
+        } else if (temperature >= -10 && temperature < 0) {
+            return '#1E90FF'; // Bleu clair pour froid
+        } else if (temperature >= 0 && temperature < 10) {
+            return '#00FF00'; // Vert pour frais
+        } else if (temperature >= 10 && temperature < 20) {
+            return '#FFFF00'; // Jaune pour tempéré
+        } else if (temperature >= 20 && temperature < 30) {
+            return '#FFA500'; // Orange pour chaud
+        } else if (temperature >= 30 && temperature < 35) {
+            return '#FF4500'; // Rouge pour très chaud
+        } else {
+            return '#B22222'; // Rouge foncé pour canicule
+        }
     }
 
     function mergeDaysRow() {
