@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const weatherIcon = document.createElement('img');
             weatherIcon.style.width = "30px";
             weatherIcon.style.height = "30px";
-            weatherIcon.src(getWeatherIcon(data.weather));
+            weatherIcon.src = getWeatherIcon(data.weather);
             
             weatherCell.appendChild(weatherIcon);
             weatherRow.appendChild(weatherCell);
