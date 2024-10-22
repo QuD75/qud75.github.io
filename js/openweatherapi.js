@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const windDirectionIcon = document.createElement('img');
             windDirectionIcon.style.width = "30px";
             windDirectionIcon.style.height = "30px";
-            weatherIcon.src = "icons/question-mark.png";
+            windDirectionIcon.src = "icons/question-mark.png";
             windDirectionCell.appendChild(windDirectionIcon);
             windDirectionRow.appendChild(windDirectionCell);
 
