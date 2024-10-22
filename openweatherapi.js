@@ -154,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const currentCell = daysRow.children[i];
     
             if (previousCell && previousCell.textContent === currentCell.textContent) {
+                console.log("en cours...");
                 // Supprimer la cellule actuelle et augmenter le colspan de la cellule précédente
                 previousCell.colSpan = ++colspan;
                 currentCell.remove();
