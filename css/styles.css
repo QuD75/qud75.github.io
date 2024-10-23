@@ -101,7 +101,6 @@ main p {
 .weather-table-7d th, 
 .weather-table-7d td {
     overflow: hidden; /* Évite que le texte déborde des cellules */
-    white-space: nowrap; /* Évite le passage à la ligne du texte */
 }
 .weather-table-7d th:nth-last-child(1), 
 .weather-table-7d td:nth-last-child(1) {
