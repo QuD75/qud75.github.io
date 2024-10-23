@@ -248,7 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 temp_max: data.temp.max.toFixed(0),
                 temp_min: data.temp.min.toFixed(0),
                 rain: data.rain ? (data.rain || 0.0) : 0.0,
-                weather: data.weather[0].icon
+                weather: data.weather[0].icon,
+                summary: data.summary
             };
         });
     }
@@ -260,6 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const tempMinFragment = document.createDocumentFragment();
         const rainFragment = document.createDocumentFragment();
         const weatherFragment = document.createDocumentFragment();
+        const summaryFragment = document.createDocumentFragment();
     
         data.forEach(item => {
             // Remplir chaque fragment
@@ -276,6 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherIcon.style.height = "30px";
             weatherCell.appendChild(weatherIcon);
             weatherFragment.appendChild(weatherCell);
+            summaryFragment.appendChild(createCell('th', translateText(item.summary)));
         });
     
         // Insérer tous les fragments dans le DOM
@@ -286,7 +289,36 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('temperature-max-7d-row').appendChild(tempMaxFragment);
         document.getElementById('rain-7d-row').appendChild(rainFragment);
         document.getElementById('weather-7d-row').appendChild(weatherFragment);
+        document.getElementById('summary-7d-row').appendChild(summaryFragment);
     }
+    const translateText = async (text, sourceLang = 'en', targetLang = 'fr') => {
+        const url = 'https://libretranslate.de/translate';
+    
+        const body = {
+            q: text,
+            source: sourceLang,
+            target: targetLang,
+            format: 'text'
+        };
+    
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(body)
+            });
+    
+            const data = await response.json();
+            if (data && data.translatedText) {
+                return data.translatedText;
+            } else {
+                throw new Error('Erreur lors de la traduction');
+            }
+        } catch (error) {
+            console.error('Erreur :', error);
+            return null;
+        }
+    };
 
     // Récupération des données météo via l'API
     fetch(apiUrl)
