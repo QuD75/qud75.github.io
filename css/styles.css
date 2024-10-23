@@ -96,37 +96,48 @@ main p {
 
 .weather-table-7d {
     table-layout: fixed; /* Fixe la disposition des cellules */
-    width: 70%; /* S'assure que le tableau utilise toute la largeur disponible */
+    width: 70%; /* Utilise toute la largeur disponible */
+    border-collapse: collapse; /* Évite les espaces entre les cellules */
 }
 
-.weather-table-7d th,
+.weather-table-7d th, 
 .weather-table-7d td {
     overflow: hidden; /* Évite que le texte déborde des cellules */
     padding: 10px; /* Ajustez le rembourrage selon vos besoins */
     vertical-align: middle; /* Aligne le contenu verticalement */
+    text-align: center; /* Centre le texte horizontalement */
 }
+
 .weather-table-7d th:nth-last-child(1), 
 .weather-table-7d td:nth-last-child(1) {
     width: auto; /* Permet à la dernière colonne d'avoir une largeur automatique */
 }
+
 .weather-table-7d th {
-    width: 10%; /* Ajuste la largeur des 7 premières colonnes */
+    width: 10%; /* Ajuste la largeur des colonnes d'en-tête */
 }
+
 .weather-table-7d td {
-    width: 10%; /* Ajuste la largeur des 7 premières colonnes */
+    width: 10%; /* Ajuste la largeur des cellules, modifiez la valeur selon le nombre de colonnes */
 }
+
 /* Spécifie que la première ligne ne doit pas avoir de hauteur fixe */
 .weather-table-7d tr:first-child {
     height: auto; /* La première ligne garde sa hauteur naturelle */
 }
-/* Utilisation de flexbox pour les lignes sauf la première */
+
+/* Aligne les autres lignes pour qu'elles aient la même hauteur que la ligne la plus haute */
 .weather-table-7d tr:not(:first-child) {
-    display: flex; /* Utilise flexbox pour ajuster les hauteurs */
+    height: 50px; /* Vous pouvez ajuster cette valeur pour définir une hauteur de ligne */
 }
-/* Assurez-vous que toutes les cellules des lignes autres que la première utilisent la même hauteur */
+
+/* Optionnel : Aligner verticalement le contenu dans les cellules */
 .weather-table-7d td {
-    flex: 1; /* Permet aux cellules de s'ajuster à la même hauteur */
+    display: flex; /* Utilisez flexbox pour contrôler l'alignement */
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
 }
+
 
 footer {
     background-color: #0073e6;
