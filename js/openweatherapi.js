@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // URL de l'API OpenWeatherMap
+    //API OpenWeatherMap
     const apiKey = '3019a6c49cea102650053a8919b5fa54';
     const lat = 47.2917;
     const lon = -2.5201;
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${jour} ${mois}`;  // Retourner la date sous le format "JJ mois"
     };
     
-    // Fonction pour générer le graphique
+    // Fonction pour générer le graphique de pluie 1h
     const displayPrecipitationData = (minutely) => {
         const labels = [];
         const dataPoints = [];
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         generateChart(labels, dataPoints);
     };
 
-    // Fonction pour remplir le graphique
+    // Fonction pour remplir le graphique de pluie 1h
     const generateChart = (labels, dataPoints) => {
         const ctx = document.getElementById('precipitation-chart').getContext('2d');
         
@@ -105,126 +105,105 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fonction pour afficher les données 24h dans le tableau HTML
     function displayWeather24h(data) {
-        const daysRow = document.getElementById('days-row');
-        const hoursRow = document.getElementById('hours-row');
-        const temperatureRow = document.getElementById('temperature-row');
-        const rainRow = document.getElementById('rain-row');
-        const windRow = document.getElementById('wind-row');
-        const windGustRow = document.getElementById('wind-gust-row');
-        const windDirectionRow = document.getElementById('wind-direction-row');
-        const pressureRow = document.getElementById('pressure-row');
-        const weatherRow = document.getElementById('weather-row');
-
+        const daysFragment = document.createDocumentFragment();
+        const hoursFragment = document.createDocumentFragment();
+        const temperatureFragment = document.createDocumentFragment();
+        const rainFragment = document.createDocumentFragment();
+        const windFragment = document.createDocumentFragment();
+        const windGustFragment = document.createDocumentFragment();
+        const windDirectionFragment = document.createDocumentFragment();
+        const pressureFragment = document.createDocumentFragment();
+        const weatherFragment = document.createDocumentFragment();
+    
         data.forEach(item => {
-            const dayCell = document.createElement('th');
-            dayCell.textContent = item.day;
-            daysRow.appendChild(dayCell);
-
-            const hourCell = document.createElement('th');
-            hourCell.textContent = item.hour;
-            hoursRow.appendChild(hourCell);
-
-            const tempCell = document.createElement('td');
-            tempCell.style.backgroundColor = getTemperatureColor(item.temperature);
-            tempCell.textContent = item.temperature;
-            temperatureRow.appendChild(tempCell);
-
-            const rainCell = document.createElement('td');
-            rainCell.textContent = item.rain.toFixed(1);
-            if (item.rain > 0) {
-                rainCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
-            }
-            rainRow.appendChild(rainCell);
-
-            const windCell = document.createElement('td');
-            windCell.style.backgroundColor = getWindColor(item.wind);
-            windCell.textContent = item.wind.toFixed(0);
-            windRow.appendChild(windCell);
-
-            const windGustCell = document.createElement('td');
-            windGustCell.style.backgroundColor = getWindColor(item.windGust);
-            windGustCell.textContent = (Math.max(item.windGust, item.wind)).toFixed(0);
-            windGustRow.appendChild(windGustCell);
-
-            const windDirectionCell = document.createElement('td');
-            windDirectionCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
+            // Remplir chaque fragment
+            daysFragment.appendChild(createCell('th', item.day));
+            hoursFragment.appendChild(createCell('th', item.hour));
+            temperatureFragment.appendChild(createCell('td', item.temperature, { backgroundColor: getTemperatureColor(item.temperature) }));
+            rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
+            windFragment.appendChild(createCell('td', item.wind, { backgroundColor: getWindColor(item.wind) }));
+            windGustFragment.appendChild(createCell('td', Math.max(item.windGust, item.wind), { backgroundColor: getWindColor(item.windGust) }));
+    
+            const windDirectionCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
             const windDirectionIcon = document.createElement('img');
+            windDirectionIcon.src = getWindDirectionIcon(item.windDirection);
             windDirectionIcon.style.width = "30px";
             windDirectionIcon.style.height = "30px";
-            windDirectionIcon.src = getWindDirectionIcon(item.windDirection);
             windDirectionCell.appendChild(windDirectionIcon);
-            windDirectionRow.appendChild(windDirectionCell);
-
-            const pressionCell = document.createElement('td');
-            pressionCell.textContent = item.pressure;
-            pressureRow.appendChild(pressionCell);
-
-            const weatherCell = document.createElement('td');
-            weatherCell.style.backgroundColor = '#ADD8E6'; // Bleu clair
+            windDirectionFragment.appendChild(windDirectionCell);
+    
+            pressureFragment.appendChild(createCell('td', item.pressure));
+            const weatherCell = createCell('td', '');
             const weatherIcon = document.createElement('img');
+            weatherIcon.src = getWeatherIcon(item.weather);
             weatherIcon.style.width = "30px";
             weatherIcon.style.height = "30px";
-            weatherIcon.src = getWeatherIcon(item.weather);
-            
             weatherCell.appendChild(weatherIcon);
-            weatherRow.appendChild(weatherCell);
+            weatherFragment.appendChild(weatherCell);
         });
-
+    
+        // Insérer tous les fragments dans le DOM
+        document.getElementById('days-row').appendChild(daysFragment);
+        document.getElementById('hours-row').appendChild(hoursFragment);
+        document.getElementById('temperature-row').appendChild(temperatureFragment);
+        document.getElementById('rain-row').appendChild(rainFragment);
+        document.getElementById('wind-row').appendChild(windFragment);
+        document.getElementById('wind-gust-row').appendChild(windGustFragment);
+        document.getElementById('wind-direction-row').appendChild(windDirectionFragment);
+        document.getElementById('pressure-row').appendChild(pressureFragment);
+        document.getElementById('weather-row').appendChild(weatherFragment);
+    
         mergeDaysRow();
     }
 
     // Fonction pour trouver la bonne icone du temps
-    function getWeatherIcon(weather){
-        if (weather === "01d") return "icons/weather/01d@2x.png";
-        else if (weather === "01n") return "icons/weather/01n@2x.png";
-        else if (weather === "02d") return "icons/weather/02d@2x.png";
-        else if (weather === "02n") return "icons/weather/02n@2x.png";
-        else if (weather === "03d") return "icons/weather/03d@2x.png";
-        else if (weather === "03n") return "icons/weather/03n@2x.png";
-        else if (weather === "04d") return "icons/weather/04d@2x.png";
-        else if (weather === "04n") return "icons/weather/04n@2x.png";
-        else if (weather === "09d") return "icons/weather/09d@2x.png";
-        else if (weather === "09n") return "icons/weather/09n@2x.png";
-        else if (weather === "10d") return "icons/weather/10d@2x.png";
-        else if (weather === "10n") return "icons/weather/10n@2x.png";
-        else if (weather === "11d") return "icons/weather/11d@2x.png";
-        else if (weather === "11n") return "icons/weather/11n@2x.png";
-        else if (weather === "13d") return "icons/weather/13d@2x.png";
-        else if (weather === "13n") return "icons/weather/13n@2x.png";
-        else if (weather === "50d") return "icons/weather/50d@2x.png";
-        else if (weather === "50n") return "icons/weather/50n@2x.png";
-        else return "icons/question-mark.png";
+    const weatherIcons = {
+        "01d": "icons/weather/01d@2x.png",
+        "01n": "icons/weather/01n@2x.png",
+        "02d": "icons/weather/02d@2x.png",
+        "02n": "icons/weather/02n@2x.png",
+        "03d": "icons/weather/03d@2x.png",
+        "03n": "icons/weather/03n@2x.png",
+        "04d": "icons/weather/04d@2x.png",
+        "04n": "icons/weather/04n@2x.png",
+        "09d": "icons/weather/09d@2x.png",
+        "09n": "icons/weather/09n@2x.png",
+        "10d": "icons/weather/10d@2x.png",
+        "10n": "icons/weather/10n@2x.png",
+        "11d": "icons/weather/11d@2x.png",
+        "11n": "icons/weather/11n@2x.png",
+        "13d": "icons/weather/13d@2x.png",
+        "13n": "icons/weather/13n@2x.png",
+        "50d": "icons/weather/50d@2x.png",
+        "50n": "icons/weather/50n@2x.png"
+    };   
+    function getWeatherIcon(weather) {
+        return weatherIcons[weather] || "icons/question-mark.png";
     }
 
     // Fonction pour trouver la bonne icone de direction du vent
+    const windDirectionIcons = [
+        { min: 348.75, max: 360, icon: 'icons/wind/n.png' },
+        { min: 0, max: 11.25, icon: 'icons/wind/n.png' },
+        { min: 11.25, max: 33.75, icon: 'icons/wind/nne.png' },
+        { min: 33.75, max: 56.25, icon: 'icons/wind/ne.png' },
+        { min: 56.25, max: 78.75, icon: 'icons/wind/ene.png' },
+        { min: 78.75, max: 101.25, icon: 'icons/wind/e.png' },
+        { min: 101.25, max: 123.75, icon: 'icons/wind/ese.png' },
+        { min: 123.75, max: 146.25, icon: 'icons/wind/se.png' },
+        { min: 146.25, max: 168.75, icon: 'icons/wind/sse.png' },
+        { min: 168.75, max: 191.25, icon: 'icons/wind/s.png' },
+        { min: 191.25, max: 213.75, icon: 'icons/wind/sso.png' },
+        { min: 213.75, max: 236.25, icon: 'icons/wind/so.png' },
+        { min: 236.25, max: 258.75, icon: 'icons/wind/oso.png' },
+        { min: 258.75, max: 281.25, icon: 'icons/wind/o.png' },
+        { min: 281.25, max: 303.75, icon: 'icons/wind/ono.png' },
+        { min: 303.75, max: 326.25, icon: 'icons/wind/no.png' },
+        { min: 326.25, max: 348.75, icon: 'icons/wind/nno.png' }
+    ]; 
     function getWindDirectionIcon(wind_deg) {
-        const directions = [
-            { min: 348.75, max: 360, icon: 'icons/wind/n.png' },
-            { min: 0, max: 11.25, icon: 'icons/wind/n' },
-            { min: 11.25, max: 33.75, icon: 'icons/wind/nne.png' },
-            { min: 33.75, max: 56.25, icon: 'icons/wind/ne.png' },
-            { min: 56.25, max: 78.75, icon: 'icons/wind/ene.png' },
-            { min: 78.75, max: 101.25, icon: 'icons/wind/e.png' },
-            { min: 101.25, max: 123.75, icon: 'icons/wind/ese.png' },
-            { min: 123.75, max: 146.25, icon: 'icons/wind/se.png' },
-            { min: 146.25, max: 168.75, icon: 'icons/wind/sse.png' },
-            { min: 168.75, max: 191.25, icon: 'icons/wind/s.png' },
-            { min: 191.25, max: 213.75, icon: 'icons/wind/sso.png' },
-            { min: 213.75, max: 236.25, icon: 'icons/wind/so.png' },
-            { min: 236.25, max: 258.75, icon: 'icons/wind/oso.png' },
-            { min: 258.75, max: 281.25, icon: 'icons/wind/o.png' },
-            { min: 281.25, max: 303.75, icon: 'icons/wind/ono.png' },
-            { min: 303.75, max: 326.25, icon: 'icons/wind/no.png' },
-            { min: 326.25, max: 348.75, icon: 'icons/wind/nno.png' }
-        ];
-    
-        for (const direction of directions) {
-            if (wind_deg >= direction.min && wind_deg < direction.max) {
-                return direction.icon;
-            }
-        }
-    
-        return 'icons/question-mark.png';
+        const direction = windDirectionIcons.find(d => wind_deg >= d.min && wind_deg < d.max);
+        return direction ? direction.icon : 'icons/question-mark.png';
     }
 
     // Fonction pour colorier les cellules de température
