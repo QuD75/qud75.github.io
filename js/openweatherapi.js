@@ -64,6 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const mois = moisFrancais[date.getMonth()];  // Obtenir le mois correspondant
         return `${jour} ${mois}`;  // Retourner la date sous le format "JJ mois"
     };
+    const formatTimeDayOfWeek = timestamp => {
+        const days = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+        return days[new Date(timestamp * 1000).getDay()];
+    };
 
     // Fonctions communes
     function createCell(type, content, style = {}) {
@@ -246,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function extractWeatherDaily(daily) {
         return daily.slice(0, 7).map(data => {            
             return {
-                day: formatTime_DD_MM(data.dt),
+                day: formatTimeDayOfWeek(data.dt),
                 sunrise: formatTime_HH_mm(data.sunrise),
                 sunset: formatTime_HH_mm(data.sunset),
                 temp_max: data.temp.max.toFixed(0),
