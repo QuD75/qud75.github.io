@@ -112,6 +112,12 @@ main p {
 .weather-table-7d td {
     width: 10%; /* Ajuste la largeur des 7 premières colonnes */
 }
+.weather-table-7d tr:first-child {
+    height: auto; /* La première ligne garde sa hauteur naturelle */
+}
+.weather-table-7d tr:not(:first-child) {
+    height: 100%; /* Assure que les autres lignes s'ajustent à la hauteur la plus haute */
+}
 
 footer {
     background-color: #0073e6;
