@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherIcon.style.height = "30px";
             weatherCell.appendChild(weatherIcon);
             weatherFragment.appendChild(weatherCell);
-            summaryFragment.appendChild(createCell('th', translateTextToFrench(item.summary)));
+            summaryFragment.appendChild(createCell('td', translateTextToFrench(item.summary)));
         });
     
         // Insérer tous les fragments dans le DOM
