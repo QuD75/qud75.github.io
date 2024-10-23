@@ -282,7 +282,6 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherIcon.style.height = "30px";
             weatherCell.appendChild(weatherIcon);
             weatherFragment.appendChild(weatherCell);
-            console.log(translateTextToFrench(item.summary));
             summaryFragment.appendChild(createCell('td', translateTextToFrench(item.summary)));
         });
     
@@ -310,6 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const data = await response.json();
         if (response.ok) {
+            console.log(data.data.translations[0].translatedText);
             return data.data.translations[0].translatedText;
         } else {
             throw new Error(data.error.message);
