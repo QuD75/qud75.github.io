@@ -113,16 +113,16 @@ main p {
 /* Réglez la largeur de toutes les colonnes sauf la dernière */
 .weather-table-7d th:nth-last-child(n+1),
 .weather-table-7d td:nth-last-child(n+1) {
-    width: 10%; /* Ajuste la largeur des colonnes sauf la dernière */
+    width: 8%; /* Ajuste la largeur des colonnes sauf la dernière */
 }
 
 .weather-table-7d th:last-child,
 .weather-table-7d td:last-child {
-    width: 20%; /* Largeur pour la dernière colonne */
+    width: 16%; /* Largeur pour la dernière colonne */
 }
 
 /* Ajuste la hauteur de toutes les lignes sauf la première */
-.weather-table-7d tr:not(:first-child) {
+.weather-table-7d tr {
     height: 10%; /* Définissez la hauteur désirée pour les lignes */
 }
 
