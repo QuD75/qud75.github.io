@@ -34,4 +34,4 @@ jobs:
       - name: Push changes
         run: git push
         env:
-          GITHUB_TOKEN: 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  # Utilise le token GitHub pour autoriser le push
+          GITHUB_TOKEN: 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  # Utilise le token GitHub pour autoriser le push
