@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tableau données 24h
     function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
-            const temperature = data.temp.toFixed(1);
+            const temperature = data.temp.toFixed(0);
             const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
             const wind = data.wind_speed*3.6;
             const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
