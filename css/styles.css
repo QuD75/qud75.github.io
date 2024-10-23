@@ -95,49 +95,36 @@ main p {
 }
 
 .weather-table-7d {
-    table-layout: fixed; /* Fixe la disposition des cellules */
     width: 70%; /* Utilise toute la largeur disponible */
     border-collapse: collapse; /* Évite les espaces entre les cellules */
 }
 
-.weather-table-7d th, 
+.weather-table-7d th,
 .weather-table-7d td {
-    overflow: hidden; /* Évite que le texte déborde des cellules */
-    padding: 10px; /* Ajustez le rembourrage selon vos besoins */
-    vertical-align: middle; /* Aligne le contenu verticalement */
+    border: 1px solid #ddd; /* Bordure des cellules */
+    padding: 10px; /* Rembourrage interne */
     text-align: center; /* Centre le texte horizontalement */
 }
 
-.weather-table-7d th:nth-last-child(1), 
-.weather-table-7d td:nth-last-child(1) {
-    width: auto; /* Permet à la dernière colonne d'avoir une largeur automatique */
-}
-
 .weather-table-7d th {
-    width: 10%; /* Ajuste la largeur des colonnes d'en-tête */
+    background-color: #007bff;
 }
 
-.weather-table-7d td {
-    width: 10%; /* Ajuste la largeur des cellules, modifiez la valeur selon le nombre de colonnes */
+/* Réglez la largeur de toutes les colonnes sauf la dernière */
+.weather-table-7d th:nth-last-child(n+1),
+.weather-table-7d td:nth-last-child(n+1) {
+    width: 10%; /* Ajuste la largeur des colonnes sauf la dernière */
 }
 
-/* Spécifie que la première ligne ne doit pas avoir de hauteur fixe */
-.weather-table-7d tr:first-child {
-    height: auto; /* La première ligne garde sa hauteur naturelle */
+.weather-table-7d th:last-child,
+.weather-table-7d td:last-child {
+    width: 20%; /* Largeur pour la dernière colonne */
 }
 
-/* Aligne les autres lignes pour qu'elles aient la même hauteur que la ligne la plus haute */
+/* Ajuste la hauteur de toutes les lignes sauf la première */
 .weather-table-7d tr:not(:first-child) {
-    height: 50px; /* Vous pouvez ajuster cette valeur pour définir une hauteur de ligne */
+    height: 10%; /* Définissez la hauteur désirée pour les lignes */
 }
-
-/* Optionnel : Aligner verticalement le contenu dans les cellules */
-.weather-table-7d td {
-    display: flex; /* Utilisez flexbox pour contrôler l'alignement */
-    justify-content: center; /* Centre horizontalement */
-    align-items: center; /* Centre verticalement */
-}
-
 
 footer {
     background-color: #0073e6;
