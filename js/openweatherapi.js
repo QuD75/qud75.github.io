@@ -1,6 +1,47 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    //API OpenWeatherMap
+    //Constantes Icones
+    const windDirectionIcons = [
+        { min: 348.75, max: 360, icon: 'icons/wind/n.png' },
+        { min: 0, max: 11.25, icon: 'icons/wind/n.png' },
+        { min: 11.25, max: 33.75, icon: 'icons/wind/nne.png' },
+        { min: 33.75, max: 56.25, icon: 'icons/wind/ne.png' },
+        { min: 56.25, max: 78.75, icon: 'icons/wind/ene.png' },
+        { min: 78.75, max: 101.25, icon: 'icons/wind/e.png' },
+        { min: 101.25, max: 123.75, icon: 'icons/wind/ese.png' },
+        { min: 123.75, max: 146.25, icon: 'icons/wind/se.png' },
+        { min: 146.25, max: 168.75, icon: 'icons/wind/sse.png' },
+        { min: 168.75, max: 191.25, icon: 'icons/wind/s.png' },
+        { min: 191.25, max: 213.75, icon: 'icons/wind/sso.png' },
+        { min: 213.75, max: 236.25, icon: 'icons/wind/so.png' },
+        { min: 236.25, max: 258.75, icon: 'icons/wind/oso.png' },
+        { min: 258.75, max: 281.25, icon: 'icons/wind/o.png' },
+        { min: 281.25, max: 303.75, icon: 'icons/wind/ono.png' },
+        { min: 303.75, max: 326.25, icon: 'icons/wind/no.png' },
+        { min: 326.25, max: 348.75, icon: 'icons/wind/nno.png' }
+    ]; 
+    const weatherIcons = {
+        "01d": "icons/weather/01d@2x.png",
+        "01n": "icons/weather/01n@2x.png",
+        "02d": "icons/weather/02d@2x.png",
+        "02n": "icons/weather/02n@2x.png",
+        "03d": "icons/weather/03d@2x.png",
+        "03n": "icons/weather/03n@2x.png",
+        "04d": "icons/weather/04d@2x.png",
+        "04n": "icons/weather/04n@2x.png",
+        "09d": "icons/weather/09d@2x.png",
+        "09n": "icons/weather/09n@2x.png",
+        "10d": "icons/weather/10d@2x.png",
+        "10n": "icons/weather/10n@2x.png",
+        "11d": "icons/weather/11d@2x.png",
+        "11n": "icons/weather/11n@2x.png",
+        "13d": "icons/weather/13d@2x.png",
+        "13n": "icons/weather/13n@2x.png",
+        "50d": "icons/weather/50d@2x.png",
+        "50n": "icons/weather/50n@2x.png"
+    }; 
+
+    //Constantes API OpenWeatherMap
     const apiKey = '3019a6c49cea102650053a8919b5fa54';
     const lat = 47.2917;
     const lon = -2.5201;
@@ -20,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `${jour} ${mois}`;  // Retourner la date sous le format "JJ mois"
     };
     
-    // Fonction pour générer le graphique de pluie 1h
+    // Graphique de pluie 1h
     const displayPrecipitationData = (minutely) => {
         const labels = [];
         const dataPoints = [];
@@ -37,8 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Appel à la fonction pour générer le graphique
         generateChart(labels, dataPoints);
     };
-
-    // Fonction pour remplir le graphique de pluie 1h
     const generateChart = (labels, dataPoints) => {
         const ctx = document.getElementById('precipitation-chart').getContext('2d');
         
@@ -78,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Fonction pour extraire les données 24h
+    // Tableau données 24h
     function extractWeather24h(hourly) {
         return hourly.slice(0, 24).map(data => {
             const temperature = data.temp.toFixed(1);
@@ -102,8 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
     }
-
-    // Fonction pour afficher les données 24h dans le tableau HTML
     function displayWeather24h(data) {
         const daysFragment = document.createDocumentFragment();
         const hoursFragment = document.createDocumentFragment();
@@ -155,58 +192,19 @@ document.addEventListener('DOMContentLoaded', () => {
     
         mergeDaysRow();
     }
-
-    // Fonction pour trouver la bonne icone du temps
-    const weatherIcons = {
-        "01d": "icons/weather/01d@2x.png",
-        "01n": "icons/weather/01n@2x.png",
-        "02d": "icons/weather/02d@2x.png",
-        "02n": "icons/weather/02n@2x.png",
-        "03d": "icons/weather/03d@2x.png",
-        "03n": "icons/weather/03n@2x.png",
-        "04d": "icons/weather/04d@2x.png",
-        "04n": "icons/weather/04n@2x.png",
-        "09d": "icons/weather/09d@2x.png",
-        "09n": "icons/weather/09n@2x.png",
-        "10d": "icons/weather/10d@2x.png",
-        "10n": "icons/weather/10n@2x.png",
-        "11d": "icons/weather/11d@2x.png",
-        "11n": "icons/weather/11n@2x.png",
-        "13d": "icons/weather/13d@2x.png",
-        "13n": "icons/weather/13n@2x.png",
-        "50d": "icons/weather/50d@2x.png",
-        "50n": "icons/weather/50n@2x.png"
-    };   
+    function createCell(type, content, style = {}) {
+        const cell = document.createElement(type);
+        cell.textContent = content;
+        Object.assign(cell.style, style); // Appliquer les styles s'ils existent
+        return cell;
+    }
     function getWeatherIcon(weather) {
         return weatherIcons[weather] || "icons/question-mark.png";
     }
-
-    // Fonction pour trouver la bonne icone de direction du vent
-    const windDirectionIcons = [
-        { min: 348.75, max: 360, icon: 'icons/wind/n.png' },
-        { min: 0, max: 11.25, icon: 'icons/wind/n.png' },
-        { min: 11.25, max: 33.75, icon: 'icons/wind/nne.png' },
-        { min: 33.75, max: 56.25, icon: 'icons/wind/ne.png' },
-        { min: 56.25, max: 78.75, icon: 'icons/wind/ene.png' },
-        { min: 78.75, max: 101.25, icon: 'icons/wind/e.png' },
-        { min: 101.25, max: 123.75, icon: 'icons/wind/ese.png' },
-        { min: 123.75, max: 146.25, icon: 'icons/wind/se.png' },
-        { min: 146.25, max: 168.75, icon: 'icons/wind/sse.png' },
-        { min: 168.75, max: 191.25, icon: 'icons/wind/s.png' },
-        { min: 191.25, max: 213.75, icon: 'icons/wind/sso.png' },
-        { min: 213.75, max: 236.25, icon: 'icons/wind/so.png' },
-        { min: 236.25, max: 258.75, icon: 'icons/wind/oso.png' },
-        { min: 258.75, max: 281.25, icon: 'icons/wind/o.png' },
-        { min: 281.25, max: 303.75, icon: 'icons/wind/ono.png' },
-        { min: 303.75, max: 326.25, icon: 'icons/wind/no.png' },
-        { min: 326.25, max: 348.75, icon: 'icons/wind/nno.png' }
-    ]; 
     function getWindDirectionIcon(wind_deg) {
         const direction = windDirectionIcons.find(d => wind_deg >= d.min && wind_deg < d.max);
         return direction ? direction.icon : 'icons/question-mark.png';
     }
-
-    // Fonction pour colorier les cellules de température
     function getTemperatureColor(temperature) {
         if (temperature < 0) {
             // Bleu pour les températures froides
@@ -219,8 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return `rgb(255, ${Math.round(255 - (temperature - 20) * 255 / 15)}, 0)`;
         }
     }
-
-    // Fonction pour colorier les cellules de vent
     function getWindColor(wind) {
         if (wind <= 20) {
             // Bleu pour le vent faible
@@ -233,8 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return `rgb(255, ${Math.round(255 - ((wind - 50) * 255 / 50))}, 0)`;
         }
     }
-
-    // Fonction pour fusionner la ligne d'en-tête avec la date du jour
     function mergeDaysRow() {
         const daysRow = document.getElementById('days-row');
         let previousCell = null;
