@@ -98,25 +98,34 @@ main p {
     table-layout: fixed; /* Fixe la disposition des cellules */
     width: 70%; /* S'assure que le tableau utilise toute la largeur disponible */
 }
-.weather-table-7d th, 
+
+.weather-table-7d th,
 .weather-table-7d td {
     overflow: hidden; /* Évite que le texte déborde des cellules */
+    padding: 10px; /* Ajustez le rembourrage selon vos besoins */
+    vertical-align: middle; /* Aligne le contenu verticalement */
 }
 .weather-table-7d th:nth-last-child(1), 
 .weather-table-7d td:nth-last-child(1) {
     width: auto; /* Permet à la dernière colonne d'avoir une largeur automatique */
 }
 .weather-table-7d th {
-    width: 10%; /* Ajuste la largeur des 7 premières colonnes (200px est un exemple, ajuste selon tes besoins) */
+    width: 10%; /* Ajuste la largeur des 7 premières colonnes */
 }
 .weather-table-7d td {
     width: 10%; /* Ajuste la largeur des 7 premières colonnes */
 }
+/* Spécifie que la première ligne ne doit pas avoir de hauteur fixe */
 .weather-table-7d tr:first-child {
     height: auto; /* La première ligne garde sa hauteur naturelle */
 }
+/* Utilisation de flexbox pour les lignes sauf la première */
 .weather-table-7d tr:not(:first-child) {
-    height: 100%; /* Assure que les autres lignes s'ajustent à la hauteur la plus haute */
+    display: flex; /* Utilise flexbox pour ajuster les hauteurs */
+}
+/* Assurez-vous que toutes les cellules des lignes autres que la première utilisent la même hauteur */
+.weather-table-7d td {
+    flex: 1; /* Permet aux cellules de s'ajuster à la même hauteur */
 }
 
 footer {
