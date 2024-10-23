@@ -247,8 +247,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 day: formatTime_DD_MM(data.dt),
                 sunrise: formatTime_HH_mm(data.sunrise),
                 sunset: formatTime_HH_mm(data.sunest),
-                temp_max: daily.temp.max,
-                temp_min: daily.temp.min,
+                temp_max: data.temp.max,
+                temp_min: data.temp.min,
                 rain: data.rain ? (data.rain || 0.0) : 0.0,
                 weather: data.weather[0].icon
             };
