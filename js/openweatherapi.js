@@ -277,11 +277,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Coucher du soleil
             row.appendChild(createCell('td', item.sunset));
     
-            // Température max avec couleur de fond en fonction de la température
-            row.appendChild(createCell('td', item.temp_max, { backgroundColor: getTemperatureColor(item.temp_max) }));
-    
             // Température min avec couleur de fond en fonction de la température
             row.appendChild(createCell('td', item.temp_min, { backgroundColor: getTemperatureColor(item.temp_min) }));
+
+            // Température max avec couleur de fond en fonction de la température
+            row.appendChild(createCell('td', item.temp_max, { backgroundColor: getTemperatureColor(item.temp_max) }));
     
             // Précipitations avec un fond bleu si pluie
             row.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
