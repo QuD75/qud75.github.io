@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('summary-7d-row').appendChild(summaryFragment);
     }
     const translateText = async (text, sourceLang = 'en', targetLang = 'fr') => {
-        const url = 'https://libretranslate.de/translate';
+        const url = 'https://libretranslate.com/translate';
     
         const body = {
             q: text,
