@@ -15,7 +15,7 @@
     <nav id="menu-container"></nav>
 
     <main>
-        <div id =precipitation-one-hour>
+        <div>
             <h3>Précipitations dans l'heure</h3>
             <canvas id="precipitation-chart"></canvas>
         </div>
@@ -24,32 +24,54 @@
             <h3>Météo pour les prochaines 24h</h3>
             <table class="weather-table">
                 <thead>
-                    <tr id="days-row">
+                    <tr id="days-24h-row">
                         <th rowspan="2">Paramètres</th>
                     </tr>
-                    <tr id="hours-row"></tr>
+                    <tr id="hours-24h-row"></tr>
                 </thead>
                 <tbody>
-                    <tr id="temperature-row">
+                    <tr id="temperature-24h-row">
                         <td>Température (°C)</td>
                     </tr>
-                    <tr id="rain-row">
+                    <tr id="rain-24h-row">
                         <td>Précipitations (mm)</td>
                     </tr>
-                    <tr id="wind-row">
+                    <tr id="wind-24h-row">
                         <td>Vent moyen (km/h)</td>
                     </tr>
-                    <tr id="wind-gust-row">
+                    <tr id="wind-gust-24h-row">
                         <td>Vent rafales (km/h)</td>
                     </tr>
-                    <tr id="wind-direction-row">
+                    <tr id="wind-direction-24h-row">
                         <td>Direction vent</td>
                     </tr>
-                    <tr id="pressure-row">
+                    <tr id="pressure-24h-row">
                         <td>Pression (hPa)</td>
                     </tr>
-                    <tr id="weather-row">
+                    <tr id="weather-24h-row">
                         <td>Temps</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <h3>Météo pour les 7 prochains jours</h3>
+            <table class="weather-table">
+                <thead>
+                    <tr id="days-7d-row">
+                        <th>Paramètres</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="temperature-min-7d-row">
+                        <td>Température (°C)</td>
+                    </tr>
+                    <tr id="temperature-max-7d-row">
+                        <td>Température (°C)</td>
+                    </tr>
+                    <tr id="rain-7d-row">
+                        <td>Précipitations (mm)</td>
                     </tr>
                 </tbody>
             </table>

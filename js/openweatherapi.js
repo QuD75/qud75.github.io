@@ -180,15 +180,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     
         // Insérer tous les fragments dans le DOM
-        document.getElementById('days-row').appendChild(daysFragment);
-        document.getElementById('hours-row').appendChild(hoursFragment);
-        document.getElementById('temperature-row').appendChild(temperatureFragment);
-        document.getElementById('rain-row').appendChild(rainFragment);
-        document.getElementById('wind-row').appendChild(windFragment);
-        document.getElementById('wind-gust-row').appendChild(windGustFragment);
-        document.getElementById('wind-direction-row').appendChild(windDirectionFragment);
-        document.getElementById('pressure-row').appendChild(pressureFragment);
-        document.getElementById('weather-row').appendChild(weatherFragment);
+        document.getElementById('days-24h-row').appendChild(daysFragment);
+        document.getElementById('hours-24h-row').appendChild(hoursFragment);
+        document.getElementById('temperature-24h-row').appendChild(temperatureFragment);
+        document.getElementById('rain-24h-row').appendChild(rainFragment);
+        document.getElementById('wind-24h-row').appendChild(windFragment);
+        document.getElementById('wind-gust-24h-row').appendChild(windGustFragment);
+        document.getElementById('wind-direction-24h-row').appendChild(windDirectionFragment);
+        document.getElementById('pressure-24h-row').appendChild(pressureFragment);
+        document.getElementById('weather-24h-row').appendChild(weatherFragment);
     
         mergeDaysRow();
     }
@@ -230,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     function mergeDaysRow() {
-        const daysRow = document.getElementById('days-row');
+        const daysRow = document.getElementById('days-24h-row');
         let previousCell = null;
         let colspan = 1;
         for (let i = 1; i < daysRow.children.length; i++) {
