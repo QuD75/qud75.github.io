@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tableau données quotidiennes
     function extractWeatherDaily(daily) {
-        return hourly.slice(0, 7).map(data => {            
+        return daily.slice(0, 7).map(data => {            
             return {
                 day: formatTime_DD_MM(data.dt),
                 sunrise: formatTime_HH_mm(data.sunrise),
