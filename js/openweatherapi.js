@@ -282,17 +282,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     
         // Insérer tous les fragments dans le DOM
-        document.getElementById('days-24h-row').appendChild(daysFragment);
-        document.getElementById('hours-24h-row').appendChild(hoursFragment);
-        document.getElementById('temperature-24h-row').appendChild(temperatureFragment);
-        document.getElementById('rain-24h-row').appendChild(rainFragment);
-        document.getElementById('wind-24h-row').appendChild(windFragment);
-        document.getElementById('wind-gust-24h-row').appendChild(windGustFragment);
-        document.getElementById('wind-direction-24h-row').appendChild(windDirectionFragment);
-        document.getElementById('pressure-24h-row').appendChild(pressureFragment);
-        document.getElementById('weather-24h-row').appendChild(weatherFragment);
-    
-        mergeDaysRow();
+        document.getElementById('days-7d-row').appendChild(daysFragment);
+        document.getElementById('sunrise').appendChild(sunriseFragment);
+        document.getElementById('sunset').appendChild(sunsetFragment);
+        document.getElementById('temperature-min-7d-row').appendChild(tempMinFragment);
+        document.getElementById('temperature-max-7d-row').appendChild(tempMaxFragment);
+        document.getElementById('rain-7d-row').appendChild(rainFragment);
+        document.getElementById('weather-7d-row').appendChild(weatherFragment);
     }
 
     // Récupération des données météo via l'API
