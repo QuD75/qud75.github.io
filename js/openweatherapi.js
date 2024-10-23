@@ -282,6 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherIcon.style.height = "30px";
             weatherCell.appendChild(weatherIcon);
             weatherFragment.appendChild(weatherCell);
+            console.log(translateTextToFrench(item.summary));
             summaryFragment.appendChild(createCell('td', translateTextToFrench(item.summary)));
         });
     
