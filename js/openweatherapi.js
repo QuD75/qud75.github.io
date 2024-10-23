@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fonctions pour formater l'heure
     const formatTime_HH_mm = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
     const formatTime_HH = timestamp => new Date(timestamp * 1000).getHours() + 'h';
-    const formatDayWeather = timestamp => {
+    const formatTime_DD_MM = timestamp => {
         const date = new Date(timestamp * 1000);  // Convertir le timestamp en millisecondes
         const jour = date.getDate();  // Obtenir le jour du mois
     
@@ -60,6 +60,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const mois = moisFrancais[date.getMonth()];  // Obtenir le mois correspondant
         return `${jour} ${mois}`;  // Retourner la date sous le format "JJ mois"
     };
+
+    // Fonctions communes
+    function createCell(type, content, style = {}) {
+        const cell = document.createElement(type);
+        cell.textContent = content;
+        Object.assign(cell.style, style); // Appliquer les styles s'ils existent
+        return cell;
+    }
+    function getWeatherIcon(weather) {
+        return weatherIcons[weather] || "icons/question-mark.png";
+    }
+    function getTemperatureColor(temperature) {
+        if (temperature < 0) {
+            // Bleu pour les températures froides
+            return `rgb(0, ${Math.round(255 + (temperature * 255 / 10))}, 255)`;
+        } else if (temperature >= 0 && temperature <= 20) {
+            // Vert pour les températures modérées
+            return `rgb(${Math.round(255 * (temperature / 20))}, 255, 0)`;
+        } else {
+            // Rouge pour les températures chaudes
+            return `rgb(255, ${Math.round(255 - (temperature - 20) * 255 / 15)}, 0)`;
+        }
+    }
     
     // Graphique de pluie 1h
     const displayPrecipitationData = (minutely) => {
@@ -121,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function extractWeatherHourly(hourly) {
         return hourly.slice(0, 24).map(data => {            
             return {
-                day: formatDayWeather(data.dt),
+                day: formatTime_DD_MM(data.dt),
                 hour: formatTime_HH(data.dt),
                 temperature: data.temp.toFixed(0),
                 rain: data.rain ? (data.rain["1h"] || 0.0) : 0.0,
@@ -184,30 +207,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
         mergeDaysRow();
     }
-    function createCell(type, content, style = {}) {
-        const cell = document.createElement(type);
-        cell.textContent = content;
-        Object.assign(cell.style, style); // Appliquer les styles s'ils existent
-        return cell;
-    }
-    function getWeatherIcon(weather) {
-        return weatherIcons[weather] || "icons/question-mark.png";
-    }
     function getWindDirectionIcon(wind_deg) {
         const direction = windDirectionIcons.find(d => wind_deg >= d.min && wind_deg < d.max);
         return direction ? direction.icon : 'icons/question-mark.png';
-    }
-    function getTemperatureColor(temperature) {
-        if (temperature < 0) {
-            // Bleu pour les températures froides
-            return `rgb(0, ${Math.round(255 + (temperature * 255 / 10))}, 255)`;
-        } else if (temperature >= 0 && temperature <= 20) {
-            // Vert pour les températures modérées
-            return `rgb(${Math.round(255 * (temperature / 20))}, 255, 0)`;
-        } else {
-            // Rouge pour les températures chaudes
-            return `rgb(255, ${Math.round(255 - (temperature - 20) * 255 / 15)}, 0)`;
-        }
     }
     function getWindColor(wind) {
         if (wind <= 20) {
@@ -240,30 +242,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tableau données quotidiennes
     function extractWeatherDaily(daily) {
-        return hourly.slice(0, 7).map(data => {
-            const sunrise = data.sunrise;
-            const sunset = data.sunset;
-
-            const temperature = data.temp.toFixed(0);
-            const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
-            const wind = data.wind_speed*3.6;
-            const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
-            const windDirection = data.wind_deg;
-            const pressure = data.pressure;
-            const weather = data.weather[0].icon;
-            
+        return hourly.slice(0, 7).map(data => {            
             return {
-                day: formatDayWeather(data.dt),
-                hour: formatTime_HH(data.dt),
-                temperature,
-                rain,
-                wind,
-                windGust,
-                windDirection,
-                pressure,
-                weather
+                day: formatTime_DD_MM(data.dt),
+                sunrise: formatTime_HH_mm(data.sunrise),
+                sunset: formatTime_HH_mm(data.sunest),
+                temp_max: daily.temp.max,
+                temp_min: daily.temp.min,
+                rain: data.rain ? (data.rain || 0.0) : 0.0,
+                weather: data.weather[0].icon
             };
         });
+    }
+    function displayWeatherDaily(data) {
+        const daysFragment = document.createDocumentFragment();
+        const sunriseFragment = document.createDocumentFragment();
+        const sunsetFragment = document.createDocumentFragment();
+        const tempMaxFragment = document.createDocumentFragment();
+        const tempMinFragment = document.createDocumentFragment();
+        const rainFragment = document.createDocumentFragment();
+        const weatherFragment = document.createDocumentFragment();
+    
+        data.forEach(item => {
+            // Remplir chaque fragment
+            daysFragment.appendChild(createCell('th', item.day));
+            sunriseFragment.appendChild(createCell('td', item.sunrise));
+            sunsetFragment.appendChild(createCell('td', item.sunset));
+            tempMaxFragment.appendChild(createCell('td', item.temp_max, { backgroundColor: getTemperatureColor(item.temp_max) }));
+            tempMinFragment.appendChild(createCell('td', item.temp_min, { backgroundColor: getTemperatureColor(item.temp_min) }));
+            rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
+
+            const weatherCell = createCell('td', '');
+            const weatherIcon = document.createElement('img');
+            weatherIcon.src = getWeatherIcon(item.weather);
+            weatherIcon.style.width = "30px";
+            weatherIcon.style.height = "30px";
+            weatherCell.appendChild(weatherIcon);
+            weatherFragment.appendChild(weatherCell);
+        });
+    
+        // Insérer tous les fragments dans le DOM
+        document.getElementById('days-24h-row').appendChild(daysFragment);
+        document.getElementById('hours-24h-row').appendChild(hoursFragment);
+        document.getElementById('temperature-24h-row').appendChild(temperatureFragment);
+        document.getElementById('rain-24h-row').appendChild(rainFragment);
+        document.getElementById('wind-24h-row').appendChild(windFragment);
+        document.getElementById('wind-gust-24h-row').appendChild(windGustFragment);
+        document.getElementById('wind-direction-24h-row').appendChild(windDirectionFragment);
+        document.getElementById('pressure-24h-row').appendChild(pressureFragment);
+        document.getElementById('weather-24h-row').appendChild(weatherFragment);
+    
+        mergeDaysRow();
     }
 
     // Récupération des données météo via l'API
@@ -280,7 +309,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayWeatherHourly(extractWeatherHourly(data.hourly));
             }
             if (data.daily?.length){
-                //displayWeatherDaily(extractWeatherDaily(data.daily));
+                displayWeatherDaily(extractWeatherDaily(data.daily));
             }
         })
         .catch(error => console.error("Erreur lors de la récupération des données :", error));
