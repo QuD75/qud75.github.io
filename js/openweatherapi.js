@@ -341,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(data => {
             if (data.minutely?.length) {
-                displayPrecipitationData(data.minutely);
+                //displayPrecipitationData(data.minutely);
             }
             if (data.hourly?.length){
                 displayWeatherHourly(extractWeatherHourly(data.hourly));
