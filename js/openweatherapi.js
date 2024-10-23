@@ -293,10 +293,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('temperature-max-7d-row').appendChild(tempMaxFragment);
         document.getElementById('rain-7d-row').appendChild(rainFragment);
         document.getElementById('weather-7d-row').appendChild(weatherFragment);
+        summaryFragment.textContent;
         document.getElementById('summary-7d-row').appendChild(summaryFragment);
     }
-    function translateTextToFrench(text) {
-        const response = fetch(`${apiUrlGT}?key=${apiKeyGT}`, {
+    async function translateTextToFrench(text) {
+        const response = await fetch(`${apiUrlGT}?key=${apiKeyGT}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -307,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }),
         });
     
-        const data = response.json();
+        const data = await response.json();
         if (response.ok) {
             console.log(data.data.translations[0].translatedText);
             return data.data.translations[0].translatedText;
