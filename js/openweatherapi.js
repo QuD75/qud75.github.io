@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
     }
-    function displayWeatherDaily(data) {
+    async function displayWeatherDaily(data) {
         const daysFragment = document.createDocumentFragment();
         const sunriseFragment = document.createDocumentFragment();
         const sunsetFragment = document.createDocumentFragment();
@@ -266,8 +266,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const rainFragment = document.createDocumentFragment();
         const weatherFragment = document.createDocumentFragment();
         const summaryFragment = document.createDocumentFragment();
-    
-        data.forEach(item => {
+
+        for (const item of data) {
             // Remplir chaque fragment
             daysFragment.appendChild(createCell('th', item.day));
             sunriseFragment.appendChild(createCell('td', item.sunrise));
@@ -275,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tempMaxFragment.appendChild(createCell('td', item.temp_max, { backgroundColor: getTemperatureColor(item.temp_max) }));
             tempMinFragment.appendChild(createCell('td', item.temp_min, { backgroundColor: getTemperatureColor(item.temp_min) }));
             rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
+            
             const weatherCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
             const weatherIcon = document.createElement('img');
             weatherIcon.src = getWeatherIcon(item.weather);
@@ -282,8 +283,11 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherIcon.style.height = "30px";
             weatherCell.appendChild(weatherIcon);
             weatherFragment.appendChild(weatherCell);
-            summaryFragment.appendChild(createCell('td', translateTextToFrench(item.summary)));
-        });
+            
+            // Attendre la traduction avant d'ajouter au fragment
+            const translatedSummary = await translateTextToFrench(item.summary);
+            summaryFragment.appendChild(createCell('td', translatedSummary));
+        }
     
         // Insérer tous les fragments dans le DOM
         document.getElementById('days-7d-row').appendChild(daysFragment);
