@@ -175,7 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
             rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
             windFragment.appendChild(createCell('td', item.wind.toFixed(0), { backgroundColor: getWindColor(item.wind) }));
             windGustFragment.appendChild(createCell('td', Math.max(item.windGust, item.wind).toFixed(0), { backgroundColor: getWindColor(item.windGust) }));
-    
             const windDirectionCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
             const windDirectionIcon = document.createElement('img');
             windDirectionIcon.src = getWindDirectionIcon(item.windDirection);
@@ -183,9 +182,8 @@ document.addEventListener('DOMContentLoaded', () => {
             windDirectionIcon.style.height = "30px";
             windDirectionCell.appendChild(windDirectionIcon);
             windDirectionFragment.appendChild(windDirectionCell);
-    
             pressureFragment.appendChild(createCell('td', item.pressure));
-            const weatherCell = createCell('td', '');
+            const weatherCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
             const weatherIcon = document.createElement('img');
             weatherIcon.src = getWeatherIcon(item.weather);
             weatherIcon.style.width = "30px";
@@ -271,8 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
             tempMaxFragment.appendChild(createCell('td', item.temp_max, { backgroundColor: getTemperatureColor(item.temp_max) }));
             tempMinFragment.appendChild(createCell('td', item.temp_min, { backgroundColor: getTemperatureColor(item.temp_min) }));
             rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
-
-            const weatherCell = createCell('td', '');
+            const weatherCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
             const weatherIcon = document.createElement('img');
             weatherIcon.src = getWeatherIcon(item.weather);
             weatherIcon.style.width = "30px";
