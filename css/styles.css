@@ -94,6 +94,26 @@ main p {
     background-color: #f1f1f1;
 }
 
+.weather-table-7d {
+    table-layout: fixed; /* Fixe la disposition des cellules */
+    width: 70%; /* S'assure que le tableau utilise toute la largeur disponible */
+}
+.weather-table-7d th, 
+.weather-table-7d td {
+    overflow: hidden; /* Évite que le texte déborde des cellules */
+    white-space: nowrap; /* Évite le passage à la ligne du texte */
+}
+.weather-table-7d th:nth-last-child(1), 
+.weather-table-7d td:nth-last-child(1) {
+    width: auto; /* Permet à la dernière colonne d'avoir une largeur automatique */
+}
+.weather-table-7d th {
+    width: 10%; /* Ajuste la largeur des 7 premières colonnes (200px est un exemple, ajuste selon tes besoins) */
+}
+.weather-table-7d td {
+    width: 10%; /* Ajuste la largeur des 7 premières colonnes */
+}
+
 footer {
     background-color: #0073e6;
     color: white;
