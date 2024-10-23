@@ -48,8 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
     // Fonctions pour formater l'heure
-    const formatTimeGraphiqueHeure = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-    const formatTimeWeather24h = timestamp => new Date(timestamp * 1000).getHours() + 'h';
+    const formatTime_HH_mm = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    const formatTime_HH = timestamp => new Date(timestamp * 1000).getHours() + 'h';
     const formatDayWeather = timestamp => {
         const date = new Date(timestamp * 1000);  // Convertir le timestamp en millisecondes
         const jour = date.getDate();  // Obtenir le jour du mois
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dataPoints = [];
 
         minutely.forEach(data => {
-            const time = formatTimeGraphiqueHeure(data.dt);
+            const time = formatTime_HH_mm(data.dt);
             const precipitation = parseFloat(data.precipitation.toFixed(1));
 
             // Ajout des données pour le graphique
@@ -117,31 +117,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Tableau données 24h
-    function extractWeather24h(hourly) {
-        return hourly.slice(0, 24).map(data => {
-            const temperature = data.temp.toFixed(0);
-            const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
-            const wind = data.wind_speed*3.6;
-            const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
-            const windDirection = data.wind_deg;
-            const pressure = data.pressure;
-            const weather = data.weather[0].icon;
-            
+    // Tableau données horaires
+    function extractWeatherHourly(hourly) {
+        return hourly.slice(0, 24).map(data => {            
             return {
                 day: formatDayWeather(data.dt),
-                hour: formatTimeWeather24h(data.dt),
-                temperature,
-                rain,
-                wind,
-                windGust,
-                windDirection,
-                pressure,
-                weather
+                hour: formatTime_HH(data.dt),
+                temperature: data.temp.toFixed(0),
+                rain: data.rain ? (data.rain["1h"] || 0.0) : 0.0,
+                wind: data.wind_speed*3.6,
+                windGust: data.wind_gust ? data.wind_gust*3.6 : 0,
+                windDirection: data.wind_deg,
+                pressure: data.pressure,
+                weather: data.weather[0].icon
             };
         });
     }
-    function displayWeather24h(data) {
+    function displayWeatherHourly(data) {
         const daysFragment = document.createDocumentFragment();
         const hoursFragment = document.createDocumentFragment();
         const temperatureFragment = document.createDocumentFragment();
@@ -246,6 +238,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Tableau données quotidiennes
+    function extractWeatherDaily(daily) {
+        return hourly.slice(0, 7).map(data => {
+            const sunrise = data.sunrise;
+            const sunset = data.sunset;
+
+            const temperature = data.temp.toFixed(0);
+            const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
+            const wind = data.wind_speed*3.6;
+            const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
+            const windDirection = data.wind_deg;
+            const pressure = data.pressure;
+            const weather = data.weather[0].icon;
+            
+            return {
+                day: formatDayWeather(data.dt),
+                hour: formatTime_HH(data.dt),
+                temperature,
+                rain,
+                wind,
+                windGust,
+                windDirection,
+                pressure,
+                weather
+            };
+        });
+    }
+
     // Récupération des données météo via l'API
     fetch(apiUrl)
         .then(response => {
@@ -257,7 +277,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayPrecipitationData(data.minutely);
             }
             if (data.hourly?.length){
-                displayWeather24h(extractWeather24h(data.hourly));
+                displayWeatherHourly(extractWeatherHourly(data.hourly));
+            }
+            if (data.daily?.length){
+                //displayWeatherDaily(extractWeatherDaily(data.daily));
             }
         })
         .catch(error => console.error("Erreur lors de la récupération des données :", error));
