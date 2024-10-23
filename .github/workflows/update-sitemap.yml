@@ -1,0 +1,37 @@
+name: Update Sitemap
+
+on:
+  push:
+    branches:
+      - main  # Remplace 'main' par la branche sur laquelle tu veux exécuter le workflow
+
+jobs:
+  update-sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Spécifie la version de Node.js que tu souhaites utiliser
+
+      - name: Install dependencies
+        run: npm install  # Si tu as des dépendances à installer, sinon tu peux ignorer cette étape
+
+      - name: Run sitemap generator
+        run: node generate-sitemap.js  # Exécute le script pour générer sitemap.xml
+
+      - name: Commit changes
+        run: |
+          git config --local user.name "QuD75"
+          git config --local user.email "quentindusserre@gmail.com"
+          git add sitemap.xml
+          git commit -m "Update sitemap.xml with current date" || echo "No changes to commit"
+
+      - name: Push changes
+        run: git push
+        env:
+          GITHUB_TOKEN: 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  # Utilise le token GitHub pour autoriser le push
