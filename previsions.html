@@ -59,35 +59,23 @@
             <h3>Météo pour les 7 prochains jours</h3>
             <table class="weather-table">
                 <thead>
-                    <tr id="days-7d-row">
-                        <th>Paramètres</th>
+                    <tr>
+                        <th>Jour</th>
+                        <th>Lever du soleil</th>
+                        <th>Coucher du soleil</th>
+                        <th>Température max (°C)</th>
+                        <th>Température min (°C)</th>
+                        <th>Précipitations (mm)</th>
+                        <th>Temps</th>
+                        <th>Résumé</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr id="sunrise">
-                        <td>Lever du soleil</td>
-                    </tr>
-                    <tr id="sunset">
-                        <td>Coucher du soleil</td>
-                    </tr>
-                    <tr id="temperature-min-7d-row">
-                        <td>Température min (°C)</td>
-                    </tr>
-                    <tr id="temperature-max-7d-row">
-                        <td>Température max (°C)</td>
-                    </tr>
-                    <tr id="rain-7d-row">
-                        <td>Précipitations (mm)</td>
-                    </tr>
-                    <tr id="weather-7d-row">
-                        <td>Temps</td>
-                    </tr>
-                    <tr id="summary-7d-row">
-                        <td>Résumé</td>
-                    </tr>
+                <tbody id="weather-7d-body">
+                    <!-- Les jours seront insérés ici dynamiquement via JavaScript -->
                 </tbody>
             </table>
         </div>
+        
     </main>
 
     <footer>

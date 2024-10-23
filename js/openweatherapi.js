@@ -262,47 +262,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     async function displayWeatherDaily(data) {
-        const daysFragment = document.createDocumentFragment();
-        const sunriseFragment = document.createDocumentFragment();
-        const sunsetFragment = document.createDocumentFragment();
-        const tempMaxFragment = document.createDocumentFragment();
-        const tempMinFragment = document.createDocumentFragment();
-        const rainFragment = document.createDocumentFragment();
-        const weatherFragment = document.createDocumentFragment();
-        const summaryFragment = document.createDocumentFragment();
-
+        const weatherBodyFragment = document.createDocumentFragment();
+    
         for (const item of data) {
-            // Remplir chaque fragment
-            daysFragment.appendChild(createCell('th', item.day));
-            sunriseFragment.appendChild(createCell('td', item.sunrise));
-            sunsetFragment.appendChild(createCell('td', item.sunset));
-            tempMaxFragment.appendChild(createCell('td', item.temp_max, { backgroundColor: getTemperatureColor(item.temp_max) }));
-            tempMinFragment.appendChild(createCell('td', item.temp_min, { backgroundColor: getTemperatureColor(item.temp_min) }));
-            rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
-            
+            // Créer une ligne pour chaque jour
+            const row = document.createElement('tr');
+    
+            // Jour
+            row.appendChild(createCell('td', item.day));
+    
+            // Lever du soleil
+            row.appendChild(createCell('td', item.sunrise));
+    
+            // Coucher du soleil
+            row.appendChild(createCell('td', item.sunset));
+    
+            // Température max avec couleur de fond en fonction de la température
+            row.appendChild(createCell('td', item.temp_max, { backgroundColor: getTemperatureColor(item.temp_max) }));
+    
+            // Température min avec couleur de fond en fonction de la température
+            row.appendChild(createCell('td', item.temp_min, { backgroundColor: getTemperatureColor(item.temp_min) }));
+    
+            // Précipitations avec un fond bleu si pluie
+            row.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
+    
+            // Temps avec icône météo
             const weatherCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
             const weatherIcon = document.createElement('img');
             weatherIcon.src = getWeatherIcon(item.weather);
             weatherIcon.style.width = "30px";
             weatherIcon.style.height = "30px";
             weatherCell.appendChild(weatherIcon);
-            weatherFragment.appendChild(weatherCell);
-            
-            // Attendre la traduction avant d'ajouter au fragment
+            row.appendChild(weatherCell);
+    
+            // Résumé traduit
             const translatedSummary = await translateTextToFrench(item.summary);
-            summaryFragment.appendChild(createCell('td', translatedSummary));
+            row.appendChild(createCell('td', translatedSummary));
+    
+            // Ajouter la ligne au fragment
+            weatherBodyFragment.appendChild(row);
         }
     
-        // Insérer tous les fragments dans le DOM
-        document.getElementById('days-7d-row').appendChild(daysFragment);
-        document.getElementById('sunrise').appendChild(sunriseFragment);
-        document.getElementById('sunset').appendChild(sunsetFragment);
-        document.getElementById('temperature-min-7d-row').appendChild(tempMinFragment);
-        document.getElementById('temperature-max-7d-row').appendChild(tempMaxFragment);
-        document.getElementById('rain-7d-row').appendChild(rainFragment);
-        document.getElementById('weather-7d-row').appendChild(weatherFragment);
-        summaryFragment.textContent;
-        document.getElementById('summary-7d-row').appendChild(summaryFragment);
+        // Insérer toutes les lignes dans le tableau
+        document.getElementById('weather-7d-body').appendChild(weatherBodyFragment);
     }
     async function translateTextToFrench(text) {
         const response = await fetch(`${apiUrlGT}?key=${apiKeyGT}`, {
