@@ -121,11 +121,6 @@ main p {
     width: 21%; /* Largeur pour la dernière colonne */
 }
 
-/* Ajuste la hauteur de toutes les lignes sauf la première */
-.weather-table-7d tr {
-    height: 10%; /* Définissez la hauteur désirée pour les lignes */
-}
-
 footer {
     background-color: #0073e6;
     color: white;
