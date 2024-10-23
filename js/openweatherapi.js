@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
             temperatureFragment.appendChild(createCell('td', item.temperature, { backgroundColor: getTemperatureColor(item.temperature) }));
             rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
             windFragment.appendChild(createCell('td', item.wind, { backgroundColor: getWindColor(item.wind) }));
-            windGustFragment.appendChild(createCell('td', Math.max(item.windGust, item.wind), { backgroundColor: getWindColor(item.windGust) }));
+            windGustFragment.appendChild(createCell('td', Math.max(item.windGust, item.wind).toFixed(0), { backgroundColor: getWindColor(item.windGust) }));
     
             const windDirectionCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
             const windDirectionIcon = document.createElement('img');
