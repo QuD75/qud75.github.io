@@ -42,10 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }; 
 
     //Constantes API OpenWeatherMap
-    const apiKey = '3019a6c49cea102650053a8919b5fa54';
+    const apiKeyOWM = '3019a6c49cea102650053a8919b5fa54';
     const lat = 47.2917;
     const lon = -2.5201;
-    const apiUrl = `https://api.openweathermap.org/data/3.0/onecall?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`;
+    const apiUrlOWM = `https://api.openweathermap.org/data/3.0/onecall?units=metric&lat=${lat}&lon=${lon}&appid=${apiKeyOWM}`;
+
+    //Constantes API Google Traduction
+    const apiKeyGT = 'AIzaSyDryJXEjGA26lVA5lpbke8Uo0Bmj8_r48A';
+    const apiUrlGT = 'https://translation.googleapis.com/language/translate/v2';
 
     // Fonctions pour formater l'heure
     const formatTime_HH_mm = timestamp => new Date(timestamp * 1000).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
@@ -240,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Tableau données quotidiennes
     function extractWeatherDaily(daily) {
-        return daily.slice(1, 8).map(data => {            
+        return daily.slice(0, 7).map(data => {            
             return {
                 day: formatTime_DD_MM(data.dt),
                 sunrise: formatTime_HH_mm(data.sunrise),
@@ -278,7 +282,7 @@ document.addEventListener('DOMContentLoaded', () => {
             weatherIcon.style.height = "30px";
             weatherCell.appendChild(weatherIcon);
             weatherFragment.appendChild(weatherCell);
-            summaryFragment.appendChild(createCell('th', translateText(item.summary)));
+            summaryFragment.appendChild(createCell('th', translateTextToFrench(item.summary)));
         });
     
         // Insérer tous les fragments dans le DOM
@@ -291,37 +295,28 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('weather-7d-row').appendChild(weatherFragment);
         document.getElementById('summary-7d-row').appendChild(summaryFragment);
     }
-    const translateText = async (text, sourceLang = 'en', targetLang = 'fr') => {
-        const url = 'https://libretranslate.com/translate';
+    async function translateTextToFrench(text) {
+        const response = await fetch(`${apiUrlGT}?key=${apiKeyGT}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                q: text,
+                target: 'fr',
+            }),
+        });
     
-        const body = {
-            q: text,
-            source: sourceLang,
-            target: targetLang,
-            format: 'text'
-        };
-    
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(body)
-            });
-    
-            const data = await response.json();
-            if (data && data.translatedText) {
-                return data.translatedText;
-            } else {
-                throw new Error('Erreur lors de la traduction');
-            }
-        } catch (error) {
-            console.error('Erreur :', error);
-            return null;
+        const data = await response.json();
+        if (response.ok) {
+            return data.data.translations[0].translatedText;
+        } else {
+            throw new Error(data.error.message);
         }
-    };
+    }
 
-    // Récupération des données météo via l'API
-    fetch(apiUrl)
+    // Récupération des données météo
+    fetch(apiUrlOWM)
         .then(response => {
             if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
             return response.json();
