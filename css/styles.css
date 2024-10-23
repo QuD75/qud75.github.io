@@ -74,7 +74,6 @@ main p {
 }
 
 .weather-table th, .weather-table td {
-    padding: 8px;
     text-align: center;
     border: 1px solid #ddd;
 }
