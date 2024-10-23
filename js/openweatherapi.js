@@ -122,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return hourly.slice(0, 24).map(data => {
             const temperature = data.temp.toFixed(0);
             const rain = data.rain ? (data.rain["1h"] || 0.0) : 0.0;
-            const wind = data.wind_speed*3.6.toFixed(0);
-            const windGust = data.wind_gust ? data.wind_gust*3.6.toFixed(0) : 0;
+            const wind = data.wind_speed*3.6;
+            const windGust = data.wind_gust ? data.wind_gust*3.6 : 0;
             const windDirection = data.wind_deg;
             const pressure = data.pressure;
             const weather = data.weather[0].icon;
@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hoursFragment.appendChild(createCell('th', item.hour));
             temperatureFragment.appendChild(createCell('td', item.temperature, { backgroundColor: getTemperatureColor(item.temperature) }));
             rainFragment.appendChild(createCell('td', item.rain.toFixed(1), item.rain > 0 ? { backgroundColor: '#ADD8E6' } : {}));
-            windFragment.appendChild(createCell('td', item.wind, { backgroundColor: getWindColor(item.wind) }));
+            windFragment.appendChild(createCell('td', item.wind.toFixed(0), { backgroundColor: getWindColor(item.wind) }));
             windGustFragment.appendChild(createCell('td', Math.max(item.windGust, item.wind).toFixed(0), { backgroundColor: getWindColor(item.windGust) }));
     
             const windDirectionCell = createCell('td', '', { backgroundColor: '#ADD8E6' });
