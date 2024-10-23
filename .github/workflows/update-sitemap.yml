@@ -22,7 +22,7 @@ jobs:
         run: npm install  # Si tu as des dépendances à installer, sinon tu peux ignorer cette étape
 
       - name: Run sitemap generator
-        run: node generate-sitemap.js  # Exécute le script pour générer sitemap.xml
+        run: node js/generate-sitemap.js  # Exécute le script pour générer sitemap.xml
 
       - name: Commit changes
         run: |
