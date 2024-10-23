@@ -314,13 +314,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
         const data = await response.json();
         if (response.ok) {
-            console.log(data.data.translations[0].translatedText);
-            return data.data.translations[0].translatedText;
+            const translatedText = data.data.translations[0].translatedText;
+    
+            // Décoder les entités HTML
+            const decoder = document.createElement('textarea');
+            decoder.innerHTML = translatedText;
+            return decoder.value; // Renvoie le texte décodé
         } else {
             throw new Error(data.error.message);
         }
     }
-
+    
     // Récupération des données météo
     fetch(apiUrlOWM)
         .then(response => {
