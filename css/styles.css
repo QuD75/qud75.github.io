@@ -97,6 +97,7 @@ main p {
 .weather-table-7d {
     width: 70%; /* Utilise toute la largeur disponible */
     border-collapse: collapse; /* Évite les espaces entre les cellules */
+    table-layout: fixed;
 }
 
 .weather-table-7d th,
