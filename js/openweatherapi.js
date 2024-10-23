@@ -295,8 +295,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('weather-7d-row').appendChild(weatherFragment);
         document.getElementById('summary-7d-row').appendChild(summaryFragment);
     }
-    async function translateTextToFrench(text) {
-        const response = await fetch(`${apiUrlGT}?key=${apiKeyGT}`, {
+    function translateTextToFrench(text) {
+        const response = fetch(`${apiUrlGT}?key=${apiKeyGT}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }),
         });
     
-        const data = await response.json();
+        const data = response.json();
         if (response.ok) {
             console.log(data.data.translations[0].translatedText);
             return data.data.translations[0].translatedText;
