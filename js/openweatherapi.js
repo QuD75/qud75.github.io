@@ -93,6 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Graphique de pluie 1h
+    /*
     const displayPrecipitationData = (minutely) => {
         const labels = [];
         const dataPoints = [];
@@ -147,6 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
+    */
 
     // Tableau données horaires
     function extractWeatherHourly(hourly) {
