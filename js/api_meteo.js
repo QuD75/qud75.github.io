@@ -11,6 +11,7 @@ async function authenticate() {
         headers: {
             'Authorization': `Basic cXVlbnRpbl9kdXNzZXJyZV9xdWVudGluOm5JZzk3NFVlRU0=`, // Ajout de l'authentification Basic
             'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         },
     });
 
@@ -31,7 +32,7 @@ async function fetchData() {
         await authenticate();
     }
 
-    const response = await fetch('https://api.example.com/data', {
+    const response = await fetch('https://api.meteomatics.com/2024-10-24T00:00:00Z--2024-10-27T00:00:00Z:PT1H/t_2m:C/47.2917,-2.5201/json', {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${authToken}`,
@@ -50,7 +51,7 @@ async function fetchData() {
 // Exemple d'utilisation
 (async () => {
     try {
-        await authenticate('yourUsername', 'yourPassword'); // Authentification initiale
+        await authenticate(); // Authentification initiale
         const data = await fetchData(); // Récupération des données
         console.log(data);
     } catch (error) {
