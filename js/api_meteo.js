@@ -9,9 +9,9 @@ async function getApiData() {
     fetch(proxyUrl + apiUrl, {
         method: 'GET',
         headers: {
-            'Authorization': `Basic ${btoa('quentin_dusserre_quentin:nIg974UeEM')}`,
+            'Authorization': `Basic ${btoa('${username}:${password}')}`,
             'Content-Type': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest', // Ajout de cet en-tête
+            'X-Requested-With': 'XMLHttpRequest'
         },
     })
     .then(response => {
