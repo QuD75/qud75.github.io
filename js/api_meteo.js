@@ -1,28 +1,31 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-// Fonction pour récupérer des données avec le token
+// Fonction pour obtenir des données de l'API
 async function getApiData() {
+    const encodedCredentials = btoa(`${username}:${password}`);
 
-    const response = await fetch('https://quentin_dusserre_quentin:nIg974UeEM@api.meteomatics.com/2024-10-24T00:00:00Z--2024-10-27T00:00:00Z:PT1H/t_2m:C/47.2917,-2.5201/json', {
-        method: 'GET'
-    });
-
-    if (!response.ok) {
-        throw new Error('Failed to fetch data');
-    }
-
-    const data = await response.json();
-    return data;
-}
-
-// Exemple d'utilisation
-(async () => {
     try {
-        const data = await getApiData(); // Récupération des données
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Basic ${encodedCredentials}`,
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+
+        const data = await response.json();
+        // Traite les données ici
         console.log(data);
     } catch (error) {
-        console.error(error);
+        console.error("Erreur lors de la récupération des données :", error);
     }
-})();
+}
+
+// Appel de la fonction
+getApiData();
 
 });
