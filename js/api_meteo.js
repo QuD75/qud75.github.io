@@ -7,7 +7,7 @@ const lon = '-2.5201';
 const params = 't_2m:C';
 const beginDate = '2024-10-24T00:00:00Z';
 const endDate = '2024-10-27T00:00:00Z';
-const apiUrl = `https://api.meteomatics.com/${beginDate}--${endDate}:PT1H/${params}/${lat},${lon}/json`;s
+const apiUrl = `https://api.meteomatics.com/${beginDate}--${endDate}:PT1H/${params}/${lat},${lon}/json`;
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
 async function getApiData() {
