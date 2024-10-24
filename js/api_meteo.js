@@ -35,6 +35,7 @@ async function fetchData() {
         method: 'GET',
         headers: {
             'Authorization': `Bearer ${authToken}`,
+            'Access-Control-Allow-Origin': "*"
         },
     });
 
