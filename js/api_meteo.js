@@ -15,7 +15,7 @@ async function getApiData() {
     fetch(proxyUrl + apiUrl, {
         method: 'GET',
         headers: {
-            'Authorization': encodedCredentials,
+            'Authorization': 'Basic '+encodedCredentials,
             'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest'
         },
