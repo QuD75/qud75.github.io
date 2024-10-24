@@ -2,11 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const username = 'quentin_dusserre_quentin'; // Remplace par ton nom d'utilisateur
 const password = 'nIg974UeEM'; // Remplace par ton mot de passe
-const apiUrl = 'https://api.meteomatics.com/2024-10-24T00:00:00Z--2024-10-27T00:00:00Z:PT1H/t_2m:C/47.2917,-2.5201/json';
+const lat = '47.2917';
+const lon = '-2.5201';
+const params = 't_2m:C';
+const beginDate = '2024-10-24T00:00:00Z';
+const endDate = '2024-10-27T00:00:00Z';
+const apiUrl = `https://api.meteomatics.com/${beginDate}--${endDate}:PT1H/${params}/${lat},${lon}/json`;s
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-const encodedCredentials = btoa(`${username}:${password}`)
 
 async function getApiData() {
+    const encodedCredentials = btoa(`${username}:${password}`);
     fetch(proxyUrl + apiUrl, {
         method: 'GET',
         headers: {
