@@ -6,11 +6,10 @@ let tokenExpiration = null;
 
 // Fonction pour authentifier l'utilisateur et obtenir le token
 async function authenticate() {
-    const response = await fetch('https://login.meteomatics.com/api/v1/token', {
+    const response = await fetch('https://cors-anywhere.herokuapp.com/https://login.meteomatics.com/api/v1/token', {
         method: 'GET',
         headers: {
-            'Authorization': `Basic cXVlbnRpbl9kdXNzZXJyZV9xdWVudGluOm5JZzk3NFVlRU0=`,
-            'Access-Control-Allow-Origin': "*"
+            'Authorization': `Basic cXVlbnRpbl9kdXNzZXJyZV9xdWVudGluOm5JZzk3NFVlRU0=`
         },
     });
 
