@@ -31,8 +31,4 @@ async function getApiData() {
     .catch(error => console.error("Erreur lors de la récupération des données :", error));
 }
 
-
-// Appel de la fonction
-getApiData();
-
 });
