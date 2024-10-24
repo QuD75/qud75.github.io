@@ -8,6 +8,7 @@ let tokenExpiration = null;
 async function authenticate() {
     const response = await fetch('https://login.meteomatics.com/api/v1/token', {
         method: 'GET',
+        mode: 'no-cors',
         headers: {
             'Authorization': `Basic cXVlbnRpbl9kdXNzZXJyZV9xdWVudGluOm5JZzk3NFVlRU0=`, // Ajout de l'authentification Basic
             'Content-Type': 'application/json',
