@@ -4,9 +4,16 @@ const username = 'quentin_dusserre_quentin'; // Remplace par ton nom d'utilisate
 const password = 'nIg974UeEM'; // Remplace par ton mot de passe
 const lat = '47.2917';
 const lon = '-2.5201';
-const params = 't_2m:C';
-const beginDate = '2024-10-24T00:00:00Z';
-const endDate = '2024-10-27T00:00:00Z';
+const params = 't_2m:C,msl_pressure:hPa,precip_1h:mm,wind_speed_10m:ms,wind_dir_10m:d,weather_symbol_1h:idx';
+
+// Récupérer la date actuelle et la formater en ISO
+const currentDate = new Date();
+const beginDate = currentDate.toISOString().split('.')[0] + 'Z'; // Date actuelle
+// Calculer la date + 7 jours
+const futureDate = new Date(currentDate);
+futureDate.setDate(currentDate.getDate() + 7);
+const endDate = futureDate.toISOString().split('.')[0] + 'Z'; // Date + 7 jours
+
 const apiUrl = `https://api.meteomatics.com/${beginDate}--${endDate}:PT1H/${params}/${lat},${lon}/json`;
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
