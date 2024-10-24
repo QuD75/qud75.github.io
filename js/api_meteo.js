@@ -8,6 +8,7 @@ const params = 't_2m:C,msl_pressure:hPa,precip_1h:mm,wind_speed_10m:ms,wind_dir_
 
 // Récupérer la date actuelle et la formater en ISO
 const currentDate = new Date();
+currentDate.setMinutes(0, 0, 0);
 const beginDate = currentDate.toISOString().split('.')[0] + 'Z'; // Date actuelle
 // Calculer la date + 7 jours
 const futureDate = new Date(currentDate);
