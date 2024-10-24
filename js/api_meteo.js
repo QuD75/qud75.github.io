@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
 // Fonction pour récupérer des données avec le token
-async function fetchData() {
+async function getApiData() {
 
     const response = await fetch('https://quentin_dusserre_quentin:nIg974UeEM@api.meteomatics.com/2024-10-24T00:00:00Z--2024-10-27T00:00:00Z:PT1H/t_2m:C/47.2917,-2.5201/json', {
         method: 'GET'
@@ -18,8 +18,7 @@ async function fetchData() {
 // Exemple d'utilisation
 (async () => {
     try {
-        await authenticate(); // Authentification initiale
-        const data = await fetchData(); // Récupération des données
+        const data = await getApiData(); // Récupération des données
         console.log(data);
     } catch (error) {
         console.error(error);
