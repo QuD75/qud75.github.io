@@ -73,7 +73,7 @@ nav ul li a {
     line-height: 1.2;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1px) {
     nav ul li {
         flex: 0 1 auto;
     }
@@ -151,7 +151,6 @@ footer a:hover {
     font-weight: bold;
 }
 
-
 #day-container,
 #week-container {
     margin: 40px auto 20px auto;
@@ -186,7 +185,7 @@ td {
     border: 1px solid var(--border-color);
 }
 
-@media (max-width: 10000000px) {
+@media (max-width: 1px) {
     td {
         height: 15px;
         padding: 0 !important;
@@ -244,7 +243,7 @@ td {
     margin: 20px 0;
 }
 
-@media (max-width: 1000000000px) {
+@media (max-width: 1px) {
     #day-container-graphs, #week-container-graphs {
         display: flex !important;
         flex-direction: column;
@@ -292,7 +291,7 @@ main iframe {
     aspect-ratio: 16 / 9;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1px) {
     main iframe {
         width: 100%;
         height: auto;
