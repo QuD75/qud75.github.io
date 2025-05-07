@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const row = document.createElement('tr');
 
             // Gestion de la fusion des lignes de jours
-            const dayCell = document.createElement('td');
+            const dayCell = document.createElement('th');
             const dayName = time.toLocaleDateString('fr-FR', { weekday: 'long' });
 
             if (previousDayName !== dayName) {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Ajout des autres cellules pour chaque heure
-            const hourCell = document.createElement('td');
+            const hourCell = document.createElement('th');
             hourCell.textContent = `${hour}h`;
             row.appendChild(hourCell);
 
