@@ -244,7 +244,7 @@ td {
     margin: 20px 0;
 }
 
-@media (max-width: 10px) {
+@media (max-width: 1000000000px) {
     #day-container-graphs, #week-container-graphs {
         display: flex !important;
         flex-direction: column;
