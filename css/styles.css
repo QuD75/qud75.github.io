@@ -38,6 +38,18 @@ main {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
+.bloc-titre {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.bloc-valeur {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+}
+
 /* --- HEADER --- */
 .site-header {
     background: linear-gradient(135deg, #0077be, #00aaff);

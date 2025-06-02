@@ -4,7 +4,12 @@ fetch(url)
     .then(response => response.json())
     .then(data => {
         const obs = data.observations[0];
-        document.getElementById("temperature").textContent = `Température : ${obs.metric.temp} °C`;
+
+        const temp = obs.metric.temp;
+        const tempEl = document.getElementById("temperature-valeur");
+        tempEl.textContent = `${temp} °C`;
+        tempEl.style.color = getTemperatureColor(temp);
+        
         document.getElementById("pression").textContent = `Pression : ${obs.metric.pressure} hPa`;
         document.getElementById("humidite").textContent = `Humidité : ${obs.humidity} %`;
         document.getElementById("vent").textContent = `Vent : ${obs.metric.windSpeed} km/h`;
