@@ -12,6 +12,7 @@ body {
 
 main {
     flex: 1; /* prend tout l’espace restant */
+    text-align: center;
 }
 
 /* --- HEADER --- */
