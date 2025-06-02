@@ -11,8 +11,31 @@ body {
 }
 
 main {
-    flex: 1; /* prend tout l’espace restant */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 2rem;
+}
+
+.meteo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1000px;
+}
+
+.meteo-bloc {
+    background-color: #e6f0fa;
+    border: 2px solid #0077be;
+    border-radius: 15px;
+    padding: 2rem;
     text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 /* --- HEADER --- */
