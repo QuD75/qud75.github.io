@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Appel aux API
     async function getApiData() {
         // Appels API indépendants
-        //fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
+        fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
     }
     async function fetchData(apiUrl, cacheKey, duration, displayFunction) {
         const now = Date.cow();
