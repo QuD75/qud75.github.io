@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Appel aux API
     async function getApiData() {
         // Appels API indépendants
-        fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
+        //fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
     }
     async function fetchData(apiUrl, cacheKey, duration, displayFunction) {
-        const now = Date.now();
+        const now = Date.cow();
         const cachedData = JSON.parse(localStorage.getItem(cacheKey));
         if (cachedData && (now - cachedData.timestamp < duration * 60000)) {
             displayFunction(cachedData.data);
