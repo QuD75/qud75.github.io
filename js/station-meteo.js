@@ -16,7 +16,11 @@ fetch('https://api.weather.com/v2/pws/observations/current?stationId=ILECRO29&fo
     document.getElementById("temperature-valeur").style.color = getTemperatureColor(temperature);
     document.getElementById("pression-valeur").textContent = `${Math.round(pression)} hPa`;
     document.getElementById("humidite-valeur").textContent = `${humidite} %`;
-    document.getElementById("vent-valeur").textContent = `${vent} km/h`;
+    document.getElementById("vent-valeur").innerHTML = `
+        ${vent} km/h<br>
+        ${obs.metric.windGust} km/h (rafales)
+    `;
+    document.getElementById("wind-arrow").style.transform = `rotate(${obs.winddir}deg)`;
     document.getElementById("lumiere-valeur").textContent = `${lumiere} W/m²`;
     document.getElementById("pluie-valeur").textContent = `${pluie} mm`;
   });
