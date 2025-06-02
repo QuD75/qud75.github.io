@@ -92,7 +92,7 @@ main {
 }
 
 .site-footer a {
-    color: #0077be;
+    color: inherit;
     text-decoration: none;
 }
 
