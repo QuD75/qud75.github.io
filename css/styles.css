@@ -84,10 +84,11 @@ main {
     background-color: #f5f5f5;
     color: #333;
     text-align: center;
-    padding: 0.75rem 1rem; /* moins haut */
+    padding: 0.3rem 1rem; /* padding vertical réduit */
     border-top: 1px solid #ccc;
-    font-size: 0.9rem;
-    /* Pas besoin de margin-top ici si flex utilisé */
+    font-size: 0.85rem; /* un peu plus petit */
+    line-height: 1.2; /* réduit l’espacement vertical entre lignes */
+    margin: 0; /* s’assurer qu’il n’y ait pas de margin */
 }
 
 .site-footer a {
