@@ -8,6 +8,7 @@ body {
     color: white;
     padding: 1rem 2rem;
     display: flex;
+    justify-content: center; /* <-- centre le contenu horizontalement */
     align-items: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
@@ -15,22 +16,8 @@ body {
 .logo-title {
     display: flex;
     align-items: center;
-    justify-content: center; /* <-- centre horizontalement */
     gap: 1rem;
     text-align: center;
-}
-
-.logo-title h1 {
-    font-size: 1.8rem;
-    margin: 0;
-}
-
-.logo {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    background: white;
-    padding: 5px;
 }
 
 .header-link {
