@@ -16,9 +16,7 @@ function getTemperatureColor(temp) {
     else if (temp <= 30) hue = -9 * temp + 270;
     else if (temp > 30) hue = -6 * temp + 180;
     hue = (hue + 360) % 360;
-    const color = `hsl(${Math.round(hue)}, 100%, 50%)`;
-    const textColor = getTextColor(color);
-    return { color, textColor };
+    return `hsl(${Math.round(hue)}, 100%, 50%)`;
 }
 function getUVColor(uv) {
     let hue = uv > 9 ? 300 : -26.67 * uv + 180;
