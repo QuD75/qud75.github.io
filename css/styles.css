@@ -36,8 +36,8 @@ main {
 
 .bloc-titre {
     font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    text-align: center;
+    margin-bottom: 8px; /* Espace entre le titre et la valeur */
 }
 
 .bloc-valeur {
