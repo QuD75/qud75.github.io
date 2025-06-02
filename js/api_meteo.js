@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
     }
     async function fetchData(apiUrl, cacheKey, duration, displayFunction) {
-        const now = Date.cow();
+        const now = Date.now();
         const cachedData = JSON.parse(localStorage.getItem(cacheKey));
         if (cachedData && (now - cachedData.timestamp < duration * 60000)) {
             displayFunction(cachedData.data);
