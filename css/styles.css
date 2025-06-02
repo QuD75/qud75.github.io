@@ -1,5 +1,17 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    background: pink;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* hauteur écran */
+}
+
+main {
+    flex: 1; /* prend tout l’espace restant */
 }
 
 /* --- HEADER --- */
@@ -72,10 +84,10 @@ body {
     background-color: #f5f5f5;
     color: #333;
     text-align: center;
-    padding: 1.5rem 1rem;
-    margin-top: 3rem;
-    font-size: 0.9rem;
+    padding: 0.75rem 1rem; /* moins haut */
     border-top: 1px solid #ccc;
+    font-size: 0.9rem;
+    /* Pas besoin de margin-top ici si flex utilisé */
 }
 
 .site-footer a {
