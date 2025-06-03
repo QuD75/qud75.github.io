@@ -20,11 +20,10 @@ main {
 
 .meteo-grille {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    width: 100%;
-    max-width: 1000px;
-    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr); /* 3 blocs par ligne */
+    grid-auto-rows: 1fr; /* même hauteur pour tous les blocs */
+    gap: 20px; /* écart horizontal ET vertical entre les blocs */
+    padding: 20px; /* espace autour de la grille si besoin */
 }
 
 .meteo-bloc {
