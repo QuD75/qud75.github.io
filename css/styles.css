@@ -104,6 +104,7 @@ main {
   
 .chart-weather-station {
     max-height: 20rem; /* Ajuste cette valeur à ta convenance */
+    max-width: 60rem;
 }
 
 /* --- HEADER --- */
