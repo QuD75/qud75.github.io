@@ -26,6 +26,6 @@ function weatherStation(data){
         ${Math.round(lumiere)} W/m²<br>
     `;
     const uvBar = document.getElementById("uv-bar");
-    uvBar.style.backgroundSize = `${uvPercentage}% 100%`;
+    uvBar.style.width = `${uvPercentage}%`;
     document.getElementById("pluie-valeur").textContent = `${pluie} mm`;
   }
