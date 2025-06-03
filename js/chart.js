@@ -1,6 +1,4 @@
-
-
-function fetchTemperatureDataAndCreateChart(temperatureData) {
+function fetchTemperatureDataAndCreateChart(data) {
     try {  
       // Transforme les données si nécessaire
       const temperatureData = data.map(entry => ({
