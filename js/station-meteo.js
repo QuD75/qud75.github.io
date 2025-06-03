@@ -21,6 +21,6 @@ fetch('https://api.weather.com/v2/pws/observations/current?stationId=ILECRO29&fo
         ${obs.metric.windGust} km/h (rafales)
     `;
     document.getElementById("wind-arrow").style.transform = `rotate(${obs.winddir}deg)`;
-    document.getElementById("lumiere-valeur").textContent = `${lumiere} W/m²`;
+    document.getElementById("lumiere-valeur").textContent = `${Math.round(lumiere)} W/m²`;
     document.getElementById("pluie-valeur").textContent = `${pluie} mm`;
   });
