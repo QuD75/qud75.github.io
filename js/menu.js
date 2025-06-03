@@ -1,8 +1,7 @@
 const menuKey = "cachedMenu";
-const cachedMenu = localStorage.getItem(menuKey);
 
-if (cachedMenu) {
-    document.getElementById("menu-container").innerHTML = cachedMenu;
+if (sessionStorage.getItem(menuKey)) {
+    document.getElementById("menu-container").innerHTML = sessionStorage.getItem(menuKey);;
 } else {
     const html = `
         <nav class="site-nav">
@@ -16,5 +15,5 @@ if (cachedMenu) {
         </nav>
     `;
     document.getElementById("menu-container").innerHTML = html;
-    localStorage.setItem(menuKey, html);
+    sessionStorage.setItem(menuKey, html);
 }
