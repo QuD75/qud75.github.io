@@ -107,23 +107,36 @@ main {
     max-width: 60rem;
 }
 
-.uv-bar-container {
+.uv-container {
     width: 100%;
-    height: 10px;
-    background-color: #eee;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-top: 4px;
+    max-width: 400px;
+    margin-top: 1em;
   }
   
-.uv-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: #2c7bb6; /* Valeur par défaut */
-    transition: width 0.5s ease;
+.uv-labels {
+display: flex;
+justify-content: space-between;
+font-size: 0.8rem;
+margin-bottom: 0.2em;
+padding: 0 2px;
 }
   
-
+.uv-bar {
+height: 30px; /* plus haut qu'avant */
+background-color: #eee;
+border-radius: 6px;
+position: relative;
+overflow: hidden;
+}
+  
+.uv-bar-fill {
+height: 100%;
+width: 0%;
+background: linear-gradient(to right, #2c7bb6, #abd9e9, #ffffbf, #fdae61, #d7191c);
+transition: width 0.5s ease;
+border-radius: 6px 0 0 6px;
+}
+  
 /* --- HEADER --- */
 .site-header {
     background: linear-gradient(135deg, #0077be, #00aaff);
