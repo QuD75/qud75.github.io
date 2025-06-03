@@ -20,7 +20,7 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             fill: true,
-            tension: 1
+            tension: 2
             }]
         };
     
@@ -72,7 +72,7 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             borderColor: 'rgb(99, 159, 255)',
             backgroundColor: 'rgba(60, 87, 218, 0.2)',
             fill: true,
-            tension: 1
+            tension: 2
             }]
         };
     
