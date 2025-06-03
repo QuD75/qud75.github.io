@@ -18,14 +18,6 @@ function getTemperatureColor(temp) {
     hue = (hue + 360) % 360;
     return `hsl(${Math.round(hue)}, 100%, 50%)`;
 }
-function getUVColor(uv) {
-    let hue = uv > 9 ? 300 : -26.67 * uv + 180;
-    hue = (hue + 360) % 360;
-    let color = `hsl(${Math.round(hue)}, 100%, 50%)`;
-    if (uv < 0.5) color = `hsl(0, 0%, 100%)`;
-    const textColor = getTextColor(color);
-    return { color, textColor };
-}
 function getWindColor(wind) {
     let hue = wind > 80 ? 300 : -3.75 * wind + 250;
     hue = (hue + 360) % 360;

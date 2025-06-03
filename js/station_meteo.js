@@ -27,5 +27,14 @@ function weatherStation(data){
     `;
     const uvBar = document.getElementById("uv-bar");
     uvBar.style.width = `${uvPercentage}%`;
+    uvBar.style.background = `linear-gradient(to right, ${uvColors.slice(0, Math.ceil(uv / 2 + 1)).join(", ")})`;
     document.getElementById("pluie-valeur").textContent = `${pluie} mm`;
   }
+
+  const uvColors = [
+    "#2c7bb6", // UV 0-2 : faible
+    "#abd9e9", // UV 3-4 : modéré
+    "#ffff66", // UV 5-6 : important
+    "#fdae61", // UV 7-9 : fort
+    "#d7191c"  // UV 10-11 : extrême
+  ];
