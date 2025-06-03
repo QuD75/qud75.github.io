@@ -1,7 +1,7 @@
 function fetchTemperatureDataAndCreateChart(data) {
     try {  
       // Transforme les données si nécessaire
-      const temperatureData = data.map(entry => ({
+      const temperatureData = data.observations.map(entry => ({
         ts: entry.ts,
         tempAvg: entry.tempAvg
       }));
