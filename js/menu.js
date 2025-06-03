@@ -1,8 +1,8 @@
 const menuKey = "cachedMenu";
-const cached = localStorage.getItem(menuKey);
+const cachedMenu = localStorage.getItem(menuKey);
 
-if (cached) {
-    document.getElementById("menu-container").innerHTML = cached;
+if (cachedMenu) {
+    document.getElementById("menu-container").innerHTML = cachedMenu;
 } else {
     const html = `
         <nav class="site-nav">

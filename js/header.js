@@ -1,8 +1,8 @@
 const headerKey = "cachedHeader";
-const cached = localStorage.getItem(headerKey);
+const cachedHeader = localStorage.getItem(headerKey);
 
-if (cached) {
-    document.getElementById("header-container").innerHTML = cached;
+if (cachedHeader) {
+    document.getElementById("header-container").innerHTML = cachedHeader;
 } else {
     const html = `
         <header class="site-header">
