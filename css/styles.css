@@ -121,7 +121,7 @@ margin-bottom: 0.2em;
 padding: 0 2px;
 }
   
-.uv-bar {
+.uv-bar-container {
 height: 30px; /* plus haut qu'avant */
 background-color: #eee;
 border-radius: 6px;
