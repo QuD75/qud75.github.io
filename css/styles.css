@@ -107,6 +107,22 @@ main {
     max-width: 60rem;
 }
 
+.uv-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-top: 4px;
+    overflow: hidden;
+  }
+  
+  .uv-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, #2c7bb6, #abd9e9, #ffffbf, #fdae61, #d7191c); /* Couleurs UV du bleu au rouge */
+    width: 0%;
+    transition: width 0.5s ease;
+  }  
+
 /* --- HEADER --- */
 .site-header {
     background: linear-gradient(135deg, #0077be, #00aaff);
