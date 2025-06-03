@@ -1,8 +1,7 @@
 const footerKey = "cachedFooter";
-const cachedFooter = localStorage.getItem(footerKey);
 
-if (cachedFooter) {
-    document.getElementById("footer-container").innerHTML = cachedFooter;
+if (sessionStorage.getItem(footerKey)) {
+    document.getElementById("footer-container").innerHTML = sessionStorage.getItem(footerKey);
 } else {
     const html = `
         <footer class="site-footer">
@@ -10,5 +9,5 @@ if (cachedFooter) {
         </footer>
     `;
     document.getElementById("footer-container").innerHTML = html;
-    localStorage.setItem(footerKey, html);
+    sessionStorage.setItem(footerKey, html);
 }
