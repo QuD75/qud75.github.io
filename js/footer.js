@@ -1,8 +1,8 @@
 const footerKey = "cachedFooter";
-const cached = localStorage.getItem(footerKey);
+const cachedFooter = localStorage.getItem(footerKey);
 
-if (cached) {
-    document.getElementById("footer-container").innerHTML = cached;
+if (cachedFooter) {
+    document.getElementById("footer-container").innerHTML = cachedFooter;
 } else {
     const html = `
         <footer class="site-footer">
