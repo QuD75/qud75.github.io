@@ -24,6 +24,7 @@ main {
     gap: 1.5rem;
     width: 100%;
     max-width: 1000px;
+    grid-auto-rows: 1fr;
 }
 
 .meteo-bloc {
@@ -32,6 +33,7 @@ main {
     padding: 1rem;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
 }
 
 .bloc-titre {
