@@ -14,7 +14,7 @@ fetch('https://api.weather.com/v2/pws/observations/current?stationId=ILECRO29&fo
 
     document.getElementById("temperature-valeur").textContent = `${temperature} °C`;
     document.getElementById("temperature-valeur").style.color = getTemperatureColor(temperature);
-    document.getElementById("pression-valeur").textContent = `${Math.round(pression)} hPa`;
+    document.getElementById("pression-valeur").textContent = `${Math.round(pression+8)} hPa`;
     document.getElementById("humidite-valeur").textContent = `${humidite} %`;
     document.getElementById("vent-valeur").innerHTML = `
         ${vent} km/h<br>
