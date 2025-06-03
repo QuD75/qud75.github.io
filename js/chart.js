@@ -1,4 +1,4 @@
-function fetchTemperatureDataAndCreateChart(data) {
+function fetchDataWeatherStationAndCreateCharts(data) {
     try {
         const temperatureData = data.observations.map(entry => ({
             time: entry.obsTimeLocal,
@@ -50,9 +50,7 @@ function fetchTemperatureDataAndCreateChart(data) {
     } catch (error) {
     console.error('Erreur lors de la récupération des données température :', error);
     }
-}
 
-function fetchHumidityDataAndCreateChart(data) {
     try {
         const humidityData = data.observations.map(entry => ({
             time: entry.obsTimeLocal,
