@@ -6,11 +6,11 @@ if (sessionStorage.getItem(headerKey)) {
   const html = `
     <header class="site-header">
         <div class="logo-title">
-            <img src="/icons/logos/Le_Croisic_logo.webp" alt="Logo gauche" class="logo">
+            <img src="../icons/logos/Le_Croisic_logo.webp" alt="Logo gauche" class="logo">
             <a href="/index.html" class="header-link">
                 <h1>Météo au Croisic</h1>
             </a>
-            <img src="/icons/logos/Blason_Le_Croisic.webp" alt="Logo droite" class="logo">
+            <img src="../icons/logos/Blason_Le_Croisic.webp" alt="Logo droite" class="logo">
         </div>
     </header>
   `;
