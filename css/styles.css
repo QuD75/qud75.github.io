@@ -52,6 +52,7 @@ main {
     align-items: center;     /* centre verticalement */
     font-size: 4rem;
     text-align: center;
+    font-weight: bold;
   }
 
 .wind-rose {
