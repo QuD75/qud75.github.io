@@ -1,78 +1,56 @@
-//Fonction de générations du graphique
-function createDatasets(x, y, borderColor, backgroundColor, secondaryDataWind, secondaryDataTemp) {
-    const datasets = [{
-        x,
-        data: y,
-        borderColor,
-        backgroundColor,
-        borderWidth: 3,
-        pointRadius: 0,
-        tension: 0.5,
-        cubicInterpolationMode: 'monotone',
-        fill: secondaryDataWind ? true : secondaryDataTemp ? false : 'start'
-    }];
 
-    if (secondaryDataWind) {
-        datasets.push({
-            x: 'Wind Data',
-            pointRadius: 0,
-            data: secondaryDataWind,
-            borderColor: 'rgba(255, 140, 0, 1)',
-            backgroundColor: 'rgba(255, 140, 0, 0.2)',
-            fill: '-1',
-            tension: 0.5,
-            cubicInterpolationMode: 'monotone',
-        });
-    }
 
-    if (secondaryDataTemp) {
-        datasets.push({
-            x: 'Temperature Data',
-            pointRadius: 0,
-            data: secondaryDataTemp,
-            borderColor: 'red',
-            tension: 0.5,
-            cubicInterpolationMode: 'monotone',
-        });
-    }
-
-    return datasets;
-}
-function createChart(elementId, x, y, step, title, yAxisLabel, round, chartType, borderColor, backgroundColor, secondaryDataWind = null, secondaryDataTemp = null) {
-    const ctx = document.getElementById(elementId).getContext('2d');
-    const datasets = createDatasets(x, y, borderColor, backgroundColor, secondaryDataWind, secondaryDataTemp);
-
-    new Chart(ctx, {
-        type: chartType,
-        data: {
-            labels: x, // Utilise x comme labels pour l'axe des abscisses
-            datasets: datasets // y et les données supplémentaires comme datasets
-        },
+function fetchTemperatureDataAndCreateChart(temperatureData) {
+    try {  
+      // Transforme les données si nécessaire
+      const temperatureData = data.map(entry => ({
+        ts: entry.ts,
+        tempAvg: entry.tempAvg
+      }));
+  
+      const labels = temperatureData.map(entry => {
+        const date = new Date(entry.ts);
+        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      });
+  
+      const tempValues = temperatureData.map(entry => entry.tempAvg);
+  
+      const chartData = {
+        labels: labels,
+        datasets: [{
+          label: 'Température moyenne (°C)',
+          data: tempValues,
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          fill: true,
+          tension: 0.3
+        }]
+      };
+  
+      const config = {
+        type: 'line',
+        data: chartData,
         options: {
-            plugins: {
-                legend: { display: false },
-                title: {
-                    display: true,
-                    text: `${title}`,
-                    font: { size: 20 }
-                }
+          responsive: true,
+          scales: {
+            y: {
+              title: {
+                display: true,
+                text: 'Température (°C)'
+              }
             },
-            animation: {
-                duration: 0  // Désactive l'animation
-            },
-            scales: {
-                x: {
-                    title: { display: false },
-                    ticks: { maxRotation: 30, minRotation: 30 },
-                },
-                y: {
-                    title: { display: true, text: yAxisLabel },
-                    ticks: {
-                        stepSize: step,
-                        callback: value => value.toFixed(round)
-                    }
-                }
+            x: {
+              title: {
+                display: true,
+                text: 'Heure'
+              }
             }
+          }
         }
-    });
-}
+      };
+  
+      new Chart(document.getElementById('temperatureChart'), config);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données température :', error);
+    }
+  }
