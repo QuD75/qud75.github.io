@@ -14,6 +14,7 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     flex: 1;
     padding: 2rem;
 }
@@ -27,13 +28,15 @@ main {
 }
 
 .meteo-bloc {
-    background-color: white; /* fond blanc */
-    border-radius: 12px;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 100%;
-}
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* place le titre en haut, la valeur en bas */
+    height: 200px; /* fixe la hauteur (ou utilise une valeur égale via grid/JS) */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
 
 .bloc-titre {
     font-weight: bold;
@@ -43,15 +46,13 @@ main {
 }
 
 .bloc-valeur {
+    flex-grow: 1; /* prend tout l’espace vertical disponible */
     display: flex;
     justify-content: center; /* centre horizontalement */
     align-items: center;     /* centre verticalement */
-    height: 100%;            /* prend toute la hauteur disponible */
-    text-align: center;
     font-size: 4rem;
-    font-weight: bold;
-    color: black;
-}
+    text-align: center;
+  }
 
 .wind-rose {
     position: relative;
