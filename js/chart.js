@@ -104,4 +104,57 @@ function fetchDataWeatherStationAndCreateCharts(data) {
     } catch (error) {
     console.error('Erreur lors de la récupération des données humidité :', error);
     }
+
+    try {
+        const pressureData = data.observations.map(entry => ({
+            time: entry.obsTimeLocal,
+            pressure: entry.metric.pressureMin
+        }));
+
+        const labels = pressureData.map(entry => {
+            const date = new Date(entry.time);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        });
+
+        const pressureValues = pressureData.map(entry => entry.pressure);
+    
+        const chartData = {
+            labels: labels,
+            datasets: [{
+            label: 'Pression (hPa)',
+            data: pressureValues,
+            borderColor: 'rgb(114, 246, 107)',
+            backgroundColor: 'rgba(29, 192, 26, 0.2)',
+            fill: true,
+            tension: 1,
+            pointRadius: 0        // Masquer les points
+            }]
+        };
+    
+        const config = {
+            type: 'line',
+            data: chartData,
+            options: {
+            responsive: true,
+            scales: {
+                y: {
+                title: {
+                    display: true,
+                    text: 'Pression (hPa)'
+                }
+                },
+                x: {
+                title: {
+                    display: true,
+                    text: 'Heure'
+                }
+                }
+            }
+            }
+        };
+    
+        new Chart(document.getElementById('pressureChart'), config);
+    } catch (error) {
+    console.error('Erreur lors de la récupération des données pression :', error);
+    }
 }
