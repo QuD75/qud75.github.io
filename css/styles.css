@@ -22,7 +22,7 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 blocs par ligne */
     grid-auto-rows: 1fr; /* même hauteur pour tous les blocs */
-    gap: 20px; /* écart horizontal ET vertical entre les blocs */
+    gap: 4rem; /* écart horizontal ET vertical entre les blocs */
     padding: 20px; /* espace autour de la grille si besoin */
 }
 
@@ -43,7 +43,12 @@ main {
 }
 
 .bloc-valeur {
-    font-size: 3rem;
+    display: flex;
+    justify-content: center; /* centre horizontalement */
+    align-items: center;     /* centre verticalement */
+    height: 100%;            /* prend toute la hauteur disponible */
+    text-align: center;
+    font-size: 4rem;
     font-weight: bold;
     color: black;
 }
