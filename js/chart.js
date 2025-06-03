@@ -118,7 +118,7 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         });
 
-        const rawPressure = pressureData.map(entry => entry.pressureValues);
+        const rawPressure = pressureData.map(entry => entry.pressure);
         const pressureValues = smoothData(rawPressure, 5);
     
         const chartData = {
