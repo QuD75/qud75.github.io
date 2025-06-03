@@ -103,10 +103,8 @@ main {
 .wind-label.west  { top: 50%; left: -10px; transform: translateY(-50%); }
   
 .chart-weather-station {
-    position: absolute;
-    font-weight: bold;
-    font-size: 14px;
-    color: #333;
+    max-height: 200px; /* Ajuste cette valeur à ta convenance */
+    width: 100%;
 }
 
 /* --- HEADER --- */
