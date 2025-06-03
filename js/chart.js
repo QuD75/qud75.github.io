@@ -10,7 +10,8 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         });
 
-        const tempValues = temperatureData.map(entry => entry.temp);
+        const rawTemps = temperatureData.map(entry => entry.temp);
+        const tempValues = smoothData(rawTemps, 5);
     
         const chartData = {
             labels: labels,
@@ -63,7 +64,8 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         });
 
-        const humidityValues = humidityData.map(entry => entry.hum);
+        const rawHums = humidityData.map(entry => entry.hum);
+        const humidityValues = smoothData(rawHums, 5);
     
         const chartData = {
             labels: labels,
@@ -116,7 +118,8 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         });
 
-        const pressureValues = pressureData.map(entry => entry.pressure);
+        const rawPressure = humidityData.map(entry => entry.pressureValues);
+        const pressureValues = smoothData(rawPressure, 5);
     
         const chartData = {
             labels: labels,
@@ -158,3 +161,24 @@ function fetchDataWeatherStationAndCreateCharts(data) {
     console.error('Erreur lors de la récupération des données pression :', error);
     }
 }
+
+function smoothData(values, windowSize = 5) {
+    const smoothed = [];
+  
+    for (let i = 0; i < values.length; i++) {
+      let sum = 0;
+      let count = 0;
+  
+      for (let j = -Math.floor(windowSize / 2); j <= Math.floor(windowSize / 2); j++) {
+        const index = i + j;
+        if (index >= 0 && index < values.length) {
+          sum += values[index];
+          count++;
+        }
+      }
+  
+      smoothed.push(sum / count);
+    }
+  
+    return smoothed;
+  }
