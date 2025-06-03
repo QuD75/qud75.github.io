@@ -1,5 +1,5 @@
-const headerKey = "cachedMenu";
-const cached = localStorage.getItem(headerKey);
+const menuKey = "cachedMenu";
+const cached = localStorage.getItem(menuKey);
 
 if (cached) {
     document.getElementById("menu-container").innerHTML = cached;
@@ -16,5 +16,5 @@ if (cached) {
         </nav>
     `;
     document.getElementById("menu-container").innerHTML = html;
-    localStorage.setItem(headerKey, html);
+    localStorage.setItem(menuKey, html);
 }

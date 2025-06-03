@@ -1,5 +1,5 @@
-const headerKey = "cachedFooter";
-const cached = localStorage.getItem(headerKey);
+const footerKey = "cachedFooter";
+const cached = localStorage.getItem(footerKey);
 
 if (cached) {
     document.getElementById("footer-container").innerHTML = cached;
@@ -10,5 +10,5 @@ if (cached) {
         </footer>
     `;
     document.getElementById("footer-container").innerHTML = html;
-    localStorage.setItem(headerKey, html);
+    localStorage.setItem(footerKey, html);
 }
