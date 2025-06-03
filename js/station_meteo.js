@@ -1,4 +1,3 @@
-
 function weatherStation(data){
     const obs = data.observations[0];
 
@@ -26,6 +25,7 @@ function weatherStation(data){
     document.getElementById("lumiere-valeur-nombre").innerHTML = `
         ${Math.round(lumiere)} W/m²<br>
     `;
-    document.getElementById("uv-bar").style.width = uvPercentage+"%";
+    const uvBar = document.getElementById("uv-bar");
+    uvBar.style.backgroundSize = `${uvPercent}% 100%`;
     document.getElementById("pluie-valeur").textContent = `${pluie} mm`;
   }
