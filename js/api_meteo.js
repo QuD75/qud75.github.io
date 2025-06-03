@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function getApiData() {
         // Appels API indépendants
         fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
-        fetchData(api_station_meteo, 'station_meteo', 1/60, weatherStation);
+        fetchData(api_station_meteo, 'station_meteo', 5/60, weatherStation);
     }
     async function fetchData(apiUrl, cacheKey, duration, displayFunction) {
         const now = Date.now();
