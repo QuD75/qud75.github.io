@@ -110,7 +110,7 @@ function fetchDataWeatherStationAndCreateCharts(data) {
     try {
         const pressureData = data.observations.map(entry => ({
             time: entry.obsTimeLocal,
-            pressure: entry.metric.pressureMin
+            pressure: entry.metric.pressureMin+7
         }));
 
         const labels = pressureData.map(entry => {
