@@ -1,17 +1,16 @@
 function fetchTemperatureDataAndCreateChart(data) {
-    try {  
-      // Transforme les données si nécessaire
-      const temperatureData = data.observations.map(entry => ({
-        ts: entry.ts,
-        tempAvg: entry.tempAvg
-      }));
-  
-      const labels = temperatureData.map(entry => {
-        const date = new Date(entry.ts);
+try {
+    const temperatureData = data.observations.map(entry => ({
+        time: entry.obsTimeLocal,
+        temp: entry.metric.tempAvg
+    }));
+
+    const labels = temperatureData.map(entry => {
+        const date = new Date(entry.time);
         return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      });
-  
-      const tempValues = temperatureData.map(entry => entry.tempAvg);
+    });
+
+    const tempValues = temperatureData.map(entry => entry.temp);
   
       const chartData = {
         labels: labels,
