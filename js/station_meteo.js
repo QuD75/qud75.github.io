@@ -26,6 +26,19 @@ function weatherStation(data){
     document.getElementById("lumiere-valeur-nombre").innerHTML = `
         ${Math.round(lumiere)}&nbsp;<span class="unit-small">W/m²</span>
     `;
-    document.querySelector('.uv-bar-fill').style.width = `${uvPercentage}%`;
+    const index = Math.min(Math.floor(uv / 2), uvColors.length - 1);
+    const gradientColors = uvColors.slice(0, index + 1);
+    const fill = document.querySelector('.uv-bar-fill');
+    fill.style.background = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+    fill.style.width = `${uvPercentage}%`;
     document.getElementById("pluie-valeur").innerHTML = `${pluie.toFixed(1)}&nbsp;<span class="unit-small">mm</span>`;
 }
+
+const uvColors = [
+    "#2c7bb6",  // UV 0-1
+    "#abd9e9",  // UV 2-3
+    "#ffffbf",  // UV 4-5
+    "#fdae61",  // UV 6-7
+    "#f46d43",  // UV 8-9
+    "#d73027"   // UV 10-11
+  ];
