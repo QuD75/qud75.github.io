@@ -28,7 +28,7 @@ function weatherStation(data){
     const uvBar = document.getElementById("uv-bar");
     uvBar.style.width = `${uvPercentage}%`;
     uvBar.style.background = `linear-gradient(to right, ${uvColors.slice(0, Math.ceil(uv / 2 + 1)).join(", ")})`;
-    document.getElementById("pluie-valeur").textContent = `${Math.round(pluie, 1)} mm`;
+    document.getElementById("pluie-valeur").textContent = `${pluie.toFixed(1)} mm`;
   }
 
   const uvColors = [
