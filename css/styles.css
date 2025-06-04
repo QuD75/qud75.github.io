@@ -134,14 +134,6 @@ padding: 0 2px;
 .uv-bar-fill {
 height: 100%;
 width: 0%; /* sera mis à jour dynamiquement */
-background: linear-gradient(to right,
-    #2c7bb6,  /* UV 0 */
-    #abd9e9,  /* UV 2 */
-    #ffffbf,  /* UV 4 */
-    #fdae61,  /* UV 6 */
-    #f46d43,  /* UV 8 */
-    #d73027   /* UV 11 */
-);
 transition: width 0.5s ease;
 }
 
