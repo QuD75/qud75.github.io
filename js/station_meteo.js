@@ -15,7 +15,7 @@ function weatherStation(data){
 
     document.getElementById("temperature-valeur").textContent = `${temperature} °C`;
     document.getElementById("temperature-valeur").style.color = getTemperatureColor(temperature);
-    document.getElementById("pression-valeur").textContent = `${Math.round(pression+7)} hPa`;
+    document.getElementById("pression-valeur").textContent = `${Math.round(pression+7)}&nbsp;<span class="unit-small">hPa</span>`;
     document.getElementById("humidite-valeur").textContent = `${humidite} %`;
     document.getElementById("vent-valeur").innerHTML = `
         ${vent} km/h<br>
