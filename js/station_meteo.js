@@ -26,7 +26,6 @@ function weatherStation(data){
     document.getElementById("lumiere-valeur-nombre").innerHTML = `
         ${Math.round(lumiere)}&nbsp;<span class="unit-small">W/m²</span>
     `;
-    const uvBar = document.getElementById("uv-bar");
-    uvBar.style.width = `${uvPercentage}%`;
+    document.querySelector('.uv-bar-fill').style.width = `${uvPercentage}%`;
     document.getElementById("pluie-valeur").innerHTML = `${pluie.toFixed(1)}&nbsp;<span class="unit-small">mm</span>`;
 }
