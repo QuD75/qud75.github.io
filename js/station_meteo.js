@@ -28,14 +28,5 @@ function weatherStation(data){
     `;
     const uvBar = document.getElementById("uv-bar");
     uvBar.style.width = `${uvPercentage}%`;
-    uvBar.style.background = `linear-gradient(to right, ${uvColors.slice(0, Math.ceil(uv / 2 + 1)).join(", ")})`;
     document.getElementById("pluie-valeur").innerHTML = `${pluie.toFixed(1)}&nbsp;<span class="unit-small">mm</span>`;
-  }
-
-  const uvColors = [
-    "#00d0ff", // UV 0-2 : bleu
-    "#00ff26", // UV 3-4 : vert
-    "#ffe600", // UV 5-6 : jaune
-    "#ff0000", // UV 7-9 : rouge
-    "#ff00f2"  // UV 10-11 : violet
-  ];
+}
