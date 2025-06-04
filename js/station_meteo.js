@@ -32,9 +32,9 @@ function weatherStation(data){
   }
 
   const uvColors = [
-    "#2c7bb6", // UV 0-2 : faible
-    "#abd9e9", // UV 3-4 : modéré
-    "#ffff66", // UV 5-6 : important
-    "#fdae61", // UV 7-9 : fort
-    "#d7191c"  // UV 10-11 : extrême
+    "#00d0ff", // UV 0-2 : faible
+    "#00ff26", // UV 3-4 : modéré
+    "#ffe600", // UV 5-6 : important
+    "#ff0000", // UV 7-9 : fort
+    "#ff00f2"  // UV 10-11 : extrême
   ];
