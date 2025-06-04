@@ -23,7 +23,7 @@ function weatherStation(data){
     `;
     document.getElementById("wind-arrow").style.transform = `rotate(${windDir}deg)`;
     document.getElementById("lumiere-valeur-nombre").innerHTML = `
-        ${Math.round(lumiere)} W/m²<br>
+        ${Math.round(lumiere)} <small>W/m²</small><br>
     `;
     const uvBar = document.getElementById("uv-bar");
     uvBar.style.width = `${uvPercentage}%`;
