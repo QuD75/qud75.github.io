@@ -139,7 +139,7 @@ border-radius: 6px 0 0 6px;
 
 .unit-small {
     font-size: 0.7em;
-    vertical-align: bottom;
+    vertical-align: baseline;
 }
   
 /* --- HEADER --- */
