@@ -10,7 +10,7 @@ function weatherStation(data){
     const windDir = obs.winddir;
     const windDGust = obs.metric.windGust;
     //const uv = obs.uv;
-    const uv = 9;
+    const uv = 10;
     const uvMax = 11;
     const uvPercentage = Math.min((uv / uvMax) * 100, 100); // max 100%
     console.log(uvPercentage);
@@ -39,7 +39,7 @@ const uvColors = [
     "#03eaff",  // UV 0-1 - bleu clair
     "#0bff03",  // UV 2-3 - vert
     "#fffb03",  // UV 4-5 - jaune
-    "#faa302",  // UV 6-7 - orange
+    "#fffb03",  // UV 6-7 - orange
     "#ff0303",  // UV 8-9 - rouge
     "#ff03fb"   // UV 10-11 - violet
 ];
