@@ -9,8 +9,7 @@ function weatherStation(data){
     const pluie = obs.metric.precipTotal;
     const windDir = obs.winddir;
     const windDGust = obs.metric.windGust;
-    //const uv = obs.uv;
-    const uv = 11;
+    const uv = obs.uv;
     const uvMax = 11;
     const uvPercentage = Math.min((uv / uvMax) * 100, 100); // max 100%
     console.log(uvPercentage);
