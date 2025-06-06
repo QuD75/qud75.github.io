@@ -62,4 +62,4 @@ function formatRelativeTime(dateString) {
       const days = Math.floor(diffInSeconds / 86400);
       return `il y a ${days} jour${days > 1 ? 's' : ''}`;
     }
-  }
+}
