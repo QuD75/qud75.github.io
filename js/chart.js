@@ -265,7 +265,7 @@ function fetchDataWeatherStationAndCreateCharts(data) {
     }
 }
 
-function smoothData(values, windowSize = 5) {
+function smoothData(values, windowSize = 2) {
     const smoothed = [];
   
     for (let i = 0; i < values.length; i++) {
