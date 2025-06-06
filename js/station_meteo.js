@@ -63,3 +63,17 @@ function formatRelativeTime(dateString) {
       return `il y a ${days} jour${days > 1 ? 's' : ''}`;
     }
 }
+
+const select = document.getElementById('plage');
+const blocs = ['day-chart', 'week-chart'];
+
+select.addEventListener('change', function () {
+  blocs.forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
+  const selected = this.value;
+  if (selected && blocs.includes(selected)) {
+    document.getElementById(selected).style.display = 'block';
+  }
+});
