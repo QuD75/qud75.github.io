@@ -15,7 +15,7 @@
 
     <main>
         <h2>Données en direct de la station météo</h2>
-        <p id="update"></p>
+        <p id="update">Dernière mise à jour : </p>
         <div class="meteo-grille">
             <div class="meteo-bloc" id="temperature">
                 <div class="bloc-titre">Température</div>
@@ -33,13 +33,15 @@
                 <div class="bloc-titre">Vent</div>
                 <div class="wind-rose">
                   <div class="wind-pointer" id="wind-arrow"></div>
-                  <div id="vent-valeur"></div>
+                  <div class="wind-center">
+                    <div id="vent-valeur"></div>
+                  </div>
                   <div class="wind-label north">N</div>
                   <div class="wind-label east">E</div>
                   <div class="wind-label south">S</div>
                   <div class="wind-label west">O</div>
                 </div>
-            </div>
+              </div>
             <div class="meteo-bloc" id="lumiere">
                 <div class="bloc-titre">Lumière</div>
                 <div id="lumiere-valeur-nombre" class="bloc-valeur"></div>
