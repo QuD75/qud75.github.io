@@ -160,6 +160,60 @@ function fetchDataWeatherStationAndCreateCharts(data) {
     } catch (error) {
     console.error('Erreur lors de la récupération des données pression :', error);
     }
+
+    try {
+        const rainData = data.observations.map(entry => ({
+            time: entry.obsTimeLocal,
+            rain: entry.metric.precipTotal
+        }));
+
+        const labels = rainData.map(entry => {
+            const date = new Date(entry.time);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        });
+
+        const rawrain = rainData.map(entry => entry.rain);
+        const rainValues = smoothData(rawrain, 5);
+    
+        const chartData = {
+            labels: labels,
+            datasets: [{
+            label: 'Précipitations (mm)',
+            data: rainValues,
+            borderColor: 'rgb(0, 76, 255)',
+            backgroundColor: 'rgba(0, 98, 255, 0.2)',
+            fill: true,
+            tension: 1,
+            pointRadius: 0        // Masquer les points
+            }]
+        };
+    
+        const config = {
+            type: 'line',
+            data: chartData,
+            options: {
+            responsive: true,
+            scales: {
+                y: {
+                title: {
+                    display: true,
+                    text: 'Précipitations (mm)'
+                }
+                },
+                x: {
+                title: {
+                    display: true,
+                    text: 'Heure'
+                }
+                }
+            }
+            }
+        };
+    
+        new Chart(document.getElementById('rainChart'), config);
+    } catch (error) {
+    console.error('Erreur lors de la récupération des données pluie :', error);
+    }
 }
 
 function smoothData(values, windowSize = 5) {
