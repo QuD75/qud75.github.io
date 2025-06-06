@@ -1,6 +1,7 @@
 function weatherStation(data){
+    
     const obs = data.observations[0];
-
+    const lastUpdate = obs.obsTimeLocal;
     const temperature = obs.metric.temp;
     const pression = obs.metric.pressure;
     const humidite = obs.humidity;
@@ -11,6 +12,9 @@ function weatherStation(data){
     const windDGust = obs.metric.windGust;
     const uv = obs.uv;
     const uvPercentage = Math.min((uv / 11) * 100, 100); // max 100%
+
+    const text = formatRelativeTime(lastUpdate);
+    document.getElementById("update").textContent = `Dernière mise à jour : ${text}`;
 
     document.getElementById("temperature-valeur").innerHTML = `${temperature}&nbsp;<span class="unit-small">°C</span>`;
     document.getElementById("temperature-valeur").style.color = getTemperatureColor(temperature);
@@ -40,3 +44,22 @@ const uvColors = [
     "#ff0303",  // UV 8-9 - rouge
     "#ff03fb"   // UV 10-11 - violet
 ];
+
+function formatRelativeTime(dateString) {
+    const now = new Date();
+    const past = new Date(dateString.replace(" ", "T")); // pour compatibilité ISO
+    const diffInSeconds = Math.floor((now - past) / 1000);
+  
+    if (diffInSeconds < 60) {
+      return `il y a ${diffInSeconds} seconde${diffInSeconds > 1 ? 's' : ''}`;
+    } else if (diffInSeconds < 3600) {
+      const minutes = Math.floor(diffInSeconds / 60);
+      return `il y a ${minutes} minute${minutes > 1 ? 's' : ''}`;
+    } else if (diffInSeconds < 86400) {
+      const hours = Math.floor(diffInSeconds / 3600);
+      return `il y a ${hours} heure${hours > 1 ? 's' : ''}`;
+    } else {
+      const days = Math.floor(diffInSeconds / 86400);
+      return `il y a ${days} jour${days > 1 ? 's' : ''}`;
+    }
+  }
