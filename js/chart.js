@@ -30,21 +30,33 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             type: 'line',
             data: chartData,
             options: {
-            responsive: true,
-            scales: {
-                y: {
-                title: {
-                    display: true,
-                    text: 'Température (°C)'
+                plugins: {
+                    title: {
+                      display: true,
+                      text: 'Température sur la journée', // ← Ton titre ici
+                      font: {
+                        size: 18
+                      }
+                    },
+                    legend: {
+                      display: false // ← Masquer la légende
+                    }
+                }, 
+                responsive: true,
+                scales: {
+                    y: {
+                    title: {
+                        display: true,
+                        text: 'Température (°C)'
+                    }
+                    },
+                    x: {
+                    title: {
+                        display: true,
+                        text: 'Heure'
+                    }
+                    }
                 }
-                },
-                x: {
-                title: {
-                    display: true,
-                    text: 'Heure'
-                }
-                }
-            }
             }
         };
     
@@ -84,21 +96,33 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             type: 'line',
             data: chartData,
             options: {
-            responsive: true,
-            scales: {
-                y: {
-                title: {
-                    display: true,
-                    text: 'Humidité (%)'
+                plugins: {
+                    title: {
+                      display: true,
+                      text: 'Humidité sur la journée', // ← Ton titre ici
+                      font: {
+                        size: 18
+                      }
+                    },
+                    legend: {
+                      display: false // ← Masquer la légende
+                    }
+                }, 
+                responsive: true,
+                scales: {
+                    y: {
+                    title: {
+                        display: true,
+                        text: 'Humidité (%)'
+                    }
+                    },
+                    x: {
+                    title: {
+                        display: true,
+                        text: 'Heure'
+                    }
+                    }
                 }
-                },
-                x: {
-                title: {
-                    display: true,
-                    text: 'Heure'
-                }
-                }
-            }
             }
         };
     
@@ -138,21 +162,33 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             type: 'line',
             data: chartData,
             options: {
-            responsive: true,
-            scales: {
-                y: {
-                title: {
-                    display: true,
-                    text: 'Pression (hPa)'
+                plugins: {
+                    title: {
+                      display: true,
+                      text: 'Pression sur la journée', // ← Ton titre ici
+                      font: {
+                        size: 18
+                      }
+                    },
+                    legend: {
+                      display: false // ← Masquer la légende
+                    }
+                }, 
+                responsive: true,
+                scales: {
+                    y: {
+                    title: {
+                        display: true,
+                        text: 'Pression (hPa)'
+                    }
+                    },
+                    x: {
+                    title: {
+                        display: true,
+                        text: 'Heure'
+                    }
+                    }
                 }
-                },
-                x: {
-                title: {
-                    display: true,
-                    text: 'Heure'
-                }
-                }
-            }
             }
         };
     
@@ -192,22 +228,34 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             type: 'line',
             data: chartData,
             options: {
-            responsive: true,
-            scales: {
-                y: {
-                min: 0,
-                title: {
-                    display: true,
-                    text: 'Précipitations (mm)'
+                plugins: {
+                    title: {
+                      display: true,
+                      text: 'Température sur la journée', // ← Ton titre ici
+                      font: {
+                        size: 18
+                      }
+                    },
+                    legend: {
+                      display: false // ← Masquer la légende
+                    }
+                }, 
+                responsive: true,
+                scales: {
+                    y: {
+                    min: 0,
+                    title: {
+                        display: true,
+                        text: 'Précipitations (mm)'
+                    }
+                    },
+                    x: {
+                    title: {
+                        display: true,
+                        text: 'Heure'
+                    }
+                    }
                 }
-                },
-                x: {
-                title: {
-                    display: true,
-                    text: 'Heure'
-                }
-                }
-            }
             }
         };
     
