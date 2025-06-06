@@ -84,14 +84,17 @@ h2 {
   
 .wind-pointer {
     position: absolute;
-    top: -60px; /* distance à partir du centre */
-    left: -6px; /* moitié de la largeur du triangle */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%) rotate(0deg); /* base au centre */
+    transform-origin: center bottom;
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-bottom: 12px solid black;
-}
+    z-index: 2;
+  }
 
 .wind-center {
     position: absolute;
