@@ -149,6 +149,11 @@ h2 {
     font-size: 0.7em;
     vertical-align: baseline;
 }
+
+#form {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
   
 /* --- HEADER --- */
 .site-header {
