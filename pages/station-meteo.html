@@ -63,15 +63,20 @@
         <div id="form">
             <label for="plage">Historique sur :</label>
             <select id="plage" name="plage">
-                <option value="option1">journée</option>
-                <option value="option2">semaine</option>
+                <option value="day">journée</option>
+                <option value="week">semaine</option>
             </select>
         </div>
 
-        <canvas id="temperatureChart" class="chart-weather-station"></canvas>
-        <canvas id="humidityChart" class="chart-weather-station"></canvas>
-        <canvas id="pressureChart" class="chart-weather-station"></canvas>
-        <canvas id="rainChart" class="chart-weather-station"></canvas>
+        <div id="day-chart" style="display: none">
+            <canvas id="temperatureChart" class="chart-weather-station"></canvas>
+            <canvas id="humidityChart" class="chart-weather-station"></canvas>
+            <canvas id="pressureChart" class="chart-weather-station"></canvas>
+            <canvas id="rainChart" class="chart-weather-station"></canvas>
+        </div>
+
+        <div id="week-chart" style="display: none">
+        </div>
     </main>
 
     <div id="footer-container"></div>
