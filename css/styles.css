@@ -44,7 +44,7 @@ h2 {
     justify-content: space-between; /* place le titre en haut, la valeur en bas */
     height: 200px; /* fixe la hauteur (ou utilise une valeur égale via grid/JS) */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+  }
 
 .bloc-titre {
     font-weight: bold;
@@ -61,7 +61,7 @@ h2 {
     font-size: 4rem;
     text-align: center;
     font-weight: bold;
-}
+  }
 
 .wind-rose {
     position: relative;
@@ -71,33 +71,44 @@ h2 {
     border-radius: 50%;
     margin: 0 auto;
     background-color: white;
-}
+  }
   
 .wind-pointer {
     position: absolute;
-    top: 50%;
-    left: 50%;
     width: 0;
     height: 0;
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
-    border-bottom: 20px solid black;
+    border-bottom: 12px solid black;
+    top: 4px;
+    left: 50%;
+    transform-origin: center 60px;
     transform: rotate(0deg);
-    transform-origin: center 20px; /* pile au centre de la rosace */
+    z-index: 2;
+}  
+
+.wind-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.4;
+    z-index: 3;
 }
-  
+
 .wind-label {
     position: absolute;
     font-weight: bold;
     font-size: 14px;
     color: #333;
 }
-  
+
 .wind-label.north { top: -10px; left: 50%; transform: translateX(-50%); }
 .wind-label.south { bottom: -10px; left: 50%; transform: translateX(-50%); }
 .wind-label.east  { top: 50%; right: -10px; transform: translateY(-50%); }
 .wind-label.west  { top: 50%; left: -10px; transform: translateY(-50%); }
-  
   
 .chart-weather-station {
     max-height: 20rem; /* Ajuste cette valeur à ta convenance */
