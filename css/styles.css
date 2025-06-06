@@ -19,6 +19,10 @@ main {
     padding: 2rem;
 }
 
+h2 {
+    margin-bottom: 0;
+}
+
 .meteo-grille {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 blocs par ligne */
