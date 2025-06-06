@@ -40,7 +40,7 @@ const uvColors = [
     "#03eaff",  // UV 0-1 - bleu clair
     "#0bff03",  // UV 2-3 - vert
     "#fffb03",  // UV 4-5 - jaune
-    "#fffb03",  // UV 6-7 - orange
+    "#ff8b00",  // UV 6-7 - orange
     "#ff0303",  // UV 8-9 - rouge
     "#ff03fb"   // UV 10-11 - violet
 ];
