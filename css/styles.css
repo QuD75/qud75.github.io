@@ -23,6 +23,10 @@ h2 {
     margin-bottom: 0;
 }
 
+#update {
+    margin-top: 0;
+}
+
 .meteo-grille {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 blocs par ligne */
