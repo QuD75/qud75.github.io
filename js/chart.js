@@ -195,6 +195,7 @@ function fetchDataWeatherStationAndCreateCharts(data) {
             responsive: true,
             scales: {
                 y: {
+                min: 0,
                 title: {
                     display: true,
                     text: 'Précipitations (mm)'
