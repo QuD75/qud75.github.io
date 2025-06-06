@@ -64,20 +64,21 @@ function formatRelativeTime(dateString) {
     }
 }
 
-const select = document.getElementById("plage");
+window.onload = function () {
+    const select = document.getElementById("plage");
     const dayBloc = document.getElementById("day-chart");
     const weekBloc = document.getElementById("week-chart");
-
+  
     select.addEventListener('change', function () {
-      // Masquer tous les blocs d'abord
       dayBloc.style.display = 'none';
       weekBloc.style.display = 'none';
-
-      // Afficher le bon bloc selon la sélection
-      const selected = this.value;
-      if (selected === 'day') {
+  
+      if (this.value === 'day') {
         dayBloc.style.display = 'block';
-      } else if (selected === 'week') {
+      } else if (this.value === 'week') {
         weekBloc.style.display = 'block';
       }
     });
+  
+    select.dispatchEvent(new Event('change'));
+  };
