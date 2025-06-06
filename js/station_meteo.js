@@ -10,9 +10,7 @@ function weatherStation(data){
     const windDir = obs.winddir;
     const windDGust = obs.metric.windGust;
     const uv = obs.uv;
-    const uvMax = 11;
-    const uvPercentage = Math.min((uv / uvMax) * 100, 100); // max 100%
-    console.log(uvPercentage);
+    const uvPercentage = Math.min((uv / 11) * 100, 100); // max 100%
 
     document.getElementById("temperature-valeur").innerHTML = `${temperature}&nbsp;<span class="unit-small">°C</span>`;
     document.getElementById("temperature-valeur").style.color = getTemperatureColor(temperature);
