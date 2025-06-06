@@ -65,26 +65,26 @@ h2 {
 
 .wind-rose {
     position: relative;
-    width: 120px;
-    height: 120px;
+    margin: auto;
+    width: 150px;
+    height: 150px;
     border: 2px solid #ccc;
     border-radius: 50%;
-    margin: 0 auto;
-    background-color: white;
-  }
+    margin-top: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
   
 .wind-pointer {
     position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 12px solid black;
-    top: 4px;
+    top: 50%;
     left: 50%;
-    transform-origin: center 60px;
-    transform: rotate(0deg);
-    z-index: 2;
+    width: 0; 
+    height: 0; 
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 15px solid black;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease;
 }  
 
 .wind-center {
