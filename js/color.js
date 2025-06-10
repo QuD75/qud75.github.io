@@ -11,11 +11,8 @@ function getColorForTemperature(temp) {
     const colorStops = [
         { temp: -10, color: [16, 52, 166] },    // Bleu foncé
         { temp: 0, color: [15, 157, 232] },    // Bleu clair
-        { temp: 10, color: [52, 201, 36] },     // Vert
         { temp: 20, color: [255, 228, 54] },   // Jaune
-        { temp: 25, color: [255, 140, 0] },   // Orange
-        { temp: 30, color: [255, 0, 0] },     // Rouge
-        { temp: 40, color: [128, 0, 128] }    // Violet
+        { temp: 40, color: [255, 0, 0] },     // Rouge
     ];
 
     // Trouver les deux points de transition entre lesquels se situe la température
