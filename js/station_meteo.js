@@ -16,7 +16,8 @@ function weatherStation(data){
     const text = formatRelativeTime(lastUpdate);
     document.getElementById("update").textContent = `Dernière mise à jour : ${text}`;
 
-    document.getElementById("temperature-valeur").innerHTML = `${temperature}&nbsp;<span class="unit-small">°C</span>`;
+    //document.getElementById("temperature-valeur").innerHTML = `${temperature}&nbsp;<span class="unit-small">°C</span>`;
+    document.getElementById("temperature-valeur").innerHTML = `${Math.floor(Math.random() * 51) - 10}°C`;
     document.getElementById("temperature-valeur").style.color = getColorForTemperature(temperature);
     document.getElementById("pression-valeur").innerHTML = `${Math.round(pression+7)}&nbsp;<span class="unit-small">hPa</span>`;
     document.getElementById("humidite-valeur").innerHTML = `${humidite}&nbsp;<span class="unit-small">%</span>`;
