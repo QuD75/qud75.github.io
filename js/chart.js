@@ -35,7 +35,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
         });
 
         const rawTemps = temperatureData.map(entry => entry.temp);
-        const tempValues = smoothData(rawTemps, 5);
+        const tempValues = smoothData(rawTemps, 2);
     
         const chartData = {
             labels: labels,
@@ -101,7 +101,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
         });
 
         const rawHums = humidityData.map(entry => entry.hum);
-        const humidityValues = smoothData(rawHums, 5);
+        const humidityValues = smoothData(rawHums, 2);
     
         const chartData = {
             labels: labels,
@@ -167,7 +167,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
         });
 
         const rawPressure = pressureData.map(entry => entry.pressure);
-        const pressureValues = smoothData(rawPressure, 5);
+        const pressureValues = smoothData(rawPressure, 2);
     
         const chartData = {
             labels: labels,
@@ -233,7 +233,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
         });
 
         const rawrain = rainData.map(entry => entry.rain);
-        const rainValues = smoothData(rawrain, 5);
+        const rainValues = smoothData(rawrain, 2);
     
         const chartData = {
             labels: labels,
@@ -556,7 +556,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
     }
 }
 
-function smoothData(values, windowSize = 1) {
+function smoothData(values, windowSize) {
     const smoothed = [];
   
     for (let i = 0; i < values.length; i++) {
@@ -574,6 +574,5 @@ function smoothData(values, windowSize = 1) {
       smoothed.push(sum / count);
     }
   
-    //return smoothed;
-    return values;
+    return smoothed;
 }
