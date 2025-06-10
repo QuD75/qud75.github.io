@@ -21,6 +21,12 @@ jobs:
         with:
           node-version: '16'  # Spécifie la version de Node.js que tu souhaites utiliser
 
+      - name: Write API key to config.js
+        run: |
+          echo "export const apiKey = \"${STATION_API_KEY}\";" > js/config.js
+        env:
+          STATION_API_KEY: ${{ secrets.STATION_API_KEY }}
+
       - name: Install dependencies
         run: npm install  # Si tu as des dépendances à installer, sinon tu peux ignorer cette étape
 
@@ -31,10 +37,10 @@ jobs:
         run: |
           git config --local user.name "QuD75"
           git config --local user.email "quentindusserre@gmail.com"
-          git add sitemap.xml
-          git commit -m "Update sitemap.xml with current date" || echo "No changes to commit"
+          git add sitemap.xml js/config.js
+          git commit -m "Update sitemap.xml and config.js with current API key" || echo "No changes to commit"
 
       - name: Push changes
         run: git push https://github.com/QuD75/qud75.github.io.git main
         env:
-          GITHUB_TOKEN: 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  # Utilise le token GitHub pour autoriser le push
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
