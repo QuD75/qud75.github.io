@@ -9,10 +9,18 @@ function getRainColor(rain) {
 function getColorForTemperature(temp) {
     // Définir les points de transition pour les couleurs
     const colorStops = [
-        { temp: -10, color: [16, 52, 166] },    // Bleu foncé
-        { temp: 0, color: [15, 157, 232] },    // Bleu clair
-        { temp: 20, color: [255, 228, 54] },   // Jaune
-        { temp: 40, color: [255, 0, 0] },     // Rouge
+        { temp: -10, color: [128, 0, 255] },
+        { temp: -5, color: [0, 0, 255] },
+        { temp: 0, color: [0, 128, 255] },
+        { temp: 5, color: [0, 255, 255] },
+        { temp: 9, color: [0, 255, 128] },
+        { temp: 12, color: [0, 255, 0] },
+        { temp: 15, color: [128, 255, 0] },
+        { temp: 20, color: [255, 255, 0] },
+        { temp: 25, color: [255, 128, 0] },
+        { temp: 30, color: [255, 0, 0] },
+        { temp: 35, color: [255, 0, 128] },
+        { temp: 40, color: [255, 0, 255] },
     ];
 
     // Trouver les deux points de transition entre lesquels se situe la température
