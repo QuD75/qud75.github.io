@@ -64,7 +64,7 @@ function formatRelativeTime(dateString) {
     }
 }
 
-window.onload = function () {
+/* window.onload = function () {
     const select = document.getElementById("plage");
     const dayBloc = document.getElementById("day-chart");
     const weekBloc = document.getElementById("week-chart");
@@ -81,4 +81,4 @@ window.onload = function () {
     });
   
     select.dispatchEvent(new Event('change'));
-  };
+  }; */
