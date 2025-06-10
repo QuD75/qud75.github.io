@@ -110,21 +110,34 @@ h2 {
 .wind-label.east  { top: 50%; right: -10px; transform: translateY(-50%); }
 .wind-label.west  { top: 50%; left: -10px; transform: translateY(-50%); }
   
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 .chart-weather-station {
     max-height: 20rem;
     max-width: 60rem;
-    border: 1px solid #ccc; /* Ajoutez une bordure pour le débogage visuel */
-    margin-bottom: 20px; /* Ajoutez une marge pour séparer les graphiques */
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
 }
 
 /* Assurez-vous que les conteneurs des graphiques ont également des dimensions définies */
 #day-chart, #week-chart {
-    display: none; /* Assurez-vous qu'ils sont cachés par défaut */
+    display: none;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Affichez le bloc par défaut */
 #day-chart {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .uv-container {
