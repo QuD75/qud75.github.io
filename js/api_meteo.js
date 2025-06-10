@@ -1,4 +1,4 @@
-import { apiKey } from 'js/config.js';
+import { apiKey } from '/js/config.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const stationId = 'ILECRO29';
