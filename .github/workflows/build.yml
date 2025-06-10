@@ -17,7 +17,7 @@ jobs:
       env:
         STATION_API_KEY: ${{ secrets.STATION_API_KEY }}
       run: |
-        echo "export const apiKey = '${STATION_API_KEY}';" > js/config.js
+        echo "export const apiKey = '${STATION_API_KEY}';" > /js/config.js
         # Ici tu peux lancer ta build, par exemple avec npm run build
         # npm run build
 
