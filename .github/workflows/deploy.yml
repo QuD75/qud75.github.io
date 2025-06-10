@@ -22,4 +22,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./
+          publish_dir: ./          # dossier à publier (ici racine)
+          publish_branch: main     # déploiement sur main au lieu de gh-pages
