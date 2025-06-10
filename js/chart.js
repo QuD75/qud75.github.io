@@ -1,3 +1,22 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const select = document.getElementById("plage");
+    const dayBloc = document.getElementById("day-chart");
+    const weekBloc = document.getElementById("week-chart");
+
+    function toggleBlocs() {
+        const selected = select.value;
+
+        dayBloc.style.display = selected === "day" ? "block" : "none";
+        weekBloc.style.display = selected === "week" ? "block" : "none";
+    }
+
+    // Exécuter au chargement pour afficher le bon bloc initialement
+    toggleBlocs();
+
+    // Mettre à jour lors d’un changement
+    select.addEventListener("change", toggleBlocs);
+});
+
 function fetchDataWeatherStationAndCreateCharts(data) {
     try {
         const temperatureData = data.observations.map(entry => ({
