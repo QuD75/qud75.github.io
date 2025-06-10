@@ -6,8 +6,13 @@ document.addEventListener('DOMContentLoaded', function () {
     function toggleBlocs() {
         const selected = select.value;
 
-        dayBloc.style.display = selected === "day" ? "block" : "none";
-        weekBloc.style.display = selected === "week" ? "block" : "none";
+        if (selected === "day") {
+            dayBloc.style.display = "block";
+            weekBloc.style.display = "none";
+        } else if (selected === "week") {
+            dayBloc.style.display = "none";
+            weekBloc.style.display = "block";
+        }
     }
 
     // Exécuter au chargement pour afficher le bon bloc initialement
