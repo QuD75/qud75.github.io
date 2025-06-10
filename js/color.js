@@ -9,11 +9,11 @@ function getRainColor(rain) {
 function getColorForTemperature(temp) {
     // Définir les points de transition pour les couleurs
     const colorStops = [
-        { temp: -10, color: [0, 0, 139] },    // Bleu foncé
-        { temp: 0, color: [0, 191, 255] },    // Bleu clair
-        { temp: 10, color: [0, 255, 0] },     // Vert
-        { temp: 20, color: [255, 255, 0] },   // Jaune
-        { temp: 30, color: [255, 165, 0] },   // Orange
+        { temp: -10, color: [16, 52, 166] },    // Bleu foncé
+        { temp: 0, color: [15, 157, 232] },    // Bleu clair
+        { temp: 10, color: [52, 201, 36] },     // Vert
+        { temp: 20, color: [255, 228, 54] },   // Jaune
+        { temp: 30, color: [255, 140, 0] },   // Orange
         { temp: 40, color: [255, 0, 0] },     // Rouge
         { temp: 45, color: [128, 0, 128] }    // Violet
     ];
@@ -33,6 +33,18 @@ function getColorForTemperature(temp) {
             const b = Math.round(currentStop.color[2] + ratio * (nextStop.color[2] - currentStop.color[2]));
 
             return `rgb(${r}, ${g}, ${b})`;
+        }
+        if (temp < currentStop.temp) {
+            // Si la température est en dessous du premier point, retourner la couleur du premier point
+            return `rgb(${currentStop.color.join(', ')})`;
+        }
+        if (temp > nextStop.temp) {
+            // Si la température est au-dessus du dernier point, continuer à la prochaine itération
+            continue;
+        }
+        if (temp > colorStops[colorStops.length - 1].temp) {
+            // Si la température est au-dessus du dernier point, retourner la couleur du dernier point
+            return `rgb(${colorStops[colorStops.length - 1].color.join(', ')})`;
         }
     }
 
