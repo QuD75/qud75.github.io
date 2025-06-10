@@ -20,4 +20,3 @@ jobs:
         echo "export const apiKey = \"${STATION_API_KEY}\";" > js/config.js
         ls -l js/
         cat js/config.js
-        cp js/config.js js/config.js
