@@ -8,13 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlOpenMeteoWeek = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,precipitation_sum,wind_gusts_10m_max&timezone=Europe%2FBerlin`;
     const api_station_meteo = "https://api.weather.com/v2/pws/observations/current?stationId=ILECRO29&format=json&units=m&apiKey=556a0b6740e249fdaa0b6740e2c9fdea&numericPrecision=decimal";
     const api_station_meteo_day = "https://api.weather.com/v2/pws/observations/all/1day?stationId=ILECRO29&format=json&units=m&apiKey=556a0b6740e249fdaa0b6740e2c9fdea&numericPrecision=decimal";
+    const api_station_meteo_week = "https://api.weather.com/v2/pws/observations/hourly/7day?stationId=ILECRO29&format=json&units=m&apiKey=556a0b6740e249fdaa0b6740e2c9fdea&numericPrecision=decimal";
 
     // Appel aux API
     async function getApiData() {
         // Appels API indépendants
         fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
         fetchData(api_station_meteo, 'station_meteo', 1, weatherStation);
-        fetchData(api_station_meteo_day, 'station_meteo_day', 1, fetchDataWeatherStationAndCreateCharts);
+        fetchData(api_station_meteo_day, 'station_meteo_day', 1, fetchDataWeatherStationAndCreateChartsDay);
+        fetchData(api_station_meteo_week, 'station_meteo_week', 1, fetchDataWeatherStationAndCreateChartsWeek);
     }
     async function fetchData(apiUrl, cacheKey, duration, displayFunction) {
         const now = Date.now();
