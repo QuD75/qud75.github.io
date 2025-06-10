@@ -15,7 +15,7 @@ jobs:
       - name: Generate config.js with secret
         run: |
           echo "const CONFIG = {" > config.js
-          echo "  API_KEY: '${{ secrets.API_KEY }}'" >> config.js
+          echo "  STATION_API_KEY: '${{ secrets.STATION_API_KEY }}'" >> config.js
           echo "};" >> config.js
 
       - name: Build and deploy
