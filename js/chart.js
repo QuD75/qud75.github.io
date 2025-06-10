@@ -45,7 +45,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
@@ -111,7 +111,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
             borderColor: 'rgb(99, 159, 255)',
             backgroundColor: 'rgba(60, 87, 218, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
@@ -177,7 +177,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
             borderColor: 'rgb(114, 246, 107)',
             backgroundColor: 'rgba(29, 192, 26, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
@@ -243,7 +243,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
             borderColor: 'rgb(0, 76, 255)',
             backgroundColor: 'rgba(0, 98, 255, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
@@ -312,7 +312,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
             borderColor: 'rgba(255, 99, 132, 1)',
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
@@ -378,7 +378,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
             borderColor: 'rgb(99, 159, 255)',
             backgroundColor: 'rgba(60, 87, 218, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
@@ -444,7 +444,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
             borderColor: 'rgb(114, 246, 107)',
             backgroundColor: 'rgba(29, 192, 26, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
@@ -510,7 +510,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
             borderColor: 'rgb(0, 76, 255)',
             backgroundColor: 'rgba(0, 98, 255, 0.2)',
             fill: true,
-            tension: 1,
+            tension: 0.5,
             pointRadius: 0        // Masquer les points
             }]
         };
