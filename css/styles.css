@@ -113,8 +113,6 @@ h2 {
 .chart-weather-station {
     max-height: 20rem;
     max-width: 60rem;
-    width: 100%;
-    height: 300px; /* Définissez une hauteur par défaut */
     border: 1px solid #ccc; /* Ajoutez une bordure pour le débogage visuel */
     margin-bottom: 20px; /* Ajoutez une marge pour séparer les graphiques */
 }
