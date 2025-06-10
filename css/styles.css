@@ -120,7 +120,6 @@ h2 {
 /* Assurez-vous que les conteneurs des graphiques ont également des dimensions définies */
 #day-chart, #week-chart {
     display: none; /* Assurez-vous qu'ils sont cachés par défaut */
-    width: 100%;
 }
 
 /* Affichez le bloc par défaut */
