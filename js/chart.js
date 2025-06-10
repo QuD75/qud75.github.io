@@ -1,4 +1,4 @@
-/* document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {
     const select = document.getElementById("plage");
     const dayBloc = document.getElementById("day-chart");
     const weekBloc = document.getElementById("week-chart");
@@ -15,7 +15,7 @@
 
     // Mettre à jour lors d’un changement
     select.addEventListener("change", toggleBlocs);
-}); */
+});
 
 function fetchDataWeatherStationAndCreateChartsDay(data) {
     try {
