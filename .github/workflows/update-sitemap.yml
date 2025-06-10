@@ -21,12 +21,6 @@ jobs:
         with:
           node-version: '16'
 
-      - name: Write API key to config.js (not committed)
-        run: |
-          echo "export const apiKey = \"${STATION_API_KEY}\";" > js/config.js
-        env:
-          STATION_API_KEY: ${{ secrets.STATION_API_KEY }}
-
       - name: Install dependencies
         run: npm install
 
