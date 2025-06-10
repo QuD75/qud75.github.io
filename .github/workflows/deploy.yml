@@ -1,0 +1,25 @@
+name: Deploy GitHub Pages with API key
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Generate config.js with secret
+        run: |
+          echo "const CONFIG = {" > config.js
+          echo "  API_KEY: '${{ secrets.API_KEY }}'" >> config.js
+          echo "};" >> config.js
+
+      - name: Build and deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
