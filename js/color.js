@@ -34,13 +34,9 @@ function getColorForTemperature(temp) {
 
             return `rgb(${r}, ${g}, ${b})`;
         }
-        if (temp < currentStop.temp) {
+        if (temp < colorStops[0].temp) {
             // Si la température est en dessous du premier point, retourner la couleur du premier point
-            return `rgb(${currentStop.color.join(', ')})`;
-        }
-        if (temp > nextStop.temp) {
-            // Si la température est au-dessus du dernier point, continuer à la prochaine itération
-            continue;
+            return `rgb(${colorStops[0].color.join(', ')})`;
         }
         if (temp > colorStops[colorStops.length - 1].temp) {
             // Si la température est au-dessus du dernier point, retourner la couleur du dernier point
