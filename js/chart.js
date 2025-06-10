@@ -250,7 +250,7 @@ function fetchDataWeatherStationAndCreateChartsDay(data) {
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Température sur la journée', // ← Ton titre ici
+                      text: 'Pluie sur la journée', // ← Ton titre ici
                       font: {
                         size: 18
                       }
@@ -293,7 +293,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
 
         const labels = temperatureData.map(entry => {
             const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
         });
 
         const rawTemps = temperatureData.map(entry => entry.temp);
@@ -319,7 +319,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Température sur la journée', // ← Ton titre ici
+                      text: 'Température sur la semaine', // ← Ton titre ici
                       font: {
                         size: 18
                       }
@@ -359,7 +359,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
 
         const labels = humidityData.map(entry => {
             const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
         });
 
         const rawHums = humidityData.map(entry => entry.hum);
@@ -385,7 +385,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Humidité sur la journée', // ← Ton titre ici
+                      text: 'Humidité sur la semaine', // ← Ton titre ici
                       font: {
                         size: 18
                       }
@@ -425,7 +425,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
 
         const labels = pressureData.map(entry => {
             const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
         });
 
         const rawPressure = pressureData.map(entry => entry.pressure);
@@ -451,7 +451,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Pression sur la journée', // ← Ton titre ici
+                      text: 'Pression sur la semaine', // ← Ton titre ici
                       font: {
                         size: 18
                       }
@@ -491,7 +491,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
 
         const labels = rainData.map(entry => {
             const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
         });
 
         const rawrain = rainData.map(entry => entry.rain);
@@ -517,7 +517,7 @@ function fetchDataWeatherStationAndCreateChartsWeek(data) {
                 plugins: {
                     title: {
                       display: true,
-                      text: 'Température sur la journée', // ← Ton titre ici
+                      text: 'Pluie sur la semaine', // ← Ton titre ici
                       font: {
                         size: 18
                       }
