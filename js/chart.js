@@ -7,11 +7,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const selected = select.value;
 
         if (selected === "day") {
-            dayBloc.style.display = "block";
-            weekBloc.style.display = "none";
-        } else if (selected === "week") {
             dayBloc.style.display = "none";
             weekBloc.style.display = "block";
+        } else if (selected === "week") {
+            dayBloc.style.display = "block";
+            weekBloc.style.display = "none";
         }
     }
 
