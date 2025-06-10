@@ -6,17 +6,38 @@ function getRainColor(rain) {
     const textColor = getTextColor(color);
     return { color, textColor };
 }
-function getTemperatureColor(temp) {
-    let hue;
-    if (temp <= -5) hue = 300;
-    else if (temp <= 10) hue = -8 * temp + 260;
-    else if (temp <= 15) hue = -18 * temp + 360;
-    else if (temp <= 20) hue = -4 * temp + 150;
-    else if (temp <= 25) hue = -5 * temp + 170;
-    else if (temp <= 30) hue = -9 * temp + 270;
-    else if (temp > 30) hue = -6 * temp + 180;
-    hue = (hue + 360) % 360;
-    return `hsl(${Math.round(hue)}, 100%, 50%)`;
+function getColorForTemperature(temp) {
+    // Définir les points de transition pour les couleurs
+    const colorStops = [
+        { temp: -10, color: [0, 0, 139] },    // Bleu foncé
+        { temp: 0, color: [0, 191, 255] },    // Bleu clair
+        { temp: 10, color: [0, 255, 0] },     // Vert
+        { temp: 20, color: [255, 255, 0] },   // Jaune
+        { temp: 30, color: [255, 165, 0] },   // Orange
+        { temp: 40, color: [255, 0, 0] },     // Rouge
+        { temp: 45, color: [128, 0, 128] }    // Violet
+    ];
+
+    // Trouver les deux points de transition entre lesquels se situe la température
+    for (let i = 0; i < colorStops.length - 1; i++) {
+        const currentStop = colorStops[i];
+        const nextStop = colorStops[i + 1];
+
+        if (temp >= currentStop.temp && temp <= nextStop.temp) {
+            // Calculer le ratio de la température entre les deux points
+            const ratio = (temp - currentStop.temp) / (nextStop.temp - currentStop.temp);
+
+            // Interpolation linéaire des couleurs
+            const r = Math.round(currentStop.color[0] + ratio * (nextStop.color[0] - currentStop.color[0]));
+            const g = Math.round(currentStop.color[1] + ratio * (nextStop.color[1] - currentStop.color[1]));
+            const b = Math.round(currentStop.color[2] + ratio * (nextStop.color[2] - currentStop.color[2]));
+
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+    }
+
+    // Retourner la couleur du dernier point si la température est au-delà de la plage définie
+    return `rgb(${colorStops[colorStops.length - 1].color.join(', ')})`;
 }
 function getWindColor(wind) {
     let hue = wind > 80 ? 300 : -3.75 * wind + 250;
