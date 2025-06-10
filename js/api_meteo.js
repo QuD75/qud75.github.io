@@ -1,4 +1,7 @@
+import { apiKey } from 'js/config.js';
+
 document.addEventListener('DOMContentLoaded', () => {
+    const stationId = 'ILECRO29';
     const lat = '47.29';
     const long = '-2.52';
     //const dep = '44';
@@ -9,8 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const api_station_meteo = `https://api.weather.com/v2/pws/observations/current?stationId=${stationId}&format=json&units=m&apiKey=${apiKey}&numericPrecision=decimal`;
     const api_station_meteo_day = `https://api.weather.com/v2/pws/observations/all/1day?stationId=${stationId}&format=json&units=m&apiKey=${apiKey}&numericPrecision=decimal`;
     const api_station_meteo_week = `https://api.weather.com/v2/pws/observations/hourly/7day?stationId=${stationId}&format=json&units=m&apiKey=${apiKey}&numericPrecision=decimal`;
-    const apiKey = CONFIG.STATION_API_KEY;
-    const stationId = 'ILECRO29';
 
     // Appel aux API
     async function getApiData() {
