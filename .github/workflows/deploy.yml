@@ -19,7 +19,7 @@ jobs:
           echo "};" >> config.js
 
       - name: Copier config.js dans le dossier public
-        run: mv config.js public/config.js  # ou "./" selon ta structure
+        run: mv config.js config.js
 
       - name: Configurer Git
         run: |
