@@ -3,10 +3,10 @@ name: Update Sitemap
 on:
   push:
     branches:
-      - main  # Remplace 'main' par la branche sur laquelle tu veux exécuter le workflow
+      - main
 
 permissions:
-  contents: write 
+  contents: write
 
 jobs:
   update-sitemap:
@@ -19,28 +19,28 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # Spécifie la version de Node.js que tu souhaites utiliser
+          node-version: '16'
 
-      - name: Write API key to config.js
+      - name: Write API key to config.js (not committed)
         run: |
           echo "export const apiKey = \"${STATION_API_KEY}\";" > js/config.js
         env:
           STATION_API_KEY: ${{ secrets.STATION_API_KEY }}
 
       - name: Install dependencies
-        run: npm install  # Si tu as des dépendances à installer, sinon tu peux ignorer cette étape
+        run: npm install
 
       - name: Run sitemap generator
-        run: node js/generate-sitemap.js  # Exécute le script pour générer sitemap.xml
+        run: node js/generate-sitemap.js
 
-      - name: Commit changes
+      - name: Commit sitemap changes
         run: |
           git config --local user.name "QuD75"
           git config --local user.email "quentindusserre@gmail.com"
-          git add sitemap.xml js/config.js
-          git commit -m "Update sitemap.xml and config.js with current API key" || echo "No changes to commit"
+          git add sitemap.xml
+          git commit -m "Update sitemap.xml" || echo "No changes to commit"
 
       - name: Push changes
-        run: git push https://github.com/QuD75/qud75.github.io.git main
+        run: git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
