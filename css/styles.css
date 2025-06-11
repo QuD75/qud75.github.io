@@ -61,6 +61,7 @@ h2 {
     font-size: 4rem;
     text-align: center;
     font-weight: bold;
+    filter: brightness(96%);
 }
 
 .wind-rose {
