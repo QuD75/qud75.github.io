@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const api_station_meteo = `https://api.weather.com/v2/pws/observations/current?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
     const api_station_meteo_day = `https://api.weather.com/v2/pws/observations/all/1day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
     const api_station_meteo_week = `https://api.weather.com/v2/pws/observations/hourly/7day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
-    const api_tides = `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${long}&start=${startDate}&end=${endDate}`;
+    //const api_tides = `https://api.stormglass.io/v2/tide/extremes/point?lat=${lat}&lng=${long}&start=${startDate}&end=${endDate}`;
 
     // Appel aux API
     async function getApiData() {
