@@ -189,7 +189,6 @@ h2 {
 #tide-container {
     position: relative;
     display: inline-block;
-    width: 300px; /* ou ce que tu veux */
 }
 
 .overlay {
