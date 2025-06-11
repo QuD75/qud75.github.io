@@ -193,11 +193,11 @@ h2 {
 
 .barre-heure {
     position: absolute;
-    top: 300px;
+    top: 254px;
     bottom: 0;
     left: 300px;
     width: 3px;
-    height: 200px;
+    height: 242px;
     background-color: red;
 }
   
