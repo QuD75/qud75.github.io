@@ -142,6 +142,8 @@ h2 {
 }
 
 .uv-container {
+    flex-grow: 1; /* prend tout l’espace vertical disponible */
+    display: flex;
     width: 100%;
     max-width: 400px;
     margin-top: 1em;
