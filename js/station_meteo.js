@@ -26,9 +26,6 @@ function weatherStation(data){
         ${windDGust} km/h (rafales)
     `;
     document.getElementById("wind-arrow").style.transform = `rotate(${windDir}deg)`;
-/*     document.getElementById("lumiere-valeur-nombre").innerHTML = `
-        ${Math.round(lumiere)}&nbsp;<span class="unit-small">W/m²</span>
-    `; */
     const index = Math.min(Math.floor(uv / 2), uvColors.length - 1);
     const gradientColors = uvColors.slice(0, index + 1);
     const fill = document.querySelector('.uv-bar-fill');
@@ -64,22 +61,3 @@ function formatRelativeTime(dateString) {
       return `il y a ${days} jour${days > 1 ? 's' : ''}`;
     }
 }
-
-/* window.onload = function () {
-    const select = document.getElementById("plage");
-    const dayBloc = document.getElementById("day-chart");
-    const weekBloc = document.getElementById("week-chart");
-  
-    select.addEventListener('change', function () {
-      dayBloc.style.display = 'none';
-      weekBloc.style.display = 'none';
-  
-      if (this.value === 'day') {
-        dayBloc.style.display = 'block';
-      } else if (this.value === 'week') {
-        weekBloc.style.display = 'block';
-      }
-    });
-  
-    select.dispatchEvent(new Event('change'));
-  }; */
