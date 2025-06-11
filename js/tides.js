@@ -42,11 +42,11 @@ const dataMock = `{
 }`
 
 function tides(data){
-    data = dataMock;
-    const tide1 = data[0].time;
-    const tide2 = data[1].time;
-    const tide3 = data[2].time;
-    const tide4 = data[3].time;
+    const parsed = JSON.parse(dataMock);
+    const tide1 = parsed.data[0].time;
+    const tide2 = parsed.data[1].time;
+    const tide3 = parsed.data[2].time;
+    const tide4 = parsed.data[3].time;
 
     document.getElementById("tide1").textContent = `${new Date(tide1).toLocaleString()}`;
     document.getElementById("tide2").textContent = `${new Date(tide2).toLocaleString()}`;
