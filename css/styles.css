@@ -191,15 +191,14 @@ h2 {
     display: inline-block;
 }
 
-.overlay {
+.barre-heure {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background: rgba(255, 0, 0, 0.7);
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
+    top: 0;
+    bottom: 0;
+    left: 0; /* ou 'right: 0;' selon la position souhaitée */
+    width: 10px;
+    background-color: red;
+    opacity: 0.8; /* optionnel : transparence */
 }
   
 /* --- HEADER --- */
