@@ -1,4 +1,4 @@
-const data = `{
+const dataMock = `{
     "data": [
         {
             "height": -0.08666217689311455,
@@ -42,6 +42,7 @@ const data = `{
 }`
 
 function tides(data){
+    data = dataMock;
     const tide1 = data.data[0].time;
     const tide2 = data.data[1].time;
     const tide3 = data.data[2].time;
