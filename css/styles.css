@@ -195,7 +195,7 @@ h2 {
     position: absolute;
     top: 300px;
     bottom: 0;
-    left: 0; /* ou 'right: 0;' selon la position souhaitée */
+    left: 300px;
     width: 3px;
     height: 200px;
     background-color: red;
