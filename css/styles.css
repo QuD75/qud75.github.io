@@ -44,7 +44,7 @@ h2 {
     justify-content: space-between; /* place le titre en haut, la valeur en bas */
     height: 200px; /* fixe la hauteur (ou utilise une valeur égale via grid/JS) */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+}
 
 .bloc-titre {
     font-weight: bold;
@@ -61,13 +61,6 @@ h2 {
     font-size: 4rem;
     text-align: center;
     font-weight: bold;
-}
-
-#temperature-valeur {
-    padding: 0;            /* Enlève le padding */
-    margin: 0;             /* Enlève les marges */
-    line-height: 1;        /* Réduit l'espace vertical entre les lignes */
-    display: inline;       /* Permet au fond de suivre de près le texte */
 }
 
 .wind-rose {
