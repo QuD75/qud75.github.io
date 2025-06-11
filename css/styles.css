@@ -64,12 +64,10 @@ h2 {
 }
 
 #temperature-valeur {
-    display: inline-block;
-    padding: 2px 6px; /* Réduire le padding vertical et horizontal */
-    border-radius: 3px; /* Optionnel : pour des coins légèrement arrondis */
-    font-weight: bold;
-    color: black; /* Couleur du texte */
-    width: auto; /* Assurez-vous que la largeur est automatique pour s'adapter au contenu */
+    padding: 0;            /* Enlève le padding */
+    margin: 0;             /* Enlève les marges */
+    line-height: 1;        /* Réduit l'espace vertical entre les lignes */
+    display: inline;       /* Permet au fond de suivre de près le texte */
 }
 
 .wind-rose {
