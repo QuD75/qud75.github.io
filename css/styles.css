@@ -42,7 +42,7 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* place le titre en haut, la valeur en bas */
-    height: 200px; /* fixe la hauteur (ou utilise une valeur égale via grid/JS) */
+    height: 150px; /* fixe la hauteur (ou utilise une valeur égale via grid/JS) */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -58,7 +58,7 @@ h2 {
     display: flex;
     justify-content: center; /* centre horizontalement */
     align-items: center;     /* centre verticalement */
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
     font-weight: bold;
     filter: brightness(96%);

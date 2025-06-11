@@ -26,9 +26,9 @@ function weatherStation(data){
         ${windDGust} km/h (rafales)
     `;
     document.getElementById("wind-arrow").style.transform = `rotate(${windDir}deg)`;
-    document.getElementById("lumiere-valeur-nombre").innerHTML = `
+/*     document.getElementById("lumiere-valeur-nombre").innerHTML = `
         ${Math.round(lumiere)}&nbsp;<span class="unit-small">W/m²</span>
-    `;
+    `; */
     const index = Math.min(Math.floor(uv / 2), uvColors.length - 1);
     const gradientColors = uvColors.slice(0, index + 1);
     const fill = document.querySelector('.uv-bar-fill');
