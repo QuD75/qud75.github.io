@@ -185,6 +185,23 @@ h2 {
 #plage {
     font-size: 1.2rem;
 }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+padding: 12px;
+border: 1px solid #ddd;
+text-align: center;
+}
+th {
+background-color: #e0fbfc;
+}
+tr:nth-child(even) {
+background-color: #f1f1f1;
+}
   
 /* --- HEADER --- */
 .site-header {
