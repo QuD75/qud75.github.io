@@ -2,8 +2,8 @@ function weatherStation(data){
     
     const obs = data.observations[0];
     const lastUpdate = obs.obsTimeLocal;
-    //const temperature = obs.metric.temp;
-    const temperature = Math.floor(Math.random() * 51) - 10;
+    const temperature = obs.metric.temp;
+    //const temperature = Math.floor(Math.random() * 51) - 10;
     const pression = obs.metric.pressure;
     const humidite = obs.humidity;
     const vent = obs.metric.windSpeed;
@@ -18,7 +18,7 @@ function weatherStation(data){
     document.getElementById("update").textContent = `Dernière mise à jour : ${text}`;
 
     document.getElementById("temperature-valeur").innerHTML = `${temperature}&nbsp;<span class="unit-small">°C</span>`;
-    document.getElementById("temperature-valeur").style.backgroundColor = getColorForTemperature(temperature);
+    document.getElementById("temperature-valeur").style.color = getColorForTemperature(temperature);
     document.getElementById("pression-valeur").innerHTML = `${Math.round(pression+7)}&nbsp;<span class="unit-small">hPa</span>`;
     document.getElementById("humidite-valeur").innerHTML = `${humidite}&nbsp;<span class="unit-small">%</span>`;
     document.getElementById("vent-valeur").innerHTML = `
