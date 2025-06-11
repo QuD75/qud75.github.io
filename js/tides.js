@@ -1,45 +1,5 @@
-const dataMock = `{
-    "data": [
-        {
-            "height": -0.08666217689311455,
-            "time": "2025-06-11T00:18:00+00:00",
-            "type": "low"
-        },
-        {
-            "height": -0.0843896545728786,
-            "time": "2025-06-11T03:16:00+00:00",
-            "type": "high"
-        },
-        {
-            "height": -0.08843082417996062,
-            "time": "2025-06-11T08:17:00+00:00",
-            "type": "low"
-        },
-        {
-            "height": -0.058571994952537905,
-            "time": "2025-06-11T17:10:00+00:00",
-            "type": "high"
-        }
-    ],
-    "meta": {
-        "cost": 1,
-        "dailyQuota": 10,
-        "datum": "MSL",
-        "end": "2025-06-12 00:00",
-        "lat": 58.7984,
-        "lng": 17.8081,
-        "offset": 0,
-        "requestCount": 2,
-        "start": "2025-06-11 00:00",
-        "station": {
-            "distance": 6,
-            "lat": 58.75,
-            "lng": 17.867,
-            "name": "station",
-            "source": "ticon3"
-        }
-    }
-}`
+const dataMock = `{"data":[{"height":1.665780660749532,"time":"2025-06-11T03:23:00+00:00","type":"high"},{"height":-1.9599376403178197,"time":"2025-06-11T10:00:00+00:00","type":"low"},{"height":1.8388718184358939,"time":"2025-06-11T15:39:00+00:00","type":"high"},{"height":-2.01178618791781,"time":"2025-06-11T22:21:00+00:00","type":"low"}],"meta":{"cost":1,"dailyQuota":10,"datum":"MSL","end":"2025-06-12 00:00","lat":47.29,"lng":-2.52,"offset":0,"requestCount":7,"start":"2025-06-11 00:00","station":{"distance":27,"lat":47.133,"lng":-2.25,"name":"pointe st. gildas","source":"sg"}}}
+`
 
 function tides(data){
     const parsed = JSON.parse(dataMock);
