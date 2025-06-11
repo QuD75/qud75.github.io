@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Appel aux API
     async function getApiData() {
         // Appels API indépendants
-        fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance);
-        fetchData(api_station_meteo, 'station_meteo', 1, weatherStation);
-        fetchData(api_station_meteo_day, 'station_meteo_day', 1, fetchDataWeatherStationAndCreateChartsDay);
-        fetchData(api_station_meteo_week, 'station_meteo_week', 1, fetchDataWeatherStationAndCreateChartsWeek);
+        fetchData(urlVigilance, 'vigilance', 0, displayDataVigilance, false);
+        fetchData(api_station_meteo, 'station_meteo', 1, weatherStation, false);
+        fetchData(api_station_meteo_day, 'station_meteo_day', 1, fetchDataWeatherStationAndCreateChartsDay, false);
+        fetchData(api_station_meteo_week, 'station_meteo_week', 1, fetchDataWeatherStationAndCreateChartsWeek, false);
         fetchData(api_tides, 'tides', 120, tides, tidesApiKey, true);
     }
 
