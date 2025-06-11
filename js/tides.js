@@ -43,10 +43,10 @@ const dataMock = `{
 
 function tides(data){
     data = dataMock;
-    const tide1 = data.data[0].time;
-    const tide2 = data.data[1].time;
-    const tide3 = data.data[2].time;
-    const tide4 = data.data[3].time;
+    const tide1 = data[0].time;
+    const tide2 = data[1].time;
+    const tide3 = data[2].time;
+    const tide4 = data[3].time;
 
     document.getElementById("tide1").textContent = `${new Date(tide1).toLocaleString()}`;
     document.getElementById("tide2").textContent = `${new Date(tide2).toLocaleString()}`;
