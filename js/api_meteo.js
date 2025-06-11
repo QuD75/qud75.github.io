@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const today = new Date();
     const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
+    tomorrow.setDate(today.getDate() + 3);
     // Fonction pour formater une date en YYYY-MM-DD
     function formatDate(date) {
         return date.toISOString().split('T')[0]; // extrait juste la partie date
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const stationId = 'ILECRO29';
     const stationApiKey = '556a0b6740e249fdaa0b6740e2c9fdea';
     const tidesApiKey = '8b2d7d44-469d-11f0-976d-0242ac130006-8b2d7db2-469d-11f0-976d-0242ac130006';
+    
     const lat = '47.29';
     const long = '-2.52';
     //const dep = '44';
