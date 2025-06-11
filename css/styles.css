@@ -142,8 +142,6 @@ h2 {
 }
 
 .uv-container {
-    justify-content: center; /* centre horizontalement */
-    align-items: center;     /* centre verticalement */
     width: 100%;
     max-width: 400px;
     margin-top: 1em;
