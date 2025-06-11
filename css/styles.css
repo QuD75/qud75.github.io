@@ -144,7 +144,7 @@ h2 {
 .uv-container {
     width: 100%;
     max-width: 400px;
-    margin-top: 1em;
+    margin-bottom: 20%;
 }
   
 .uv-labels {
@@ -183,7 +183,7 @@ h2 {
 }
 
 #plage {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
   
 /* --- HEADER --- */
