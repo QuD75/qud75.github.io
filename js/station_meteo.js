@@ -1,4 +1,24 @@
-function weatherStation(data){
+document.addEventListener('DOMContentLoaded', () => {
+
+  const stationId = 'ILECRO29';
+  const stationApiKey = '556a0b6740e249fdaa0b6740e2c9fdea';
+  const baseUrl = 'https://api.weather.com/v2/pws/observations';
+  
+  const api_station_meteo = `${baseUrl}/current?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
+  const api_station_meteo_day = `${baseUrl}/all/1day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
+  const api_station_meteo_week = `${baseUrl}/hourly/7day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
+
+  async function getApiData() {
+      fetchData(api_station_meteo, 'station_meteo', 1, getWeatherStationData, false);
+      fetchData(api_station_meteo_day, 'station_meteo_day', 1, fetchDataWeatherStationAndCreateChartsDay, false);
+      fetchData(api_station_meteo_week, 'station_meteo_week', 1, fetchDataWeatherStationAndCreateChartsWeek, false);
+  }
+
+  getApiData();
+  
+});
+
+function getWeatherStationData(data){
     
     const obs = data.observations[0];
     const lastUpdate = obs.obsTimeLocal;
