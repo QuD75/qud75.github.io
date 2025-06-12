@@ -8,7 +8,7 @@ if (sessionStorage.getItem(headerKey)) {
         <div class="logo-title">
             <img src="/icons/logos/Le_Croisic_logo.webp" alt="Logo gauche" class="logo">
             <a href="/index.html" class="header-link">
-                <h1>Météo au Croisic</h1>
+                <h1>Météo au Croisic hhh</h1>
             </a>
             <div class="logo-wrapper">
               <img src="/icons/logos/Le_Croisic_meteo.webp" alt="Logo droite" class="logo">
