@@ -273,8 +273,8 @@ h2 {
 
 /* --- MENU DE NAVIGATION --- */
 
-/* Cacher checkbox et label par défaut */
-label,
+/* Cacher seulement le label du menu burger */
+label[for="toggle"],
 #toggle {
     display: none;
 }
