@@ -8,3 +8,8 @@ function updateTimeline() {
         console.warn("Element with id 'maregramme-root' not found");
     }
 }
+
+// Appel automatique après chargement de la page
+window.addEventListener("DOMContentLoaded", function () {
+    updateTimeline();
+});
