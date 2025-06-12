@@ -260,7 +260,7 @@ h2 {
     display: none; /* caché par défaut */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 7680000000000px) {
     .nav-links {
         display: none; /* caché par défaut */
         flex-direction: column;
