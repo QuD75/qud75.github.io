@@ -277,7 +277,7 @@ label, #toggle
         color: white;
         cursor: pointer;
     }
-    #toggle:checked + .nav-links {
+    #toggle:checked ~ .nav-links {
         display: flex;
     }
 }
