@@ -258,7 +258,7 @@ label, #toggle
     display: none;
 }
 
-@media (max-width: 7680000000000px) {
+@media all and (max-width: 99100000000px) {
     .nav-links
     {
         display: none;
