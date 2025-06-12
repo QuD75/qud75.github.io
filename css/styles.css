@@ -191,6 +191,22 @@ h2 {
     display: inline-block;
 }
 
+.shom-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.shom-wrapper iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .shom-wrapper {
+        padding: 0 1rem; /* optionnel, pour marges */
+    }
+}
+
 #timeline {
     position: absolute;
     top: 272px;
