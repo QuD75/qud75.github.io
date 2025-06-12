@@ -3,6 +3,7 @@ const container = document.getElementById("menu-container");
 
 const menuHTML = `
     <nav class="site-nav">
+        <input type="checkbox" id="toggle">
         <label for="toggle">☰</label>
         <ul class="nav-links" id="main-nav">
             <li><a href="/pages/previsions-meteo.html">Prévisions météo</a></li>
