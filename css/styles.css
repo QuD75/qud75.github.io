@@ -193,9 +193,8 @@ h2 {
 
 #timeline {
     position: absolute;
-    top: 254px;
+    top: 272px;
     bottom: 0;
-    left: 300px; /* 55 -> 655 */
     width: 3px;
     height: 242px;
     background-color: red;
