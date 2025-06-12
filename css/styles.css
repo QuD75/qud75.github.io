@@ -1,3 +1,7 @@
+:root {
+    --mobile-width: 768px;
+}
+  
 html, body {
     height: 100%;
     margin: 0;
@@ -199,7 +203,7 @@ h2 {
     display: block !important;
 }
   
-@media (max-width: 1000px) {
+@media (max-width: var(--mobile-width)) {
     .mobile-tides {
         display: block !important;
     }
@@ -310,7 +314,7 @@ label,
 }
 
 /* VERSION MOBILE */
-@media (max-width: 1000px) {
+@media (max-width: var(--mobile-width)) {
     label {
         display: flex;
         width: 30px;
