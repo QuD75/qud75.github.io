@@ -253,35 +253,13 @@ h2 {
 
 /* --- MENU DE NAVIGATION --- */
 
-label, #toggle
-{
+/* Cacher checkbox et label par défaut */
+label,
+#toggle {
     display: none;
 }
 
-@media all and (max-width: 99100000000px) {
-    .nav-links
-    {
-        display: none;
-        flex-direction: column;
-        background: #48435C;
-        height: 220px;
-    }
-    label 
-    {
-        width: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 auto;
-        font-size: 40px;
-        color: white;
-        cursor: pointer;
-    }
-    #toggle:checked ~ .nav-links {
-        display: flex;
-    }
-}
-
+/* Apparence de base */
 .site-nav {
     background-color: #f5f5f5;
     border-bottom: 1px solid #ddd;
@@ -309,6 +287,36 @@ label, #toggle
 .nav-links a:focus {
     background-color: #0077be;
     color: white;
+}
+
+/* VERSION MOBILE */
+@media all and (max-width: 991000000px) {
+    label {
+        display: flex;
+        width: 30px;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+        background-color: #0077be;
+        border-radius: 5px;
+        padding: 0.2rem;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #48435C;
+        height: auto;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    #toggle:checked ~ .nav-links {
+        display: flex;
+    }
 }
 
 /* --- FOOTER --- */
