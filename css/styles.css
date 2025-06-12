@@ -198,7 +198,7 @@ h2 {
     display: block;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     .mobile-tides {
         display: block; /* affiché sur mobile */
     }
@@ -308,7 +308,7 @@ label,
 }
 
 /* VERSION MOBILE */
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
     label {
         display: flex;
         width: 30px;
