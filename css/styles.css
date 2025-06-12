@@ -261,20 +261,15 @@ h2 {
 }
 
 @media (max-width: 768px) {
-    .menu-toggle {
-        display: block; /* visible sur mobile */
-        color: #333;
-    }
-
     .nav-links {
         display: none; /* caché par défaut */
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
         background-color: #f5f5f5;
-        padding: 1rem 0;
+        padding: 1rem;
         position: absolute;
-        top: 60px; /* hauteur du nav */
+        top: 60px;
         left: 0;
         width: 100%;
         z-index: 1000;
@@ -282,12 +277,16 @@ h2 {
     }
 
     .nav-links.open {
-        display: flex;
+        display: flex; /* s'affiche quand la classe "open" est là */
     }
 
-    .site-nav {
-        position: relative;
-        padding: 0.5rem 1rem;
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #333;
     }
 }
 

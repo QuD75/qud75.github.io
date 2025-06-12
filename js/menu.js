@@ -1,35 +1,44 @@
 const menuKey = "cachedMenu";
 const container = document.getElementById("menu-container");
 
+const menuHTML = `
+    <nav class="site-nav">
+        <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
+        <ul class="nav-links" id="main-nav">
+            <li><a href="/pages/previsions-meteo.html">Prévisions météo</a></li>
+            <li><a href="/pages/marees.html">Infos marées</a></li>
+            <li><a href="/pages/station-meteo.html">Station météo</a></li>
+            <li><a href="/pages/webcam.html">Webcam</a></li>
+            <li><a href="/pages/climat-croisic.html">Climat Croisic</a></li>
+        </ul>
+    </nav>
+`;
+
 if (sessionStorage.getItem(menuKey)) {
     container.innerHTML = sessionStorage.getItem(menuKey);
 } else {
-    const html = `
-        <nav class="site-nav">
-            <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
-            <ul class="nav-links" id="main-nav">
-                <li><a href="/pages/previsions-meteo.html">Prévisions météo</a></li>
-                <li><a href="/pages/marees.html">Infos marées</a></li>
-                <li><a href="/pages/station-meteo.html">Station météo</a></li>
-                <li><a href="/pages/webcam.html">Webcam</a></li>
-                <li><a href="/pages/climat-croisic.html">Climat Croisic</a></li>
-            </ul>
-        </nav>
-    `;
-    container.innerHTML = html;
-    sessionStorage.setItem(menuKey, html);
+    container.innerHTML = menuHTML;
+    sessionStorage.setItem(menuKey, menuHTML);
 }
 
-// Toujours exécuter après le DOM update
-// Utilise setTimeout pour attendre l'injection HTML dans le DOM actuel
+// Initialiser les événements APRÈS l'injection du HTML
 setTimeout(() => {
     const toggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const links = navLinks.querySelectorAll('a');
 
     if (toggle && navLinks) {
         toggle.addEventListener('click', () => {
             const isOpen = navLinks.classList.toggle('open');
             toggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Fermer le menu quand un lien est cliqué
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+                toggle.setAttribute('aria-expanded', false);
+            });
         });
     }
 }, 0);
