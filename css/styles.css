@@ -273,9 +273,12 @@ h2 {
 
 /* --- MENU DE NAVIGATION --- */
 
-/* Cacher seulement le label du menu burger */
-label[for="toggle"],
 #toggle {
+    display: none; /* cache checkbox */
+}
+
+/* cache uniquement le label lié au toggle (menu hamburger) */
+label[for="toggle"] {
     display: none;
 }
 
@@ -311,7 +314,7 @@ label[for="toggle"],
 
 /* VERSION MOBILE */
 @media (max-width: 768px) {
-    label {
+    label[for="toggle"] {
         display: flex;
         width: 30px;
         justify-content: center;
