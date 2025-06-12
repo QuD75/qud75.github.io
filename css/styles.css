@@ -292,7 +292,7 @@ label,
 }
 
 /* VERSION MOBILE */
-@media (max-width: 991000000px) {
+@media (max-width: 768px) {
     label {
         display: flex;
         width: 30px;
