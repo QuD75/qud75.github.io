@@ -10,9 +10,11 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    console.log("Script tides.js loaded");
     const tideContainer = document.getElementById("tide-container");
 
     if (tideContainer) {
+        console.log("Conteneur #tide-container trouvé, ajout de l'observateur de mutations");
         const observer = new MutationObserver((mutationsList, observerInstance) => {
             const target = document.getElementById("maregramme-root");
             if (target) {
