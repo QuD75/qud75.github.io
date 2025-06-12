@@ -191,16 +191,6 @@ h2 {
     display: inline-block;
 }
 
-.shom-wrapper {
-    width: 100%;
-    overflow-x: auto;     /* ✅ Permet le défilement horizontal */
-    overflow-y: hidden;
-}
-  
-.shom-wrapper > * {
-    min-width: 600px;     /* ✅ largeur minimale raisonnable pour que le contenu reste visible */
-}
-
 #timeline {
     position: absolute;
     top: 272px;
