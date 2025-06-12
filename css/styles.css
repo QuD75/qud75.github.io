@@ -192,21 +192,23 @@ h2 {
 }
 
 .mobile-tides {
-    display: none;
-}
-.desktop-tides {
-    display: block;
+    display: none !important;
 }
 
+.desktop-tides {
+    display: block !important;
+}
+  
 @media (max-width: 1000px) {
     .mobile-tides {
-        display: block; /* affiché sur mobile */
+        display: block !important;
     }
+
     .desktop-tides {
-        display: none; /* caché sur mobile */
+        display: none !important;
     }
 }
-
+  
 #timeline {
     position: absolute;
     top: 272px;
