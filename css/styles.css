@@ -191,6 +191,10 @@ h2 {
     display: inline-block;
 }
 
+.shom-wrapper {
+    width: 100%;
+}
+
 #timeline {
     position: absolute;
     top: 272px;
