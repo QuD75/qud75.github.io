@@ -253,6 +253,16 @@ h2 {
     font-size: 1.8rem;
 }
 
+@media (max-width: 60000000000px) {
+    .logo {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: contain; /* pour bien garder les proportions */
+    }
+}
+
+
 /* --- MENU DE NAVIGATION --- */
 
 /* Cacher checkbox et label par défaut */
