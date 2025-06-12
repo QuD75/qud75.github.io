@@ -192,19 +192,13 @@ h2 {
 }
 
 .shom-wrapper {
-    max-width: 100%;
-    overflow-x: auto;
+    width: 100%;
+    overflow-x: auto;     /* ✅ Permet le défilement horizontal */
+    overflow-y: hidden;
 }
-
-.shom-wrapper iframe {
-    max-width: 100%;
-    height: auto;
-}
-
-@media (max-width: 768px) {
-    .shom-wrapper {
-        padding: 0 1rem; /* optionnel, pour marges */
-    }
+  
+.shom-wrapper > * {
+    min-width: 600px;     /* ✅ largeur minimale raisonnable pour que le contenu reste visible */
 }
 
 #timeline {
