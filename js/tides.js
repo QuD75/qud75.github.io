@@ -1,4 +1,10 @@
-function updateTimeline(data) {
+function updateTimeline() {
+    console.log("updateTimeline called");
     const maregrammeRoot = document.getElementById("maregramme-root");
-    console.log("maregrammeRoot", maregrammeRoot);
+    
+    if (maregrammeRoot) {
+        console.log("maregrammeRoot", maregrammeRoot.innerHTML);
+    } else {
+        console.warn("Element with id 'maregramme-root' not found");
+    }
 }
