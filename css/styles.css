@@ -193,6 +193,20 @@ h2 {
 
 .shom-wrapper {
     width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  
+/* Cible le contenu injecté dynamiquement */
+.shom-wrapper iframe {
+    display: block;
+    width: 100% !important;     /* ✅ Forcer à occuper toute la largeur du parent */
+    max-width: 100% !important; /* ✅ Empêche de déborder */
+    height: auto !important;
+    border: none;
 }
 
 #timeline {
