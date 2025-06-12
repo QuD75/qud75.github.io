@@ -1,7 +1,8 @@
 const menuKey = "cachedMenu";
+const container = document.getElementById("menu-container");
 
 if (sessionStorage.getItem(menuKey)) {
-    document.getElementById("menu-container").innerHTML = sessionStorage.getItem(menuKey);;
+    container.innerHTML = sessionStorage.getItem(menuKey);
 } else {
     const html = `
         <nav class="site-nav">
@@ -15,13 +16,20 @@ if (sessionStorage.getItem(menuKey)) {
             </ul>
         </nav>
     `;
-    document.getElementById("menu-container").innerHTML = html;
+    container.innerHTML = html;
     sessionStorage.setItem(menuKey, html);
 }
 
-const toggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+// Toujours exécuter après le DOM update
+// Utilise setTimeout pour attendre l'injection HTML dans le DOM actuel
+setTimeout(() => {
+    const toggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
 
-toggle.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-});
+    if (toggle && navLinks) {
+        toggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('open');
+            toggle.setAttribute('aria-expanded', isOpen);
+        });
+    }
+}, 0);
