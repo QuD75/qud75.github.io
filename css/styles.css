@@ -252,6 +252,45 @@ h2 {
 }
 
 /* --- MENU DE NAVIGATION --- */
+.menu-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* caché par défaut */
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* visible sur mobile */
+        color: #333;
+    }
+
+    .nav-links {
+        display: none; /* caché par défaut */
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        background-color: #f5f5f5;
+        padding: 1rem 0;
+        position: absolute;
+        top: 60px; /* hauteur du nav */
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .site-nav {
+        position: relative;
+        padding: 0.5rem 1rem;
+    }
+}
+
 .site-nav {
     background-color: #f5f5f5;
     border-bottom: 1px solid #ddd;

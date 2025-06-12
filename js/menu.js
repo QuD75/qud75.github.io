@@ -5,7 +5,8 @@ if (sessionStorage.getItem(menuKey)) {
 } else {
     const html = `
         <nav class="site-nav">
-            <ul class="nav-links">
+            <button class="menu-toggle" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
+            <ul class="nav-links" id="main-nav">
                 <li><a href="/pages/previsions-meteo.html">Prévisions météo</a></li>
                 <li><a href="/pages/marees.html">Infos marées</a></li>
                 <li><a href="/pages/station-meteo.html">Station météo</a></li>
@@ -17,3 +18,10 @@ if (sessionStorage.getItem(menuKey)) {
     document.getElementById("menu-container").innerHTML = html;
     sessionStorage.setItem(menuKey, html);
 }
+
+const toggle = document.querySelector('.menu-toggle');
+const navLinks = document.querySelector('.nav-links');
+
+toggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+});
