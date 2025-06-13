@@ -24,8 +24,8 @@ function updateTimeline() {
 window.addEventListener('DOMContentLoaded', () => {
     updateTimeline();
 
-    const target = document.querySelector("mobile-tides");
-    const wrapper = document.getElementById(".tides-container");
+    const target = document.getElementById("mobile-tides");
+    const wrapper = document.getElementById("tides-container");
 
     console.log("Started adaptive zoom...");
 
