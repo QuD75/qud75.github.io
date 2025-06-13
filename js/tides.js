@@ -1,5 +1,4 @@
 function updateTimeline() {
-    console.log("Updating timeline position...");
     const timeline = document.getElementById('timeline');
     const now = new Date();
 
@@ -18,7 +17,6 @@ function updateTimeline() {
 
     // appliquer la position
     timeline.style.left = `${left}px`;
-    console.log(`Timeline updated to left: ${left}px`);
 }
   
 window.addEventListener('DOMContentLoaded', () => {
@@ -29,13 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     console.log("Started adaptive zoom...");
 
-    if (!target) {
-        console.log("Stopped adaptive zoom: target not found.");
-        return;
-    }
-
-    if (!wrapper) {
-        console.log("Stopped adaptive zoom: wrapper not found.");
+    if (!target || !wrapper) {
         return;
     }    
 
@@ -44,7 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
   
     // Appliquer un zoom dégressif si ça déborde
     function applyAdaptiveZoom() {
-        console.log("Applying adaptive zoom...");
         scale = 1.5;
         target.style.transformOrigin = "top center";
     
@@ -56,7 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const targetRect = target.getBoundingClientRect();
             const wrapperRect = wrapper.getBoundingClientRect();
     
-            if (targetRect.width <= wrapperRect.width) {
+            if (targetRect.height <= wrapperRect.height) {
                 console.log("Zoom is acceptable, breaking loop.");
                 break; // le zoom est acceptable
             }
