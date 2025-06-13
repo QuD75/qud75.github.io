@@ -29,8 +29,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
     console.log("Started adaptive zoom...");
   
-    if (!target || !wrapper) return;
-  
+    if (!target || !wrapper) {
+        console.log("Stopped adaptive zoom: target or wrapper not found.");
+        return;
+    }
+    
     // Valeur de zoom maximale
     let scale = 1.5;
   
