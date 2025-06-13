@@ -204,8 +204,6 @@ h2 {
 #tides-container {
     position: relative;
     display: inline-block;
-    width: 100%;
-    overflow: hidden;
 }
 
 .mobile-tides {
@@ -221,6 +219,8 @@ h2 {
         display: block !important;
         transform: scale(1.5); 
         transform-origin: top;
+        width: 100%;
+        overflow: hidden;
     }
 
     .desktop-tides {
