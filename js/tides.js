@@ -1,4 +1,5 @@
 function updateTimeline() {
+    console.log("Updating timeline position...");
     const timeline = document.getElementById('timeline');
     const now = new Date();
 
@@ -17,6 +18,7 @@ function updateTimeline() {
 
     // appliquer la position
     timeline.style.left = `${left}px`;
+    console.log(`Timeline updated to left: ${left}px`);
 }
   
 window.addEventListener('DOMContentLoaded', () => {
