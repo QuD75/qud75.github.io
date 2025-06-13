@@ -28,12 +28,17 @@ window.addEventListener('DOMContentLoaded', () => {
     const wrapper = document.querySelector(".tides-container");
 
     console.log("Started adaptive zoom...");
-  
-    if (!target || !wrapper) {
-        console.log("Stopped adaptive zoom: target or wrapper not found.");
+
+    if (!target) {
+        console.log("Stopped adaptive zoom: target not found.");
         return;
     }
-    
+
+    if (!wrapper) {
+        console.log("Stopped adaptive zoom: wrapper not found.");
+        return;
+    }    
+
     // Valeur de zoom maximale
     let scale = 1.5;
   
