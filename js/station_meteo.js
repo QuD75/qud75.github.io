@@ -15,6 +15,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   getApiData();
+
+  function updateRainTitle() {
+    const titre = document.getElementById('rain-title');
+
+    if (window.innerWidth <= 768) {
+      titre.textContent = "Pluie";
+    } else {
+      titre.textContent = "Pluviométrie du jour";
+    }
+  }
+  updateRainTitle();
+  window.addEventListener('resize', updateRainTitle);
   
 });
 
