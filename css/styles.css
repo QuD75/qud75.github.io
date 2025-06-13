@@ -212,6 +212,7 @@ h2 {
 
     .tides-main {
         justify-content: flex-start;
+        padding: 1rem;
     }
 }
   
