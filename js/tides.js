@@ -32,22 +32,26 @@ window.addEventListener('DOMContentLoaded', () => {
   
     // Appliquer un zoom dégressif si ça déborde
     function applyAdaptiveZoom() {
-      scale = 1.5;
-      target.style.transformOrigin = "top center";
-  
-      while (scale > 1) {
-        target.style.transform = `scale(${scale})`;
-  
-        // attendre que le layout s'actualise
-        const targetRect = target.getBoundingClientRect();
-        const wrapperRect = wrapper.getBoundingClientRect();
-  
-        if (targetRect.width <= wrapperRect.width) {
-          break; // le zoom est acceptable
+        console.log("Applying adaptive zoom...");
+        scale = 1.5;
+        target.style.transformOrigin = "top center";
+    
+        while (scale > 1) {
+            console.log(`Trying scale: ${scale}`);
+            target.style.transform = `scale(${scale})`;
+    
+            // attendre que le layout s'actualise
+            const targetRect = target.getBoundingClientRect();
+            const wrapperRect = wrapper.getBoundingClientRect();
+    
+            if (targetRect.width <= wrapperRect.width) {
+                console.log("Zoom is acceptable, breaking loop.");
+                break; // le zoom est acceptable
+            }
+    
+            scale -= 0.05; // réduire progressivement
+            console.log(`Reducing scale to: ${scale}`);
         }
-  
-        scale -= 0.05; // réduire progressivement
-      }
     }
   
     applyAdaptiveZoom();
