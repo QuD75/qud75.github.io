@@ -208,6 +208,10 @@ h2 {
     .uv-bar-container {
         height: 15px;
     }
+    .wind-rose {
+        width: 3rem;
+        height: 3rem;
+    }
 }
 
 #tides-container {
