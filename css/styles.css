@@ -202,7 +202,8 @@ h2 {
         height: 5.5rem;
         width: 5.5rem;
         padding: 10px;
-    }.uv-labels {
+    }
+    .uv-labels {
         font-size: 0.6rem;
     }
     .uv-bar-container {
@@ -211,6 +212,9 @@ h2 {
     .wind-rose {
         width: 3rem;
         height: 3rem;
+    }
+    .wind-label {
+        font-size: 0.5rem;
     }
 }
 
