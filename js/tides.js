@@ -21,4 +21,35 @@ function updateTimeline() {
   
 window.addEventListener('DOMContentLoaded', () => {
     updateTimeline();
+
+    const target = document.querySelector(".mobile-tides");
+    const wrapper = document.querySelector(".tides-wrapper");
+  
+    if (!target || !wrapper) return;
+  
+    // Valeur de zoom maximale
+    let scale = 1.5;
+  
+    // Appliquer un zoom dégressif si ça déborde
+    function applyAdaptiveZoom() {
+      scale = 1.5;
+      target.style.transformOrigin = "top center";
+  
+      while (scale > 1) {
+        target.style.transform = `scale(${scale})`;
+  
+        // attendre que le layout s'actualise
+        const targetRect = target.getBoundingClientRect();
+        const wrapperRect = wrapper.getBoundingClientRect();
+  
+        if (targetRect.width <= wrapperRect.width) {
+          break; // le zoom est acceptable
+        }
+  
+        scale -= 0.05; // réduire progressivement
+      }
+    }
+  
+    applyAdaptiveZoom();
+    window.addEventListener("resize", applyAdaptiveZoom);
 });

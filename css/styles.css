@@ -201,9 +201,11 @@ h2 {
     }
 }
 
-#tide-container {
+#tides-container {
     position: relative;
     display: inline-block;
+    width: 100%;
+    overflow: hidden;
 }
 
 .mobile-tides {
