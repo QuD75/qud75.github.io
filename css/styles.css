@@ -207,6 +207,10 @@ h2 {
     .desktop-tides {
         display: none !important;
     }
+
+    .tides-main {
+        justify-content: flex-start;
+    }
 }
   
 #timeline {
