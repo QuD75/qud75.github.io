@@ -202,7 +202,8 @@ h2 {
 @media (max-width: 768px) {
     .mobile-tides {
         display: block !important;
-        transform: scale(1.5);  
+        transform: scale(1.5); 
+        transform-origin: top;
     }
 
     .desktop-tides {
