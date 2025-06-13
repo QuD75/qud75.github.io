@@ -23,7 +23,7 @@ window.addEventListener('DOMContentLoaded', () => {
     updateTimeline();
 
     const target = document.querySelector(".mobile-tides");
-    const wrapper = document.querySelector(".tides-wrapper");
+    const wrapper = document.querySelector(".tides-container");
   
     if (!target || !wrapper) return;
   
