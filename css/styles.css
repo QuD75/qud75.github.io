@@ -190,14 +190,20 @@ h2 {
 @media (max-width: 768px) {
     .bloc-titre {
         font-size: 1rem;
+        margin-bottom: 0.7rem;
     }
     .bloc-valeur {
-        font-size: 2rem;
+        font-size: 1.2rem;
     }
     .meteo-bloc {
         height: 4rem;
         width: 4rem;
         padding: 10px;
+    }.uv-labels {
+        font-size: 0.6rem;
+    }
+    .uv-bar-container {
+        height: 15px;
     }
 }
 
