@@ -15,7 +15,7 @@ const menuHTML = `
     </nav>
 `;
 
-if (sessionStorage.getItem(menuKey)) {
+if (sessionStorage.getItem(menuKey) && false) {
     container.innerHTML = sessionStorage.getItem(menuKey);
 } else {
     container.innerHTML = menuHTML;
