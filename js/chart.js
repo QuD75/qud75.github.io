@@ -1,572 +1,130 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const select = document.getElementById("plage");
-    const dayBloc = document.getElementById("day-chart");
-    const weekBloc = document.getElementById("week-chart");
+// Données (placeholders à adapter avec tes vraies données)
+const hourlyData = [];     // Array d’objets { dt, temp, humidity, pressure, rain }
+const weeklyData = [];     // Idem pour les données de la semaine
 
-    function toggleBlocs() {
-        const selected = select.value;
+// Formatage des dates
+const formatHour = date => date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+const formatDayHour = date => date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
 
-        if (selected === "day") {
-            dayBloc.style.display = "grid";
-            weekBloc.style.display = "none";
-        } else if (selected === "week") {
-            dayBloc.style.display = "none";
-            weekBloc.style.display = "grid";
+// Options globales
+const chartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: { display: false },
+    title: {
+      display: true,
+      font: { size: 18 }
+    }
+  },
+  scales: {
+    y: {
+      title: {
+        display: true
+      }
+    },
+    x: {
+      title: {
+        display: true,
+        text: "Heure"
+      }
+    }
+  }
+};
+
+// Références aux graphiques
+let charts = {
+  temperature: null,
+  humidity: null,
+  pressure: null,
+  rain: null
+};
+
+// Création générique de graphique
+function createLineChart(metric, containerId, label, data, labels, unit, color, title) {
+  if (charts[metric]) charts[metric].destroy();
+
+  charts[metric] = new Chart(document.getElementById(containerId), {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: label,
+        data: data,
+        borderColor: color.border,
+        backgroundColor: color.background,
+        fill: true,
+        tension: 0.5,
+        pointRadius: 0
+      }]
+    },
+    options: {
+      ...chartOptions,
+      plugins: {
+        ...chartOptions.plugins,
+        title: {
+          ...chartOptions.plugins.title,
+          text: title
         }
+      },
+      scales: {
+        y: {
+          ...chartOptions.scales.y,
+          min: unit === "mm" ? 0 : undefined,
+          title: {
+            ...chartOptions.scales.y.title,
+            text: `${label} (${unit})`
+          }
+        },
+        x: chartOptions.scales.x
+      }
     }
-
-    // Exécuter au chargement pour afficher le bon bloc initialement
-    toggleBlocs();
-
-    // Mettre à jour lors d’un changement
-    select.addEventListener("change", toggleBlocs);
-});
-
-function fetchDataWeatherStationAndCreateChartsDay(data) {
-    try {
-        const temperatureData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            temp: entry.metric.tempAvg
-        }));
-
-        const labels = temperatureData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        });
-
-        const rawTemps = temperatureData.map(entry => entry.temp);
-        const tempValues = smoothData(rawTemps, 2);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Température (°C)',
-            data: tempValues,
-            borderColor: 'rgba(255, 99, 132, 1)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Température sur la journée', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    title: {
-                        display: true,
-                        text: 'Température (°C)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('temperatureChartDay'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données température :', error);
-    }
-
-    try {
-        const humidityData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            hum: entry.humidityAvg
-        }));
-
-        const labels = humidityData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        });
-
-        const rawHums = humidityData.map(entry => entry.hum);
-        const humidityValues = smoothData(rawHums, 2);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Humidité (%)',
-            data: humidityValues,
-            borderColor: 'rgb(99, 159, 255)',
-            backgroundColor: 'rgba(60, 87, 218, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Humidité sur la journée', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    title: {
-                        display: true,
-                        text: 'Humidité (%)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('humidityChartDay'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données humidité :', error);
-    }
-
-    try {
-        const pressureData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            pressure: entry.metric.pressureMin+7
-        }));
-
-        const labels = pressureData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        });
-
-        const rawPressure = pressureData.map(entry => entry.pressure);
-        const pressureValues = smoothData(rawPressure, 2);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Pression (hPa)',
-            data: pressureValues,
-            borderColor: 'rgb(114, 246, 107)',
-            backgroundColor: 'rgba(29, 192, 26, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Pression sur la journée', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    title: {
-                        display: true,
-                        text: 'Pression (hPa)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('pressureChartDay'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données pression :', error);
-    }
-
-    try {
-        const rainData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            rain: entry.metric.precipTotal
-        }));
-
-        const labels = rainData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        });
-
-        const rawrain = rainData.map(entry => entry.rain);
-        const rainValues = smoothData(rawrain, 2);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Précipitations (mm)',
-            data: rainValues,
-            borderColor: 'rgb(0, 76, 255)',
-            backgroundColor: 'rgba(0, 98, 255, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Pluie sur la journée', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    min: 0,
-                    title: {
-                        display: true,
-                        text: 'Précipitations (mm)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('rainChartDay'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données pluie :', error);
-    }
+  });
 }
 
-function fetchDataWeatherStationAndCreateChartsWeek(data) {
-    try {
-        const temperatureData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            temp: entry.metric.tempAvg
-        }));
-
-        const labels = temperatureData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
-        });
-
-        const rawTemps = temperatureData.map(entry => entry.temp);
-        const tempValues = smoothData(rawTemps, 5);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Température (°C)',
-            data: tempValues,
-            borderColor: 'rgba(255, 99, 132, 1)',
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Température sur la semaine', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    title: {
-                        display: true,
-                        text: 'Température (°C)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('temperatureChartWeek'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données température :', error);
-    }
-
-    try {
-        const humidityData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            hum: entry.humidityAvg
-        }));
-
-        const labels = humidityData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
-        });
-
-        const rawHums = humidityData.map(entry => entry.hum);
-        const humidityValues = smoothData(rawHums, 5);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Humidité (%)',
-            data: humidityValues,
-            borderColor: 'rgb(99, 159, 255)',
-            backgroundColor: 'rgba(60, 87, 218, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Humidité sur la semaine', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    title: {
-                        display: true,
-                        text: 'Humidité (%)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('humidityChartWeek'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données humidité :', error);
-    }
-
-    try {
-        const pressureData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            pressure: entry.metric.pressureMin+7
-        }));
-
-        const labels = pressureData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
-        });
-
-        const rawPressure = pressureData.map(entry => entry.pressure);
-        const pressureValues = smoothData(rawPressure, 5);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Pression (hPa)',
-            data: pressureValues,
-            borderColor: 'rgb(114, 246, 107)',
-            backgroundColor: 'rgba(29, 192, 26, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Pression sur la semaine', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    title: {
-                        display: true,
-                        text: 'Pression (hPa)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('pressureChartWeek'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données pression :', error);
-    }
-
-    try {
-        const rainData = data.observations.map(entry => ({
-            time: entry.obsTimeLocal,
-            rain: entry.metric.precipTotal
-        }));
-
-        const labels = rainData.map(entry => {
-            const date = new Date(entry.time);
-            return date.toLocaleTimeString([], { day: '2-digit', month: '2-digit', hour: '2-digit' });
-        });
-
-        const rawrain = rainData.map(entry => entry.rain);
-        const rainValues = smoothData(rawrain, 5);
-    
-        const chartData = {
-            labels: labels,
-            datasets: [{
-            label: 'Précipitations (mm)',
-            data: rainValues,
-            borderColor: 'rgb(0, 76, 255)',
-            backgroundColor: 'rgba(0, 98, 255, 0.2)',
-            fill: true,
-            tension: 0.5,
-            pointRadius: 0        // Masquer les points
-            }]
-        };
-    
-        const config = {
-            type: 'line',
-            data: chartData,
-            options: {
-                plugins: {
-                    title: {
-                      display: true,
-                      text: 'Pluie sur la semaine', // ← Ton titre ici
-                      font: {
-                        size: 18
-                      }
-                    },
-                    legend: {
-                      display: false // ← Masquer la légende
-                    }
-                }, 
-                responsive: true,
-                scales: {
-                    y: {
-                    min: 0,
-                    title: {
-                        display: true,
-                        text: 'Précipitations (mm)'
-                    }
-                    },
-                    x: {
-                    title: {
-                        display: true,
-                        text: 'Heure'
-                    }
-                    }
-                }
-            }
-        };
-    
-        new Chart(document.getElementById('rainChartWeek'), config);
-    } catch (error) {
-    console.error('Erreur lors de la récupération des données pluie :', error);
-    }
-}
-
-function smoothData(values, windowSize) {
-    const smoothed = [];
+function createWeatherCharts(data, labelsFormatter, labelSuffix, smooth = false) {
+    const labels = data.map(d => labelsFormatter(new Date(d.dt * 1000)));
   
-    for (let i = 0; i < values.length; i++) {
+    const extract = key => data.map(d => d[key] ?? 0);
+    const process = arr => smooth ? smoothData(arr) : arr;
+  
+    createLineChart("temperature", "temperatureChart", "Température", process(extract("temp")), labels, "°C", {
+      border: "rgba(255, 99, 132, 1)",
+      background: "rgba(255, 99, 132, 0.2)"
+    }, `Température ${labelSuffix}`);
+  
+    createLineChart("humidity", "humidityChart", "Humidité", process(extract("humidity")), labels, "%", {
+      border: "rgba(54, 162, 235, 1)",
+      background: "rgba(54, 162, 235, 0.2)"
+    }, `Humidité ${labelSuffix}`);
+  
+    createLineChart("pressure", "pressureChart", "Pression", process(extract("pressure")), labels, "hPa", {
+      border: "rgba(255, 206, 86, 1)",
+      background: "rgba(255, 206, 86, 0.2)"
+    }, `Pression ${labelSuffix}`);
+  
+    createLineChart("rain", "rainChart", "Pluie", process(extract("rain")), labels, "mm", {
+      border: "rgba(75, 192, 192, 1)",
+      background: "rgba(75, 192, 192, 0.2)"
+    }, `Pluie ${labelSuffix}`);
+}  
+
+// Exemples d'appels
+createWeatherCharts(hourlyData, formatHour, "sur la journée", true);
+createWeatherCharts(weeklyData, formatDayHour, "sur la semaine", true);
+
+function smoothData(data, windowSize = 3) {
+    const smoothed = [];
+    const halfWindow = Math.floor(windowSize / 2);
+    const length = data.length;
+  
+    for (let i = 0; i < length; i++) {
       let sum = 0;
       let count = 0;
   
-      for (let j = -Math.floor(windowSize / 2); j <= Math.floor(windowSize / 2); j++) {
-        const index = i + j;
-        if (index >= 0 && index < values.length) {
-          sum += values[index];
+      for (let j = i - halfWindow; j <= i + halfWindow; j++) {
+        if (j >= 0 && j < length) {
+          sum += data[j];
           count++;
         }
       }
@@ -576,3 +134,4 @@ function smoothData(values, windowSize) {
   
     return smoothed;
 }
+  

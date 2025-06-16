@@ -119,20 +119,14 @@ h2 {
 }
 
 .chart-weather-station {
-    max-height: 20rem;
-    max-width: 60rem;
+    position: relative;
     width: 100%;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
+    height: 400px; /* Valeur par défaut sur desktop */
 }
-
+  
 @media (max-width: 768px) {
     .chart-weather-station {
-        height: 40rem !important;
-    }
-    .chart-weather-station canvas {
-        height: 100% !important;
-        width: 100% !important;
+      height: 600px; /* plus haut sur mobile */
     }
 }
 
