@@ -110,7 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   function createWeatherCharts(data, labelsFormatter, labelSuffix, period, smooth = false) {
-    const labels = data.map(d => labelsFormatter(new Date(d.dt * 1000)));
+    const labels = data.map(d => {
+      const dateStr = d.obsTimeLocal; // exemple: "2025-06-04 00:59:54"
+      const date = new Date(dateStr.replace(" ", "T")); // donne un objet Date valide
+      return labelsFormatter(date);
+    });
   
     const extract = key => data.map(d => d[key] ?? 0);
     const process = arr => smooth ? smoothData(arr) : arr;
