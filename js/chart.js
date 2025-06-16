@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   
   // Données (placeholders à adapter avec tes vraies données)
-  const hourlyData = [];  // Array d’objets { dt, temp, humidity, pressure, rain }
-  const weeklyData = [];  // Idem pour les données de la semaine
+  let hourlyData = [];  // Array d’objets { dt, temp, humidity, pressure, rain }
+  let weeklyData = [];  // Idem pour les données de la semaine
   
   // Formatage des dates
   const formatHour = date => date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
