@@ -109,14 +109,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  function createWeatherCharts(data, labelsFormatter, labelSuffix, period, smooth = false) {
+  function createWeatherCharts(data, isInMetrics, labelsFormatter, labelSuffix, period, smooth = false) {
     const labels = data.map(d => {
       const dateStr = d.obsTimeLocal; // exemple: "2025-06-04 00:59:54"
       const date = new Date(dateStr.replace(" ", "T")); // donne un objet Date valide
       return labelsFormatter(date);
     });
   
-    const extract = key => data.map(d => d[key] ?? 0);
+    const extract = key => data.map(d => d[key] ?? d.metric?.[key] ?? 0);    
     const process = arr => smooth ? smoothData(arr) : arr;
   
     createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("temp")), labels, "°C", {
