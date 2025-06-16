@@ -29,9 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   
-    // Exécuter au chargement pour afficher le bon bloc initialement
-    toggleBlocs();
-  
     // Mettre à jour lors d’un changement
     select.addEventListener("change", toggleBlocs);
   });
@@ -135,6 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const extract = key => data.map(d => d[key] ?? 0);
     const process = arr => smooth ? smoothData(arr) : arr;
+    console.log(extract("temp"), extract("humidity"), extract("pressure"), extract("rain"));
   
     createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("temp")), labels, "°C", {
       border: "rgba(255, 99, 132, 1)",
@@ -159,9 +157,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
   function createGraphs(data, isDay, isWeek) {
     if (isDay) {
+      console.log("Création des graphiques pour la journée");
       createWeatherCharts(hourlyData, formatHour, "sur la journée", "day", true);
     }
     if (isWeek) {
+      console.log("Création des graphiques pour la semaine");
       createWeatherCharts(weeklyData, formatDayHour, "sur la semaine", "week", true);
     }
   }
