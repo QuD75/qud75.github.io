@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
   
-  function createWeatherCharts(data, isInMetrics, labelsFormatter, labelSuffix, period, smooth = false) {
+  function createWeatherCharts(data, labelsFormatter, labelSuffix, period, smooth = false) {
     const labels = data.map(d => {
       const dateStr = d.obsTimeLocal; // exemple: "2025-06-04 00:59:54"
       const date = new Date(dateStr.replace(" ", "T")); // donne un objet Date valide
