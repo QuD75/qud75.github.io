@@ -110,12 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   function createWeatherCharts(data, labelsFormatter, labelSuffix, period, smooth = false) {
-    console.log("data", data);
     const labels = data.map(d => labelsFormatter(new Date(d.dt * 1000)));
   
     const extract = key => data.map(d => d[key] ?? 0);
     const process = arr => smooth ? smoothData(arr) : arr;
-    console.log(extract("temp"), extract("humidity"), extract("pressure"), extract("rain"));
   
     createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("temp")), labels, "°C", {
       border: "rgba(255, 99, 132, 1)",

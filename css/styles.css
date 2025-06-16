@@ -118,16 +118,19 @@ h2 {
     width: 100%;
 }
 
-.chart-weather-station {
-    position: relative;
+.chart-container {
+    display: grid;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    height: 400px; /* Valeur par défaut sur desktop */
 }
-  
-@media (max-width: 768px) {
-    .chart-weather-station {
-      height: 600px; /* plus haut sur mobile */
-    }
+
+.chart-weather-station {
+    max-height: 20rem;
+    max-width: 60rem;
+    width: 100%;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
 }
 
 /* Assurez-vous que les conteneurs des graphiques ont également des dimensions définies */
