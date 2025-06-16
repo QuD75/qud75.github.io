@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, `Pluie ${labelSuffix}`, period);
   }
   
-  function createGraphs(data, isDay, isWeek) {
+  function createGraphs(isDay, isWeek) {
     if (isDay) {
       console.log("Création des graphiques pour la journée");
       createWeatherCharts(hourlyData, formatHour, "sur la journée", "day", true);
