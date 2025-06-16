@@ -2,40 +2,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("plage");
     const dayBloc = document.getElementById("day-chart");
     const weekBloc = document.getElementById("week-chart");
-
-    const stationId = 'ILECRO29';
-    const stationApiKey = '556a0b6740e249fdaa0b6740e2c9fdea';
-    const baseUrl = 'https://api.weather.com/v2/pws/observations';
-    const api_station_meteo_day = `${baseUrl}/all/1day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
-    const api_station_meteo_week = `${baseUrl}/hourly/7day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
-    fetchData(api_station_meteo_day, 'station_meteo_day', 1, toggleBlocs);
-    fetchData(api_station_meteo_week, 'station_meteo_week', 1, toggleBlocs);
   
-    function toggleBlocs(data) {
+    function toggleBlocs() {
       const selected = select.value;
   
       if (selected === "day") {
         dayBloc.style.display = "grid";
         weekBloc.style.display = "none";
-        hourlyData = data;
-        console.log("Données horaires :", hourlyData);
-        createGraphs(true, false);
       } else if (selected === "week") {
         dayBloc.style.display = "none";
         weekBloc.style.display = "grid";
-        weeklyData = data;
-        console.log("Données hebdomadaires :", weeklyData);
-        createGraphs(false, true);
       }
     }
   
     // Mettre à jour lors d’un changement
     select.addEventListener("change", toggleBlocs);
   });
-  
-  // Données (placeholders à adapter avec tes vraies données)
-  let hourlyData = [];  // Array d’objets { dt, temp, humidity, pressure, rain }
-  let weeklyData = [];  // Idem pour les données de la semaine
   
   // Formatage des dates
   const formatHour = date => date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -155,15 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }, `Pluie ${labelSuffix}`, period);
   }
   
-  function createGraphs(isDay, isWeek) {
-    if (isDay) {
-      console.log("Création des graphiques pour la journée");
+  function createGraphsDay(hourlyData){
       createWeatherCharts(hourlyData, formatHour, "sur la journée", "day", true);
-    }
-    if (isWeek) {
-      console.log("Création des graphiques pour la semaine");
+  }
+
+  function createGraphsWeek(weeklyData){
       createWeatherCharts(weeklyData, formatDayHour, "sur la semaine", "week", true);
-    }
   }
   
   function smoothData(data, windowSize = 3) {
