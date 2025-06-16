@@ -25,8 +25,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const target = document.getElementById("mobile-tides");
     const wrapper = document.getElementById("tides-container");
 
-    console.log("Started adaptive zoom...");
-
     if (!target || !wrapper) {
         return;
     }    
@@ -40,7 +38,6 @@ window.addEventListener('DOMContentLoaded', () => {
         target.style.transformOrigin = "top center";
     
         while (scale > 1) {
-            console.log(`Trying scale: ${scale}`);
             target.style.transform = `scale(${scale})`;
     
             // attendre que le layout s'actualise
@@ -48,12 +45,10 @@ window.addEventListener('DOMContentLoaded', () => {
             const wrapperRect = wrapper.getBoundingClientRect();
     
             if (targetRect.height <= wrapperRect.height) {
-                console.log("Zoom is acceptable, breaking loop.");
                 break; // le zoom est acceptable
             }
     
             scale -= 0.05; // réduire progressivement
-            console.log(`Reducing scale to: ${scale}`);
         }
     }
   
