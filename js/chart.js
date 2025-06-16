@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const dayBloc = document.getElementById("day-chart");
     const weekBloc = document.getElementById("week-chart");
 
+    const stationId = 'ILECRO29';
+    const stationApiKey = '556a0b6740e249fdaa0b6740e2c9fdea';
     const baseUrl = 'https://api.weather.com/v2/pws/observations';
     const api_station_meteo_day = `${baseUrl}/all/1day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
     const api_station_meteo_week = `${baseUrl}/hourly/7day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
