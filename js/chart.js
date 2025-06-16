@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const extract = key => data.map(d => d[key] ?? d.metric?.[key] ?? 0);    
     const process = arr => smooth ? smoothData(arr) : arr;
+    console.log("extract", extract);
   
     createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("temp")), labels, "°C", {
       border: "rgba(255, 99, 132, 1)",
