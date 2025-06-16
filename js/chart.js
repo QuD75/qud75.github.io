@@ -18,11 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
         dayBloc.style.display = "grid";
         weekBloc.style.display = "none";
         hourlyData = data;
+        console.log("Données horaires :", hourlyData);
         createGraphs(true, false);
       } else if (selected === "week") {
         dayBloc.style.display = "none";
         weekBloc.style.display = "grid";
         weeklyData = data;
+        console.log("Données hebdomadaires :", weeklyData);
         createGraphs(false, true);
       }
     }
