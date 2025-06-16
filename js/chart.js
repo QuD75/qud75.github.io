@@ -118,27 +118,27 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const extract = key => data.map(d => d[key] ?? d.metric?.[key] ?? 0);    
     const process = arr => smooth ? smoothData(arr) : arr;
-    console.log("extract temp", extract("temp"));
-    console.log("extract humidity", extract("humidity"));
-    console.log("extract pressure", extract("pressure"));
-    console.log("extract rain", extract("rain"));
+    console.log("extract temp", extract("tempAvg"));
+    console.log("extract humidity", extract("humidityAvg"));
+    console.log("extract pressure", extract("pressureMin"));
+    console.log("extract rain", extract("precipTotal"));
   
-    createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("temp")), labels, "°C", {
+    createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("tempAvg")), labels, "°C", {
       border: "rgba(255, 99, 132, 1)",
       background: "rgba(255, 99, 132, 0.2)"
     }, `Température ${labelSuffix}`, period);
   
-    createLineChart("humidity", `${period}HumidityChart`, "Humidité", process(extract("humidity")), labels, "%", {
+    createLineChart("humidity", `${period}HumidityChart`, "Humidité", process(extract("humidityAvg")), labels, "%", {
       border: "rgba(54, 162, 235, 1)",
       background: "rgba(54, 162, 235, 0.2)"
     }, `Humidité ${labelSuffix}`, period);
   
-    createLineChart("pressure", `${period}PressureChart`, "Pression", process(extract("pressure")), labels, "hPa", {
+    createLineChart("pressure", `${period}PressureChart`, "Pression", process(extract("pressureMin")), labels, "hPa", {
       border: "rgba(255, 206, 86, 1)",
       background: "rgba(255, 206, 86, 0.2)"
     }, `Pression ${labelSuffix}`, period);
   
-    createLineChart("rain", `${period}RainChart`, "Pluie", process(extract("rain")), labels, "mm", {
+    createLineChart("rain", `${period}RainChart`, "Pluie", process(extract("precipTotal")), labels, "mm", {
       border: "rgba(75, 192, 192, 1)",
       background: "rgba(75, 192, 192, 0.2)"
     }, `Pluie ${labelSuffix}`, period);
