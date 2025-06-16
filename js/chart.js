@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   function createWeatherCharts(data, labelsFormatter, labelSuffix, period, smooth = false) {
+    console.log(data)
     const labels = data.map(d => labelsFormatter(new Date(d.dt * 1000)));
   
     const extract = key => data.map(d => d[key] ?? 0);
