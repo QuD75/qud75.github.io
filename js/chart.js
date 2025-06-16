@@ -139,11 +139,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   function createGraphsDay(hourlyData){
-      createWeatherCharts(hourlyData, formatHour, "sur la journée", "day", true);
+      createWeatherCharts(hourlyData.observations, formatHour, "sur la journée", "day", true);
   }
 
   function createGraphsWeek(weeklyData){
-      createWeatherCharts(weeklyData, formatDayHour, "sur la semaine", "week", true);
+      createWeatherCharts(weeklyData.observations, formatDayHour, "sur la semaine", "week", true);
   }
   
   function smoothData(data, windowSize = 3) {
