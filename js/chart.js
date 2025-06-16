@@ -2,17 +2,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const select = document.getElementById("plage");
     const dayBloc = document.getElementById("day-chart");
     const weekBloc = document.getElementById("week-chart");
+
+    const api_station_meteo_day = `${baseUrl}/all/1day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
+    const api_station_meteo_week = `${baseUrl}/hourly/7day?stationId=${stationId}&format=json&units=m&apiKey=${stationApiKey}&numericPrecision=decimal`;
+    fetchData(api_station_meteo_day, 'station_meteo_day', 1, toggleBlocs);
+    fetchData(api_station_meteo_week, 'station_meteo_week', 1, toggleBlocs);
   
-    function toggleBlocs() {
+    function toggleBlocs(data) {
       const selected = select.value;
   
       if (selected === "day") {
         dayBloc.style.display = "grid";
         weekBloc.style.display = "none";
+        hourlyData = data;
         createGraphs(true, false);
       } else if (selected === "week") {
         dayBloc.style.display = "none";
         weekBloc.style.display = "grid";
+        weeklyData = data;
         createGraphs(false, true);
       }
     }
@@ -145,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, `Pluie ${labelSuffix}`, period);
   }
   
-  function createGraphs(isDay, isWeek) {
+  function createGraphs(data, isDay, isWeek) {
     if (isDay) {
       createWeatherCharts(hourlyData, formatHour, "sur la journée", "day", true);
     }
