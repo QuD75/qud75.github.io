@@ -231,12 +231,14 @@ h2 {
 .tides-main {
     justify-content: flex-start;
     padding: 1rem;
-    max-height: 30rem;
 }
   
 @media (max-width: 768px) {
     #tides-container {
         width: 100%;
+    }
+    .tides-main {
+        max-height: 100vh;
     }
 }
   
