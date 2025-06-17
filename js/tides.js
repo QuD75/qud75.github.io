@@ -28,7 +28,9 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (!target || !wrapper) {
         return;
-    }    
+    }
+
+    console.log("Tides container found, applying adaptive zoom...");
 
     // Valeur de zoom maximale
     let scale = 1.5;
@@ -51,6 +53,8 @@ window.addEventListener('DOMContentLoaded', () => {
     
             scale -= 0.05; // réduire progressivement
         }
+
+        console.log(`Applied adaptive zoom: scale = ${scale}`);
     }
   
     applyAdaptiveZoom();
