@@ -1,0 +1,30 @@
+#tides-container {
+    position: relative;
+    height: 100%;
+}
+
+.desktop-tides {
+    display: block !important;
+}
+.tides-main {
+    justify-content: flex-start;
+    padding: 1rem;
+}
+  
+@media (max-width: 768px) {
+    #tides-container {
+        width: 100%;
+    }
+    .tides-main {
+        max-height: 80vh;
+    }
+}
+  
+#timeline {
+    position: absolute;
+    top: 272px;
+    bottom: 0;
+    width: 3px;
+    height: 242px;
+    background-color: red;
+}

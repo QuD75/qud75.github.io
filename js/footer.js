@@ -5,7 +5,7 @@ if (sessionStorage.getItem(footerKey)) {
 } else {
     const html = `
         <footer class="site-footer">
-            <p>&copy; ${new Date().getFullYear()} Météo Croisic - <a href="/pages/mentions-legales.html">Mentions légales</a></p>
+            <p>&copy; ${new Date().getFullYear()} Météo Croisic - <a href="/pages/legal-notices.html">Mentions légales</a></p>
         </footer>
     `;
     document.getElementById("footer-container").innerHTML = html;

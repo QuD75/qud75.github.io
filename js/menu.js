@@ -6,9 +6,9 @@ const menuHTML = `
         <input type="checkbox" id="toggle">
         <label for="toggle">☰</label>
         <ul class="nav-links" id="main-nav">
-            <li><a href="/pages/previsions-meteo.html">Prévisions météo</a></li>
-            <li><a href="/pages/marees.html">Infos marées</a></li>
-            <li><a href="/pages/station-meteo.html">Station météo</a></li>
+            <li><a href="/pages/weather-forecast.html">Prévisions météo</a></li>
+            <li><a href="/pages/tides.html">Infos marées</a></li>
+            <li><a href="/pages/weather-station.html">Station météo</a></li>
             <li><a href="/pages/webcam.html">Webcam</a></li>
             <li><a href="/pages/climat-croisic.html">Climat Croisic</a></li>
         </ul>
