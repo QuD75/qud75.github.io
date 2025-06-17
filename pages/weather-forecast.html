@@ -31,14 +31,30 @@
 
         <div id="day-container">
             <h2>Météo pour les prochaines 24h</h2>
-            <div id="day-container-tab" class="tab" style="display: none;"></div>
-            <div id="day-container-graphs" style="display: none;"></div>
+            <div id="day-container-tab" class="weather-forecast-tab">
+                <table>
+                    <thead>
+                      <tr>
+                        <th>Heure</th>
+                        <th>Température (°C)</th>
+                        <th>Humidité (%)</th>
+                        <th>Pression (hPa)</th>
+                        <th>Vent (km/h)</th>
+                        <th>Indice UV</th>
+                        <th>Conditions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+            </div>
+            <div id="day-container-graphs"></div>
         </div>
 
         <div id="week-container">
             <h2>Météo pour les 7 prochains jours</h2>
-            <div id="week-container-tab" class="tab" style="display: none;"></div>
-            <div id="week-container-graphs" style="display: none;"></div>
+            <div id="week-container-tab" class="weather-forecast-tab"></div>
+            <div id="week-container-graphs"></div>
         </div>
 
     </main>
@@ -48,6 +64,7 @@
     <script src="/js/header.js" defer></script>
     <script src="/js/menu.js" defer></script>
     <script src="/js/call-api.js" defer></script>
+    <script src="/js/weather-forecast.js" defer></script>
     <script src="/js/footer.js" defer></script>
 </body>
 
