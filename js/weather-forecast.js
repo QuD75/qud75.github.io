@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherApi = `${baseUrl}?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
     
     async function getApiData() {
+        console.log(weatherApi);
         fetchData(weatherApi, 'weather_forecast', 0, getWeatherForecastData); 
     }
   
