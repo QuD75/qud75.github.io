@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', () => {
         scale = 1.5;
         target.style.transformOrigin = "top center";
     
-        while (scale > 1) {
+        while (scale > 0.99) {
             console.log(`Trying scale: ${scale}`);
             target.style.transform = `scale(${scale})`;
     
