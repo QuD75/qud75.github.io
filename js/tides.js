@@ -25,12 +25,15 @@ window.addEventListener('DOMContentLoaded', () => {
     //const target = document.getElementById("mobile-tides");
     const target = document.getElementById("desktop-tides");
     const wrapper = document.getElementById("tides-container");
+    const iframe = document.querySelector('#desktop-tides iframe');
 
-    if (!target || !wrapper) {
+    if (!target || !wrapper  || !iframe) {
+        console.error("Tides container or iframe not found, skipping adaptive zoom.");
         return;
     }
 
-    console.log("Tides container found, applying adaptive zoom...");
+    const rect = iframe.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
 
     // Valeur de zoom maximale
     let scale = 2;
@@ -38,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Appliquer un zoom dégressif si ça déborde
     function applyAdaptiveZoom() {
         scale = 2;
-        target.style.transformOrigin = "top center";
+        target.style.transformOrigin = "top left";
     
         while (scale > 0) {
             console.log(`Trying scale: ${scale}`);
@@ -49,7 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const wrapperRect = wrapper.getBoundingClientRect();
     
             //if (targetRect.height <= wrapperRect.height) {
-            if (targetRect.width <= wrapperRect.width) {
+            if (rect.width > viewportWidth) {
                 break; // le zoom est acceptable
             }
     
