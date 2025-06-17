@@ -51,7 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
             const wrapperRect = wrapper.getBoundingClientRect();
     
             //if (targetRect.height <= wrapperRect.height) {
-            console.log("rect:", rect);
+            console.log("rectWidth:", rect.width);
             console.log("viewportWidth:", viewportWidth);
             if (rect.width > viewportWidth) {
                 break; // le zoom est acceptable
