@@ -15,13 +15,11 @@
 
 <body>
     <div id="header-container"></div>
-
     <nav id="menu-container"></nav>
 
     <main>
 
-        <div id="loading-message-vigilance">En attente des données de Vigilance... veuillez patienter</div>
-        <div id="vigilance-encart">
+        <div id="vigilance-container">
             <div id="icon-container">
                 <img id="vigilance-icon">
             </div>
@@ -33,151 +31,14 @@
 
         <div id="day-container">
             <h2>Météo pour les prochaines 24h</h2>
-
-            <div id="loading-message-day">En attente des données pour les prochaines 24h... veuillez patienter</div>
-
-            <div id="day-container-tab" class="tab" style="display: none;">
-                <table id="weather-day-tab">
-                    <thead>
-                        <tr id="days-24h-row">
-                            <th rowspan="2">Paramètres</th>
-                        </tr>
-                        <tr id="hours-24h-row"></tr>
-                    </thead>
-                    <tbody>
-                        <tr id="temperature-24h-row">
-                            <td>Température (°C)</td>
-                        </tr>
-                        <tr id="rain-24h-row">
-                            <td>Précipitations (mm)</td>
-                        </tr>
-                        <tr id="wind-24h-row">
-                            <td>Vent moyen (km/h)</td>
-                        </tr>
-                        <tr id="wind-gust-24h-row">
-                            <td>Vent rafales (km/h)</td>
-                        </tr>
-                        <tr id="wind-direction-24h-row">
-                            <td>Direction vent</td>
-                        </tr>
-                        <tr id="pressure-24h-row">
-                            <td>Pression (hPa)</td>
-                        </tr>
-                        <tr id="uv-24h-row">
-                            <td>Indice UV</td>
-                        </tr>
-                        <tr id="weather-24h-row">
-                            <td>Ciel</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="day-container-tab-mobile" class="tab" style="display: none;">
-                <table id="weather-day-tab-mobile">
-                    <thead>
-                        <tr>
-                            <th>Jour</th>
-                            <th>Heure</th>
-                            <th>Temp (°C)</th>
-                            <th>Pluie (mm)</th>
-                            <th>Vent moyen (km/h)</th>
-                            <th>Vent rafales (km/h)</th>
-                            <th>Direct° vent</th>
-                            <th>Pression (hPa)</th>
-                            <th>Ciel</th>
-                            <th>Indice UV</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="day-container-graphs" style="display: none;">
-                <div class="Temp">
-                    <canvas id="temperature-day-chart"></canvas>
-                </div>
-                <div class="Rain">
-                    <canvas id="precipitation-day-chart"></canvas>
-                </div>
-                <div class="Wind">
-                    <canvas id="wind-day-chart"></canvas>
-                </div>
-                <div class="Pressure">
-                    <canvas id="pressure-day-chart"></canvas>
-                </div>
-            </div>
+            <div id="day-container-tab" class="tab" style="display: none;"></div>
+            <div id="day-container-graphs" style="display: none;"></div>
         </div>
 
         <div id="week-container">
             <h2>Météo pour les 7 prochains jours</h2>
-
-            <div id="loading-message-week">En attente des données pour la semaine... veuillez patienter</div>
-
-            <div id="week-container-tab" class="tab" style="display: none;">
-                <table id="weather-week-tab">
-                    <thead>
-                        <tr id="days-week-row">
-                            <th>Jours</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="sun-week-row">
-                            <td>Soleil</td>
-                        </tr>
-                        <tr id="temp-min-week-row">
-                            <td>Temp min (°C)</td>
-                        </tr>
-                        <tr id="temp-max-week-row">
-                            <td>Temp max (°C)</td>
-                        </tr>
-                        <tr id="rain-week-row">
-                            <td>Pluie (mm)</td>
-                        </tr>
-                        <tr id="wind-week-row">
-                            <td>Vent max (km/h)</td>
-                        </tr>
-                        <tr id="uv-week-row">
-                            <td>Indice UV max</td>
-                        </tr>
-                        <tr id="weather-week-row">
-                            <td>Ciel</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="week-container-tab-mobile" class="tab" style="display: none;">
-                <table id="weather-week-tab-mobile">
-                    <thead>
-                        <tr>
-                            <th>Jour</th>
-                            <th>Soleil</th>
-                            <th>Temp min (°C)</th>
-                            <th>Temp max (°C)</th>
-                            <th>Pluie (mm)</th>
-                            <th>Vent max (km/h)</th>
-                            <th>UV max</th>
-                            <th>Ciel</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-
-            <div id="week-container-graphs" style="display: none;">
-                <div class="Temp first-block">
-                    <canvas id="temperature-week-chart"></canvas>
-                </div>
-                <div class="Rain">
-                    <canvas id="precipitation-week-chart"></canvas>
-                </div>
-                <div class="Wind">
-                    <canvas id="wind-week-chart"></canvas>
-                </div>
-            </div>
+            <div id="week-container-tab" class="tab" style="display: none;"></div>
+            <div id="week-container-graphs" style="display: none;"></div>
         </div>
 
     </main>
