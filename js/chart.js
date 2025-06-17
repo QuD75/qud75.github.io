@@ -14,9 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
         weekBloc.style.display = "grid";
       }
     }
+
+    // Mettre à jour l'affichage au chargement
+    toggleBlocs();
   
     // Mettre à jour lors d’un changement
     select.addEventListener("change", toggleBlocs);
+
   });
   
   // Formatage des dates
