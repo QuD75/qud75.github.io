@@ -41,6 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
         target.style.transformOrigin = "top center";
     
         while (scale > 1) {
+            console.log(`Trying scale: ${scale}`);
             target.style.transform = `scale(${scale})`;
     
             // attendre que le layout s'actualise
