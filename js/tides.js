@@ -33,14 +33,14 @@ window.addEventListener('DOMContentLoaded', () => {
     console.log("Tides container found, applying adaptive zoom...");
 
     // Valeur de zoom maximale
-    let scale = 1.5;
+    let scale = 2;
   
     // Appliquer un zoom dégressif si ça déborde
     function applyAdaptiveZoom() {
-        scale = 1.5;
+        scale = 2;
         target.style.transformOrigin = "top center";
     
-        while (scale > 0.99) {
+        while (scale > 0) {
             console.log(`Trying scale: ${scale}`);
             target.style.transform = `scale(${scale})`;
     
