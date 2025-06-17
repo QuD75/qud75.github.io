@@ -32,9 +32,6 @@ window.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const rect = iframe.getBoundingClientRect();
-    const viewportWidth = window.innerWidth;
-
     // Valeur de zoom maximale
     let scale = 2;
   
@@ -48,10 +45,14 @@ window.addEventListener('DOMContentLoaded', () => {
             target.style.transform = `scale(${scale})`;
     
             // attendre que le layout s'actualise
+            const rect = iframe.getBoundingClientRect();
+            const viewportWidth = window.innerWidth;
             const targetRect = target.getBoundingClientRect();
             const wrapperRect = wrapper.getBoundingClientRect();
     
             //if (targetRect.height <= wrapperRect.height) {
+            console.log("rect:", rect);
+            console.log("viewportWidth:", viewportWidth);
             if (rect.width > viewportWidth) {
                 break; // le zoom est acceptable
             }
