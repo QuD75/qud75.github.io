@@ -232,8 +232,12 @@ h2 {
 .desktop-tides {
     display: block !important;
 }
+.tides-main {
+    justify-content: flex-start;
+    padding: 1rem;
+}
   
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .mobile-tides {
         display: block !important;
         transform: scale(1.5); 
@@ -246,11 +250,8 @@ h2 {
         display: none !important;
     }
 
-    .tides-main {
-        justify-content: flex-start;
-        padding: 1rem;
-    }
-}
+
+} */
   
 #timeline {
     position: absolute;

@@ -22,14 +22,13 @@ function updateTimeline() {
 window.addEventListener('DOMContentLoaded', () => {
     updateTimeline();
 
-    const target = document.getElementById("mobile-tides");
+    //const target = document.getElementById("mobile-tides");
+    const target = document.getElementById("desktop-tides");
     const wrapper = document.getElementById("tides-container");
 
     if (!target || !wrapper) {
         return;
     }    
-
-    console.log("Tides container found, applying adaptive zoom...");
 
     // Valeur de zoom maximale
     let scale = 1.5;
