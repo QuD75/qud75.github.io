@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 break; // le zoom est acceptable
             }
     
-            scale -= 0.05; // réduire progressivement
+            scale -= 0.01; // réduire progressivement
         }
 
         console.log(`Applied adaptive zoom: scale = ${scale}`);
