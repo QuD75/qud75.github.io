@@ -237,21 +237,11 @@ h2 {
     padding: 1rem;
 }
   
-/* @media (max-width: 768px) {
-    .mobile-tides {
-        display: block !important;
-        transform: scale(1.5); 
-        transform-origin: top;
+@media (max-width: 768px) {
+    #tides-container {
         width: 100%;
-        overflow: hidden;
     }
-
-    .desktop-tides {
-        display: none !important;
-    }
-
-
-} */
+}
   
 #timeline {
     position: absolute;
