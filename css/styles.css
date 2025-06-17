@@ -231,8 +231,8 @@ h2 {
 }
 
 .desktop-tides {
-    display: block !important;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 .tides-main {
     justify-content: flex-start;
