@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const lat = 47.29;
     const lon = -2.52;
     const exclude = 'current,minutely,alerts';
+    const units = 'metric';
 
-    const weatherForecastApi = `${baseUrl}?lat=${lat}&lon=${lon}&exclude={part}&appid=${apikey}`;
+    const weatherForecastApi = `${baseUrl}?lat=${lat}&lon=${lon}&exclude=${exclude}&units=${units}&appid=${apikey}`;
   
     async function getApiData() {
         fetchData(weatherForecastApi, 'weather_forecast', 0, getWeatherForecastData);
@@ -32,7 +33,7 @@ function getWeatherForecastData(data){
     if (!grouped[jour]) grouped[jour] = [];
     grouped[jour].push({
       heure,
-      tempC: (h.temp - 273.15).toFixed(1),
+      tempC: h.temp.toFixed(1),
       humidity: h.humidity,
       pressure: h.pressure,
       wind_speed: h.wind_speed.toFixed(1),
