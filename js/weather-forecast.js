@@ -33,11 +33,11 @@ function getWeatherForecastData(data){
     if (!grouped[jour]) grouped[jour] = [];
     grouped[jour].push({
       heure,
-      tempC: h.temp.toFixed(1),
+      tempC: Math.round(h.temp),
       humidity: h.humidity,
       pressure: h.pressure,
-      wind_speed: h.wind_speed.toFixed(1),
-      uvi: h.uvi.toFixed(1),
+      wind_speed: Math.round(h.wind_speed*3.6),
+      uvi: Math.round(h.uvi),
       description: h.weather[0].description
     });
   });
