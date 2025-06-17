@@ -19,28 +19,52 @@ document.addEventListener('DOMContentLoaded', () => {
 function getWeatherForecastData(data){
     const tbody = document.querySelector('tbody');
 
-    data.hourly.forEach(h => {
-        const d = new Date(h.dt * 1000);
-        const hour = d.toLocaleString('fr-FR', {
-          year: 'numeric', month: '2-digit', day: '2-digit',
-          hour: '2-digit', minute: '2-digit',
-          timeZone: data.timezone
-        });
-    
-        // conversion Kelvin -> °C
-        const tempC = (h.temp - 273.15).toFixed(1);
-    
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${hour}</td>
-          <td>${tempC}</td>
-          <td>${h.humidity}</td>
-          <td>${h.pressure}</td>
-          <td>${h.wind_speed.toFixed(1)}</td>
-          <td>${h.uvi.toFixed(1)}</td>
-          <td>${h.weather[0].description}</td>
-        `;
-        tbody.appendChild(row);
-      });
+    // Regrouper les données par jour
+  const grouped = {};
+
+  data.hourly.forEach(h => {
+    const date = new Date(h.dt * 1000);
+    const optionsJour = { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: data.timezone };
+    const optionsHeure = { hour: '2-digit', minute: '2-digit', timeZone: data.timezone };
+    const jour = date.toLocaleDateString('fr-FR', optionsJour);
+    const heure = date.toLocaleTimeString('fr-FR', optionsHeure);
+
+    if (!grouped[jour]) grouped[jour] = [];
+    grouped[jour].push({
+      heure,
+      tempC: (h.temp - 273.15).toFixed(1),
+      humidity: h.humidity,
+      pressure: h.pressure,
+      wind_speed: h.wind_speed.toFixed(1),
+      uvi: h.uvi.toFixed(1),
+      description: h.weather[0].description
+    });
+  });
+
+  // Générer les lignes du tableau avec rowspan
+  for (const [jour, heures] of Object.entries(grouped)) {
+    heures.forEach((entry, index) => {
+      const row = document.createElement("tr");
+
+      if (index === 0) {
+        const jourCell = document.createElement("td");
+        jourCell.rowSpan = heures.length;
+        jourCell.textContent = jour;
+        row.appendChild(jourCell);
+      }
+
+      row.innerHTML += `
+        <td>${entry.heure}</td>
+        <td>${entry.tempC}</td>
+        <td>${entry.humidity}</td>
+        <td>${entry.pressure}</td>
+        <td>${entry.wind_speed}</td>
+        <td>${entry.uvi}</td>
+        <td>${entry.description}</td>
+      `;
+
+      tbody.appendChild(row);
+    });
+  }
 
 }
