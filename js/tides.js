@@ -5,8 +5,8 @@ function updateTimeline() {
     // minutes depuis minuit
     const minutesSinceMidnight = now.getHours() * 60 + now.getMinutes();
 
-    // total minutes in a day minus 1 to match 23h59
-    const totalMinutes = 24 * 60 - 1; // 1439
+    // total minutes in a day
+    const totalMinutes = 24 * 60;
 
     // position entre 55 et 655 px (linéaire)
     const leftMin = 55;
@@ -28,6 +28,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (!target || !wrapper) {
         return;
     }    
+
+    console.log("Tides container found, applying adaptive zoom...");
 
     // Valeur de zoom maximale
     let scale = 1.5;
