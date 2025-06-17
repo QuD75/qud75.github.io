@@ -122,10 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
     const extract = key => data.map(d => d[key] ?? d.metric?.[key] ?? 0);    
     const process = arr => smooth ? smoothData(arr) : arr;
-    console.log("extract temp", extract("tempAvg"));
-    console.log("extract humidity", extract("humidityAvg"));
-    console.log("extract pressure", extract("pressureMin"));
-    console.log("extract rain", extract("precipTotal"));
   
     createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("tempAvg")), labels, "°C", {
       border: "rgba(255, 99, 132, 1)",

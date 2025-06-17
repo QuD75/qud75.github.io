@@ -36,7 +36,6 @@ window.addEventListener('DOMContentLoaded', () => {
         target.style.transformOrigin = "top left";
     
         while (scale > 0) {
-            console.log(`Trying scale: ${scale}`);
             target.style.transform = `scale(${scale})`;
     
             // attendre que le layout s'actualise
@@ -50,8 +49,6 @@ window.addEventListener('DOMContentLoaded', () => {
     
             scale -= 0.001; // réduire progressivement
         }
-
-        console.log(`Applied adaptive zoom: scale = ${scale}`);
     }
   
     applyAdaptiveZoom();
