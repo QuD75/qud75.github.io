@@ -223,7 +223,6 @@ h2 {
 #tides-container {
     position: relative;
     height: 100%;
-    width: 100%;
 }
 
 .mobile-tides {
@@ -231,8 +230,7 @@ h2 {
 }
 
 .desktop-tides {
-    display: flex;
-    justify-content: center;
+    display: block !important;
 }
 .tides-main {
     justify-content: flex-start;
