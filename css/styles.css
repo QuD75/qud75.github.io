@@ -225,16 +225,13 @@ h2 {
     height: 100%;
 }
 
-.mobile-tides {
-    display: none !important;
-}
-
 .desktop-tides {
     display: block !important;
 }
 .tides-main {
     justify-content: flex-start;
     padding: 1rem;
+    max-height: 30rem;
 }
   
 @media (max-width: 768px) {

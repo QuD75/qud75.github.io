@@ -22,7 +22,6 @@ function updateTimeline() {
 window.addEventListener('DOMContentLoaded', () => {
     updateTimeline();
 
-    //const target = document.getElementById("mobile-tides");
     const target = document.getElementById("desktop-tides");
     const wrapper = document.getElementById("tides-container");
     const iframe = document.querySelector('#desktop-tides iframe');
@@ -42,7 +41,6 @@ window.addEventListener('DOMContentLoaded', () => {
             const rect = iframe.getBoundingClientRect();
             const wrapperRect = wrapper.getBoundingClientRect();
     
-            //if (targetRect.height <= wrapperRect.height) {
             if (rect.width <= wrapperRect.width) {
                 break; // le zoom est acceptable
             }
