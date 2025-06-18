@@ -18,12 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
     getApiData();
 });
 
+// Regrouper les données par jour
+const grouped = {};
+
 function getWeatherForecastData(data){
 
   const tbody = document.querySelector('tbody');
 
-  // Regrouper les données par jour
-  const grouped = {};
+/*   // Regrouper les données par jour
+  const grouped = {}; */
 
   data.forecastHours.forEach(h => {
 
