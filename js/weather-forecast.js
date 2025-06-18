@@ -64,20 +64,16 @@ function getWeatherForecastData(data){
         row.appendChild(dayCell);
       }
 
-      const tempColor = getColorForTemperature(entry.temp);
-      const humColor = getColorForHumidity(entry.hum);
-      const uviColor = getColorForUv(entry.uvi);
-
       row.innerHTML += `
         <td><strong>${entry.hour}</strong></td>
-        <td style="background-color: ${tempColor};">${entry.temp}</td>
-        <td style="background-color: ${humColor};">${entry.hum}</td>
+        <td style="background-color: ${getColorForTemperature(entry.temp)};">${entry.temp}</td>
+        <td style="background-color: ${getColorForHumidity(entry.hum)};">${entry.hum}</td>
         <td>${entry.pressure}</td>
-        <td>${Math.round(entry.windSpeed / 5) * 5}</td>
-        <td>${Math.round(entry.windGust / 5) * 5}</td>
+        <td style="background-color: ${getColorForWindSpeed(entry.windSpeed)};">${Math.round(entry.windSpeed / 5) * 5}</td>
+        <td style="background-color: ${getColorForWindSpeed(entry.windGust)};">${Math.round(entry.windGust / 5) * 5}</td>
         <td>${entry.windDirection}</td>
         <td>${entry.rain}</td>
-        <td style="background-color: ${uviColor};">${entry.uvi}</td>
+        <td style="background-color: ${getColorForUv(entry.uvi)};">${entry.uvi}</td>
         <td>${entry.weather}</td>
       `;
 

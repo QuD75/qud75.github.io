@@ -55,6 +55,31 @@ function getColorForHumidity(hum){
     }
 }
 
+function getColorForWindSpeed(speed) {
+    const colors = [
+      { speed: 0,  r: 173, g: 216, b: 230 }, // Bleu clair
+      { speed: 20, r: 0,   g: 200, b: 0   }, // Vert
+      { speed: 40, r: 255, g: 255, b: 0   }, // Jaune
+      { speed: 60, r: 255, g: 140, b: 0   }, // Orange
+      { speed: 80, r: 255, g: 0,   b: 0   }  // Rouge
+    ];
+  
+    if (speed <= 0) return 'rgb(173, 216, 230)';
+    if (speed >= 80) return 'rgb(255, 0, 0)';
+  
+    for (let i = 0; i < colors.length - 1; i++) {
+      const c1 = colors[i];
+      const c2 = colors[i + 1];
+      if (speed >= c1.speed && speed <= c2.speed) {
+        const ratio = (speed - c1.speed) / (c2.speed - c1.speed);
+        const r = Math.round(c1.r + ratio * (c2.r - c1.r));
+        const g = Math.round(c1.g + ratio * (c2.g - c1.g));
+        const b = Math.round(c1.b + ratio * (c2.b - c1.b));
+        return `rgb(${r}, ${g}, ${b})`;
+      }
+    }
+}  
+
 function getColorForUv(uv){
     // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
     const colors = [
