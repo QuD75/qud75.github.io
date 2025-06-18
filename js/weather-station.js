@@ -35,11 +35,9 @@ function getWeatherStationData(data){
     const obs = data.observations[0];
     const lastUpdate = obs.obsTimeLocal;
     const temperature = obs.metric.temp;
-    //const temperature = Math.floor(Math.random() * 51) - 10;
     const pression = obs.metric.pressure;
     const humidite = obs.humidity;
     const vent = obs.metric.windSpeed;
-    const lumiere = obs.solarRadiation;
     const pluie = obs.metric.precipTotal;
     const windDir = obs.winddir;
     const windDGust = obs.metric.windGust;

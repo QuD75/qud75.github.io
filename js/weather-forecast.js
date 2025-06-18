@@ -66,6 +66,7 @@ function getWeatherForecastData(data){
 
       const tempColor = getColorForTemperature(entry.temp);
       const humColor = getColorForHumidity(entry.hum);
+      const uviColor = getColorForUv(entry.uvi);
 
       row.innerHTML += `
         <td><strong>${entry.hour}</strong></td>
@@ -76,7 +77,7 @@ function getWeatherForecastData(data){
         <td>${entry.windGust}</td>
         <td>${entry.windDirection}</td>
         <td>${entry.rain}</td>
-        <td>${entry.uvi}</td>
+        <td style="background-color: ${uviColor};">${entry.uvi}</td>
         <td>${entry.weather}</td>
       `;
 

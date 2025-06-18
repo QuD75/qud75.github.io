@@ -54,3 +54,39 @@ function getColorForHumidity(hum){
       return `rgb(${intensity}, ${intensity}, ${intensity})`;
     }
 }
+
+function getColorForUv(uv){
+    // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
+    const colors = [
+        { r: 75,  g: 0,   b: 130 },  // Indigo (0)
+        { r: 0,   g: 0,   b: 255 },  // Bleu (2)
+        { r: 0,   g: 255, b: 255 },  // Cyan (4)
+        { r: 0,   g: 255, b: 0   },  // Vert (6)
+        { r: 255, g: 255, b: 0   },  // Jaune (8)
+        { r: 255, g: 127, b: 0   },  // Orange (10)
+        { r: 148, g: 0,   b: 211 }   // Violet (11)
+    ];
+
+    // Les positions correspondantes dans l'index (0-11)
+    const positions = [0, 2, 4, 6, 8, 10, 11];
+
+    // Trouver entre quelles couleurs interpoler
+    let i = 0;
+    while (i < positions.length - 1 && uv > positions[i+1]) {
+        i++;
+    }
+
+    const startPos = positions[i];
+    const endPos = positions[i+1];
+    const ratio = (uv - startPos) / (endPos - startPos);
+
+    const startColor = colors[i];
+    const endColor = colors[i+1];
+
+    // interpolation linéaire RGB
+    const r = Math.round(startColor.r + ratio * (endColor.r - startColor.r));
+    const g = Math.round(startColor.g + ratio * (endColor.g - startColor.g));
+    const b = Math.round(startColor.b + ratio * (endColor.b - startColor.b));
+
+    return `rgb(${r}, ${g}, ${b})`;
+}
