@@ -45,13 +45,14 @@ function getColorForTemperature(temp) {
     return `rgb(${colorStops[colorStops.length - 1].color.join(', ')})`;
 }
 
-function getColorForHumidity(hum){
-    // Clamp la valeur entre 0 et 100
-    const v = Math.min(Math.max(hum, 0), 100);
-  
-    // Calcul de l'intensité : 255 pour blanc (0), 0 pour noir (100)
-    const intensity = Math.round(255 * (1 - v / 100));
-    
-    // Retourne la couleur en format rgb(r, g, b)
-    return `rgb(${intensity}, ${intensity}, ${intensity})`;
+function getColorForHumidity(hum){  
+    if (hum <= 20) {
+      // Blanc fixe pour 0 à 20
+      return 'rgb(255, 255, 255)';
+    } else {
+      // Dégradé progressif de 20 à 100
+      const ratio = (hum - 20) / (100 - 20); // de 0 à 1
+      const intensity = Math.round(255 * (1 - ratio));
+      return `rgb(${intensity}, ${intensity}, ${intensity})`;
+    }
 }
