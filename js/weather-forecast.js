@@ -74,7 +74,7 @@ function getWeatherForecastData(data){
         <td><img src="${getWindDirectionIcon(entry.windDirection)}"></td>
         <td>${entry.rain}</td>
         <td style="background-color: ${getColorForUv(entry.uvi)};">${entry.uvi}</td>
-        <td><img src="/icons/weather/day/${entry.weather}.svg"></td>
+        <td><img src="/icons/weather/${entry.isDay ? 'day' : 'night'}/${entry.weather}.svg"></td>
       `;
 
       tbody.appendChild(row);
