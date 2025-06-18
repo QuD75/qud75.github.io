@@ -15,15 +15,16 @@
 }
 
 .weather-forecast-table th {
-  padding: 12px 10px;
-  border: 0.5px solid #ccc;
-  font-size: 0.9rem;
+  padding: 10px 5px;
 }
 
 .weather-forecast-table td {
   padding: 2px 0px;
+}
+
+.weather-forecast-table th, td {
   border: 0.5px solid #ccc;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .weather-forecast-table thead {
