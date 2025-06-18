@@ -11,7 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function getApiData() {
       nextPageToken = fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
+      console.log('Initial data fetched, nextPageToken:', nextPageToken);
       weatherApiNextPageToken = weatherApi + `&nextPageToken=${nextPageToken}`;
+      console.log('Next page URL:', weatherApiNextPageToken);
       fetchData(weatherApiNextPageToken, 'weather_forecast_next_page', 30, getWeatherForecastData);
     }
   
