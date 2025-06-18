@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function getApiData() {
         console.log(weatherApi);
-        fetchData(weatherApi, 'weather_forecast', 60, getWeatherForecastData); 
+        fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData); 
     }
   
     getApiData();
@@ -71,7 +71,7 @@ function getWeatherForecastData(data){
         <td>${entry.pressure}</td>
         <td style="background-color: ${getColorForWindSpeed(entry.windSpeed)};">${Math.round(entry.windSpeed / 5) * 5}</td>
         <td style="background-color: ${getColorForWindSpeed(entry.windGust)};">${Math.round(entry.windGust / 5) * 5}</td>
-        <td>${entry.windDirection}</td>
+        <td><img src="${getWindDirectionIcon(entry.windDirection)}"></td>
         <td>${entry.rain}</td>
         <td style="background-color: ${getColorForUv(entry.uvi)};">${entry.uvi}</td>
         <td>${entry.weather}</td>
