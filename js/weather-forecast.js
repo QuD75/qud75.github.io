@@ -73,8 +73,9 @@ function getWeatherForecastData(data){
         <td style="background-color: ${tempColor};">${entry.temp}</td>
         <td style="background-color: ${humColor};">${entry.hum}</td>
         <td>${entry.pressure}</td>
-        <td>${entry.windSpeed}</td>
-        <td>${entry.windGust}</td>
+        Math.round(n / 5) * 5
+        <td>${Math.round(entry.windSpeed / 5) * 5}</td>
+        <td>${Math.round(entry.windGust / 5) * 5}</td>
         <td>${entry.windDirection}</td>
         <td>${entry.rain}</td>
         <td style="background-color: ${uviColor};">${entry.uvi}</td>
