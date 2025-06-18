@@ -1,4 +1,4 @@
-.modern-table {
+.weather-forecast-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -9,39 +9,39 @@
   background-color: #fff;
 }
 
-.modern-table th,
-.modern-table td {
+.weather-forecast-table th,
+.weather-forecast-table td {
   padding: 12px 16px;
   text-align: left;
   border-bottom: 1px solid #eee;
 }
 
-.modern-table thead {
+.weather-forecast-table thead {
   background-color: #f5f5f5;
   font-weight: bold;
 }
 
-.modern-table tbody tr:hover {
+.weather-forecast-table tbody tr:hover {
   background-color: #f0f8ff;
   transition: background-color 0.3s;
 }
 
-.modern-table tr:last-child td {
+.weather-forecast-table tr:last-child td {
   border-bottom: none;
 }
 
-.modern-table th:first-child {
+.weather-forecast-table th:first-child {
   border-top-left-radius: 12px;
 }
 
-.modern-table th:last-child {
+.weather-forecast-table th:last-child {
   border-top-right-radius: 12px;
 }
 
-.modern-table tr:last-child td:first-child {
+.weather-forecast-table tr:last-child td:first-child {
   border-bottom-left-radius: 12px;
 }
 
-.modern-table tr:last-child td:last-child {
+.weather-forecast-table tr:last-child td:last-child {
   border-bottom-right-radius: 12px;
 }
