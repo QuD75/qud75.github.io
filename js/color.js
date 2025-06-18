@@ -58,17 +58,16 @@ function getColorForHumidity(hum){
 function getColorForUv(uv){
     // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
     const colors = [
-        { r: 75,  g: 0,   b: 130 },  // Indigo (0)
-        { r: 0,   g: 0,   b: 255 },  // Bleu (2)
         { r: 0,   g: 255, b: 255 },  // Cyan (4)
         { r: 0,   g: 255, b: 0   },  // Vert (6)
         { r: 255, g: 255, b: 0   },  // Jaune (8)
-        { r: 255, g: 127, b: 0   },  // Orange (10)
-        { r: 148, g: 0,   b: 211 }   // Violet (11)
+        { r: 255,   g: 165, b: 0   },  // Orange (6)
+        { r: 255, g: 0, b: 0   },  // Rouge (8)
+        { r: 148, g: 0,   b: 211 }   // Violet (10)
     ];
 
     // Les positions correspondantes dans l'index (0-11)
-    const positions = [0, 2, 4, 6, 8, 10, 11];
+    const positions = [0, 2, 4, 6, 8, 10];
 
     // Trouver entre quelles couleurs interpoler
     let i = 0;
