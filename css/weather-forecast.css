@@ -21,11 +21,6 @@
   font-weight: bold;
 }
 
-.weather-forecast-table tbody tr:hover {
-  background-color: #f0f8ff;
-  transition: background-color 0.3s;
-}
-
 .weather-forecast-table tr:last-child td {
   border-bottom: none;
 }
