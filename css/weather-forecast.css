@@ -63,3 +63,8 @@
 .weather-forecast-table th:nth-child(2) {
   font-weight: 700;
 }
+
+/* Annule le gras si hérité ailleurs */
+.weather-forecast-table td:nth-child(3) {
+    font-weight: normal !important;
+}
