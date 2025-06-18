@@ -24,11 +24,6 @@ const grouped = {};
 
 function getWeatherForecastData(data){
 
-  const tbody = document.querySelector('tbody');
-
-/*   // Regrouper les données par jour
-  const grouped = {}; */
-
   data.forecastHours.forEach(h => {
 
     const yearApi = h.displayDateTime.year;
@@ -59,6 +54,9 @@ function getWeatherForecastData(data){
 }
 
 function fillTab(){
+
+  const tbody = document.querySelector('tbody');
+
   // Générer les lignes du tableau avec rowspan
   for (const [day, hours] of Object.entries(grouped)) {
     hours.forEach((entry, index) => {
