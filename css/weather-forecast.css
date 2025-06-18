@@ -56,14 +56,10 @@
     font-weight: 700;
 }
 
-/* Première colonne (toutes les cellules y compris en-tête) */
-.weather-forecast-table th:first-child,
-.weather-forecast-table td:first-child {
-  font-weight: 700;
-}
-
-/* Deuxième colonne */
-.weather-forecast-table th:nth-child(2),
-.weather-forecast-table td:nth-child(2) {
+/* Force les colonnes spécifiques en gras */
+.weather-forecast-table td:nth-child(1),
+.weather-forecast-table th:nth-child(1),
+.weather-forecast-table td:nth-child(2),
+.weather-forecast-table th:nth-child(2) {
   font-weight: 700;
 }
