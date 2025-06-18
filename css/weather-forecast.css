@@ -40,3 +40,14 @@
 .weather-forecast-table tr:last-child td:last-child {
   border-bottom-right-radius: 12px;
 }
+
+.weather-forecast-table td,
+.weather-forecast-table th {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.weather-forecast-table td,
+.weather-forecast-table th {
+  border: 1px solid #ccc;
+}
