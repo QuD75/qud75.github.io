@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const firstPageData = await fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherApi}&pageToken=${firstPageData.nextPageToken}`;
+        console.log('Fetching next page:', firstPageData.nextPageToken);
         //await fetchData(weatherApiNextPage, 'weather_forecast_next_page', 30, getWeatherForecastData);
       }
     }
