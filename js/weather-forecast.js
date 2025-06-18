@@ -68,7 +68,7 @@ function getWeatherForecastData(data){
 
       row.innerHTML += `
         <td><strong>${entry.hour}</strong></td>
-        <td style="color: ${tempColor};">${entry.temp}</td>
+        <td style="background-color: ${tempColor};">${entry.temp}</td>
         <td>${entry.hum}</td>
         <td>${entry.pressure}</td>
         <td>${entry.windSpeed}</td>
