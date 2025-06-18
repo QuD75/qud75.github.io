@@ -12,12 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherApi}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPage, 'weather_forecast_next_page', 30, getWeatherForecastData);
-        console.log('Données de la page suivante récupérées');
       }
+      fillTab();
     }
   
     getApiData();
-    fillTab();
 });
 
 // Regrouper les données par jour
@@ -55,8 +54,6 @@ function getWeatherForecastData(data){
 }
 
 function fillTab(){
-
-  console.log(grouped);
 
   const tbody = document.querySelector('tbody');
 
