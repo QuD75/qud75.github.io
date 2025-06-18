@@ -36,6 +36,8 @@ function getWeatherForecastData(data){
     const day = date.toLocaleDateString('fr-FR', dayOptions);
     const hour = `${date.getHours()}h`;
 
+    console.log(grouped)
+
     if (!grouped[day]) grouped[day] = [];
     grouped[day].push({
       hour,
