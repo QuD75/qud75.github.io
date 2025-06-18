@@ -75,7 +75,6 @@ function getWeatherForecastData(data){
         <td>${entry.rain}</td>
         <td style="background-color: ${getColorForUv(entry.uvi)};">${entry.uvi}</td>
         <td><img src="/icons/weather/day/${entry.weather}.svg"></td>
-        <td>${entry.weather}</td>
       `;
 
       tbody.appendChild(row);
