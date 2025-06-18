@@ -1,7 +1,7 @@
 function getWindDirectionIcon(degrees) {
     const directions = [
       "n", "nne", "ne", "ene", "e", "ese", "se", "sse",
-      "s", "ssw", "sw", "wsw", "w", "wnw", "nw", "nnw"
+      "s", "sso", "so", "oso", "o", "ono", "no", "nno"
     ];
   
     // Normaliser l'angle entre 0 et 360
