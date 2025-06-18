@@ -46,12 +46,10 @@ function getColorForTemperature(temp) {
 }
 
 function getColorForHumidity(hum){  
-    if (hum <= 20) {
-      // Blanc fixe pour 0 à 20
+    if (hum <= 30) {
       return 'rgb(255, 255, 255)';
     } else {
-      // Dégradé progressif de 20 à 100
-      const ratio = (hum - 20) / (100 - 20); // de 0 à 1
+      const ratio = (hum - 30) / (100 - 30); // de 0 à 1
       const intensity = Math.round(255 * (1 - ratio));
       return `rgb(${intensity}, ${intensity}, ${intensity})`;
     }
