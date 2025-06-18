@@ -9,10 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function getApiData() {
       const firstPageData = await fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
-      console.log(firstPageData);
       if (firstPageData.nextPageToken) {
-        const weatherApiNextPageToken = `${weatherApi}&nextPageToken=${firstPageData.nextPageToken}`;
-        console.log(weatherApiNextPageToken);
+        const weatherApiNextPageToken = `${weatherApi}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPageToken, 'weather_forecast_next_page', 30, getWeatherForecastData);
       }
     }
