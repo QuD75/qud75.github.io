@@ -56,3 +56,8 @@
 .weather-forecast-table thead th {
     font-weight: 700;
 }
+
+tbody td {
+  padding: 4px 8px;  /* réduit l’espace intérieur */
+  line-height: 1.2;  /* réduit la hauteur visuelle du texte */
+}
