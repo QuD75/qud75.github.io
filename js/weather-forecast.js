@@ -60,11 +60,12 @@ function getWeatherForecastData(data){
         const dayCell = document.createElement("td");
         dayCell.rowSpan = hours.length;
         dayCell.textContent = day;
+        dayCell.style.fontWeight = 'bold';
         row.appendChild(dayCell);
       }
 
       row.innerHTML += `
-        <td>${entry.hour}</td>
+        <td><strong>${entry.hour}</strong></td>
         <td>${entry.temp}</td>
         <td>${entry.hum}</td>
         <td>${entry.pressure}</td>
