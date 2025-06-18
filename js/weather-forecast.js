@@ -31,7 +31,7 @@ function getWeatherForecastData(data){
     const hourApi = h.displayDateTime.hours;
     const date = new Date(yearApi, monthApi, dayApi, hourApi);
 
-    console.log(date.getHours);
+    console.log(`${date.getHours()}h`);
 
     const dayOptions = { day: '2-digit', month: '2-digit', year: 'numeric'};
     const day = date.toLocaleDateString('fr-FR', dayOptions);
