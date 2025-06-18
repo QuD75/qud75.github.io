@@ -33,7 +33,7 @@ function getWeatherForecastData(data){
 
     console.log(`${date.getHours()}h`);
 
-    const dayOptions = { day: '2-digit', month: '2-digit', year: 'numeric'};
+    const dayOptions = { day: '2-digit', month: '2-digit'};
     const day = date.toLocaleDateString('fr-FR', dayOptions);
     const hour = `${date.getHours()}h`;
 
@@ -66,7 +66,7 @@ function getWeatherForecastData(data){
       }
 
       row.innerHTML += `
-        <td>${entry.heure}</td>
+        <td>${entry.hour}</td>
         <td>${entry.temp}</td>
         <td>${entry.hum}</td>
         <td>${entry.pressure}</td>
