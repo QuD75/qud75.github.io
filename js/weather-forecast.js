@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const firstPageData = await fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherApi}&pageToken=${firstPageData.nextPageToken}`;
-        console.log('Fetching next page:', firstPageData.nextPageToken);
-        //await fetchData(weatherApiNextPage, 'weather_forecast_next_page', 30, getWeatherForecastData);
+        await fetchData(weatherApiNextPage, 'weather_forecast_next_page', 30, getWeatherForecastData);
       }
     }
   
@@ -40,6 +39,8 @@ function getWeatherForecastData(data){
     const dayOptions = { day: '2-digit', month: '2-digit'};
     const day = date.toLocaleDateString('fr-FR', dayOptions);
     const hour = `${date.getHours()}h`;
+
+    console.log(grouped)
 
     if (!grouped[day]) grouped[day] = [];
     grouped[day].push({
