@@ -29,6 +29,8 @@ function getWeatherForecastData(data){
     const monthApi = h.displayDateTime.month-1;
     const dayApi = h.displayDateTime.day;
     const hourApi = h.displayDateTime.hour;
+    
+    console.log(yearApi, monthApi, dayApi, hourApi);
 
     const date = new Date(yearApi, monthApi, dayApi, hourApi);
 
@@ -40,9 +42,9 @@ function getWeatherForecastData(data){
     if (!grouped[day]) grouped[day] = [];
     grouped[day].push({
       hour,
-      temp : h.temperature.degrees,
+      temp : Math.round(h.temperature.degrees),
       hum : h.relativeHumidity,
-      pressure : h.airPressure.meanSeaLevelMillibars,
+      pressure : Math.round(h.airPressure.meanSeaLevelMillibars),
       windSpeed : h.wind.speed.value,
       windGust : h.wind.gust.value,
       windDirection : h.wind.direction.degrees,
