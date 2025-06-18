@@ -13,7 +13,7 @@
 .weather-forecast-table td {
   padding: 12px 16px;
   text-align: left;
-  border-bottom: 1px solid #eee;
+  border: 1px solid #ccc;
 }
 
 .weather-forecast-table thead {
@@ -45,9 +45,4 @@
 .weather-forecast-table th {
   text-align: center;
   vertical-align: middle;
-}
-
-.weather-forecast-table td,
-.weather-forecast-table th {
-  border: 1px solid #ccc;
 }
