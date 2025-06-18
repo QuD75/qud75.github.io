@@ -6,15 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const lon = -2.52;
 
     const weatherApi = `${baseUrl}?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
+    let weatherApiNextPageToken = "";
+    let nextPageToken = "";
     
     async function getApiData() {
-        console.log(weatherApi);
-        fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData); 
+      nextPageToken = fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
+      weatherApiNextPageToken = weatherApi + `&nextPageToken=${nextPageToken}`;
+      fetchData(weatherApiNextPageToken, 'weather_forecast_next_page', 30, getWeatherForecastData);
     }
   
     getApiData();
-    
-});  
+});
 
 function getWeatherForecastData(data){
 
@@ -80,4 +82,5 @@ function getWeatherForecastData(data){
       tbody.appendChild(row);
     });
   }
+  return data.nextPageToken;
 }
