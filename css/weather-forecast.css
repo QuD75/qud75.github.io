@@ -19,7 +19,7 @@
 }
 
 .weather-forecast-table td {
-  padding: 2px 0px;
+  padding: 0px 0px;
 }
 
 .weather-forecast-table th, td {
@@ -56,4 +56,9 @@
 .weather-forecast-table th {
   text-align: center;
   vertical-align: middle;
+}
+
+.weather-icon {
+  width: 32px;
+  height: 32px;
 }
