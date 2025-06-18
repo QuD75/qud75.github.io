@@ -64,9 +64,11 @@ function getWeatherForecastData(data){
         row.appendChild(dayCell);
       }
 
+      const tempColor = getColorForTemperature(entry.temp);
+
       row.innerHTML += `
         <td><strong>${entry.hour}</strong></td>
-        <td>${entry.temp}</td>
+        <td style="color: ${tempColor};">${entry.temp}</td>
         <td>${entry.hum}</td>
         <td>${entry.pressure}</td>
         <td>${entry.windSpeed}</td>
