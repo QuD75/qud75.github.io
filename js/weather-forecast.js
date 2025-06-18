@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     getApiData();
+    fillTab();
 });
 
 // Regrouper les données par jour
@@ -40,8 +41,6 @@ function getWeatherForecastData(data){
     const day = date.toLocaleDateString('fr-FR', dayOptions);
     const hour = `${date.getHours()}h`;
 
-    console.log(grouped)
-
     if (!grouped[day]) grouped[day] = [];
     grouped[day].push({
       hour,
@@ -57,7 +56,9 @@ function getWeatherForecastData(data){
       isDay : h.isDaytime,
     });
   });
+}
 
+function fillTab(){
   // Générer les lignes du tableau avec rowspan
   for (const [day, hours] of Object.entries(grouped)) {
     hours.forEach((entry, index) => {
