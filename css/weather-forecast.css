@@ -14,10 +14,14 @@
   background-color: #fff;
 }
 
-.weather-forecast-table th,
-.weather-forecast-table td {
+.weather-forecast-table th {
   padding: 12px 16px;
   border: 0.5px solid #ccc;
+}
+
+.weather-forecast-table td {
+  padding: 4px 8px;
+  line-height: 1.2;
 }
 
 .weather-forecast-table thead {
@@ -54,9 +58,4 @@
 /* Première ligne d'en-tête (le <thead>) en gras */
 .weather-forecast-table thead th {
     font-weight: 700;
-}
-
-table tr:not(:first-child) td {
-  padding: 4px 8px !important;
-  line-height: 1.2;
 }
