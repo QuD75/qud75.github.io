@@ -6,15 +6,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const lon = -2.52;
 
     const weatherApi = `${baseUrl}?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
-    let weatherApiNextPageToken = "";
-    let nextPageToken = "";
     
     async function getApiData() {
-      nextPageToken = fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
-      console.log('Initial data fetched, nextPageToken:', nextPageToken);
-      weatherApiNextPageToken = weatherApi + `&nextPageToken=${nextPageToken}`;
-      console.log('Next page URL:', weatherApiNextPageToken);
-      fetchData(weatherApiNextPageToken, 'weather_forecast_next_page', 30, getWeatherForecastData);
+      const firstPageData = await fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
+      console.log(firstPageData);
+      if (firstPageData.nextPageToken) {
+        const weatherApiNextPageToken = `${weatherApi}&nextPageToken=${firstPageData.nextPageToken}`;
+        console.log(weatherApiNextPageToken);
+        await fetchData(weatherApiNextPageToken, 'weather_forecast_next_page', 30, getWeatherForecastData);
+      }
     }
   
     getApiData();
@@ -84,5 +84,4 @@ function getWeatherForecastData(data){
       tbody.appendChild(row);
     });
   }
-  return data.nextPageToken;
 }
