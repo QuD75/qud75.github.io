@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetchData(weatherApiNextPage, 'weather_forecast_next_page', 30, getWeatherForecastData);
       }
       fillTab();
+      createCharts();
     }
   
     getApiData();
@@ -86,4 +87,83 @@ function fillTab(){
       tbody.appendChild(row);
     });
   }
+}
+
+function createCharts() {
+  const labels = []; // ex: ['10h', '11h', ...]
+  const tempData = [];
+  const pressureData = [];
+  const windData = [];
+  const rainData = [];
+
+  // Récupère tous les points horaires
+  Object.entries(grouped).forEach(([day, hours]) => {
+    hours.forEach(entry => {
+      labels.push(`${day} ${entry.hour}`);
+      tempData.push(entry.temp);
+      pressureData.push(entry.pressure);
+      windData.push(entry.windSpeed);
+      rainData.push(entry.rain);
+    });
+  });
+
+  // Température
+  new Chart(document.getElementById('chart-temperature-day'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Température (°C)',
+        data: tempData,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        tension: 0.3
+      }]
+    }
+  });
+
+  // Pression
+  new Chart(document.getElementById('chart-pressure-day'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Pression (hPa)',
+        data: pressureData,
+        borderColor: 'rgb(54, 162, 235)',
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        tension: 0.3
+      }]
+    }
+  });
+
+  // Vent
+  new Chart(document.getElementById('chart-wind-day'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Vent (km/h)',
+        data: windData,
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        tension: 0.3
+      }]
+    }
+  });
+
+  // Pluie
+  new Chart(document.getElementById('chart-rain-day'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Pluie (%)',
+        data: rainData,
+        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+        borderColor: 'rgb(153, 102, 255)',
+        borderWidth: 1
+      }]
+    }
+  });
 }

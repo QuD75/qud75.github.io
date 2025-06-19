@@ -53,10 +53,10 @@
                 </table>
             </div>
             <div id="day-container-graphs" class="container-graphs">
-                <canvas class="chart-weather-forecast"></canvas>
-                <canvas class="chart-weather-forecast"></canvas>
-                <canvas class="chart-weather-forecast"></canvas>
-                <canvas class="chart-weather-forecast"></canvas>
+                <canvas id="chart-temperature-day" class="chart-weather-forecast"></canvas>
+                <canvas id="chart-pressure-day" class="chart-weather-forecast"></canvas>
+                <canvas id="chart-wind-day" class="chart-weather-forecast"></canvas>
+                <canvas id="chart-rain-day" class="chart-weather-forecast"></canvas>
             </div>
         </div>
 
@@ -64,10 +64,10 @@
         <div id="week-container" class="weather-forecast">
             <div id="week-container-tab" class="container-tab"></div>
             <div id="week-container-graphs" class="container-graphs">
-                <canvas class="chart-weather-forecast"></canvas>
-                <canvas class="chart-weather-forecast"></canvas>
-                <canvas class="chart-weather-forecast"></canvas>
-                <canvas class="chart-weather-forecast"></canvas>
+                <canvas id="chart-temperature-week" class="chart-weather-forecast"></canvas>
+                <canvas id="chart-pressure-week" class="chart-weather-forecast"></canvas>
+                <canvas id="chart-wind-week" class="chart-weather-forecast"></canvas>
+                <canvas id="chart-rain-week" class="chart-weather-forecast"></canvas>
             </div>
         </div>
 
@@ -79,6 +79,7 @@
     <script src="/js/loader/menu-loader.js" defer></script>
     <script src="/js/colors.js" defer></script>
     <script src="/js/icons.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="/js/call-api.js" defer></script>
     <script src="/js/weather-forecast.js" defer></script>
     <script src="/js/loader/footer-loader.js" defer></script>
