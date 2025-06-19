@@ -19,7 +19,8 @@ window.addEventListener('DOMContentLoaded', () => {
           }); */
 
         const data = '{"data":[{"height":-1.7745836115459195,"time":"2025-06-19T03:41:00+00:00","type":"low"},{"height":1.2283404626757344,"time":"2025-06-19T10:51:00+00:00","type":"high"},{"height":-1.674882424430392,"time":"2025-06-19T16:08:00+00:00","type":"low"},{"height":1.506051572491965,"time":"2025-06-19T23:13:00+00:00","type":"high"}],"meta":{"cost":1,"dailyQuota":10,"datum":"MSL","end":"2025-06-20 00:00","lat":47.29,"lng":-2.52,"offset":0,"requestCount":2,"start":"2025-06-19 00:00","station":{"distance":27,"lat":47.133,"lng":-2.25,"name":"pointe st. gildas","source":"sg"}}}';  
-        const hasFourTides = hasFourTidesInParisDay(data);
+        const parsedData = JSON.parse(data);
+        const hasFourTides = hasFourTidesInParisDay(parsedData);
         console.log("Has four tides in Paris day:", hasFourTides);
     }
   
