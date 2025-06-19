@@ -14,10 +14,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const tidesApi = `${baseUrl}?&lat=${lat}&lng=${lng}&start=${todayStr}&end=${tomorrowStr}`;
     
     async function getApiData() {
-        const data = await fetchData(tidesApi, 'tides', 360, getWeatherStationData, {
+        const data = await fetchData(tidesApi, 'tides', 360, updateTimeline, {
         'Authorization': `${apiKey}`,
         });
-        updateTimeline(hasFourTidesInParisDay(JSON.parse(data)));
     }
   
     getApiData();
@@ -53,7 +52,7 @@ window.addEventListener('DOMContentLoaded', () => {
     window.addEventListener("resize", applyAdaptiveZoom);
 });
 
-function updateTimeline(hasFourTides) {
+function updateTimeline(data) {
     const timeline = document.getElementById('timeline');
     const now = new Date();
 
@@ -72,6 +71,8 @@ function updateTimeline(hasFourTides) {
 
     // appliquer la position
     timeline.style.left = `${left}px`;
+
+    const hasFourTides = hasFourTidesInParisDay(data);
     if (!hasFourTides) {
         timeline.style.top = "255px";
     }
