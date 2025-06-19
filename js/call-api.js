@@ -1,4 +1,4 @@
-async function fetchData(apiUrl, cacheKey, duration, displayFunction) {
+async function fetchData(apiUrl, cacheKey, duration, displayFunction, headers = {}) {
     const now = Date.now();
     const cachedData = JSON.parse(localStorage.getItem(cacheKey));
     if (cachedData && (now - cachedData.timestamp < duration * 60000)) {
@@ -6,7 +6,7 @@ async function fetchData(apiUrl, cacheKey, duration, displayFunction) {
         return cachedData.data;
     }
     try {
-        const response = await fetch(apiUrl); 
+        const response = await fetch(apiUrl, { headers }); 
         if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
         const data = await response.json();
         localStorage.setItem(cacheKey, JSON.stringify({ data: data, timestamp: now }));
