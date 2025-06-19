@@ -22,12 +22,10 @@ window.addEventListener('DOMContentLoaded', () => {
         const parsedData = JSON.parse(data);
         const hasFourTides = hasFourTidesInParisDay(parsedData);
         console.log("Has four tides in Paris day:", hasFourTides);
+        updateTimeline(hasFourTides);
     }
   
     getApiData();
-
-
-    updateTimeline();
 
     const target = document.getElementById("desktop-tides");
     const wrapper = document.getElementById("tides-container");
@@ -60,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
     window.addEventListener("resize", applyAdaptiveZoom);
 });
 
-function updateTimeline() {
+function updateTimeline(hasFourTides) {
     const timeline = document.getElementById('timeline');
     const now = new Date();
 
@@ -79,6 +77,9 @@ function updateTimeline() {
 
     // appliquer la position
     timeline.style.left = `${left}px`;
+    if (!hasFourTides) {
+        timeline.style.top = "255px";
+    }
 }
 
 function hasFourTidesInParisDay(json) {
