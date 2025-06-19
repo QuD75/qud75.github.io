@@ -56,7 +56,11 @@ function getColorForHumidity(hum){
 }
 
 function getColorForWindSpeed(speed) {
-    // Helper pour interpoler entre deux couleurs RGB
+    function hexToRgb(hex) {
+      const bigint = parseInt(hex.slice(1), 16);
+      return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
+    }
+  
     function interpolateColor(color1, color2, t) {
       const r = Math.round(color1[0] + (color2[0] - color1[0]) * t);
       const g = Math.round(color1[1] + (color2[1] - color1[1]) * t);
@@ -64,28 +68,28 @@ function getColorForWindSpeed(speed) {
       return `rgb(${r}, ${g}, ${b})`;
     }
   
-    // Définition des gradients flashies pour chaque plage
     const gradients = [
-      { min: 0, max: 20, from: [173, 216, 230], to: [0, 0, 255] },       // bleu clair → bleu
-      { min: 20, max: 40, from: [144, 238, 144], to: [0, 128, 0] },      // vert clair → vert foncé
-      { min: 40, max: 60, from: [255, 255, 0], to: [255, 165, 0] },      // jaune → orange
-      { min: 60, max: 80, from: [255, 165, 0], to: [255, 0, 0] },        // orange → rouge
-      { min: 80, max: 100, from: [255, 0, 0], to: [128, 0, 128] }        // rouge → violet
+      { min: 0, max: 20, from: "#D0F0FF", to: "#6FAED9" },  // bleu pastel
+      { min: 20, max: 40, from: "#C8FACC", to: "#6FBF73" }, // vert pastel
+      { min: 40, max: 60, from: "#FFFACD", to: "#FFD580" }, // jaune → orange pastel
+      { min: 60, max: 80, from: "#FFD580", to: "#FF7F7F" }, // orange → rouge pastel
+      { min: 80, max: 100, from: "#FF7F7F", to: "#C299FF" } // rouge → violet pastel
     ];
   
     if (speed > 100) {
-      return "rgb(128, 0, 128)"; // Violet flash
+      return "rgb(194, 153, 255)"; // Violet pastel
     }
   
     for (const grad of gradients) {
       if (speed >= grad.min && speed <= grad.max) {
         const t = (speed - grad.min) / (grad.max - grad.min);
-        return interpolateColor(grad.from, grad.to, t);
+        return interpolateColor(hexToRgb(grad.from), hexToRgb(grad.to), t);
       }
     }
   
-    return "rgb(0,0,0)"; // défaut : noir
-  }  
+    return "rgb(0, 0, 0)"; // défaut
+}
+  
 
 function getColorForUv(uv){
     // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
