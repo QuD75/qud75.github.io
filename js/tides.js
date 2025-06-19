@@ -14,11 +14,15 @@ window.addEventListener('DOMContentLoaded', () => {
     const tidesApi = `${baseUrl}?&lat=${lat}&lng=${lng}&start=${todayStr}&end=${tomorrowStr}`;
     
     async function getApiData() {
-        const data = await fetchData(tidesApi, 'tides', 360, updateTimeline, {
-        'Authorization': `${apiKey}`,
-        });
+        try {
+            const data = await fetchData(tidesApi, 'tides', 360, updateTimeline, {
+            'Authorization': `${apiKey}`
+            });
+        } catch (error) {
+            updateTimeline();
+        }
     }
-  
+
     getApiData();
 
     const target = document.getElementById("desktop-tides");
@@ -49,7 +53,10 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   
     applyAdaptiveZoom();
-    window.addEventListener("resize", applyAdaptiveZoom);
+    window.addEventListener("resize", () => {
+        applyAdaptiveZoom();
+        updateTimeline();
+    });
 });
 
 function updateTimeline(data) {
@@ -72,9 +79,8 @@ function updateTimeline(data) {
     // appliquer la position
     timeline.style.left = `${left}px`;
 
-    const hasFourTides = hasFourTidesInParisDay(data);
-    if (!hasFourTides) {
-        timeline.style.top = "255px";
+    if (data) {
+        if (!hasFourTidesInParisDay(data)) timeline.style.top = "255px";
     }
 }
 
