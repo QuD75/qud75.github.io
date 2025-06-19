@@ -27,6 +27,12 @@
   font-size: 0.8rem;
 }
 
+@media (max-width: 768px) {
+  .weather-forecast-table th, td {
+    font-size: 0.5rem;
+  }
+}
+
 .weather-forecast-table thead {
   background-color: #f5f5f5;
   font-weight: bold;
