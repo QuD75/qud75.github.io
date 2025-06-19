@@ -30,7 +30,7 @@
 @media (max-width: 768px) {
   .weather-forecast-table th,
   .weather-forecast-table td {
-    font-size: clamp(0.4rem, 1.5vw, 0.7rem);
+    font-size: 2vw;
   }
 
   .weather-forecast-table {
