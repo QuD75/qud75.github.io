@@ -6,6 +6,7 @@
 }
 
 .container-tab {
+  margin-top: 1rem;
   flex: 1 1 55%;
   min-width: 0; /* important pour éviter que ça déborde */
   max-width: 55%;
