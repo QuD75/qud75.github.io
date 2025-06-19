@@ -56,29 +56,36 @@ function getColorForHumidity(hum){
 }
 
 function getColorForWindSpeed(speed) {
-    const colors = [
-      { speed: 0,  r: 173, g: 216, b: 230 }, // Bleu clair
-      { speed: 20, r: 0,   g: 200, b: 0   }, // Vert
-      { speed: 40, r: 255, g: 255, b: 0   }, // Jaune
-      { speed: 60, r: 255, g: 140, b: 0   }, // Orange
-      { speed: 80, r: 255, g: 0,   b: 0   }  // Rouge
+    // Helper pour interpoler entre deux couleurs RGB
+    function interpolateColor(color1, color2, t) {
+      const r = Math.round(color1[0] + (color2[0] - color1[0]) * t);
+      const g = Math.round(color1[1] + (color2[1] - color1[1]) * t);
+      const b = Math.round(color1[2] + (color2[2] - color1[2]) * t);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+  
+    // Définition des gradients flashies pour chaque plage
+    const gradients = [
+      { min: 0, max: 20, from: [173, 216, 230], to: [0, 0, 255] },       // bleu clair → bleu
+      { min: 20, max: 40, from: [144, 238, 144], to: [0, 128, 0] },      // vert clair → vert foncé
+      { min: 40, max: 60, from: [255, 255, 0], to: [255, 165, 0] },      // jaune → orange
+      { min: 60, max: 80, from: [255, 165, 0], to: [255, 0, 0] },        // orange → rouge
+      { min: 80, max: 100, from: [255, 0, 0], to: [128, 0, 128] }        // rouge → violet
     ];
   
-    if (speed <= 0) return 'rgb(173, 216, 230)';
-    if (speed >= 80) return 'rgb(255, 0, 0)';
+    if (speed > 100) {
+      return "rgb(128, 0, 128)"; // Violet flash
+    }
   
-    for (let i = 0; i < colors.length - 1; i++) {
-      const c1 = colors[i];
-      const c2 = colors[i + 1];
-      if (speed >= c1.speed && speed <= c2.speed) {
-        const ratio = (speed - c1.speed) / (c2.speed - c1.speed);
-        const r = Math.round(c1.r + ratio * (c2.r - c1.r));
-        const g = Math.round(c1.g + ratio * (c2.g - c1.g));
-        const b = Math.round(c1.b + ratio * (c2.b - c1.b));
-        return `rgb(${r}, ${g}, ${b})`;
+    for (const grad of gradients) {
+      if (speed >= grad.min && speed <= grad.max) {
+        const t = (speed - grad.min) / (grad.max - grad.min);
+        return interpolateColor(grad.from, grad.to, t);
       }
     }
-}  
+  
+    return "rgb(0,0,0)"; // défaut : noir
+  }  
 
 function getColorForUv(uv){
     // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
