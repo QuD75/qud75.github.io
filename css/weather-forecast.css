@@ -1,20 +1,20 @@
 .weather-forecast {
   display: flex;
-  gap: 2rem; /* espace entre tableau et graphiques */
-  align-items: flex-start; /* aligne le haut du tableau et des graphiques */
-  flex-wrap: wrap; /* pour qu’ils se placent en colonne sur petit écran */
+  flex-wrap: nowrap; /* empêche de passer en dessous */
+  gap: 2rem;
+  align-items: flex-start;
 }
 
 .container-tab {
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
-    flex: 1 1 55%;
-    min-width: 300px;
+  flex: 1 1 55%;
+  min-width: 0; /* important pour éviter que ça déborde */
+  max-width: 55%;
 }
 
-.container-graphs {
+.container-graph {
   flex: 1 1 45%;
-  min-width: 300px;
+  min-width: 0;
+  max-width: 45%;
 }
 
 .weather-forecast-table {
