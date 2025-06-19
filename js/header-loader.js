@@ -11,7 +11,7 @@ function loadHeader() {
     return;
   }
 
-  fetch("/components/header.html")
+  fetch("/pages/header.html")
     .then(response => {
       if (!response.ok) throw new Error("Header not found");
       return response.text();
