@@ -141,8 +141,8 @@ function createCharts() {
         ctx.beginPath();
         ctx.strokeStyle = 'rgba(6, 3, 3, 0.2)';
         ctx.lineWidth = 1;
-        ctx.moveTo(x, top);
-        ctx.lineTo(x, bottom);
+        ctx.moveTo(Math.round(x/3), top);
+        ctx.lineTo(Math.round(x/3), bottom);
         ctx.stroke();
         ctx.restore();
       });
