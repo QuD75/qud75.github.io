@@ -122,7 +122,7 @@ function createCharts() {
       }]
     },
     options: {
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       responsive: true,
       plugins: {
         legend: {
@@ -154,7 +154,7 @@ function createCharts() {
       }]
     },
     options: {
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       responsive: true,
       plugins: {
         legend: {
@@ -186,7 +186,7 @@ function createCharts() {
       }]
     },
     options: {
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       responsive: true,
       plugins: {
         legend: {
@@ -217,7 +217,7 @@ function createCharts() {
       }]
     },
     options: {
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
       responsive: true,
       plugins: {
         legend: {
