@@ -18,7 +18,6 @@ window.addEventListener('DOMContentLoaded', () => {
             const data = await fetchData(tidesApi, 'tides', 360, updateTimeline, {
             'Authorization': `${apiKey}`
             });
-            console.log("Données de marées récupérées :", data);
         } catch (error) {
             console.error("Erreur lors de la récupération des données de marées :", error);
             updateTimeline();
@@ -78,12 +77,9 @@ function updateTimeline(data) {
     // appliquer la position
     timeline.style.left = `${left}px`;
 
-    let hasFourTides = true;
     if (data) {
-        hasFourTides = hasFourTidesInParisDay(data);
-        if (!hasFourTides) timeline.style.top = "255px";
+        if (!hasFourTidesInParisDay(data)) timeline.style.top = "255px";
     }
-    return hasFourTides;
 }
 
 function hasFourTidesInParisDay(json) {
