@@ -1,30 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-    const apiKey = '8b2d7d44-469d-11f0-976d-0242ac130006-8b2d7db2-469d-11f0-976d-0242ac130006';
-    const baseUrl = 'https://api.stormglass.io/v2/tide/extremes/point';
-    const lat = 47.29;
-    const lng = -2.52;
-    const today = new Date();
-    const tomorrow = new Date();
-    tomorrow.setDate(today.getDate() + 1);
-    
-    const todayStr = today.toISOString().slice(0, 10);
-    const tomorrowStr = tomorrow.toISOString().slice(0, 10);
-
-    const tidesApi = `${baseUrl}?&lat=${lat}&lng=${lng}&start=${todayStr}&end=${tomorrowStr}`;
-    
     async function getApiData() {
-        try {
-            const data = await fetchData(tidesApi, 'tides', 360, updateTimeline, {
-            'Authorization': `${apiKey}`
-            });
-        } catch (error) {
-            console.error("Erreur lors de la récupération des données de marées :", error);
-            updateTimeline();
-        }
+        fetchData("https://maree.info/114", 'tides', 60, updateTimeline);
     }
-
-    getApiData();
 
     const target = document.getElementById("desktop-tides");
     const wrapper = document.getElementById("tides-container");
@@ -77,35 +55,29 @@ function updateTimeline(data) {
     // appliquer la position
     timeline.style.left = `${left}px`;
 
-    if (data) {
-        if (!hasFourTidesInParisDay(data)) timeline.style.top = "255px";
+    const numberOfTides = getNumberOfTides(data);
+    console.log(`Nombre de marées : ${numberOfTides}`);
+    if (numberOfTides < 4) {
+        timeline.style.top = "255px";
     }
 }
 
-function hasFourTidesInParisDay(json) {
-    // Extraction des données
-    const data = json.data;
-  
-    // On veut comparer la date locale à Paris, donc il faut transformer chaque timestamp UTC en heure Paris
-    // et vérifier que la date locale (année-mois-jour) est égale à startDate en heure Paris
-  
-    // Créons une fonction pour extraire la date locale Paris sous forme "YYYY-MM-DD"
-    function toParisDateString(utcDateStr) {
-      const date = new Date(utcDateStr);
-      // Options pour récupérer date en heure de Paris
-      // Paris est "Europe/Paris", la conversion tient compte du DST automatiquement
-      return date.toLocaleDateString("fr-FR", { timeZone: "Europe/Paris" });
+function getNumberOfTides(data) {
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = data;
+
+    const row = tempDiv.querySelector('#MareeJours_0');
+    if (!row) {
+      console.warn('Élément #MareeJours_0 non trouvé');
+      return 4;
     }
-  
-    // Date de début en string en heure de Paris
-    const startParisDateStr = toParisDateString(json.meta.start + "Z");
-  
-    // On filtre les marées qui ont lieu ce jour en heure Paris
-    const tidesInParisDay = data.filter(entry => {
-      const parisDate = toParisDateString(entry.time);
-      return parisDate === startParisDateStr;
-    });
-  
-    // On renvoie true si au moins 4 marées dans ce jour
-    return tidesInParisDay.length >= 4;
-}  
+
+    const tdHours = row.querySelectorAll('td')[0];
+    if (!tdHours) {
+      console.warn('Pas de cellule d\'heures trouvée');
+      return 4;
+    }
+
+    const hours = tdHours.innerText.match(/\d{2}h\d{2}/g);
+    return hours ? hours.length : 4;
+}
