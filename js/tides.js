@@ -1,11 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-    async function getApiData() {
-        fetchData("https://maree.info/114", 'tides', 60, updateTimeline);
-    }
-
-    getApiData();
-
     const target = document.getElementById("desktop-tides");
     const wrapper = document.getElementById("tides-container");
     const iframe = document.querySelector('#desktop-tides iframe');
@@ -40,7 +34,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function updateTimeline(data) {
+function updateTimeline() {
     const timeline = document.getElementById('timeline');
     const now = new Date();
 
@@ -57,29 +51,48 @@ function updateTimeline(data) {
     // appliquer la position
     timeline.style.left = `${left}px`;
 
-    const numberOfTides = getNumberOfTides(data);
-    console.log(`Nombre de marées : ${numberOfTides}`);
-    if (numberOfTides < 4) {
-        timeline.style.top = "255px";
+    const datesWithThreeTides = [
+        '2025-06-25',
+        '2025-07-04',
+        '2025-07-11',
+        '2025-07-19',
+        '2025-07-25',
+        '2025-08-03',
+        '2025-08-09',
+        '2025-08-17',
+        '2025-08-23',
+        '2025-09-01',
+        '2025-09-08',
+        '2025-09-15',
+        '2025-09-22',
+        '2025-09-30',
+        '2025-10-07',
+        '2025-10-14',
+        '2025-10-22',
+        '2025-10-30',
+        '2025-11-07',
+        '2025-11-13',
+        '2025-11-23',
+        '2025-11-29'
+    ];
+
+    const lastDateStr = datesWithThreeTides[datesWithThreeTides.length - 1];
+    const lastDate = new Date(lastDateStr);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const todayStr = new Date().toISOString().split('T')[0];
+    
+    if (today >= lastDate) {
+        timeline.style.display = 'none';
+    } else {
+
+        if (datesWithThreeTides.includes(todayStr)) {
+            console.log("Aujourd'hui : 3 marées");
+            timeline.style.top = '255px';
+        } else {
+            console.log("Aujourd'hui : 4 marées");
+            timeline.style.top = '272px';
+        }
     }
-}
-
-function getNumberOfTides(data) {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = data;
-
-    const row = tempDiv.querySelector('#MareeJours_0');
-    if (!row) {
-      console.warn('Élément #MareeJours_0 non trouvé');
-      return 4;
-    }
-
-    const tdHours = row.querySelectorAll('td')[0];
-    if (!tdHours) {
-      console.warn('Pas de cellule d\'heures trouvée');
-      return 4;
-    }
-
-    const hours = tdHours.innerText.match(/\d{2}h\d{2}/g);
-    return hours ? hours.length : 4;
 }
