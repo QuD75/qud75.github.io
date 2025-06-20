@@ -115,12 +115,13 @@ function createCharts() {
   
       tempData.push(entry.temp);
       pressureData.push(entry.pressure);
-      windData.push(entry.windSpeed);
+      windData.push(entry.windSpeed); 
       rainData.push(entry.rain);
     });
   });
 
   console.log("Daychange Indices:", dayChangeIndices);
+  console.log("Labels:", labels);
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
@@ -195,7 +196,7 @@ function createCharts() {
     ...commonOptions('Température (°C)')
   });
 
-  // Pression
+  /* // Pression
   new Chart(document.getElementById('chart-pressure-day'), {
     data: {
       labels,
@@ -235,5 +236,5 @@ function createCharts() {
       }]
     },
     ...commonOptions('Pluie (%)', 'bar')
-  });
+  }); */
 }
