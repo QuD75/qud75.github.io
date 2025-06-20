@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
   
+    updateTimeline();
     applyAdaptiveZoom();
     window.addEventListener("resize", () => {
         applyAdaptiveZoom();
@@ -86,7 +87,6 @@ function updateTimeline() {
     if (today >= lastDate) {
         timeline.style.display = 'none';
     } else {
-
         if (datesWithThreeTides.includes(todayStr)) {
             console.log("Aujourd'hui : 3 marées");
             timeline.style.top = '255px';
