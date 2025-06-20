@@ -4,6 +4,8 @@ window.addEventListener('DOMContentLoaded', () => {
         fetchData("https://maree.info/114", 'tides', 60, updateTimeline);
     }
 
+    getApiData();
+
     const target = document.getElementById("desktop-tides");
     const wrapper = document.getElementById("tides-container");
     const iframe = document.querySelector('#desktop-tides iframe');
