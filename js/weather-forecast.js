@@ -230,6 +230,19 @@ function createCharts() {
         borderWidth: 1
       }]
     },
-    ...commonOptions('Pluie (%)', 'bar')
+    ...commonOptions('Pluie (%)', 'bar'),
+    options: {
+      ...commonOptions('Pluie (%)', 'bar').options,
+      scales: {
+        ...commonOptions('Pluie (%)', 'bar').options.scales,
+        y: {
+          min: 0,
+          max: 100,
+          ticks: {
+            stepSize: 10
+          }
+        }
+      }
+    }
   });
 }
