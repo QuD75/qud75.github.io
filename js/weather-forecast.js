@@ -116,7 +116,9 @@ function createCharts() {
       windData.push(entry.windSpeed);
       rainData.push(entry.rain);
     });
-  });  
+  }); 
+  
+  console.log('Labels:', labels);
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
