@@ -39,17 +39,18 @@ function getWeatherForecastData(data){
 
     if (!grouped[day]) grouped[day] = [];
     grouped[day].push({
+      timestamp: date.getTime() / 1000,
       hour,
-      temp : Math.round(h.temperature.degrees),
-      hum : h.relativeHumidity,
-      pressure : Math.round(h.airPressure.meanSeaLevelMillibars),
-      windSpeed : h.wind.speed.value,
-      windGust : h.wind.gust.value,
-      windDirection : h.wind.direction.degrees,
-      rain : h.precipitation.probability.percent,
-      uvi : h.uvIndex,
-      weather : h.weatherCondition.type,
-      isDay : h.isDaytime,
+      temp: Math.round(h.temperature.degrees),
+      hum: h.relativeHumidity,
+      pressure: Math.round(h.airPressure.meanSeaLevelMillibars),
+      windSpeed: h.wind.speed.value,
+      windGust: h.wind.gust.value,
+      windDirection: h.wind.direction.degrees,
+      rain: h.precipitation.probability.percent,
+      uvi: h.uvIndex,
+      weather: h.weatherCondition.type,
+      isDay: h.isDaytime,
     });
   });
 }
@@ -179,7 +180,8 @@ function createCharts() {
       datasets: [{
         data: tempData,
         borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)'
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        pointRadius: 0
       }]
     },
     ...commonOptions('Température (°C)')
@@ -192,7 +194,8 @@ function createCharts() {
       datasets: [{
         data: pressureData,
         borderColor: 'rgb(54, 162, 235)',
-        backgroundColor: 'rgba(54, 162, 235, 0.2)'
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        pointRadius: 0
       }]
     },
     ...commonOptions('Pression (hPa)')
@@ -205,7 +208,8 @@ function createCharts() {
       datasets: [{
         data: windData,
         borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)'
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        pointRadius: 0
       }]
     },
     ...commonOptions('Vent (km/h)')
