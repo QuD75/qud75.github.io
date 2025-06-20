@@ -8,15 +8,15 @@
 
 .container-tab {
   margin-top: 1rem;
-  flex: 1 1 55%;
-  min-width: 0; /* important pour éviter que ça déborde */
-  max-width: 55%;
+  flex: 0 1 60%;
+  max-width: 60%;
+  min-width: 0;
 }
 
 .container-graph {
-  flex: 1 1 45%;
+  flex: 0 1 40%;
+  max-width: 40%;
   min-width: 0;
-  max-width: 45%;
 }
 
 .weather-forecast-table {
