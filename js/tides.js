@@ -18,7 +18,9 @@ window.addEventListener('DOMContentLoaded', () => {
             const data = await fetchData(tidesApi, 'tides', 360, updateTimeline, {
             'Authorization': `${apiKey}`
             });
+            console.log("Données de marées récupérées :", data);
         } catch (error) {
+            console.error("Erreur lors de la récupération des données de marées :", error);
             updateTimeline();
         }
     }
@@ -66,22 +68,22 @@ function updateTimeline(data) {
     // minutes depuis minuit
     const minutesSinceMidnight = now.getHours() * 60 + now.getMinutes();
 
-    // total minutes in a day
-    const totalMinutes = 24 * 60;
-
     // position entre 55 et 655 px (linéaire)
     const leftMin = 55;
     const leftMax = 655;
 
     // interpolation linéaire
-    const left = leftMin + ((leftMax - leftMin) * minutesSinceMidnight) / totalMinutes;
+    const left = leftMin + ((leftMax - leftMin) * minutesSinceMidnight) / (24 * 60);
 
     // appliquer la position
     timeline.style.left = `${left}px`;
 
+    let hasFourTides = true;
     if (data) {
-        if (!hasFourTidesInParisDay(data)) timeline.style.top = "255px";
+        hasFourTides = hasFourTidesInParisDay(data);
+        if (!hasFourTides) timeline.style.top = "255px";
     }
+    return hasFourTides;
 }
 
 function hasFourTidesInParisDay(json) {
