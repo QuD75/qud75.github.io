@@ -33,8 +33,9 @@ function getWeatherForecastData(data){
     const hourApi = h.displayDateTime.hours;
     const date = new Date(yearApi, monthApi, dayApi, hourApi);
 
-    const dayOptions = { day: '2-digit', month: '2-digit'};
-    const day = date.toLocaleDateString('fr-FR', dayOptions);
+    //const dayOptions = { day: '2-digit', month: '2-digit'};
+    const day = date.toISOString().split('T')[0];
+    //const day = date.toLocaleDateString('fr-FR', dayOptions);
     const hour = `${date.getHours()}h`;
 
     if (!grouped[day]) grouped[day] = [];
@@ -96,25 +97,26 @@ function createCharts() {
   const pressureData = [];
   const windData = [];
   const rainData = [];
-
-  // Pour suivre à quel moment changer de jour
-  Object.entries(grouped).forEach(([day, hours]) => {
+  
+  Object.entries(grouped).forEach(([dayKey, hours]) => {
+    const date = new Date(dayKey);
+    const dayLabel = date.toLocaleDateString('fr-FR', { weekday: 'long' });
+    const capitalizedLabel = dayLabel.charAt(0).toUpperCase() + dayLabel.slice(1);
+  
     hours.forEach((entry, index) => {
-      // Affiche uniquement le nom du jour au début
+      // Afficher le jour uniquement au premier point de ce jour
       if (index === 0) {
-        const date = new Date(entry.timestamp * 1000);
-        const dayLabel = date.toLocaleDateString('fr-FR', { weekday: 'long' });
-        labels.push(dayLabel); // ex: "vendredi"
+        labels.push(capitalizedLabel); // ex: "Samedi"
       } else {
         labels.push('');
       }
-
+  
       tempData.push(entry.temp);
       pressureData.push(entry.pressure);
       windData.push(entry.windSpeed);
       rainData.push(entry.rain);
     });
-  });
+  });  
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
