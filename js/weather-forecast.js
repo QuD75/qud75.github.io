@@ -98,15 +98,17 @@ function createCharts() {
   const windData = [];
   const rainData = [];
   
+  const dayChangeIndices = [];
+
   Object.entries(grouped).forEach(([dayKey, hours]) => {
     const date = new Date(dayKey);
     const dayLabel = date.toLocaleDateString('fr-FR', { weekday: 'long' });
     const capitalizedLabel = dayLabel.charAt(0).toUpperCase() + dayLabel.slice(1);
   
     hours.forEach((entry, index) => {
-      // Afficher le jour uniquement au premier point de ce jour
       if (index === 0) {
-        labels.push(capitalizedLabel); // ex: "Samedi"
+        labels.push(capitalizedLabel);
+        dayChangeIndices.push(labels.length - 1); // ← enregistre l’indice
       } else {
         labels.push('');
       }
@@ -116,9 +118,7 @@ function createCharts() {
       windData.push(entry.windSpeed);
       rainData.push(entry.rain);
     });
-  }); 
-  
-  console.log('Labels:', labels);
+  });
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
@@ -128,19 +128,18 @@ function createCharts() {
       const xAxis = chart.scales['x'];
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
-
-      chart.data.labels.forEach((label, index) => {
-        if (label !== '') {
-          const x = xAxis.getPixelForTick(index);
-          ctx.save();
-          ctx.beginPath();
-          ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
-          ctx.lineWidth = 1;
-          ctx.moveTo(x, top);
-          ctx.lineTo(x, bottom);
-          ctx.stroke();
-          ctx.restore();
-        }
+      const indices = chart.options.dayChangeIndices || [];
+  
+      indices.forEach(index => {
+        const x = xAxis.getPixelForTick(index);
+        ctx.save();
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+        ctx.lineWidth = 1;
+        ctx.moveTo(x, top);
+        ctx.lineTo(x, bottom);
+        ctx.stroke();
+        ctx.restore();
       });
     }
   };
@@ -150,6 +149,7 @@ function createCharts() {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      dayChangeIndices,
       plugins: {
         legend: { display: false },
         title: {
@@ -175,7 +175,7 @@ function createCharts() {
       }
     },
     plugins: [daySeparationPlugin]
-  });
+  });  
 
   // Température
   new Chart(document.getElementById('chart-temperature-day'), {
