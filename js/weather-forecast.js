@@ -120,9 +120,6 @@ function createCharts() {
     });
   });
 
-  console.log("Daychange Indices:", dayChangeIndices);
-  console.log("Labels:", labels);
-
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
     id: 'daySeparator',
@@ -132,8 +129,6 @@ function createCharts() {
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
       const indices = (chart.options.dayChangeIndices || []).map(i => Math.round(i / 3));
-
-      console.log('Indices de séparation des jours:', indices);
   
       indices.forEach(index => {
         const x = xAxis.getPixelForTick(index);
@@ -196,7 +191,7 @@ function createCharts() {
     ...commonOptions('Température (°C)')
   });
 
-  /* // Pression
+ // Pression
   new Chart(document.getElementById('chart-pressure-day'), {
     data: {
       labels,
@@ -236,5 +231,5 @@ function createCharts() {
       }]
     },
     ...commonOptions('Pluie (%)', 'bar')
-  }); */
+  });
 }
