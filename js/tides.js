@@ -88,10 +88,8 @@ function updateTimeline() {
         timeline.style.display = 'none';
     } else {
         if (datesWithThreeTides.includes(todayStr)) {
-            console.log("Aujourd'hui : 3 marées");
             timeline.style.top = '255px';
         } else {
-            console.log("Aujourd'hui : 4 marées");
             timeline.style.top = '272px';
         }
     }
