@@ -129,12 +129,14 @@ function createCharts() {
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
       const indices = chart.options.dayChangeIndices || [];
+
+      console.log('Indices de séparation des jours:', indices);
   
       indices.forEach(index => {
         const x = xAxis.getPixelForTick(index);
         ctx.save();
         ctx.beginPath();
-        ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+        ctx.strokeStyle = 'rgba(6, 3, 3, 0.2)';
         ctx.lineWidth = 1;
         ctx.moveTo(x, top);
         ctx.lineTo(x, bottom);
