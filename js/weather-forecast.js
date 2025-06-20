@@ -124,6 +124,12 @@ function createCharts() {
     options: {
       maintainAspectRatio: false,
       responsive: true,
+      elements: {
+        line: {
+          tension: 0.5,
+          cubicInterpolationMode: 'monotone'
+        }
+      },
       plugins: {
         legend: {
           display: false
@@ -156,6 +162,12 @@ function createCharts() {
     options: {
       maintainAspectRatio: false,
       responsive: true,
+      elements: {
+        line: {
+          tension: 0.5,
+          cubicInterpolationMode: 'monotone'
+        }
+      },
       plugins: {
         legend: {
           display: false
@@ -188,6 +200,12 @@ function createCharts() {
     options: {
       maintainAspectRatio: false,
       responsive: true,
+      elements: {
+        line: {
+          tension: 0.5,
+          cubicInterpolationMode: 'monotone'
+        }
+      },
       plugins: {
         legend: {
           display: false
@@ -219,6 +237,12 @@ function createCharts() {
     options: {
       maintainAspectRatio: false,
       responsive: true,
+      elements: {
+        line: {
+          tension: 0.5,
+          cubicInterpolationMode: 'monotone'
+        }
+      },
       plugins: {
         legend: {
           display: false

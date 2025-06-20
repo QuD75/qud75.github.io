@@ -3,7 +3,7 @@
   flex-wrap: nowrap; /* empêche de passer en dessous */
   gap: 2rem;
   align-items: flex-start;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .container-tab {
