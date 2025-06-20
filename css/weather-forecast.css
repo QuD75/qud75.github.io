@@ -19,8 +19,8 @@
 }
 
 .chart-weather-forecast {
-  height: 400px !important;
-  max-height: 400px;
+  max-height: 20rem;
+  max-width: 60rem;
 }
 
 .weather-forecast-table {
