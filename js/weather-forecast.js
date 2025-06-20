@@ -90,16 +90,24 @@ function fillTab(){
 }
 
 function createCharts() {
-  const labels = []; // ex: ['10h', '11h', ...]
+  const labels = [];
   const tempData = [];
   const pressureData = [];
   const windData = [];
   const rainData = [];
 
-  // Récupère tous les points horaires
+  // Pour suivre à quel moment changer de jour
   Object.entries(grouped).forEach(([day, hours]) => {
-    hours.forEach(entry => {
-      labels.push(`${day} ${entry.hour}`);
+    hours.forEach((entry, index) => {
+      // Affiche uniquement le nom du jour au début
+      if (index === 0) {
+        const date = new Date(entry.timestamp * 1000);
+        const dayLabel = date.toLocaleDateString('fr-FR', { weekday: 'long' });
+        labels.push(dayLabel); // ex: "vendredi"
+      } else {
+        labels.push('');
+      }
+
       tempData.push(entry.temp);
       pressureData.push(entry.pressure);
       windData.push(entry.windSpeed);
@@ -107,154 +115,113 @@ function createCharts() {
     });
   });
 
-  // Température
-  new Chart(document.getElementById('chart-temperature-day'), {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [{
-        label: 'Température (°C)',
-        data: tempData,
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        tension: 0.3,
-        pointRadius: 0
-      }]
-    },
+  // Plugin pour ajouter des lignes verticales séparant les jours
+  const daySeparationPlugin = {
+    id: 'daySeparator',
+    afterDraw(chart) {
+      const ctx = chart.ctx;
+      const xAxis = chart.scales['x'];
+      const top = chart.chartArea.top;
+      const bottom = chart.chartArea.bottom;
+
+      chart.data.labels.forEach((label, index) => {
+        if (label !== '') {
+          const x = xAxis.getPixelForTick(index);
+          ctx.save();
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(0, 0, 0, 0.2)';
+          ctx.lineWidth = 1;
+          ctx.moveTo(x, top);
+          ctx.lineTo(x, bottom);
+          ctx.stroke();
+          ctx.restore();
+        }
+      });
+    }
+  };
+
+  const commonOptions = (titleText, type = 'line') => ({
+    type,
     options: {
-      maintainAspectRatio: false,
       responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: titleText,
+          font: { size: 18 }
+        }
+      },
       elements: {
         line: {
           tension: 0.5,
           cubicInterpolationMode: 'monotone'
         }
       },
-      plugins: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: 'Température (°C)',
-          font: {
-            size: 16
+      scales: {
+        x: {
+          ticks: {
+            callback: function (value) {
+              return this.getLabelForValue(value);
+            }
           }
         }
       }
-    }
+    },
+    plugins: [daySeparationPlugin]
+  });
+
+  // Température
+  new Chart(document.getElementById('chart-temperature-day'), {
+    data: {
+      labels,
+      datasets: [{
+        data: tempData,
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)'
+      }]
+    },
+    ...commonOptions('Température (°C)')
   });
 
   // Pression
   new Chart(document.getElementById('chart-pressure-day'), {
-    type: 'line',
     data: {
       labels,
       datasets: [{
-        label: 'Pression (hPa)',
         data: pressureData,
         borderColor: 'rgb(54, 162, 235)',
-        backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        tension: 0.3,
-        pointRadius: 0
+        backgroundColor: 'rgba(54, 162, 235, 0.2)'
       }]
     },
-    options: {
-      maintainAspectRatio: false,
-      responsive: true,
-      elements: {
-        line: {
-          tension: 0.5,
-          cubicInterpolationMode: 'monotone'
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: 'Pression (hPa)',
-          font: {
-            size: 16
-          }
-        }
-      }
-    }
+    ...commonOptions('Pression (hPa)')
   });
 
   // Vent
   new Chart(document.getElementById('chart-wind-day'), {
-    type: 'line',
     data: {
       labels,
       datasets: [{
-        label: 'Vent (km/h)',
         data: windData,
         borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        tension: 0.3,
-        pointRadius: 0
+        backgroundColor: 'rgba(75, 192, 192, 0.2)'
       }]
     },
-    options: {
-      maintainAspectRatio: false,
-      responsive: true,
-      elements: {
-        line: {
-          tension: 0.5,
-          cubicInterpolationMode: 'monotone'
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: 'Vent (km/h)',
-          font: {
-            size: 16
-          }
-        }
-      }
-    }
+    ...commonOptions('Vent (km/h)')
   });
 
-  // Pluie
+  // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
-    type: 'bar',
     data: {
       labels,
       datasets: [{
-        label: 'Pluie (%)',
         data: rainData,
         backgroundColor: 'rgba(153, 102, 255, 0.6)',
         borderColor: 'rgb(153, 102, 255)',
         borderWidth: 1
       }]
     },
-    options: {
-      maintainAspectRatio: false,
-      responsive: true,
-      elements: {
-        line: {
-          tension: 0.5,
-          cubicInterpolationMode: 'monotone'
-        }
-      },
-      plugins: {
-        legend: {
-          display: false
-        },
-        title: {
-          display: true,
-          text: 'Pluie (%)',
-          font: {
-            size: 16
-          }
-        }
-      }
-    }
+    ...commonOptions('Pluie (%)', 'bar')
   });
 }
