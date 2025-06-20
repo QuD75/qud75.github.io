@@ -117,7 +117,8 @@ function createCharts() {
         data: tempData,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        tension: 0.3
+        tension: 0.3,
+        pointRadius: 0
       }]
     },
     options: {
@@ -146,7 +147,8 @@ function createCharts() {
         data: pressureData,
         borderColor: 'rgb(54, 162, 235)',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
-        tension: 0.3
+        tension: 0.3,
+        pointRadius: 0
       }]
     },
     options: {
@@ -175,7 +177,8 @@ function createCharts() {
         data: windData,
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        tension: 0.3
+        tension: 0.3,
+        pointRadius: 0
       }]
     },
     options: {
@@ -185,7 +188,7 @@ function createCharts() {
         },
         title: {
           display: true,
-          text: 'Température (°C)',
+          text: 'Vent (km/h)',
           font: {
             size: 16
           }

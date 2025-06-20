@@ -7,7 +7,6 @@
 }
 
 .container-tab {
-  margin-top: 1rem;
   flex: 0 1 60%;
   max-width: 60%;
   min-width: 0;
@@ -17,6 +16,11 @@
   flex: 0 1 40%;
   max-width: 40%;
   min-width: 0;
+}
+
+.chart-weather-forecast {
+  height: 400px !important;
+  max-height: 400px;
 }
 
 .weather-forecast-table {
