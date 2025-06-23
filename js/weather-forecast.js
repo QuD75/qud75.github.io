@@ -130,7 +130,7 @@ function createCharts() {
       const xAxis = chart.scales['x'];
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
-      const indices = (chart.options.dayChangeIndices || []).map(i => Math.round(i / 3));
+      const indices = (chart.options.dayChangeIndices || []).map(i => Math.floor(i / 3));
 
       console.log('Indices de séparation des jours:', indices);
   
