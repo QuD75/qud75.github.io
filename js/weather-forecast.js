@@ -311,11 +311,11 @@ function createCharts() {
       },
       scales: {
         x: {
-          type: 'bar',
+          type: 'time',
           time: {
             unit: 'day',
             displayFormats: {
-              day: "EEEE"
+              day: 'EEEE'
             }
           },
           adapters: {
@@ -325,10 +325,14 @@ function createCharts() {
           }
         },
         y: {
+          type: 'linear',
           min: 0,
-          max: 100
+          max: 100,
+          ticks: {
+            stepSize: 10
+          }
         }
-      },
+      },      
       elements: {
         line: { tension: 0.5, cubicInterpolationMode: 'monotone' }
       },
