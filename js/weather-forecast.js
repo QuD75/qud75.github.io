@@ -306,7 +306,7 @@ function createCharts() {
         legend: { display: false },
         title: {
           display: true,
-          text: titleText,
+          text: 'Pluie (%)',
           font: { size: 14 }
         }
       },
