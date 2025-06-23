@@ -100,9 +100,10 @@ function createCharts() {
   
   const dayChangeIndices = [];
 
+  console.log('Données groupées:', grouped);
+
   Object.entries(grouped).forEach(([dayKey, hours]) => {
     const date = new Date(dayKey);
-    console.log('Date:', date);
     const dayLabel = date.toLocaleDateString('fr-FR', { weekday: 'long' });
     const capitalizedLabel = dayLabel.charAt(0).toUpperCase() + dayLabel.slice(1);
   
