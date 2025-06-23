@@ -168,7 +168,7 @@ function createCharts() {
           },
           adapters: {
             date: {
-              locale: 'fr' // ← ici simplement une string fonctionne avec le bundle
+              locale: fr
             }
           }
         }
