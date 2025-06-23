@@ -32,13 +32,10 @@ function getWeatherForecastData(data){
     const dayApi = h.displayDateTime.day;
     const hourApi = h.displayDateTime.hours;
     const date = new Date(yearApi, monthApi, dayApi, hourApi);
-    const dateMidnight = new Date(yearApi, monthApi, dayApi, 0, 0, 0);
-    console.log('Date:', dateMidnight);
 
-    //const dayOptions = { day: '2-digit', month: '2-digit'};
     const day = date.toISOString().split('T')[0];
-    //const day = date.toLocaleDateString('fr-FR', dayOptions);
-    const hour = `${date.getHours()}h`; 
+    console.log('Jour:', day);
+    const hour = `${date.getHours()}h`;
 
     if (!grouped[day]) grouped[day] = [];
     grouped[day].push({
