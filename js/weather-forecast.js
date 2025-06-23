@@ -118,7 +118,7 @@ function createCharts() {
       rainData.push(entry.rain);
     });
   });
-  compressedLabels = compressLabels(labels);  
+  compressedLabels = compressLabelsMax16(labels);  
   console.log('labels', labels);
   console.log('compressedLabels', compressedLabels);
 
