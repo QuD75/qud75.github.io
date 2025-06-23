@@ -151,7 +151,7 @@ function createCharts() {
         title: {
           display: true,
           text: titleText,
-          font: { size: 18 }
+          font: { size: 14 }
         }
       },
       elements: {
