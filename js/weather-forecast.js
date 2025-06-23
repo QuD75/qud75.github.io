@@ -192,7 +192,7 @@ function createCharts() {
  // Pression
   new Chart(document.getElementById('chart-pressure-day'), {
     data: {
-      labels: compressedLabels,
+      labels,
       datasets: [{
         data: pressureData,
         borderColor: 'rgb(54, 162, 235)',
