@@ -38,7 +38,7 @@ function getWeatherForecastData(data){
     //const dayOptions = { day: '2-digit', month: '2-digit'};
     const day = date.toISOString().split('T')[0];
     //const day = date.toLocaleDateString('fr-FR', dayOptions);
-    const hour = `${date.getHours()}h`;
+    const hour = `${date.getHours()}h`; 
 
     if (!grouped[day]) grouped[day] = [];
     grouped[day].push({
