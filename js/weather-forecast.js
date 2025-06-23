@@ -116,6 +116,7 @@ function createCharts() {
       windData.push(entry.windSpeed); 
       rainData.push(entry.rain);
     });
+    const compressedLabels = labels.filter((_, index) => index % 3 === 0);
   });
 
   // Plugin pour ajouter des lignes verticales séparant les jours
@@ -178,7 +179,7 @@ function createCharts() {
   // Température
   new Chart(document.getElementById('chart-temperature-day'), {
     data: {
-      labels,
+      compressedLabels,
       datasets: [{
         data: tempData,
         borderColor: 'rgb(255, 99, 132)',
