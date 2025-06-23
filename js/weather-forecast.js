@@ -72,8 +72,7 @@ function fillTab(){
       if (index === 0) {
         const dayCell = document.createElement("td");
         dayCell.rowSpan = hours.length;
-        dayCell.textContent = day;
-        //dayCell.textContent = new Date(day).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
+        dayCell.textContent = new Date(day).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
         dayCell.style.fontWeight = 'bold';
         row.appendChild(dayCell);
       }
@@ -165,35 +164,18 @@ function createCharts() {
         x: {
           type: 'time',
           time: {
-            unit: 'hour',  // garde la granularité horaire
+            unit: 'day',
             displayFormats: {
-              hour: "EEEE HH'h'"
+              day: "EEEE"
             }
           },
           adapters: {
-            date: { locale: fr }
-          },
-          ticks: {
-            callback: function(value, index, ticks) {
-              const currentDate = new Date(this.getLabelForValue(value));
-              const prevDate = index > 0 ? new Date(this.getLabelForValue(ticks[index - 1].value)) : null;
-      
-              // Affiche le label seulement si c’est un jour différent du précédent
-              if (!prevDate || currentDate.getDate() !== prevDate.getDate()) {
-                // Format : "Lundi 00h"
-                return currentDate.toLocaleDateString('fr-FR', {
-                  weekday: 'long',
-                  hour: '2-digit',
-                  hour12: false
-                }).replace(':00', 'h');
-              }
-              return ''; // Sinon, pas de label affiché
-            },
-            maxRotation: 0,
-            autoSkip: false,
+            date: {
+              locale: fr
+            }
           }
         }
-      }      
+      }
     },
     plugins: [daySeparationPlugin]
   });
