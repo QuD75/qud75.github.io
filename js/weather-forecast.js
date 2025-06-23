@@ -311,7 +311,7 @@ function createCharts() {
       },
       scales: {
         x: {
-          type: 'time', // ❗ Nécessaire pour éviter les barres à chaque tick
+          type: 'bar',
           time: {
             unit: 'day',
             displayFormats: {
