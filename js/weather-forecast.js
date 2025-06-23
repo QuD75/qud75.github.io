@@ -135,46 +135,51 @@ function createCharts() {
   };
 
   const commonOptions = (titleText, type = 'line') => ({
-  type,
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    dayChangeTimestamps, // ← accessible pour le plugin
-    plugins: {
-      legend: { display: false },
-      title: {
-        display: true,
-        text: titleText,
-        font: { size: 18 }
-      }
-    },
-    elements: {
-      line: {
-        tension: 0.5,
-        cubicInterpolationMode: 'monotone'
-      }
-    },
-    scales: {
-      x: {
-        type: 'time',
-        time: {
-          unit: 'hour',
-          tooltipFormat: 'EEEE HH[h]',
-          displayFormats: {
-            hour: 'EEE HH[h]' // exemple : Lun 14h
+    type,
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      dayChangeTimestamps,
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: titleText,
+          font: { size: 18 }
+        }
+      },
+      elements: {
+        line: {
+          tension: 0.5,
+          cubicInterpolationMode: 'monotone'
+        }
+      },
+      scales: {
+        x: {
+          type: 'time',
+          time: {
+            unit: 'hour',
+            tooltipFormat: "EEEE HH'h'",  // → Lundi 14h
+            displayFormats: {
+              hour: "EEEE HH'h'"          // → Lundi 14h
+            }
+          },
+          ticks: {
+            source: 'auto',
+            autoSkip: true,
+            maxRotation: 0
+          },
+          adapters: {
+            date: {
+              locale: fr                 // ← c'est ici que la magie opère ✨
+            }
           }
-        },
-        ticks: {
-          source: 'auto',
-          autoSkip: true,
-          maxRotation: 0,
-          minRotation: 0
         }
       }
-    }
-  },
-  plugins: [daySeparationPlugin]
-});
+    },
+    plugins: [daySeparationPlugin]
+  });
+  
 
   // Température
   new Chart(document.getElementById('chart-temperature-day'), {
