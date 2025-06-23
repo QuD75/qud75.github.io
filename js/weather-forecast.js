@@ -134,6 +134,8 @@ function createCharts() {
     }
   };
 
+  const fr = window.dateFns?.locale?.fr || undefined;
+
   const commonOptions = (titleText, type = 'line') => ({
     type,
     options: {
