@@ -119,6 +119,7 @@ function createCharts() {
     });
   });
   compressedLabels = compressLabels(labels);  
+  console.log('labels', labels);
   console.log('compressedLabels', compressedLabels);
 
   // Plugin pour ajouter des lignes verticales séparant les jours
