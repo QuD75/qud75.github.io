@@ -72,8 +72,7 @@ function fillTab(){
       if (index === 0) {
         const dayCell = document.createElement("td");
         dayCell.rowSpan = hours.length;
-        const formatted = day.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
-        dayCell.textContent = formatted;
+        dayCell.textContent = new Date(day).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long' });
         dayCell.style.fontWeight = 'bold';
         row.appendChild(dayCell);
       }
