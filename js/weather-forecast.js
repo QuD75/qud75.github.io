@@ -79,18 +79,15 @@ function getWeatherForecastDaysData(data) {
   // Helper : format direction vent
   const formatWind = (speed, direction) => `${speed.value} km/h (${direction.cardinal})`;
 
+  console.log("days", days)
+
   // Ajouter les entêtes (jours)
   days.forEach((day) => {
     const th = document.createElement("th");
     th.textContent = formatDate(day.displayDate);
     theadRow.appendChild(th);
   });
-
-  if (!data || !Array.isArray(data.forecastDays)) {
-    console.error("❌ Données météo invalides :", data);
-    return;
-  }
-
+  
   // Remplir les lignes
   days.forEach((day, colIndex) => {
     const d = day.daytimeForecast;
