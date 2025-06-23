@@ -118,7 +118,7 @@ function createCharts() {
       rainData.push(entry.rain);
     });
   });
-  compressedLabels = compressLabelsMax16(labels);  
+  compressedLabels = compressLabels(labels);  
   console.log('labels', labels);
   console.log('compressedLabels', compressedLabels);
 
@@ -182,7 +182,7 @@ function createCharts() {
   // Température
   new Chart(document.getElementById('chart-temperature-day'), {
     data: {
-      compressedLabels,
+      labels: compressedLabels,
       datasets: [{
         data: tempData,
         borderColor: 'rgb(255, 99, 132)',
@@ -249,16 +249,14 @@ function createCharts() {
   });
 }
 
-function compressLabelsMax16(labels) {
-  const maxLength = 16;
-  const result = new Array(maxLength).fill('');
+function compressLabels(labels) {
+  const newLength = Math.round(labels.length / 3) + 1;
+  const result = new Array(newLength).fill('');
 
   labels.forEach((label, i) => {
     if (label !== '') {
       const newIndex = Math.round(i / 3);
-      if (newIndex < maxLength) {
-        result[newIndex] = label;
-      }
+      result[newIndex] = label;
     }
   });
 
