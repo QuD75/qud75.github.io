@@ -128,5 +128,5 @@ function getTextColorFromBackground(bgColor) {
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
   
     // Si la luminance est faible, texte en blanc, sinon en noir
-    return yiq < 128 ? '#fff' : '#000';
-  }
+    return yiq < 200 ? '#fff' : '#000';
+}
