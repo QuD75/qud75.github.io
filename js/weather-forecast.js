@@ -1,3 +1,5 @@
+import { fr } from 'date-fns/locale';
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const apiKey = 'AIzaSyAusGSh1xC3ZT0_wXG-_7VbWWCnrO6tZFg';
@@ -134,8 +136,6 @@ function createCharts() {
     }
   };
 
-  const fr = window.dateFns?.locale?.fr || undefined;
-
   const commonOptions = (titleText, type = 'line') => ({
     type,
     options: {
@@ -161,19 +161,14 @@ function createCharts() {
           type: 'time',
           time: {
             unit: 'hour',
-            tooltipFormat: "EEEE HH'h'",  // → Lundi 14h
+            tooltipFormat: "EEEE HH'h'",
             displayFormats: {
-              hour: "EEEE HH'h'"          // → Lundi 14h
+              hour: "EEEE HH'h'"
             }
-          },
-          ticks: {
-            source: 'auto',
-            autoSkip: true,
-            maxRotation: 0
           },
           adapters: {
             date: {
-              locale: fr                 // ← c'est ici que la magie opère ✨
+              locale: 'fr' // ← ici simplement une string fonctionne avec le bundle
             }
           }
         }
@@ -181,7 +176,6 @@ function createCharts() {
     },
     plugins: [daySeparationPlugin]
   });
-  
 
   // Température
   new Chart(document.getElementById('chart-temperature-day'), {
