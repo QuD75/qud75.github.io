@@ -1,48 +1,27 @@
 function getColorForTemperature(temp) {
-    // Définir les points de transition pour les couleurs
-    const colorStops = [
-        { temp: -10, color: [128, 0, 255] },
-        { temp: -5, color: [0, 0, 255] },
-        { temp: 0, color: [0, 128, 255] },
-        { temp: 5, color: [0, 255, 255] },
-        { temp: 9, color: [0, 255, 128] },
-        { temp: 12, color: [0, 255, 0] },
-        { temp: 15, color: [128, 255, 0] },
-        { temp: 20, color: [255, 255, 0] },
-        { temp: 25, color: [255, 128, 0] },
-        { temp: 30, color: [255, 0, 0] },
-        { temp: 35, color: [255, 0, 128] },
-        { temp: 40, color: [255, 0, 255] },
-    ];
+  const stops = [
+    { temp: -10, color: [0, 32, 96] },
+    { temp: 0, color: [0, 128, 255] },
+    { temp: 10, color: [0, 204, 204] },
+    { temp: 20, color: [255, 255, 102] },
+    { temp: 30, color: [255, 165, 0] },
+    { temp: 40, color: [204, 0, 0] },
+  ];
 
-    // Trouver les deux points de transition entre lesquels se situe la température
-    for (let i = 0; i < colorStops.length - 1; i++) {
-        const currentStop = colorStops[i];
-        const nextStop = colorStops[i + 1];
+  if (temp <= stops[0].temp) return `rgb(${stops[0].color.join(',')})`;
+  if (temp >= stops[stops.length - 1].temp) return `rgb(${stops[stops.length - 1].color.join(',')})`;
 
-        if (temp >= currentStop.temp && temp <= nextStop.temp) {
-            // Calculer le ratio de la température entre les deux points
-            const ratio = (temp - currentStop.temp) / (nextStop.temp - currentStop.temp);
-
-            // Interpolation linéaire des couleurs
-            const r = Math.round(currentStop.color[0] + ratio * (nextStop.color[0] - currentStop.color[0]));
-            const g = Math.round(currentStop.color[1] + ratio * (nextStop.color[1] - currentStop.color[1]));
-            const b = Math.round(currentStop.color[2] + ratio * (nextStop.color[2] - currentStop.color[2]));
-
-            return `rgb(${r}, ${g}, ${b})`;
-        }
-        if (temp < colorStops[0].temp) {
-            // Si la température est en dessous du premier point, retourner la couleur du premier point
-            return `rgb(${colorStops[0].color.join(', ')})`;
-        }
-        if (temp > colorStops[colorStops.length - 1].temp) {
-            // Si la température est au-dessus du dernier point, retourner la couleur du dernier point
-            return `rgb(${colorStops[colorStops.length - 1].color.join(', ')})`;
-        }
+  for (let i = 0; i < stops.length - 1; i++) {
+    const curr = stops[i];
+    const next = stops[i + 1];
+    if (temp >= curr.temp && temp <= next.temp) {
+      const ratio = (temp - curr.temp) / (next.temp - curr.temp);
+      const r = Math.round(curr.color[0] + ratio * (next.color[0] - curr.color[0]));
+      const g = Math.round(curr.color[1] + ratio * (next.color[1] - curr.color[1]));
+      const b = Math.round(curr.color[2] + ratio * (next.color[2] - curr.color[2]));
+      return `rgb(${r},${g},${b})`;
     }
-
-    // Retourner la couleur du dernier point si la température est au-delà de la plage définie
-    return `rgb(${colorStops[colorStops.length - 1].color.join(', ')})`;
+  }
 }
 
 function getColorForHumidity(hum){  
@@ -56,17 +35,17 @@ function getColorForHumidity(hum){
 }
 
 function getColorForWindSpeed(speed) {
-  if (speed <= 5) return '#adebad';       // vert très clair
-  if (speed <= 10) return '#90ee90';      // vert clair
-  if (speed <= 15) return '#ffff99';      // jaune pâle
-  if (speed <= 20) return '#ffd580';      // jaune/orangé clair
-  if (speed <= 30) return '#ffb347';      // orange clair
-  if (speed <= 40) return '#ff7f50';      // corail
-  if (speed <= 50) return '#ff6347';      // tomate
-  if (speed <= 60) return '#ff4500';      // orange rouge vif
-  if (speed <= 80) return '#ff0000';      // rouge vif
-  if (speed <= 100) return '#b22222';     // bordeaux
-  return '#800080';                       // violet foncé
+  if (speed <= 5) return '#ffffcc';       // jaune très clair
+  if (speed <= 10) return '#ffeda0';      // jaune clair
+  if (speed <= 15) return '#fed976';      // jaune doré
+  if (speed <= 20) return '#feb24c';      // orange clair
+  if (speed <= 30) return '#fd8d3c';      // orange
+  if (speed <= 40) return '#fc4e2a';      // rouge clair
+  if (speed <= 50) return '#e31a1c';      // rouge vif
+  if (speed <= 60) return '#bd0026';      // rouge foncé
+  if (speed <= 80) return '#800026';      // bordeaux très foncé
+  if (speed <= 100) return '#4b000f';     // bordeaux presque noir
+  return '#2b0007';                       // presque noir
 }
 
 function getColorForUv(uv){
