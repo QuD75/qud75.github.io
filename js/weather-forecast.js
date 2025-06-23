@@ -249,14 +249,16 @@ function createCharts() {
   });
 }
 
-function compressLabels(labels) {
-  const newLength = Math.round(labels.length / 3) + 1;
-  const result = new Array(newLength).fill('');
+function compressLabelsMax16(labels) {
+  const maxLength = 16;
+  const result = new Array(maxLength).fill('');
 
   labels.forEach((label, i) => {
     if (label !== '') {
       const newIndex = Math.round(i / 3);
-      result[newIndex] = label;
+      if (newIndex < maxLength) {
+        result[newIndex] = label;
+      }
     }
   });
 
