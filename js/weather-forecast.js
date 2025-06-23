@@ -79,7 +79,7 @@ function getWeatherForecastDaysData(data) {
   // Helper : format direction vent
   const formatWind = (speed, direction) => `${speed.value} km/h (${direction.cardinal})`;
 
-  console.log("days", days)
+  console.log("days", days);
 
   // Ajouter les entêtes (jours)
   days.forEach((day) => {
@@ -87,7 +87,7 @@ function getWeatherForecastDaysData(data) {
     th.textContent = formatDate(day.displayDate);
     theadRow.appendChild(th);
   });
-  
+
   // Remplir les lignes
   days.forEach((day, colIndex) => {
     const d = day.daytimeForecast;
