@@ -65,47 +65,88 @@ function fillTab() {
 
   for (const [day, hours] of Object.entries(grouped)) {
     hours.forEach((entry, index) => {
-      const row = document.createElement("tr");
+      const row = document.createElement('tr');
 
       if (index === 0) {
-        const dayCell = document.createElement("td");
+        const dayCell = document.createElement('td');
         dayCell.rowSpan = hours.length;
         dayCell.textContent = new Date(day).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
         dayCell.style.fontWeight = 'bold';
         row.appendChild(dayCell);
       }
 
-      // Calcul des couleurs de fond et de texte pour chaque case colorée
+      // Cellule heure
+      const hourCell = document.createElement('td');
+      hourCell.innerHTML = `<strong>${entry.hour}</strong>`;
+      row.appendChild(hourCell);
+
+      // Température
+      const tempCell = document.createElement('td');
       const tempBg = getColorForTemperature(entry.temp);
-      const tempText = getTextColorFromBackground(tempBg);
+      tempCell.style.backgroundColor = tempBg;
+      tempCell.style.color = getTextColorFromBackground(tempBg);
+      tempCell.textContent = entry.temp;
+      row.appendChild(tempCell);
 
+      // Humidité
+      const humCell = document.createElement('td');
       const humBg = getColorForHumidity(entry.hum);
-      const humText = getTextColorFromBackground(humBg);
+      humCell.style.backgroundColor = humBg;
+      humCell.style.color = getTextColorFromBackground(humBg);
+      humCell.textContent = entry.hum;
+      row.appendChild(humCell);
 
+      // Pression
+      const pressureCell = document.createElement('td');
+      pressureCell.textContent = entry.pressure;
+      row.appendChild(pressureCell);
+
+      // Vent vitesse
+      const windSpeedCell = document.createElement('td');
       const windSpeedBg = getColorForWindSpeed(entry.windSpeed);
-      const windSpeedText = getTextColorFromBackground(windSpeedBg);
+      windSpeedCell.style.backgroundColor = windSpeedBg;
+      windSpeedCell.style.color = getTextColorFromBackground(windSpeedBg);
+      windSpeedCell.textContent = Math.round(entry.windSpeed / 5) * 5;
+      row.appendChild(windSpeedCell);
 
+      // Vent rafale
+      const windGustCell = document.createElement('td');
       const windGustBg = getColorForWindSpeed(entry.windGust);
-      const windGustText = getTextColorFromBackground(windGustBg);
+      windGustCell.style.backgroundColor = windGustBg;
+      windGustCell.style.color = getTextColorFromBackground(windGustBg);
+      windGustCell.textContent = Math.round(entry.windGust / 5) * 5;
+      row.appendChild(windGustCell);
 
+      // Direction vent (image)
+      const windDirCell = document.createElement('td');
+      const imgDir = document.createElement('img');
+      imgDir.src = getWindDirectionIcon(entry.windDirection);
+      windDirCell.appendChild(imgDir);
+      row.appendChild(windDirCell);
+
+      // Pluie
+      const rainCell = document.createElement('td');
       const rainBg = getColorForRain(entry.rain);
-      const rainText = getTextColorFromBackground(rainBg);
+      rainCell.style.backgroundColor = rainBg;
+      rainCell.style.color = getTextColorFromBackground(rainBg);
+      rainCell.textContent = entry.rain;
+      row.appendChild(rainCell);
 
+      // Uv
+      const uvCell = document.createElement('td');
       const uvBg = getColorForUv(entry.uvi);
-      const uvText = getTextColorFromBackground(uvBg);
+      uvCell.style.backgroundColor = uvBg;
+      uvCell.style.color = getTextColorFromBackground(uvBg);
+      uvCell.textContent = entry.uvi;
+      row.appendChild(uvCell);
 
-      row.innerHTML += `
-        <td><strong>${entry.hour}</strong></td>
-        <td style="background-color: ${tempBg}; color: ${tempText};">${entry.temp}</td>
-        <td style="background-color: ${humBg}; color: ${humText};">${entry.hum}</td>
-        <td>${entry.pressure}</td>
-        <td style="background-color: ${windSpeedBg}; color: ${windSpeedText};">${Math.round(entry.windSpeed / 5) * 5}</td>
-        <td style="background-color: ${windGustBg}; color: ${windGustText};">${Math.round(entry.windGust / 5) * 5}</td>
-        <td><img src="${getWindDirectionIcon(entry.windDirection)}"></td>
-        <td style="background-color: ${rainBg}; color: ${rainText};">${entry.rain}</td>
-        <td style="background-color: ${uvBg}; color: ${uvText};">${entry.uvi}</td>
-        <td><img class="weather-icon" src="/icons/weather/${entry.isDay ? 'day' : 'night'}/${entry.weather}.svg"></td>
-      `;
+      // Icône météo
+      const weatherCell = document.createElement('td');
+      const imgWeather = document.createElement('img');
+      imgWeather.classList.add('weather-icon');
+      imgWeather.src = `/icons/weather/${entry.isDay ? 'day' : 'night'}/${entry.weather}.svg`;
+      weatherCell.appendChild(imgWeather);
+      row.appendChild(weatherCell);
 
       tbody.appendChild(row);
     });
