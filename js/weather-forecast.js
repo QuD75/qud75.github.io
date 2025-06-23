@@ -129,6 +129,8 @@ function createCharts() {
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
       const indices = (chart.options.dayChangeIndices || []).map(i => Math.round(i / 3));
+
+      console.log('Indices de séparation des jours:', indices);
   
       indices.forEach(index => {
         const x = xAxis.getPixelForTick(index);
