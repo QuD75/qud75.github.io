@@ -7,20 +7,21 @@ import "chartjs-adapter-date-fns";
 document.addEventListener('DOMContentLoaded', () => {
 
     const apiKey = 'AIzaSyAusGSh1xC3ZT0_wXG-_7VbWWCnrO6tZFg';
-    const baseUrl = 'https://weather.googleapis.com/v1/forecast/hours:lookup';
+    const baseUrl = 'https://weather.googleapis.com/v1/forecast';
     const lat = 47.29;
     const lon = -2.52;
 
-    const weatherApi = `${baseUrl}?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
+    const weatherDay = `${baseUrl}/hours:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
+    const weatherWeek = `${baseUrl}/days:lookup??key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function getApiData() {
-      const firstPageData = await fetchData(weatherApi, 'weather_forecast_day', 30, getWeatherForecastHoursData);
+      const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
-        const weatherApiNextPage = `${weatherApi}&pageToken=${firstPageData.nextPageToken}`;
+        const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
       fillTabDay();
-      fetchData(weatherApi, 'weather_forecast_week', 180, getWeatherForecastDaysData);
+      fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
       createCharts();
     }
   
@@ -61,11 +62,66 @@ function getWeatherForecastHoursData(data){
   });
 }
 
-function getWeatherForecastDaysData(data){
+function getWeatherForecastDaysData(data) {
+  const table = document.getElementById("forecast-table");
+  const theadRow = table.querySelector("thead > tr");
+  const tbody = table.querySelector("tbody");
+  const tbodyRows = Array.from(tbody.rows);
+  const days = data.forecastDays;
+  const timeZone = data.timeZone?.id || "Europe/Paris";
+
+  // Helper : formater la date
+  const formatDate = (dateObj) => {
+    const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
+    return date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone });
+  };
+
+  // Helper : format direction vent
+  const formatWind = (speed, direction) => `${speed.value} km/h (${direction.cardinal})`;
+
+  // Ajouter les entêtes (jours)
+  days.forEach((day) => {
+    const th = document.createElement("th");
+    th.textContent = formatDate(day.displayDate);
+    theadRow.appendChild(th);
+  });
+
+  // Remplir les lignes
+  days.forEach((day, colIndex) => {
+    const d = day.daytimeForecast;
+    const n = day.nighttimeForecast;
+
+    const cellValues = [
+      d.weatherCondition.description.text,
+      n.weatherCondition.description.text,
+      `${day.maxTemperature.degrees} / ${day.minTemperature.degrees}`,
+      `${day.feelsLikeMaxTemperature.degrees} / ${day.feelsLikeMinTemperature.degrees}`,
+      `${d.relativeHumidity} % / ${n.relativeHumidity} %`,
+      `${d.uvIndex} / ${n.uvIndex}`,
+      formatWind(d.wind.speed, d.wind.direction),
+      formatWind(n.wind.speed, n.wind.direction),
+      `${d.wind.gust.value} / ${n.wind.gust.value} km/h`,
+      `${d.cloudCover} % / ${n.cloudCover} %`,
+      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`,
+      `${new Date(day.sunEvents.sunriseTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })} / ` +
+      `${new Date(day.sunEvents.sunsetTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })}`,
+      `${new Date(day.moonEvents.moonriseTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })} / ` +
+      `${new Date(day.moonEvents.moonsetTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })}`,
+      day.moonEvents.moonPhase.replace("_", " ").toLowerCase()
+    ];
+
+    // Insérer les valeurs dans les cellules du tbody
+    cellValues.forEach((val, rowIndex) => {
+      const row = tbodyRows[rowIndex];
+      const td = document.createElement("td");
+      td.textContent = val;
+      row.appendChild(td);
+    });
+  });
 }
 
 function fillTabDay() {
-  const tbody = document.querySelector('tbody');
+  const tbody = document.getElementById("day-forecast-body");
 
   for (const [day, hours] of Object.entries(grouped)) {
     hours.forEach((entry, index) => {
