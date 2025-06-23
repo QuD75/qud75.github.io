@@ -91,6 +91,7 @@ function fillTab(){
 
 function createCharts() {
   const labels = [];
+  const compressedLabels = [];
   const tempData = [];
   const pressureData = [];
   const windData = [];
@@ -116,7 +117,7 @@ function createCharts() {
       windData.push(entry.windSpeed); 
       rainData.push(entry.rain);
     });
-    const compressedLabels = labels.filter((_, index) => index % 3 === 0);
+    compressedLabels = labels.filter((_, index) => index % 3 === 0);
   });
 
   // Plugin pour ajouter des lignes verticales séparant les jours
