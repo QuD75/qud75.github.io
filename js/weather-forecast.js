@@ -32,6 +32,7 @@ function getWeatherForecastData(data){
     const dayApi = h.displayDateTime.day;
     const hourApi = h.displayDateTime.hours;
     const date = new Date(yearApi, monthApi, dayApi, hourApi);
+    console.log('Date:', date);
 
     //const dayOptions = { day: '2-digit', month: '2-digit'};
     const day = date.toISOString().split('T')[0];
