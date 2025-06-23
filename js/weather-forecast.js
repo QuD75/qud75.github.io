@@ -33,7 +33,7 @@ function getWeatherForecastData(data){
     const hourApi = h.displayDateTime.hours;
     const date = new Date(yearApi, monthApi, dayApi, hourApi);
 
-    const day = date.toISOString().split('T')[0];
+    const day = date.toLocaleDateString('fr-CA');
     console.log('Jour:', day);
     const hour = `${date.getHours()}h`;
 
