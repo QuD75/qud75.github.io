@@ -34,7 +34,6 @@ function getWeatherForecastData(data){
     const date = new Date(yearApi, monthApi, dayApi, hourApi);
 
     const day = date.toLocaleDateString('fr-CA');
-    console.log('Jour:', day);
     const hour = `${date.getHours()}h`;
 
     if (!grouped[day]) grouped[day] = [];
@@ -99,8 +98,6 @@ function createCharts() {
   
   const dayChangeIndices = [];
 
-  console.log('Données groupées:', grouped);
-
   Object.entries(grouped).forEach(([dayKey, hours]) => {
     const date = new Date(dayKey);
     const dayLabel = date.toLocaleDateString('fr-FR', { weekday: 'long' });
@@ -121,8 +118,6 @@ function createCharts() {
     });
   });
 
-  //console.log('Labels:', labels);
-
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
     id: 'daySeparator',
@@ -131,9 +126,7 @@ function createCharts() {
       const xAxis = chart.scales['x'];
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
-      const indices = (chart.options.dayChangeIndices || []).map(i => Math.floor(i / 3));
-
-      //console.log('Indices de séparation des jours:', indices);
+      const indices = (chart.options.dayChangeIndices || []).map(i => i/3);
   
       indices.forEach(index => {
         const x = xAxis.getPixelForTick(index);
