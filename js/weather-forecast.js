@@ -159,12 +159,16 @@ function createCharts() {
         type: 'time',
         time: {
           unit: 'hour',
+          tooltipFormat: 'EEEE HH[h]',
           displayFormats: {
-            hour: 'HH[h]'
+            hour: 'EEE HH[h]' // exemple : Lun 14h
           }
         },
         ticks: {
-          source: 'auto'
+          source: 'auto',
+          autoSkip: true,
+          maxRotation: 0,
+          minRotation: 0
         }
       }
     }
