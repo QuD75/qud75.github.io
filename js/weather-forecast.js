@@ -60,11 +60,9 @@ function getWeatherForecastData(data){
   });
 }
 
-function fillTab(){
-
+function fillTab() {
   const tbody = document.querySelector('tbody');
 
-  // Générer les lignes du tableau avec rowspan
   for (const [day, hours] of Object.entries(grouped)) {
     hours.forEach((entry, index) => {
       const row = document.createElement("tr");
@@ -77,16 +75,35 @@ function fillTab(){
         row.appendChild(dayCell);
       }
 
+      // Calcul des couleurs de fond et de texte pour chaque case colorée
+      const tempBg = getColorForTemperature(entry.temp);
+      const tempText = getTextColorFromBackground(tempBg);
+
+      const humBg = getColorForHumidity(entry.hum);
+      const humText = getTextColorFromBackground(humBg);
+
+      const windSpeedBg = getColorForWindSpeed(entry.windSpeed);
+      const windSpeedText = getTextColorFromBackground(windSpeedBg);
+
+      const windGustBg = getColorForWindSpeed(entry.windGust);
+      const windGustText = getTextColorFromBackground(windGustBg);
+
+      const rainBg = getColorForRain(entry.rain);
+      const rainText = getTextColorFromBackground(rainBg);
+
+      const uvBg = getColorForUv(entry.uvi);
+      const uvText = getTextColorFromBackground(uvBg);
+
       row.innerHTML += `
         <td><strong>${entry.hour}</strong></td>
-        <td style="background-color: ${getColorForTemperature(entry.temp)};">${entry.temp}</td>
-        <td style="background-color: ${getColorForHumidity(entry.hum)};">${entry.hum}</td>
+        <td style="background-color: ${tempBg}; color: ${tempText};">${entry.temp}</td>
+        <td style="background-color: ${humBg}; color: ${humText};">${entry.hum}</td>
         <td>${entry.pressure}</td>
-        <td style="background-color: ${getColorForWindSpeed(entry.windSpeed)};">${Math.round(entry.windSpeed / 5) * 5}</td>
-        <td style="background-color: ${getColorForWindSpeed(entry.windGust)};">${Math.round(entry.windGust / 5) * 5}</td>
+        <td style="background-color: ${windSpeedBg}; color: ${windSpeedText};">${Math.round(entry.windSpeed / 5) * 5}</td>
+        <td style="background-color: ${windGustBg}; color: ${windGustText};">${Math.round(entry.windGust / 5) * 5}</td>
         <td><img src="${getWindDirectionIcon(entry.windDirection)}"></td>
-        <td style="background-color: ${getColorForRain(entry.rain)};">${entry.rain}</td>
-        <td style="background-color: ${getColorForUv(entry.uvi)};">${entry.uvi}</td>
+        <td style="background-color: ${rainBg}; color: ${rainText};">${entry.rain}</td>
+        <td style="background-color: ${uvBg}; color: ${uvText};">${entry.uvi}</td>
         <td><img class="weather-icon" src="/icons/weather/${entry.isDay ? 'day' : 'night'}/${entry.weather}.svg"></td>
       `;
 

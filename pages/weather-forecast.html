@@ -62,7 +62,25 @@
 
         <h2>Météo pour les 7 prochains jours</h2>
         <div id="week-container" class="weather-forecast">
-            <div id="week-container-tab" class="container-tab"></div>
+            <div id="week-container-tab" class="container-tab">
+                <table class="weather-forecast-table">
+                    <thead>
+                        <tr>
+                          <th>Jour</th>
+                          <th>Température min<br><small>(°C)</small></th>
+                          <th>Température max<br><small>(°C)</small></th>
+                          <th>Pression<br><small>(hPa)</small></th>
+                          <th>Vent moyen<br><small>(km/h)</small></th>
+                          <th>Vent rafales<br><small>(km/h)</small></th>
+                          <th>Direction<br>du vent</th>
+                          <th>Pluie<br><small>(%)</small></th>
+                          <th>Indice<br>UV</th>
+                          <th>Temps</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                </table>
+            </div>
             <div id="week-container-graphs" class="container-graphs">
                 <canvas id="chart-temperature-week" class="chart-weather-forecast"></canvas>
                 <canvas id="chart-pressure-week" class="chart-weather-forecast"></canvas>

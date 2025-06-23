@@ -117,3 +117,16 @@ function getColorForRain(prob) {
   if (prob <= 90) return 'rgba(0, 0, 100, 0.95)';     // très foncé
   return 'rgba(25, 25, 112, 1)';                      // bleu très foncé opaque
 }
+
+function getTextColorFromBackground(bgColor) {
+    // Extraire les composants R, G, B depuis un hexadécimal (ex: "#ff0000")
+    const r = parseInt(bgColor.substr(1, 2), 16);
+    const g = parseInt(bgColor.substr(3, 2), 16);
+    const b = parseInt(bgColor.substr(5, 2), 16);
+  
+    // Calculer la luminance perçue (formule YIQ)
+    const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+  
+    // Si la luminance est faible, texte en blanc, sinon en noir
+    return yiq < 128 ? '#fff' : '#000';
+  }
