@@ -70,6 +70,8 @@ function getWeatherForecastDaysData(data) {
   const days = data.forecastDays;
   const timeZone = data.timeZone?.id || "Europe/Paris";
 
+  console.log("days", days);
+
   // Helper : formater la date
   const formatDate = (dateObj) => {
     const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
@@ -78,8 +80,6 @@ function getWeatherForecastDaysData(data) {
 
   // Helper : format direction vent
   const formatWind = (speed, direction) => `${speed.value} km/h (${direction.cardinal})`;
-
-  console.log("days", days);
 
   // Ajouter les entêtes (jours)
   days.forEach((day) => {
