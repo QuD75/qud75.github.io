@@ -80,13 +80,13 @@ function fillTab() {
       hourCell.innerHTML = `<strong>${entry.hour}</strong>`;
       row.appendChild(hourCell);
 
-      // Température
+/*       // Température
       const tempCell = document.createElement('td');
       const tempBg = getColorForTemperature(entry.temp);
       tempCell.style.backgroundColor = tempBg;
       tempCell.style.color = getTextColorFromBackground(tempBg);
       tempCell.textContent = entry.temp;
-      row.appendChild(tempCell);
+      row.appendChild(tempCell); */
 
       // Humidité
       const humCell = document.createElement('td');
@@ -96,7 +96,7 @@ function fillTab() {
       humCell.textContent = entry.hum;
       row.appendChild(humCell);
 
-      // Pression
+/*       // Pression
       const pressureCell = document.createElement('td');
       pressureCell.textContent = entry.pressure;
       row.appendChild(pressureCell);
@@ -146,7 +146,7 @@ function fillTab() {
       imgWeather.classList.add('weather-icon');
       imgWeather.src = `/icons/weather/${entry.isDay ? 'day' : 'night'}/${entry.weather}.svg`;
       weatherCell.appendChild(imgWeather);
-      row.appendChild(weatherCell);
+      row.appendChild(weatherCell); */
 
       tbody.appendChild(row);
     });

@@ -123,9 +123,13 @@ function getTextColorFromBackground(bgColor) {
     const r = parseInt(bgColor.substr(1, 2), 16);
     const g = parseInt(bgColor.substr(3, 2), 16);
     const b = parseInt(bgColor.substr(5, 2), 16);
+
+    console.log("bgColor", bgColor);
   
     // Calculer la luminance perçue (formule YIQ)
     const yiq = (r * 299 + g * 587 + b * 114) / 1000;
+
+    console.log("yiq", yiq);
   
     // Si la luminance est faible, texte en blanc, sinon en noir
     return yiq < 200 ? '#fff' : '#000';
