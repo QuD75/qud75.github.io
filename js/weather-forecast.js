@@ -14,12 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherApi = `${baseUrl}?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
     
     async function getApiData() {
-      const firstPageData = await fetchData(weatherApi, 'weather_forecast', 30, getWeatherForecastData);
+      const firstPageData = await fetchData(weatherApi, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherApi}&pageToken=${firstPageData.nextPageToken}`;
-        await fetchData(weatherApiNextPage, 'weather_forecast_next_page', 30, getWeatherForecastData);
+        await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
-      fillTab();
+      fillTabDay();
+      fetchData(weatherApi, 'weather_forecast_week', 180, getWeatherForecastDaysData);
       createCharts();
     }
   
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Regrouper les données par jour
 const grouped = {};
 
-function getWeatherForecastData(data){
+function getWeatherForecastHoursData(data){
 
   data.forecastHours.forEach(h => {
 
@@ -60,7 +61,10 @@ function getWeatherForecastData(data){
   });
 }
 
-function fillTab() {
+function getWeatherForecastDaysData(data){
+}
+
+function fillTabDay() {
   const tbody = document.querySelector('tbody');
 
   for (const [day, hours] of Object.entries(grouped)) {
