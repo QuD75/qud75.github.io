@@ -105,9 +105,15 @@ function getColorForUv(uv){
 }
 
 function getColorForRain(prob) {
-  if (prob === 0) return 'rgba(135, 206, 250, 0.1)';
-  if (prob <= 30) return 'rgba(135, 206, 250, 0.3)';
-  if (prob <= 60) return 'rgba(30, 144, 255, 0.6)';
-  if (prob <= 90) return 'rgba(0, 0, 205, 0.8)';
-  return 'rgba(25, 25, 112, 1)';
+  if (prob === 0) return 'rgba(135, 206, 250, 0.1)';  // très clair (presque transparent)
+  if (prob <= 10) return 'rgba(135, 206, 250, 0.2)';
+  if (prob <= 20) return 'rgba(135, 206, 250, 0.3)';
+  if (prob <= 30) return 'rgba(100, 149, 237, 0.4)';  // bleu cornflower clair
+  if (prob <= 40) return 'rgba(70, 130, 180, 0.5)';   // steelblue moyen
+  if (prob <= 50) return 'rgba(30, 144, 255, 0.6)';   // dodgerblue
+  if (prob <= 60) return 'rgba(25, 25, 112, 0.7)';    // midnightblue semi-transparent
+  if (prob <= 70) return 'rgba(0, 0, 205, 0.8)';      // mediumblue
+  if (prob <= 80) return 'rgba(0, 0, 139, 0.9)';      // darkblue
+  if (prob <= 90) return 'rgba(0, 0, 100, 0.95)';     // très foncé
+  return 'rgba(25, 25, 112, 1)';                      // bleu très foncé opaque
 }
