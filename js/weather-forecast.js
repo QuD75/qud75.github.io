@@ -306,7 +306,7 @@ function createCharts() {
         legend: { display: false },
         title: {
           display: true,
-          text: 'Pluie (%)',
+          text: titleText,
           font: { size: 14 }
         }
       },
@@ -316,21 +316,13 @@ function createCharts() {
           time: {
             unit: 'day',
             displayFormats: {
-              day: 'EEEE'
+              day: "EEEE"
             }
           },
           adapters: {
             date: {
               locale: fr
             }
-          }
-        },
-        y: {
-          type: 'linear',
-          min: 0,
-          max: 100,
-          ticks: {
-            stepSize: 10
           }
         }
       }
