@@ -119,8 +119,6 @@ function createCharts() {
     });
   });
   compressedLabels = compressLabels(labels);  
-  console.log('labels', labels);
-  console.log('compressedLabels', compressedLabels);
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
@@ -196,7 +194,7 @@ function createCharts() {
  // Pression
   new Chart(document.getElementById('chart-pressure-day'), {
     data: {
-      labels,
+      labels: compressedLabels,
       datasets: [{
         data: pressureData,
         borderColor: 'rgb(54, 162, 235)',
@@ -210,7 +208,7 @@ function createCharts() {
   // Vent
   new Chart(document.getElementById('chart-wind-day'), {
     data: {
-      labels,
+      labels: compressedLabels,
       datasets: [{
         data: windData,
         borderColor: 'rgb(75, 192, 192)',
@@ -224,7 +222,7 @@ function createCharts() {
   // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
     data: {
-      labels,
+      labels: compressedLabels,
       datasets: [{
         data: rainData,
         backgroundColor: 'rgba(153, 102, 255, 0.6)',
