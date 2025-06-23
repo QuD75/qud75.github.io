@@ -292,23 +292,35 @@ function createCharts() {
       datasets: [{
         label: 'Pluie',
         data: rainData,
-        borderColor: "rgba(75, 192, 192, 1)",
         backgroundColor: "rgba(153, 102, 255, 0.6)",
+        borderColor: "rgba(75, 192, 192, 1)",
         borderWidth: 1
       }]
     },
-    ...commonOptions('Pluie (%)', 'bar'),
     options: {
-      ...commonOptions('Pluie (%)', 'bar').options,
+      responsive: true,
+      maintainAspectRatio: false,
       dayChangeTimestamps,
+      plugins: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "Pluie (%)",
+          font: { size: 14 }
+        }
+      },
       scales: {
-        ...commonOptions('Pluie (%)', 'bar').options.scales,
         x: {
-          ...commonOptions('Pluie (%)', 'bar').options.scales.x,
+          type: 'time', // ❗ Nécessaire pour éviter les barres à chaque tick
           time: {
             unit: 'day',
             displayFormats: {
               day: "EEEE"
+            }
+          },
+          adapters: {
+            date: {
+              locale: fr
             }
           }
         },
@@ -316,7 +328,11 @@ function createCharts() {
           min: 0,
           max: 100
         }
-      }
+      },
+      elements: {
+        line: { tension: 0.5, cubicInterpolationMode: 'monotone' }
+      },
+      plugins: [daySeparationPlugin]
     }
   });
 }
