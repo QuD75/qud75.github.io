@@ -118,6 +118,7 @@ function createCharts() {
       rainData.push(entry.rain);
     });
     compressedLabels = labels.filter((_, index) => index % 3 === 0);
+    console.log('compressedLabels', compressedLabels);
   });
 
   // Plugin pour ajouter des lignes verticales séparant les jours
