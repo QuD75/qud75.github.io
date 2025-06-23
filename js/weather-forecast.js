@@ -7,7 +7,7 @@ import "chartjs-adapter-date-fns";
 document.addEventListener('DOMContentLoaded', () => {
 
     const apiKey = 'AIzaSyAusGSh1xC3ZT0_wXG-_7VbWWCnrO6tZFg';
-    const baseUrl = 'https://weathe r.googleapis.com/v1/forecast';
+    const baseUrl = 'https://weather.googleapis.com/v1/forecast';
     const lat = 47.29;
     const lon = -2.52;
 
@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function getApiData() {
-      fetchData(weatherWeek, 'weather_forecast_week', 0, getWeatherForecastDaysData);
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
-      fillTabDay(); 
+      fillTabDay();
+      fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
       createCharts();
     }
   
