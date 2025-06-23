@@ -157,6 +157,7 @@ function createCharts() {
   const tempData = [];
   const pressureData = [];
   const windData = [];
+  const windGustData = [];
   const rainData = [];
   
   const dayChangeTimestamps = [];
@@ -170,6 +171,7 @@ function createCharts() {
       tempData.push({ x: timestampMs, y: entry.temp });
       pressureData.push({ x: timestampMs, y: entry.pressure });
       windData.push({ x: timestampMs, y: entry.windSpeed });
+      windGustData.push({ x: timestampMs, y: entry.windGust });
       rainData.push({ x: timestampMs, y: entry.rain });
     });
   });
@@ -258,8 +260,7 @@ function createCharts() {
       datasets: [{
         label: 'Pression',
         data: pressureData,
-        borderColor: "rgba(255, 206, 86, 1)",
-        backgroundColor: "rgba(255, 206, 86, 0.2)",
+        borderColor: 'rgb(75, 192, 192)',
         pointRadius: 0
       }]
     },
@@ -270,10 +271,15 @@ function createCharts() {
   new Chart(document.getElementById('chart-wind-day'), {
     data: {
       datasets: [{
-        label: 'Vent',
+        label: 'Vent moyen',
         data: windData,
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: "rgba(255, 206, 86, 1)",
+        pointRadius: 0
+      },
+      {
+        label: 'Vent rafales',
+        data: windGustData,
+        borderColor: "rgb(255, 94, 0)",
         pointRadius: 0
       }]
     },
