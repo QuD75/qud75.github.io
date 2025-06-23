@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Regrouper les données par jour
 const grouped = {};
 
-function getWeatherForecastHoursData(data){
+function getWeatherForecastHoursData(dataDays){
 
-  data.forecastHours.forEach(h => {
+  dataDays.forecastHours.forEach(h => {
 
     const yearApi = h.displayDateTime.year;
     const monthApi = h.displayDateTime.month-1;
@@ -67,15 +67,15 @@ function getWeatherForecastHoursData(data){
   });
 }
 
-function getWeatherForecastDaysData(data) {
-  console.log("data", data);
+function getWeatherForecastDaysData(dataWeek) {
+  console.log("dataWeek", dataWeek);
 
   const table = document.getElementById("week-forecast-tab");
   const theadRow = table.querySelector("thead > tr");
   const tbody = table.querySelector("tbody");
   const tbodyRows = Array.from(tbody.rows);
-  const days = data.forecastDays;
-  const timeZone = data.timeZone?.id || "Europe/Paris";
+  const days = dataWeek.forecastDays;
+  const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
 
   console.log("days", days);
 
