@@ -164,10 +164,9 @@ function createCharts() {
         x: {
           type: 'time',
           time: {
-            unit: 'hour',
-            tooltipFormat: "EEEE HH'h'",
+            unit: 'day',
             displayFormats: {
-              hour: "EEEE HH'h'"
+              day: "EEEE"
             }
           },
           adapters: {
