@@ -90,31 +90,23 @@ function fillTab(){
 }
 
 function createCharts() {
-  const labels = [];
   const tempData = [];
   const pressureData = [];
   const windData = [];
   const rainData = [];
   
-  const dayChangeIndices = [];
+  const dayChangeTimestamps = [];
 
   Object.entries(grouped).forEach(([dayKey, hours]) => {
-    const date = new Date(dayKey);
-    const dayLabel = date.toLocaleDateString('fr-FR', { weekday: 'long' });
-    const capitalizedLabel = dayLabel.charAt(0).toUpperCase() + dayLabel.slice(1);
+    const dayStartTimestamp = new Date(dayKey + 'T00:00:00').getTime();
+    dayChangeTimestamps.push(dayStartTimestamp);
   
-    hours.forEach((entry, index) => {
-      if (index === 0) {
-        labels.push(capitalizedLabel);
-        dayChangeIndices.push(labels.length - 1); // ← enregistre l’indice
-      } else {
-        labels.push('');
-      }
-  
-      tempData.push(entry.temp);
-      pressureData.push(entry.pressure);
-      windData.push(entry.windSpeed); 
-      rainData.push(entry.rain);
+    hours.forEach((entry) => {
+      const timestampMs = entry.timestamp * 1000;
+      tempData.push({ x: timestampMs, y: entry.temp });
+      pressureData.push({ x: timestampMs, y: entry.pressure });
+      windData.push({ x: timestampMs, y: entry.windSpeed });
+      rainData.push({ x: timestampMs, y: entry.rain });
     });
   });
 
@@ -126,10 +118,10 @@ function createCharts() {
       const xAxis = chart.scales['x'];
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
-      const indices = (chart.options.dayChangeIndices || []);
+      const timestamps = chart.options.dayChangeTimestamps || [];
   
-      indices.forEach(index => {
-        const x = xAxis.getPixelForTick(index);
+      timestamps.forEach(ts => {
+        const x = xAxis.getPixelForValue(ts);
         ctx.save();
         ctx.beginPath();
         ctx.strokeStyle = 'rgba(6, 3, 3, 0.2)';
@@ -143,43 +135,48 @@ function createCharts() {
   };
 
   const commonOptions = (titleText, type = 'line') => ({
-    type,
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      dayChangeIndices,
-      plugins: {
-        legend: { display: false },
-        title: {
-          display: true,
-          text: titleText,
-          font: { size: 18 }
-        }
-      },
-      elements: {
-        line: {
-          tension: 0.5,
-          cubicInterpolationMode: 'monotone'
-        }
-      },
-      scales: {
-        x: {
-          ticks: {
-            callback: function (value) {
-              return this.getLabelForValue(value);
-            }
-          }
-        }
+  type,
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    dayChangeTimestamps, // ← accessible pour le plugin
+    plugins: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: titleText,
+        font: { size: 18 }
       }
     },
-    plugins: [daySeparationPlugin]
-  });  
+    elements: {
+      line: {
+        tension: 0.5,
+        cubicInterpolationMode: 'monotone'
+      }
+    },
+    scales: {
+      x: {
+        type: 'time',
+        time: {
+          unit: 'hour',
+          displayFormats: {
+            hour: 'HH[h]'
+          }
+        },
+        ticks: {
+          source: 'auto'
+        }
+      }
+    }
+  },
+  plugins: [daySeparationPlugin]
+});
 
   // Température
   new Chart(document.getElementById('chart-temperature-day'), {
     data: {
-      labels,
       datasets: [{
+        label: 'Température',
         data: tempData,
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -192,8 +189,8 @@ function createCharts() {
  // Pression
   new Chart(document.getElementById('chart-pressure-day'), {
     data: {
-      labels,
       datasets: [{
+        label: 'Pression',
         data: pressureData,
         borderColor: 'rgb(54, 162, 235)',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -206,8 +203,8 @@ function createCharts() {
   // Vent
   new Chart(document.getElementById('chart-wind-day'), {
     data: {
-      labels,
       datasets: [{
+        label: 'Vent',
         data: windData,
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.2)',
@@ -220,8 +217,8 @@ function createCharts() {
   // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
     data: {
-      labels,
       datasets: [{
+        label: 'Pluie',
         data: rainData,
         backgroundColor: 'rgba(153, 102, 255, 0.6)',
         borderColor: 'rgb(153, 102, 255)',
