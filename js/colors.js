@@ -56,39 +56,12 @@ function getColorForHumidity(hum){
 }
 
 function getColorForWindSpeed(speed) {
-    function hexToRgb(hex) {
-      const bigint = parseInt(hex.slice(1), 16);
-      return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
-    }
-  
-    function interpolateColor(color1, color2, t) {
-      const r = Math.round(color1[0] + (color2[0] - color1[0]) * t);
-      const g = Math.round(color1[1] + (color2[1] - color1[1]) * t);
-      const b = Math.round(color1[2] + (color2[2] - color1[2]) * t);
-      return `rgb(${r}, ${g}, ${b})`;
-    }
-  
-    const gradients = [
-      { min: 0, max: 20, from: "#D0F0FF", to: "#6FAED9" },  // bleu pastel
-      { min: 20, max: 40, from: "#C8FACC", to: "#6FBF73" }, // vert pastel
-      { min: 40, max: 60, from: "#FFFACD", to: "#FFD580" }, // jaune → orange pastel
-      { min: 60, max: 80, from: "#FFD580", to: "#FF7F7F" }, // orange → rouge pastel
-      { min: 80, max: 100, from: "#FF7F7F", to: "#C299FF" } // rouge → violet pastel
-    ];
-  
-    if (speed > 100) {
-      return "rgb(194, 153, 255)"; // Violet pastel
-    }
-  
-    for (const grad of gradients) {
-      if (speed >= grad.min && speed <= grad.max) {
-        const t = (speed - grad.min) / (grad.max - grad.min);
-        return interpolateColor(hexToRgb(grad.from), hexToRgb(grad.to), t);
-      }
-    }
-  
-    return "rgb(0, 0, 0)"; // défaut
-} 
+  if (speed <= 10) return '#90ee90';            // Vert clair
+  if (speed <= 30) return '#ffd580';            // Jaune-orange clair
+  if (speed <= 50) return '#ff7f50';            // Corail (orange)
+  if (speed <= 80) return '#ff4500';            // Orange-rouge vif
+  return '#800080';                             // Violet foncé
+}
 
 function getColorForUv(uv){
     // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
