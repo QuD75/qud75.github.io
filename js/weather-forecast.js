@@ -120,6 +120,8 @@ function createCharts() {
     });
   });
 
+  console.log('Labels:', labels);
+
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
     id: 'daySeparator',
