@@ -86,6 +86,11 @@ function getWeatherForecastDaysData(data) {
     theadRow.appendChild(th);
   });
 
+  if (!weatherJson || !Array.isArray(weatherJson.forecastDays)) {
+    console.error("❌ Données météo invalides :", weatherJson);
+    return;
+  }
+
   // Remplir les lignes
   days.forEach((day, colIndex) => {
     const d = day.daytimeForecast;
