@@ -63,6 +63,8 @@ function getWeatherForecastHoursData(data){
 }
 
 function getWeatherForecastDaysData(data) {
+  console.log("data", data);
+
   const table = document.getElementById("week-forecast-tab");
   const theadRow = table.querySelector("thead > tr");
   const tbody = table.querySelector("tbody");
