@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lon = -2.52;
 
     const weatherDay = `${baseUrl}/hours:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
-    const weatherWeek = `${baseUrl}/days:lookup??key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
+    const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function getApiData() {
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
