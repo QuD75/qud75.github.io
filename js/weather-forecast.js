@@ -288,12 +288,13 @@ function createCharts() {
 
   // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
+    type: 'bar',
     data: {
       datasets: [{
         label: 'Pluie',
         data: rainData,
-        backgroundColor: "rgba(153, 102, 255, 0.6)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1
       }]
     },
@@ -305,7 +306,7 @@ function createCharts() {
         legend: { display: false },
         title: {
           display: true,
-          text: "Pluie (%)",
+          text: 'Pluie (%)',
           font: { size: 14 }
         }
       },
@@ -332,11 +333,8 @@ function createCharts() {
             stepSize: 10
           }
         }
-      },      
-      elements: {
-        line: { tension: 0.5, cubicInterpolationMode: 'monotone' }
-      },
-      plugins: [daySeparationPlugin]
-    }
-  });
+      }
+    },
+    plugins: [daySeparationPlugin]
+  });  
 }
