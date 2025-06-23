@@ -1,6 +1,8 @@
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
+
 import { fr } from "date-fns/locale/fr";
 import "chartjs-adapter-date-fns";
-import Chart from "chart.js";
 
 document.addEventListener('DOMContentLoaded', () => {
 
