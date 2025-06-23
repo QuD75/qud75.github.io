@@ -15,12 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function getApiData() {
-      const weekPromise = fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
-      const dayPromise = fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
+      const weekData = await fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
     
-      const [weekData, firstPageData] = await Promise.all([weekPromise, dayPromise]);
-    
-      if (firstPageData?.nextPageToken) {
+      const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
+      if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
