@@ -91,7 +91,7 @@ function fillTab(){
 
 function createCharts() {
   const labels = [];
-  const compressedLabels = [];
+  let compressedLabels = [];
   const tempData = [];
   const pressureData = [];
   const windData = [];
