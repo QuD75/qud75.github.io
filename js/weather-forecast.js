@@ -91,7 +91,6 @@ function fillTab(){
 
 function createCharts() {
   const labels = [];
-  let compressedLabels = [];
   const tempData = [];
   const pressureData = [];
   const windData = [];
@@ -118,7 +117,6 @@ function createCharts() {
       rainData.push(entry.rain);
     });
   });
-  compressedLabels = compressLabels(labels);  
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
@@ -128,7 +126,7 @@ function createCharts() {
       const xAxis = chart.scales['x'];
       const top = chart.chartArea.top;
       const bottom = chart.chartArea.bottom;
-      const indices = (chart.options.dayChangeIndices || []).map(i => Math.round(i/3));
+      const indices = (chart.options.dayChangeIndices || []);
   
       indices.forEach(index => {
         const x = xAxis.getPixelForTick(index);
@@ -180,7 +178,7 @@ function createCharts() {
   // Température
   new Chart(document.getElementById('chart-temperature-day'), {
     data: {
-      labels: compressedLabels,
+      labels,
       datasets: [{
         data: tempData,
         borderColor: 'rgb(255, 99, 132)',
@@ -208,7 +206,7 @@ function createCharts() {
   // Vent
   new Chart(document.getElementById('chart-wind-day'), {
     data: {
-      labels: compressedLabels,
+      labels,
       datasets: [{
         data: windData,
         borderColor: 'rgb(75, 192, 192)',
@@ -222,7 +220,7 @@ function createCharts() {
   // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
     data: {
-      labels: compressedLabels,
+      labels,
       datasets: [{
         data: rainData,
         backgroundColor: 'rgba(153, 102, 255, 0.6)',
@@ -245,18 +243,4 @@ function createCharts() {
       }
     }
   });
-}
-
-function compressLabels(labels) {
-  const newLength = Math.round(labels.length / 3) + 1;
-  const result = new Array(newLength).fill('');
-
-  labels.forEach((label, i) => {
-    if (label !== '') {
-      const newIndex = Math.round(i / 3);
-      result[newIndex] = label;
-    }
-  });
-
-  return result;
 }
