@@ -86,8 +86,8 @@ function getWeatherForecastDaysData(data) {
     theadRow.appendChild(th);
   });
 
-  if (!weatherJson || !Array.isArray(weatherJson.forecastDays)) {
-    console.error("❌ Données météo invalides :", weatherJson);
+  if (!data || !Array.isArray(data.forecastDays)) {
+    console.error("❌ Données météo invalides :", data);
     return;
   }
 
