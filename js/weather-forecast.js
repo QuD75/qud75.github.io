@@ -298,35 +298,6 @@ function createCharts() {
         borderWidth: 1
       }]
     },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      dayChangeTimestamps,
-      plugins: {
-        legend: { display: false },
-        title: {
-          display: true,
-          text: 'Pluie (%)',
-          font: { size: 14 }
-        }
-      },
-      scales: {
-        x: {
-          type: 'time',
-          time: {
-            unit: 'day',
-            displayFormats: {
-              day: "EEEE"
-            }
-          },
-          adapters: {
-            date: {
-              locale: fr
-            }
-          }
-        }
-      }
-    },
-    plugins: [daySeparationPlugin]
+    ...commonOptions('Pluie (%)', 'bar')
   });  
 }
