@@ -79,9 +79,16 @@
     <script src="/js/loader/menu-loader.js" defer></script>
     <script src="/js/colors.js" defer></script>
     <script src="/js/icons.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "chart.js": "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.js",
+            "chartjs-adapter-date-fns": "https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.esm.js",
+            "date-fns": "https://cdn.jsdelivr.net/npm/date-fns@3.6.0/+esm",
+            "date-fns/locale/fr": "https://cdn.jsdelivr.net/npm/date-fns@3.6.0/locale/fr/index.js"
+          }
+        }
+      </script>
     <script src="/js/call-api.js" defer></script>
     <script type="module" src="/js/weather-forecast.js" defer></script>
     <script src="/js/loader/footer-loader.js" defer></script>

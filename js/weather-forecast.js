@@ -1,4 +1,5 @@
-import { fr } from 'date-fns/locale';
+import { fr } from 'date-fns/locale/fr';
+import 'chartjs-adapter-date-fns';
 
 document.addEventListener('DOMContentLoaded', () => {
 
