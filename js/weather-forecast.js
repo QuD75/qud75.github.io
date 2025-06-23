@@ -85,7 +85,7 @@ function fillTab(){
         <td style="background-color: ${getColorForWindSpeed(entry.windSpeed)};">${Math.round(entry.windSpeed / 5) * 5}</td>
         <td style="background-color: ${getColorForWindSpeed(entry.windGust)};">${Math.round(entry.windGust / 5) * 5}</td>
         <td><img src="${getWindDirectionIcon(entry.windDirection)}"></td>
-        <td>${entry.rain}</td>
+        <td style="background-color: ${getColorForRain(entry.rain)};">${entry.rain}</td>
         <td style="background-color: ${getColorForUv(entry.uvi)};">${entry.uvi}</td>
         <td><img class="weather-icon" src="/icons/weather/${entry.isDay ? 'day' : 'night'}/${entry.weather}.svg"></td>
       `;

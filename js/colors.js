@@ -88,8 +88,7 @@ function getColorForWindSpeed(speed) {
     }
   
     return "rgb(0, 0, 0)"; // défaut
-}
-  
+} 
 
 function getColorForUv(uv){
     // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
@@ -124,4 +123,12 @@ function getColorForUv(uv){
     const b = Math.round(startColor.b + ratio * (endColor.b - startColor.b));
 
     return `rgb(${r}, ${g}, ${b})`;
+}
+
+function getColorForRain(prob) {
+  if (prob === 0) return 'rgba(135, 206, 250, 0.1)';
+  if (prob <= 30) return 'rgba(135, 206, 250, 0.3)';
+  if (prob <= 60) return 'rgba(30, 144, 255, 0.6)';
+  if (prob <= 90) return 'rgba(0, 0, 205, 0.8)';
+  return 'rgba(25, 25, 112, 1)';
 }
