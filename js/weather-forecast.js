@@ -186,7 +186,7 @@ function createCharts() {
     ...commonOptions('Température (°C)')
   });
 
- // Pression
+  // Pression
   new Chart(document.getElementById('chart-pressure-day'), {
     data: {
       datasets: [{
