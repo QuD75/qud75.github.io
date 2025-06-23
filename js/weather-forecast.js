@@ -121,7 +121,7 @@ function createCharts() {
     });
   });
 
-  console.log('Labels:', labels);
+  //console.log('Labels:', labels);
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
@@ -133,7 +133,7 @@ function createCharts() {
       const bottom = chart.chartArea.bottom;
       const indices = (chart.options.dayChangeIndices || []).map(i => Math.floor(i / 3));
 
-      console.log('Indices de séparation des jours:', indices);
+      //console.log('Indices de séparation des jours:', indices);
   
       indices.forEach(index => {
         const x = xAxis.getPixelForTick(index);
