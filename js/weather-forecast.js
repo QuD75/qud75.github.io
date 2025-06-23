@@ -296,26 +296,6 @@ function createCharts() {
         borderWidth: 1
       }]
     },
-    ...commonOptions('Pluie (%)', 'bar'),
-    options: {
-      ...commonOptions('Pluie (%)', 'bar').options,
-      dayChangeTimestamps, // <-- ✨ important
-      scales: {
-        ...commonOptions('Pluie (%)', 'bar').options.scales,
-        x: {
-          ...commonOptions('Pluie (%)', 'bar').options.scales.x,
-          time: {
-            unit: 'day',
-            displayFormats: {
-              day: "EEEE"
-            }
-          }
-        },
-        y: {
-          min: 0,
-          max: 100
-        }
-      }
-    }
+    ...commonOptions('Pluie (%)')
   });
 }
