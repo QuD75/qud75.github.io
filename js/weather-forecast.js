@@ -303,10 +303,7 @@ function createCharts() {
         ...commonOptions('Pluie (%)', 'bar').options.scales,
         y: {
           min: 0,
-          max: 100,
-          ticks: {
-            stepSize: 10
-          }
+          max: 100
         }
       }
     }
