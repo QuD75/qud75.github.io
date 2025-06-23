@@ -299,6 +299,7 @@ function createCharts() {
     ...commonOptions('Pluie (%)', 'bar'),
     options: {
       ...commonOptions('Pluie (%)', 'bar').options,
+      dayChangeTimestamps, // <-- ✨ important
       scales: {
         ...commonOptions('Pluie (%)', 'bar').options.scales,
         x: {
@@ -315,6 +316,6 @@ function createCharts() {
           max: 100
         }
       }
-    }    
+    }
   });
 }
