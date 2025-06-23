@@ -14,23 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherDay = `${baseUrl}/hours:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
     const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
-    async function getDaysData() {
-      fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
+    async function initForecast() {
+      // 1. Récupération des données horaires
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
+    
+      // 2. Récupération des données journalières
+      await fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
+    
+      // 3. Ensuite seulement : génération du tableau & des graphiques
       fillTabDay();
-    }
-
-    async function getWeekData() {
-      fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
+      createCharts();
     }
   
-    getDaysData();
-    getWeekData();
-    createCharts();
+    initForecast();
 });
 
 // Regrouper les données par jour
