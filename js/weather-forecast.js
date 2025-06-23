@@ -118,9 +118,7 @@ function createCharts() {
       rainData.push(entry.rain);
     });
   });
-  compressedLabels = labels.filter((_, index) => index % 3 === 0);
-  console.log('labels', labels);
-  console.log('compressedLabels', compressedLabels);
+  compressedLabels = compressLabels(labels);  
 
   // Plugin pour ajouter des lignes verticales séparant les jours
   const daySeparationPlugin = {
@@ -247,4 +245,18 @@ function createCharts() {
       }
     }
   });
+}
+
+function compressLabels(labels) {
+  const newLength = Math.round(labels.length / 3) + 1;
+  const result = new Array(newLength).fill('');
+
+  labels.forEach((label, i) => {
+    if (label !== '') {
+      const newIndex = Math.round(i / 3);
+      result[newIndex] = label;
+    }
+  });
+
+  return result;
 }
