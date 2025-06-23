@@ -14,20 +14,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherDay = `${baseUrl}/hours:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
     const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
-    async function getApiData() {
-      const weekData = await fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
-    
+    async function getDaysData() {
+      fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
-    
       fillTabDay();
-      createCharts();
-    }    
+    }
+
+    async function getWeekData() {
+      fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
+    }
   
-    getApiData();
+    getDaysData();
+    getWeekData();
+    createCharts();
 });
 
 // Regrouper les données par jour
