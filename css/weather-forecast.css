@@ -1,3 +1,14 @@
+#loading-message {
+  font-size: 1rem;
+  color: #555;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
 #forecast-day {
   display: flex;
   gap: 5rem;

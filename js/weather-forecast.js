@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function initForecast() {
+      document.getElementById('loading-message').style.display = 'block';
+
       // 1. Récupération des données horaires
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
@@ -29,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // 3. Ensuite seulement : génération du tableau & des graphiques
       fillTabDay();
       createCharts();
+
+      document.getElementById('loading-message').style.display = 'none';
     }
   
     initForecast();
