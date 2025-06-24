@@ -22,18 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
-
-      await fetchData(weatherWeek, 'weather_forecast_week', 60, getWeatherForecastDaysData);
-    
-      fillTabDays();
-      createCharts();
-      
       document.getElementById('loading-message').style.display = 'none';
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
       });
       document.getElementById('forecast-day').style.display = 'flex';
+
+      await fetchData(weatherWeek, 'weather_forecast_week', 60, getWeatherForecastDaysData);
       document.getElementById('forecast-week').style.display = 'block';
+    
+      fillTabDays();
+      createCharts();
     }
   
     initForecast();
