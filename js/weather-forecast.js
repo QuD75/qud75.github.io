@@ -73,113 +73,6 @@ function getWeatherForecastHoursData(dataDays){
   });
 }
 
-function getWeatherForecastDaysData(dataWeek) {
-  const table = document.getElementById("forecast-week-table");
-  const theadRow = table.querySelector("thead > tr");
-  const tbody = table.querySelector("tbody");
-  const tbodyRows = Array.from(tbody.rows);
-
-  const days = dataWeek.forecastDays;
-  const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
-
-  const formatDate = (dateObj) => {
-    const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
-    return date.toLocaleDateString('fr-FR', {
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      timeZone
-    });
-  };
-
-  days.forEach((day) => {
-    const th = document.createElement("th");
-    th.textContent = formatDate(day.displayDate);
-    theadRow.appendChild(th);
-  });
-
-  days.forEach((day) => {
-    const d = day.daytimeForecast;
-    const n = day.nighttimeForecast;
-
-    function formatHour(date, timeZone = 'Europe/Paris') {
-      const localDate = new Date(date.toLocaleString('en-US', { timeZone }));
-      const hours = localDate.getHours();
-      const minutes = localDate.getMinutes().toString().padStart(2, '0');
-      return `${hours}h${minutes}`;
-    }
-
-    const sunrise = day.sunEvents.sunriseTime
-    ? formatHour(new Date(day.sunEvents.sunriseTime), timeZone)
-    : "—";
-  
-  const sunset = day.sunEvents.sunsetTime
-    ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
-    : "—";
-
-    const maxWind = Math.max(d.wind.speed.value, n.wind.speed.value);
-
-    const cellValues = [
-      d.weatherCondition.type,                                                              // 0
-      `${sunrise} / ${sunset}`,                                                             // 1                                                 // 2
-      `${Math.round(day.minTemperature.degrees)}`,                                          // 2
-      `${Math.round(day.maxTemperature.degrees)}`,                                          // 3
-      `${maxWind}`,                                                                         // 4                                                 // 6
-      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %` // 5
-    ];
-
-    cellValues.forEach((val, rowIndex) => {
-      const td = document.createElement("td");
-      td.textContent = val;
-
-      switch (rowIndex) {
-        case 0: {
-          td.textContent = '';
-          const imgWeather = document.createElement('img');
-          imgWeather.classList.add('weather-week-icon');
-          imgWeather.src = `/icons/weather/day/${val}.svg`;
-          console.log(imgWeather.src);
-          td.appendChild(imgWeather);
-          break;
-        }
-        case 2: {
-          const bgColor = getColorForTemperature(parseFloat(val));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          break;
-        }
-        case 3: {
-          const bgColor = getColorForTemperature(parseFloat(val));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          break;
-        }
-        case 4: { // vent moyen max
-          const bgColor = getColorForWindSpeed(parseFloat(val));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          break;
-        }
-        case 5: { // pluie jour / nuit
-          const [dayRaw, nightRaw] = val.split(' / ');
-          const dayProb = parseFloat(dayRaw.replace('%', '').trim());
-          const nightProb = parseFloat(nightRaw.replace('%', '').trim());
-          const bgColor = getColorForRain(Math.max(dayProb, nightProb));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          break;
-        }
-      }
-
-      tbodyRows[rowIndex].appendChild(td);
-    });
-  });
-}
-
 function fillTabDays() {
   const tbody = document.getElementById("day-forecast-body");
 
@@ -271,6 +164,113 @@ function fillTabDays() {
       tbody.appendChild(row);
     });
   }
+}
+
+function getWeatherForecastDaysData(dataWeek) {
+  const table = document.getElementById("forecast-week-table");
+  const theadRow = table.querySelector("thead > tr");
+  const tbody = table.querySelector("tbody");
+  const tbodyRows = Array.from(tbody.rows);
+
+  const days = dataWeek.forecastDays;
+  const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
+
+  const formatDate = (dateObj) => {
+    const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
+    return date.toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      timeZone
+    });
+  };
+
+  days.forEach((day) => {
+    const th = document.createElement("th");
+    th.textContent = formatDate(day.displayDate);
+    theadRow.appendChild(th);
+  });
+
+  days.forEach((day) => {
+    const d = day.daytimeForecast;
+    const n = day.nighttimeForecast;
+
+    function formatHour(date, timeZone = 'Europe/Paris') {
+      const localDate = new Date(date.toLocaleString('en-US', { timeZone }));
+      const hours = localDate.getHours();
+      const minutes = localDate.getMinutes().toString().padStart(2, '0');
+      return `${hours}h${minutes}`;
+    }
+
+    const sunrise = day.sunEvents.sunriseTime
+    ? formatHour(new Date(day.sunEvents.sunriseTime), timeZone)
+    : "—";
+  
+  const sunset = day.sunEvents.sunsetTime
+    ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
+    : "—";
+
+    const avgwWind = (d.wind.speed.value + n.wind.speed.value) / 2;
+
+    const cellValues = [
+      d.weatherCondition.type,                                                              // 0
+      `${sunrise} / ${sunset}`,                                                             // 1                                                 // 2
+      `${Math.round(day.minTemperature.degrees)}`,                                          // 2
+      `${Math.round(day.maxTemperature.degrees)}`,                                          // 3
+      `${avgwWind}`,                                                                         // 4                                                 // 6
+      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %` // 5
+    ];
+
+    cellValues.forEach((val, rowIndex) => {
+      const td = document.createElement("td");
+      td.textContent = val;
+
+      switch (rowIndex) {
+        case 0: {
+          td.textContent = '';
+          const imgWeather = document.createElement('img');
+          imgWeather.classList.add('weather-week-icon');
+          imgWeather.src = `/icons/weather/day/${val}.svg`;
+          console.log(imgWeather.src);
+          td.appendChild(imgWeather);
+          break;
+        }
+        case 2: {
+          const bgColor = getColorForTemperature(parseFloat(val));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.color = textColor;
+          break;
+        }
+        case 3: {
+          const bgColor = getColorForTemperature(parseFloat(val));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.color = textColor;
+          break;
+        }
+        case 4: {
+          const bgColor = getColorForWindSpeed(parseFloat(val));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.color = textColor;
+          break;
+        }
+        case 5: {
+          const [dayRaw, nightRaw] = val.split(' / ');
+          const dayProb = parseFloat(dayRaw.replace('%', '').trim());
+          const nightProb = parseFloat(nightRaw.replace('%', '').trim());
+          const bgColor = getColorForRain(Math.max(dayProb, nightProb));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.color = textColor;
+          break;
+        }
+      }
+
+      tbodyRows[rowIndex].appendChild(td);
+    });
+  });
 }
 
 function createCharts() {
