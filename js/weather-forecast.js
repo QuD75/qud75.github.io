@@ -17,8 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function initForecast() {
 
-      await new Promise(resolve => setTimeout(resolve, 5000));
-
       // 1. Récupération des données horaires
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
@@ -27,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     
       // 2. Récupération des données journalières
-      await fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
+      await fetchData(weatherWeek, 'weather_forecast_week', 60, getWeatherForecastDaysData);
     
       // 3. Ensuite seulement : génération du tableau & des graphiques
       fillTabDay();
@@ -140,22 +138,34 @@ function getWeatherForecastDaysData(dataWeek) {
       // Appliquer des couleurs conditionnelles
       switch (rowIndex) {
         case 2: {
-          td.style.backgroundColor = getColorForTemperature(parseFloat(val));
+          const bgColor = getColorForTemperature(parseFloat(val));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.textColor = textColor;
           break;
         }
         case 3: {
-          td.style.backgroundColor = getColorForTemperature(parseFloat(val));
+          const bgColor = getColorForTemperature(parseFloat(val));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.textColor = textColor;
           break;
         }
         case 4: { // vent moyen max
-          td.style.backgroundColor = getColorForWindSpeed(parseFloat(val));
+          const bgColor = getColorForWindSpeed(parseFloat(val));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.textColor = textColor;
           break;
         }
         case 5: { // pluie jour / nuit
           const [dayRaw, nightRaw] = val.split(' / ');
           const dayProb = parseFloat(dayRaw.replace('%', '').trim());
           const nightProb = parseFloat(nightRaw.replace('%', '').trim());
-          td.style.backgroundColor = getColorForRain(Math.max(dayProb, nightProb));
+          const bgColor = getColorForRain(Math.max(dayProb, nightProb));
+          const textColor = getTextColorFromBackground(bgColor);
+          td.style.backgroundColor = bgColor;
+          td.style.textColor = textColor;
           break;
         }
       }
