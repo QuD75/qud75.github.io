@@ -96,19 +96,26 @@ function getWeatherForecastDaysData(dataWeek) {
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
 
-    const sunrise = day.sunEvents.sunriseTime
-      ? new Date(day.sunEvents.sunriseTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
-      : "—";
+    function formatHour(date, timeZone = 'Europe/Paris') {
+      const localDate = new Date(date.toLocaleString('en-US', { timeZone }));
+      const hours = localDate.getHours();
+      const minutes = localDate.getMinutes().toString().padStart(2, '0');
+      return `${hours}h${minutes}`;
+    }
 
-    const sunset = day.sunEvents.sunsetTime
-      ? new Date(day.sunEvents.sunsetTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
-      : "—";
+    const sunrise = day.sunEvents.sunriseTime
+    ? formatHour(new Date(day.sunEvents.sunriseTime), timeZone)
+    : "—";
+  
+  const sunset = day.sunEvents.sunsetTime
+    ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
+    : "—";
 
     const maxWind = Math.max(d.wind.speed.value, n.wind.speed.value);
 
     const cellValues = [
       d.weatherCondition.description.text,                                                  // 0
-      `${sunrise} / ${sunset}`,                                                             // 1                                                 // 2
+      `${sunrise} -> ${sunset}`,                                                             // 1                                                 // 2
       `${Math.round(day.minTemperature.degrees)}`,                                          // 2
       `${Math.round(day.maxTemperature.degrees)}`,                                          // 3
       `${maxWind}`,                                                                         // 4                                                 // 6
@@ -137,8 +144,6 @@ function getWeatherForecastDaysData(dataWeek) {
           const [dayRaw, nightRaw] = val.split(' / ');
           const dayProb = parseFloat(dayRaw.replace('%', '').trim());
           const nightProb = parseFloat(nightRaw.replace('%', '').trim());
-          console.log(dayProb);
-          console.log(nightProb);
           td.style.backgroundColor = getColorForRain(Math.max(dayProb, nightProb));
           break;
         }
