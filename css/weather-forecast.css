@@ -7,8 +7,12 @@
   font-weight: bold;
   padding: 1rem;
   border-radius: 8px;
-  width: fit-content;
-  position: static;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 @keyframes blink {
