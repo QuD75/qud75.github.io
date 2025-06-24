@@ -121,7 +121,7 @@ function getWeatherForecastDaysData(dataWeek) {
     const maxWind = Math.max(d.wind.speed.value, n.wind.speed.value);
 
     const cellValues = [
-      d.weatherCondition.description.text,                                                  // 0
+      d.weatherCondition.type,                                                              // 0
       `${sunrise} / ${sunset}`,                                                             // 1                                                 // 2
       `${Math.round(day.minTemperature.degrees)}`,                                          // 2
       `${Math.round(day.maxTemperature.degrees)}`,                                          // 3
@@ -135,6 +135,13 @@ function getWeatherForecastDaysData(dataWeek) {
 
       // Appliquer des couleurs conditionnelles
       switch (rowIndex) {
+        case 0: {
+          const imgWeather = document.createElement('img');
+          imgWeather.src = `/icons/weather/day/${val}.svg`;
+          td.appendChild(imgWeather);
+          td.textContent = null;
+          break;
+        }
         case 2: {
           const bgColor = getColorForTemperature(parseFloat(val));
           const textColor = getTextColorFromBackground(bgColor);
