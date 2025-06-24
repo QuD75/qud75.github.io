@@ -141,21 +141,21 @@ function getWeatherForecastDaysData(dataWeek) {
           const bgColor = getColorForTemperature(parseFloat(val));
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
-          td.style.textColor = textColor;
+          td.style.color = textColor;
           break;
         }
         case 3: {
           const bgColor = getColorForTemperature(parseFloat(val));
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
-          td.style.textColor = textColor;
+          td.style.color = textColor;
           break;
         }
         case 4: { // vent moyen max
           const bgColor = getColorForWindSpeed(parseFloat(val));
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
-          td.style.textColor = textColor;
+          td.style.color = textColor;
           break;
         }
         case 5: { // pluie jour / nuit
@@ -165,7 +165,7 @@ function getWeatherForecastDaysData(dataWeek) {
           const bgColor = getColorForRain(Math.max(dayProb, nightProb));
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
-          td.style.textColor = textColor;
+          td.style.color = textColor;
           break;
         }
       }
