@@ -76,7 +76,6 @@ function getWeatherForecastDaysData(dataWeek) {
   const days = dataWeek.forecastDays;
   const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
 
-  // Format date colonne
   const formatDate = (dateObj) => {
     const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
     return date.toLocaleDateString('fr-FR', {
@@ -87,17 +86,12 @@ function getWeatherForecastDaysData(dataWeek) {
     });
   };
 
-  // Format vent
-  const formatWind = (speed, direction) => `${speed.value} km/h (${direction.cardinal})`;
-
-  // Ajouter les entêtes de colonnes (jours)
   days.forEach((day) => {
     const th = document.createElement("th");
     th.textContent = formatDate(day.displayDate);
     theadRow.appendChild(th);
   });
 
-  // Pour chaque jour, remplir les colonnes correspondantes dans chaque ligne
   days.forEach((day) => {
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
@@ -114,20 +108,67 @@ function getWeatherForecastDaysData(dataWeek) {
     const maxWindGust = Math.max(d.wind.gust.value, n.wind.gust.value);
 
     const cellValues = [
-      d.weatherCondition.description.text,
-      `${sunrise} / ${sunset}`,
-      `${d.uvIndex}`,
-      `${Math.round(day.minTemperature.degrees)}`,
-      `${Math.round(day.maxTemperature.degrees)}`,
-      `${maxWind}`,
-      `${maxWindGust}`,
-      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`
+      d.weatherCondition.description.text,                               // 0
+      `${sunrise} / ${sunset}`,                                          // 1
+      `${d.uvIndex}`,                                                    // 2
+      `${Math.round(day.minTemperature.degrees)}`,                       // 3
+      `${Math.round(day.maxTemperature.degrees)}`,                       // 4
+      `${maxWind}`,                                                      // 5
+      `${maxWindGust}`,                                                  // 6
+      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %` // 7
     ];
 
-    // Insérer les valeurs dans les lignes existantes
     cellValues.forEach((val, rowIndex) => {
       const td = document.createElement("td");
       td.textContent = val;
+
+      // Appliquer des couleurs conditionnelles
+      switch (rowIndex) {
+        case 2: { // UV
+          const uv = parseFloat(val);
+          if (!isNaN(uv)) {
+            td.style.backgroundColor = getColorForUV(uv);
+          }
+          break;
+        }
+        case 3: {
+          const tempMin = parseFloat(val);
+          if (!isNaN(tempMin)) {
+            td.style.backgroundColor = getColorForTemperature(tempMin);
+          }
+          break;
+        }
+        case 4: {
+          const tempMax = parseFloat(val);
+          if (!isNaN(tempMax)) {
+            td.style.backgroundColor = getColorForTemperature(tempMax);
+          }
+          break;
+        }
+        case 5: { // vent moyen max
+          const wind = parseFloat(val);
+          if (!isNaN(wind)) {
+            td.style.backgroundColor = getColorForWind(wind);
+          }
+          break;
+        }
+        case 6: { // rafales max
+          const gust = parseFloat(val);
+          if (!isNaN(gust)) {
+            td.style.backgroundColor = getColorForWindGust(gust);
+          }
+          break;
+        }
+        case 7: { // pluie jour / nuit
+          const [dayProbStr, nightProbStr] = val.split('%')[0].split(' / ');
+          const rainDay = parseFloat(dayProbStr);
+          if (!isNaN(rainDay)) {
+            td.style.backgroundColor = getColorForRainProbability(rainDay);
+          }
+          break;
+        }
+      }
+
       tbodyRows[rowIndex].appendChild(td);
     });
   });
