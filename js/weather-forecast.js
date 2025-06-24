@@ -127,7 +127,7 @@ function getWeatherForecastDaysData(dataWeek) {
         case 2: { // UV
           const uv = parseFloat(val);
           if (!isNaN(uv)) {
-            td.style.backgroundColor = getColorForUV(uv);
+            td.style.backgroundColor = getColorForUv(uv);
           }
           break;
         }
@@ -163,7 +163,7 @@ function getWeatherForecastDaysData(dataWeek) {
           const [dayProbStr, nightProbStr] = val.split('%')[0].split(' / ');
           const rainDay = parseFloat(dayProbStr);
           if (!isNaN(rainDay)) {
-            td.style.backgroundColor = getColorForRainProbability(rainDay);
+            td.style.backgroundColor = getColorForRain(rainDay);
           }
           break;
         }
