@@ -140,6 +140,8 @@ function getWeatherForecastDaysData(dataWeek) {
         }
         case 7: { // pluie jour / nuit
           const [dayProbStr, nightProbStr] = val.split('%')[0].split(' / ');
+          console.log(dayProbStr);
+          console.log(nightProbStr);
           td.style.backgroundColor = getColorForRain(Math.max(parseFloat(dayProbStr), parseFloat(nightProbStr)));
           break;
         }
