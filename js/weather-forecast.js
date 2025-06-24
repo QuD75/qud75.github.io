@@ -73,7 +73,7 @@ function getWeatherForecastDaysData(dataWeek) {
   const table = document.getElementById("week-forecast-tab");
   const theadRow = table.querySelector("thead > tr");
   const tbody = table.querySelector("tbody");
-  const tbodyRows = Array.from(tbody.rows);
+  let tbodyRows = Array.from(tbody.rows);
   const days = dataWeek.forecastDays;
   const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
 
@@ -87,6 +87,14 @@ function getWeatherForecastDaysData(dataWeek) {
 
   // Helper : format direction vent
   const formatWind = (speed, direction) => `${speed.value} km/h (${direction.cardinal})`;
+
+  // S'assurer que le tbody a le bon nombre de lignes
+  const requiredRows = 15; // ou cellValues.length si dynamique
+  while (tbody.rows.length < requiredRows) {
+    const tr = document.createElement("tr");
+    tbody.appendChild(tr);
+  }
+  tbodyRows = Array.from(tbody.rows); // re-récupérer après ajout
 
   // Ajouter les entêtes (jours)
   days.forEach((day) => {
