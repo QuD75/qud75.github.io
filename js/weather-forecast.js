@@ -148,14 +148,14 @@ function getWeatherForecastDaysData(dataWeek) {
         case 5: { // vent moyen max
           const wind = parseFloat(val);
           if (!isNaN(wind)) {
-            td.style.backgroundColor = getColorForWind(wind);
+            td.style.backgroundColor = getColorForWindSpeed(wind);
           }
           break;
         }
         case 6: { // rafales max
           const gust = parseFloat(val);
           if (!isNaN(gust)) {
-            td.style.backgroundColor = getColorForWindGust(gust);
+            td.style.backgroundColor = getColorForWindSpeed(gust);
           }
           break;
         }
