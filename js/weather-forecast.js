@@ -16,23 +16,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function initForecast() {
-      document.getElementById('loading-message').style.display = 'block';
+      await new Promise(resolve => setTimeout(resolve, 5000));
 
       // 1. Récupération des données horaires
-      const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
+      const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 0, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
-        await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
+        await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 0, getWeatherForecastHoursData);
       }
     
       // 2. Récupération des données journalières
-      await fetchData(weatherWeek, 'weather_forecast_week', 180, getWeatherForecastDaysData);
+      await fetchData(weatherWeek, 'weather_forecast_week', 0, getWeatherForecastDaysData);
     
       // 3. Ensuite seulement : génération du tableau & des graphiques
       fillTabDay();
       createCharts();
 
       document.getElementById('loading-message').style.display = 'none';
+      document.querySelectorAll('h2').forEach(h2 => {
+        h2.style.display = 'block';
+      });
+      document.getElementById('forecast-day').style.display = 'block';
+      document.getElementById('forecast-week').style.display = 'block';
     }
   
     initForecast();
