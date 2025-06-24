@@ -73,7 +73,6 @@ function getWeatherForecastHoursData(dataDays){
   });
 }
 
-// TODO : icones météo
 function getWeatherForecastDaysData(dataWeek) {
   const table = document.getElementById("forecast-week-table");
   const theadRow = table.querySelector("thead > tr");
