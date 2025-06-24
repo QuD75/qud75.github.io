@@ -180,7 +180,6 @@ function getWeatherForecastDaysData(dataWeek) {
   });
 }
 
-// TODO : échelles ordonnées un peu plus large que les extrêmes
 function fillTabDays() {
   const tbody = document.getElementById("day-forecast-body");
 
@@ -416,7 +415,9 @@ function createCharts() {
         data: rainData,
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
+        borderWidth: 1,
+        barPercentage: 1,
+        categoryPercentage: 1
       }]
     },
     ...commonOptions('Pluie (%)', 'bar'),
