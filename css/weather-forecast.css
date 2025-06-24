@@ -5,6 +5,16 @@
   margin-bottom: 3rem;
 }
 
+#week-container {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+
+#week-forecast-tab {
+  width: 80% !important;
+  margin: 0 auto;
+}
+
 #day-container-tab {
   flex: 0 1 60%;
   max-width: 60%;
