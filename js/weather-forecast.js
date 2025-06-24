@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
       fillTabDay();
       createCharts();
 
-      document.getElementById('loading-message').style.display = 'none';
+/*       document.getElementById('loading-message').style.display = 'none';
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
       });
       document.getElementById('forecast-day').style.display = 'flex';
-      document.getElementById('forecast-week').style.display = 'block';
+      document.getElementById('forecast-week').style.display = 'block'; */
     }
   
     initForecast();
