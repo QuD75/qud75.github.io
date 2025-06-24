@@ -107,13 +107,12 @@ function getWeatherForecastDaysData(dataWeek) {
     const maxWind = Math.max(d.wind.speed.value, n.wind.speed.value);
 
     const cellValues = [
-      d.weatherCondition.description.text,                               // 0
-      `${sunrise} / ${sunset}`,                                          // 1
-      `${d.uvIndex}`,                                                    // 2
-      `${Math.round(day.minTemperature.degrees)}`,                       // 3
-      `${Math.round(day.maxTemperature.degrees)}`,                       // 4
-      `${maxWind}`,                                                      // 5                                                 // 6
-      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %` // 7
+      d.weatherCondition.description.text,                                                  // 0
+      `${sunrise} / ${sunset}`,                                                             // 1                                                 // 2
+      `${Math.round(day.minTemperature.degrees)}`,                                          // 2
+      `${Math.round(day.maxTemperature.degrees)}`,                                          // 3
+      `${maxWind}`,                                                                         // 4                                                 // 6
+      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %` // 5
     ];
 
     cellValues.forEach((val, rowIndex) => {
@@ -122,23 +121,19 @@ function getWeatherForecastDaysData(dataWeek) {
 
       // Appliquer des couleurs conditionnelles
       switch (rowIndex) {
-        case 2: { // UV
-          td.style.backgroundColor = getColorForUv(parseFloat(val));
+        case 2: {
+          td.style.backgroundColor = getColorForTemperature(parseFloat(val));
           break;
         }
         case 3: {
           td.style.backgroundColor = getColorForTemperature(parseFloat(val));
           break;
         }
-        case 4: {
-          td.style.backgroundColor = getColorForTemperature(parseFloat(val));
-          break;
-        }
-        case 5: { // vent moyen max
+        case 4: { // vent moyen max
           td.style.backgroundColor = getColorForWindSpeed(parseFloat(val));
           break;
         }
-        case 7: { // pluie jour / nuit
+        case 5: { // pluie jour / nuit
           const [dayProbStr, nightProbStr] = val.split('%')[0].split(' / ');
           console.log(dayProbStr);
           console.log(nightProbStr);
