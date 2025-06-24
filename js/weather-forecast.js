@@ -59,9 +59,9 @@ function getWeatherForecastHoursData(dataDays){
     grouped[day].push({
       timestamp: date.getTime() / 1000,
       hour,
-      temp: Math.round(h.temperature.degrees),
+      temp: h.temperature.degrees,
       hum: h.relativeHumidity,
-      pressure: Math.round(h.airPressure.meanSeaLevelMillibars),
+      pressure: h.airPressure.meanSeaLevelMillibars,
       windSpeed: h.wind.speed.value,
       windGust: h.wind.gust.value,
       windDirection: h.wind.direction.degrees,
@@ -180,7 +180,6 @@ function getWeatherForecastDaysData(dataWeek) {
   });
 }
 
-// TODO : graphiques sur des valeurs non arrondis
 // TODO : échelles ordonnées un peu plus large que les extrêmes
 function fillTabDays() {
   const tbody = document.getElementById("day-forecast-body");
@@ -207,7 +206,7 @@ function fillTabDays() {
       const tempBg = getColorForTemperature(entry.temp);
       tempCell.style.backgroundColor = tempBg;
       tempCell.style.color = getTextColorFromBackground(tempBg);
-      tempCell.textContent = entry.temp;
+      tempCell.textContent = Math.round(entry.temp);
       row.appendChild(tempCell);
 
       // Humidité
@@ -220,7 +219,7 @@ function fillTabDays() {
 
       // Pression
       const pressureCell = document.createElement('td');
-      pressureCell.textContent = entry.pressure;
+      pressureCell.textContent = Math.round(entry.pressure);
       row.appendChild(pressureCell);
 
       // Vent vitesse
