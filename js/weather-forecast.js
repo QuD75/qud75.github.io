@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function initForecast() {
 
+      await new Promise(resolve => setTimeout(resolve, 5000));
+
       // 1. Récupération des données horaires
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
