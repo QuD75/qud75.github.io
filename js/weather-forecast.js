@@ -134,10 +134,12 @@ function getWeatherForecastDaysData(dataWeek) {
           break;
         }
         case 5: { // pluie jour / nuit
-          const [dayProbStr, nightProbStr] = val.split('%')[0].split(' / ');
-          console.log(dayProbStr);
-          console.log(nightProbStr);
-          td.style.backgroundColor = getColorForRain(Math.max(parseFloat(dayProbStr), parseFloat(nightProbStr)));
+          const [dayRaw, nightRaw] = val.split(' / ');
+          const dayProb = parseFloat(dayRaw.replace('%', '').trim());
+          const nightProb = parseFloat(nightRaw.replace('%', '').trim());
+          console.log(dayProb);
+          console.log(nightProb);
+          td.style.backgroundColor = getColorForRain(Math.max(dayProb, nightProb));
           break;
         }
       }
