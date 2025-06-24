@@ -2,6 +2,13 @@
   font-size: 1rem;
   color: #555;
   animation: blink 1s infinite;
+  margin: 2rem auto;
+  text-align: center;
+  font-weight: bold;
+  background: #f0f0f0;
+  padding: 1rem;
+  border-radius: 8px;
+  width: fit-content;
 }
 
 @keyframes blink {
