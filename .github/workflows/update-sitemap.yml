@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Run sitemap generator
-        run: node js/generate-sitemap.js
+        run: node js/utils/generate-sitemap.js
 
       - name: Commit sitemap changes
         run: |
