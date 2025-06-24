@@ -206,19 +206,19 @@ function getWeatherForecastDaysData(dataWeek) {
     ? formatHour(new Date(day.sunEvents.sunriseTime), timeZone)
     : "—";
   
-  const sunset = day.sunEvents.sunsetTime
-    ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
-    : "—";
+    const sunset = day.sunEvents.sunsetTime
+      ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
+      : "—";
 
-    const avgwWind = (d.wind.speed.value + n.wind.speed.value) / 2;
+    const avgwWind = Math.round((((d.wind.speed.value + n.wind.speed.value) / 2) / 5))*5;
 
     const cellValues = [
-      d.weatherCondition.type,                                                              // 0
+      d.weatherCondition.type,                                                                // 0
       `${sunrise}  -  ${sunset}`,                                                             // 1                                                 // 2
-      `${Math.round(day.minTemperature.degrees)}`,                                          // 2
-      `${Math.round(day.maxTemperature.degrees)}`,                                          // 3
-      `${avgwWind}`,                                                                         // 4                                                 // 6
-      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %` // 5
+      `${Math.round(day.minTemperature.degrees)}`,                                            // 2
+      `${Math.round(day.maxTemperature.degrees)}`,                                            // 3
+      `${avgwWind}`,                                                                          // 4                                                 // 6
+      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`   // 5
     ];
 
     cellValues.forEach((val, rowIndex) => {
