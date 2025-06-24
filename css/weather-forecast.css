@@ -5,10 +5,10 @@
   margin: 2rem auto;
   text-align: center;
   font-weight: bold;
-  background: #f0f0f0;
   padding: 1rem;
   border-radius: 8px;
   width: fit-content;
+  position: static;
 }
 
 @keyframes blink {
