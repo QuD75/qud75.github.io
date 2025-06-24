@@ -133,13 +133,13 @@ function getWeatherForecastDaysData(dataWeek) {
       const td = document.createElement("td");
       td.textContent = val;
 
-      // Appliquer des couleurs conditionnelles
       switch (rowIndex) {
         case 0: {
+          td.textContent = '';
           const imgWeather = document.createElement('img');
           imgWeather.src = `/icons/weather/day/${val}.svg`;
+          console.log(imgWeather.src);
           td.appendChild(imgWeather);
-          td.textContent = null;
           break;
         }
         case 2: {
