@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function initForecast() {
-      await new Promise(resolve => setTimeout(resolve, 5000));
 
       // 1. Récupération des données horaires
       const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 0, getWeatherForecastHoursData);
@@ -36,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
       });
-      document.getElementById('forecast-day').style.display = 'block';
+      document.getElementById('forecast-day').style.display = 'flex';
       document.getElementById('forecast-week').style.display = 'block';
     }
   
