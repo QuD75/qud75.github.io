@@ -105,7 +105,6 @@ function getWeatherForecastDaysData(dataWeek) {
       : "—";
 
     const maxWind = Math.max(d.wind.speed.value, n.wind.speed.value);
-    const maxWindGust = Math.max(d.wind.gust.value, n.wind.gust.value);
 
     const cellValues = [
       d.weatherCondition.description.text,                               // 0
@@ -113,8 +112,7 @@ function getWeatherForecastDaysData(dataWeek) {
       `${d.uvIndex}`,                                                    // 2
       `${Math.round(day.minTemperature.degrees)}`,                       // 3
       `${Math.round(day.maxTemperature.degrees)}`,                       // 4
-      `${maxWind}`,                                                      // 5
-      `${maxWindGust}`,                                                  // 6
+      `${maxWind}`,                                                      // 5                                                 // 6
       `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %` // 7
     ];
 
@@ -125,46 +123,24 @@ function getWeatherForecastDaysData(dataWeek) {
       // Appliquer des couleurs conditionnelles
       switch (rowIndex) {
         case 2: { // UV
-          const uv = parseFloat(val);
-          if (!isNaN(uv)) {
-            td.style.backgroundColor = getColorForUv(uv);
-          }
+          td.style.backgroundColor = getColorForUv(parseFloat(val));
           break;
         }
         case 3: {
-          const tempMin = parseFloat(val);
-          if (!isNaN(tempMin)) {
-            td.style.backgroundColor = getColorForTemperature(tempMin);
-          }
+          td.style.backgroundColor = getColorForTemperature(parseFloat(val));
           break;
         }
         case 4: {
-          const tempMax = parseFloat(val);
-          if (!isNaN(tempMax)) {
-            td.style.backgroundColor = getColorForTemperature(tempMax);
-          }
+          td.style.backgroundColor = getColorForTemperature(parseFloat(val));
           break;
         }
         case 5: { // vent moyen max
-          const wind = parseFloat(val);
-          if (!isNaN(wind)) {
-            td.style.backgroundColor = getColorForWindSpeed(wind);
-          }
-          break;
-        }
-        case 6: { // rafales max
-          const gust = parseFloat(val);
-          if (!isNaN(gust)) {
-            td.style.backgroundColor = getColorForWindSpeed(gust);
-          }
+          td.style.backgroundColor = getColorForWindSpeed(parseFloat(val));
           break;
         }
         case 7: { // pluie jour / nuit
           const [dayProbStr, nightProbStr] = val.split('%')[0].split(' / ');
-          const rainDay = parseFloat(dayProbStr);
-          if (!isNaN(rainDay)) {
-            td.style.backgroundColor = getColorForRain(rainDay);
-          }
+          td.style.backgroundColor = getColorForRain(Math.max(parseFloat(dayProbStr), parseFloat(nightProbStr)));
           break;
         }
       }
