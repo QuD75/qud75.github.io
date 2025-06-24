@@ -2,16 +2,16 @@
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description"
-        content="Prévisions météo pour Le Croisic : précipitations, températures, vent, etc. Consultez la météo pour les prochaines 24 heures et les 7 prochains jours.">
+        content="Prévisions météo pour Le Croisic : précipitations, températures, vent, etc. Consultez la météo pour les prochaines 24 heures et les 7 prochains jours." />
     <title>Prévisions - Météo Croisic</title>
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/menu.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/weather-forecast.css">
+    <link rel="stylesheet" href="/css/base.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/menu.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/weather-forecast.css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
 
         <div id="vigilance-container" style="display: none;">
             <div id="icon-container">
-                <img id="vigilance-icon">
+                <img id="vigilance-icon" />
             </div>
             <div id="text-container">
                 <h2 id="vigilance-title"></h2>
@@ -31,62 +31,78 @@
         </div>
 
         <h2>Météo pour les prochaines 48h</h2>
-        <div id="day-container">
-            <div id="day-container-tab">
-                <table class="weather-forecast-table">
+        <div id="forecast-day">
+            <div id="forecast-day-table-container">
+                <table class="forecast-table">
                     <thead>
                         <tr>
-                          <th>Jour</th>
-                          <th>Heure</th>
-                          <th>Température<br><small>(°C)</small></th>
-                          <th>Humidité<br><small>(%)</small></th>
-                          <th>Pression<br><small>(hPa)</small></th>
-                          <th>Vent moyen<br><small>(km/h)</small></th>
-                          <th>Vent rafales<br><small>(km/h)</small></th>
-                          <th>Direction<br>du vent</th>
-                          <th>Pluie<br><small>(%)</small></th>
-                          <th>Indice<br>UV</th>
-                          <th>Temps</th>
+                            <th>Jour</th>
+                            <th>Heure</th>
+                            <th>Température<br /><small>(°C)</small></th>
+                            <th>Humidité<br /><small>(%)</small></th>
+                            <th>Pression<br /><small>(hPa)</small></th>
+                            <th>Vent moyen<br /><small>(km/h)</small></th>
+                            <th>Vent rafales<br /><small>(km/h)</small></th>
+                            <th>Direction<br />du vent</th>
+                            <th>Pluie<br /><small>(%)</small></th>
+                            <th>Indice<br />UV</th>
+                            <th>Temps</th>
                         </tr>
-                      </thead>
-                      <tbody id ="day-forecast-body"></tbody>
+                    </thead>
+                    <tbody id="day-forecast-body"></tbody>
                 </table>
             </div>
-            <div id="day-container-graphs" class="container-graphs">
-                <canvas id="chart-temperature-day" class="chart-weather-forecast"></canvas>
-                <canvas id="chart-pressure-day" class="chart-weather-forecast"></canvas>
-                <canvas id="chart-wind-day" class="chart-weather-forecast"></canvas>
-                <canvas id="chart-rain-day" class="chart-weather-forecast"></canvas>
+            <div id="forecast-day-graphs" class="forecast-graphs">
+                <canvas id="chart-temperature-day" class="forecast-chart"></canvas>
+                <canvas id="chart-pressure-day" class="forecast-chart"></canvas>
+                <canvas id="chart-wind-day" class="forecast-chart"></canvas>
+                <canvas id="chart-rain-day" class="forecast-chart"></canvas>
             </div>
         </div>
 
         <h2>Météo pour les 7 prochains jours</h2>
-        <div id="week-container">
-            <div id="week-container-tab">
-                <table id="week-forecast-tab" class="weather-forecast-table">
+        <div id="forecast-week">
+            <div id="forecast-week-table-container">
+                <table id="forecast-week-table" class="forecast-table">
                     <thead>
-                      <tr>
-                        <th>Prévision</th> <!-- Première cellule vide ou titre colonne -->
-                        <!-- Les <th> de chaque jour seront ajoutés dynamiquement ici -->
-                      </tr>
+                        <tr>
+                            <th>Prévision</th>
+                            <!-- Les <th> de chaque jour seront ajoutés dynamiquement ici -->
+                        </tr>
                     </thead>
                     <tbody>
-                      <tr><th>Temps (jour)</th></tr>
-                      <tr><th>Lever / coucher du soleil</th></tr>
-                      <tr><th>Températures max / min (°C)</th></tr>
-                      <tr><th>Indice UV</th></tr>
-                      <tr><th>Vent (jour)</th></tr>
-                      <tr><th>Vent (nuit)</th></tr>
-                      <tr><th>Rafales jour / nuit (km/h)</th></tr>
-                      <tr><th>Probabilité de pluie jour / nuit (%)</th></tr>
+                        <tr>
+                            <th>Temps (jour)</th>
+                        </tr>
+                        <tr>
+                            <th>Lever / coucher du soleil</th>
+                        </tr>
+                        <tr>
+                            <th>Températures max / min (°C)</th>
+                        </tr>
+                        <tr>
+                            <th>Indice UV</th>
+                        </tr>
+                        <tr>
+                            <th>Vent (jour)</th>
+                        </tr>
+                        <tr>
+                            <th>Vent (nuit)</th>
+                        </tr>
+                        <tr>
+                            <th>Rafales jour / nuit (km/h)</th>
+                        </tr>
+                        <tr>
+                            <th>Probabilité de pluie jour / nuit (%)</th>
+                        </tr>
                     </tbody>
-                  </table>                  
+                </table>
             </div>
-            <div id="week-container-graphs" class="container-graphs">
-                <canvas id="chart-temperature-week" class="chart-weather-forecast"></canvas>
-                <canvas id="chart-pressure-week" class="chart-weather-forecast"></canvas>
-                <canvas id="chart-wind-week" class="chart-weather-forecast"></canvas>
-                <canvas id="chart-rain-week" class="chart-weather-forecast"></canvas>
+            <div id="forecast-week-graphs" class="forecast-graphs">
+                <canvas id="chart-temperature-week" class="forecast-chart"></canvas>
+                <canvas id="chart-pressure-week" class="forecast-chart"></canvas>
+                <canvas id="chart-wind-week" class="forecast-chart"></canvas>
+                <canvas id="chart-rain-week" class="forecast-chart"></canvas>
             </div>
         </div>
 

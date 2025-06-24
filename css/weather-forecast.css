@@ -1,38 +1,38 @@
-#day-container {
+#forecast-day {
   display: flex;
   gap: 5rem;
   margin-top: 2rem;
   margin-bottom: 3rem;
 }
 
-#week-container {
+#forecast-week {
   margin-top: 2rem;
   margin-bottom: 3rem;
 }
 
-#week-forecast-tab {
+#forecast-week-table {
   width: 80% !important;
   margin: 0 auto;
 }
 
-#day-container-tab {
+#forecast-day-table-container {
   flex: 0 1 60%;
   max-width: 60%;
   min-width: 0;
 }
 
-.container-graphs {
+.forecast-graphs {
   flex: 0 1 40%;
   max-width: 40%;
   min-width: 0;
 }
 
-.chart-weather-forecast {
+.forecast-chart {
   max-height: 20rem;
   max-width: 60rem;
 }
 
-.weather-forecast-table {
+.forecast-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -43,59 +43,60 @@
   background-color: #fff;
 }
 
-.weather-forecast-table th {
+.forecast-table th {
   padding: 10px 5px;
 }
 
-.weather-forecast-table td {
+.forecast-table td {
   padding: 1px 1px;
 }
 
-.weather-forecast-table th, td {
+.forecast-table th,
+.forecast-table td {
   border: 0.5px solid #ccc;
   font-size: 0.8rem;
 }
 
 @media (max-width: 768px) {
-  .weather-forecast-table th,
-  .weather-forecast-table td {
+  .forecast-table th,
+  .forecast-table td {
     font-size: 2vw;
   }
 
-  .weather-forecast-table {
+  .forecast-table {
     width: 100%;
     table-layout: fixed;
     word-wrap: break-word;
   }
 }
 
-.weather-forecast-table thead {
+.forecast-table thead {
   background-color: #f5f5f5;
   font-weight: bold;
 }
 
-.weather-forecast-table tr:last-child td {
+.forecast-table tr:last-child td {
   border-bottom: none;
 }
 
-.weather-forecast-table th:first-child {
+.forecast-table th:first-child {
   border-top-left-radius: 12px;
 }
 
-.weather-forecast-table th:last-child {
+.forecast-table th:last-child {
   border-top-right-radius: 12px;
 }
 
-.weather-forecast-table tr:last-child td:first-child {
+.forecast-table tr:last-child td:first-child {
   border-bottom-left-radius: 12px;
 }
 
-.weather-forecast-table tr:last-child td:last-child {
+.forecast-table tr:last-child td:last-child {
   border-bottom-right-radius: 12px;
 }
 
-.weather-forecast-table td,
-.weather-forecast-table th {
+.forecast-table td,
+.forecast-table th {
   text-align: center;
   vertical-align: middle;
 }
