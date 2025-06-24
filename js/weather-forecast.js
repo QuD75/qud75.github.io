@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       await fetchData(weatherWeek, 'weather_forecast_week', 60, getWeatherForecastDaysData);
     
-      fillTabDay();
+      fillTabDays();
       createCharts();
       
       document.getElementById('loading-message').style.display = 'none';
@@ -73,6 +73,7 @@ function getWeatherForecastHoursData(dataDays){
   });
 }
 
+// TODO : icones météo
 function getWeatherForecastDaysData(dataWeek) {
   const table = document.getElementById("forecast-week-table");
   const theadRow = table.querySelector("thead > tr");
@@ -172,7 +173,9 @@ function getWeatherForecastDaysData(dataWeek) {
   });
 }
 
-function fillTabDay() {
+// TODO : graphiques sur des valeurs non arrondis
+// TODO : échelles ordonnées un peu plus large que les extrêmes
+function fillTabDays() {
   const tbody = document.getElementById("day-forecast-body");
 
   for (const [day, hours] of Object.entries(grouped)) {
