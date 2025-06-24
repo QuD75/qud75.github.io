@@ -210,13 +210,13 @@ function getWeatherForecastDaysData(dataWeek) {
       ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
       : "—";
 
-    const avgwWind = Math.round((((d.wind.speed.value + n.wind.speed.value) / 2) / 5))*5;
+    const avgwWind = (d.wind.speed.value + n.wind.speed.value) / 2;
 
     const cellValues = [
       d.weatherCondition.type,                                                                // 0
       `${sunrise}  -  ${sunset}`,                                                             // 1                                                 // 2
-      `${Math.round(day.minTemperature.degrees)}`,                                            // 2
-      `${Math.round(day.maxTemperature.degrees)}`,                                            // 3
+      `${day.minTemperature.degrees}`,                                            // 2
+      `${day.maxTemperature.degrees}`,                                            // 3
       `${avgwWind}`,                                                                          // 4                                                 // 6
       `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`   // 5
     ];
@@ -240,6 +240,7 @@ function getWeatherForecastDaysData(dataWeek) {
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
           td.style.color = textColor;
+          td.textContent = Math.round(val);
           break;
         }
         case 3: {
@@ -247,6 +248,7 @@ function getWeatherForecastDaysData(dataWeek) {
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
           td.style.color = textColor;
+          td.textContent = Math.round(val);
           break;
         }
         case 4: {
@@ -254,6 +256,7 @@ function getWeatherForecastDaysData(dataWeek) {
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
           td.style.color = textColor;
+          td.textContent = Math.round(val/5)*5;
           break;
         }
         case 5: {
