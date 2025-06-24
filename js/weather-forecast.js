@@ -110,33 +110,15 @@ function getWeatherForecastDaysData(dataWeek) {
       ? new Date(day.sunEvents.sunsetTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
       : "—";
 
-    const moonrise = day.moonEvents?.moonriseTimes?.[0]
-      ? new Date(day.moonEvents.moonriseTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
-      : "—";
-
-    const moonset = day.moonEvents?.moonsetTimes?.[0]
-      ? new Date(day.moonEvents.moonsetTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
-      : "—";
-
-    const moonPhase = day.moonEvents?.moonPhase
-      ? day.moonEvents.moonPhase.replace("_", " ").toLowerCase()
-      : "—";
-
     const cellValues = [
       d.weatherCondition.description.text,
-      n.weatherCondition.description.text,
-      `${day.maxTemperature.degrees} / ${day.minTemperature.degrees}`,
-      `${day.feelsLikeMaxTemperature.degrees} / ${day.feelsLikeMinTemperature.degrees}`,
-      `${d.relativeHumidity} % / ${n.relativeHumidity} %`,
-      `${d.uvIndex} / ${n.uvIndex}`,
+      `${sunrise} / ${sunset}`,
+      `${day.minTemperature.degrees} / ${day.maxTemperature.degrees}`,
+      `${d.uvIndex}`,
       formatWind(d.wind.speed, d.wind.direction),
       formatWind(n.wind.speed, n.wind.direction),
       `${d.wind.gust.value} / ${n.wind.gust.value} km/h`,
-      `${d.cloudCover} % / ${n.cloudCover} %`,
-      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`,
-      `${sunrise} / ${sunset}`,
-      `${moonrise} / ${moonset}`,
-      moonPhase
+      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`
     ];
 
     // Insérer les valeurs dans les lignes existantes
