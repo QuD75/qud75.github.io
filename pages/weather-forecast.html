@@ -63,26 +63,30 @@
         <h2>Météo pour les 7 prochains jours</h2>
         <div id="week-container" class="weather-forecast">
             <div id="week-container-tab" class="container-tab">
-                <table id= "week-forecast-tab" class="weather-forecast-table">
+                <table id="week-forecast-tab">
                     <thead>
                       <tr>
-                        <th>Données</th>
+                        <th>Prévision</th> <!-- Première cellule vide ou titre colonne -->
+                        <!-- Les <th> de chaque jour seront ajoutés dynamiquement ici -->
                       </tr>
                     </thead>
                     <tbody>
-                      <tr><td>Condition (jour)</td></tr>
-                      <tr><td>Condition (nuit)</td></tr>
-                      <tr><td>Température max / min (°C)</td></tr>
-                      <tr><td>Humidité (jour / nuit)</td></tr>
-                      <tr><td>Indice UV (jour / nuit)</td></tr>
-                      <tr><td>Vent (jour)</td></tr>
-                      <tr><td>Vent (nuit)</td></tr>
-                      <tr><td>Rafales (jour / nuit)</td></tr>
-                      <tr><td>Couverture nuageuse (jour / nuit)</td></tr>
-                      <tr><td>Pluie (jour / nuit)</td></tr>
-                      <tr><td>Lever / Coucher du soleil</td></tr>
+                      <tr><th>Temps (jour)</th></tr>
+                      <tr><th>Temps (nuit)</th></tr>
+                      <tr><th>Températures max / min (°C)</th></tr>
+                      <tr><th>Températures ressenties max / min (°C)</th></tr>
+                      <tr><th>Humidité jour / nuit (%)</th></tr>
+                      <tr><th>Indice UV jour / nuit</th></tr>
+                      <tr><th>Vent (jour)</th></tr>
+                      <tr><th>Vent (nuit)</th></tr>
+                      <tr><th>Rafales jour / nuit (km/h)</th></tr>
+                      <tr><th>Couverture nuageuse jour / nuit (%)</th></tr>
+                      <tr><th>Probabilité de pluie jour / nuit (%)</th></tr>
+                      <tr><th>Lever / coucher du soleil</th></tr>
+                      <tr><th>Lever / coucher de la lune</th></tr>
+                      <tr><th>Phase de la lune</th></tr>
                     </tbody>
-                  </table>
+                  </table>                  
             </div>
             <div id="week-container-graphs" class="container-graphs">
                 <canvas id="chart-temperature-week" class="chart-weather-forecast"></canvas>

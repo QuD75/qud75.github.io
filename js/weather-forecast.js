@@ -68,45 +68,59 @@ function getWeatherForecastHoursData(dataDays){
 }
 
 function getWeatherForecastDaysData(dataWeek) {
-  console.log("dataWeek", dataWeek);
-
   const table = document.getElementById("week-forecast-tab");
   const theadRow = table.querySelector("thead > tr");
   const tbody = table.querySelector("tbody");
-  let tbodyRows = Array.from(tbody.rows);
+  const tbodyRows = Array.from(tbody.rows);
+
   const days = dataWeek.forecastDays;
   const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
 
-  console.log("days", days);
-
-  // Helper : formater la date
+  // Format date colonne
   const formatDate = (dateObj) => {
     const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
-    return date.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', timeZone });
+    return date.toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      timeZone
+    });
   };
 
-  // Helper : format direction vent
+  // Format vent
   const formatWind = (speed, direction) => `${speed.value} km/h (${direction.cardinal})`;
 
-  // S'assurer que le tbody a le bon nombre de lignes
-  const requiredRows = 15; // ou cellValues.length si dynamique
-  while (tbody.rows.length < requiredRows) {
-    const tr = document.createElement("tr");
-    tbody.appendChild(tr);
-  }
-  tbodyRows = Array.from(tbody.rows); // re-récupérer après ajout
-
-  // Ajouter les entêtes (jours)
+  // Ajouter les entêtes de colonnes (jours)
   days.forEach((day) => {
     const th = document.createElement("th");
     th.textContent = formatDate(day.displayDate);
     theadRow.appendChild(th);
   });
 
-  // Remplir les lignes
-  days.forEach((day, colIndex) => {
+  // Pour chaque jour, remplir les colonnes correspondantes dans chaque ligne
+  days.forEach((day) => {
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
+
+    const sunrise = day.sunEvents.sunriseTime
+      ? new Date(day.sunEvents.sunriseTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
+      : "—";
+
+    const sunset = day.sunEvents.sunsetTime
+      ? new Date(day.sunEvents.sunsetTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
+      : "—";
+
+    const moonrise = day.moonEvents?.moonriseTimes?.[0]
+      ? new Date(day.moonEvents.moonriseTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
+      : "—";
+
+    const moonset = day.moonEvents?.moonsetTimes?.[0]
+      ? new Date(day.moonEvents.moonsetTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
+      : "—";
+
+    const moonPhase = day.moonEvents?.moonPhase
+      ? day.moonEvents.moonPhase.replace("_", " ").toLowerCase()
+      : "—";
 
     const cellValues = [
       d.weatherCondition.description.text,
@@ -120,19 +134,16 @@ function getWeatherForecastDaysData(dataWeek) {
       `${d.wind.gust.value} / ${n.wind.gust.value} km/h`,
       `${d.cloudCover} % / ${n.cloudCover} %`,
       `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`,
-      `${new Date(day.sunEvents.sunriseTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })} / ` +
-      `${new Date(day.sunEvents.sunsetTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })}`,
-      `${new Date(day.moonEvents.moonriseTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })} / ` +
-      `${new Date(day.moonEvents.moonsetTimes[0]).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })}`,
-      day.moonEvents.moonPhase.replace("_", " ").toLowerCase()
+      `${sunrise} / ${sunset}`,
+      `${moonrise} / ${moonset}`,
+      moonPhase
     ];
 
-    // Insérer les valeurs dans les cellules du tbody
+    // Insérer les valeurs dans les lignes existantes
     cellValues.forEach((val, rowIndex) => {
-      const row = tbodyRows[rowIndex];
       const td = document.createElement("td");
       td.textContent = val;
-      row.appendChild(td);
+      tbodyRows[rowIndex].appendChild(td);
     });
   });
 }
