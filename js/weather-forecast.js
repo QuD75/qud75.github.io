@@ -113,7 +113,7 @@ function getWeatherForecastDaysData(dataWeek) {
     const cellValues = [
       d.weatherCondition.description.text,
       `${sunrise} / ${sunset}`,
-      `${day.minTemperature.degrees} / ${day.maxTemperature.degrees}`,
+      `${Math.round(day.minTemperature.degrees)} / ${Math.round(day.maxTemperature.degrees)}`,
       `${d.uvIndex}`,
       formatWind(d.wind.speed, d.wind.direction),
       formatWind(n.wind.speed, n.wind.direction),
