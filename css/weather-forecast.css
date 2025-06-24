@@ -121,7 +121,13 @@
   vertical-align: middle;
 }
 
-.weather-icon {
+.weather-day-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0.97);
+}
+
+.weather-week-icon {
   width: 20px;
   height: 20px;
   filter: brightness(0.97);

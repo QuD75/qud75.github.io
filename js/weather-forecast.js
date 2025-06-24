@@ -137,6 +137,7 @@ function getWeatherForecastDaysData(dataWeek) {
         case 0: {
           td.textContent = '';
           const imgWeather = document.createElement('img');
+          imgWeather.classList.add('weather-week-icon');
           imgWeather.src = `/icons/weather/day/${val}.svg`;
           console.log(imgWeather.src);
           td.appendChild(imgWeather);
@@ -265,7 +266,7 @@ function fillTabDays() {
       // Icône météo
       const weatherCell = document.createElement('td');
       const imgWeather = document.createElement('img');
-      imgWeather.classList.add('weather-icon');
+      imgWeather.classList.add('weather-day-icon');
       imgWeather.src = `/icons/weather/${entry.isDay ? 'day' : 'night'}/${entry.weather}.svg`;
       weatherCell.appendChild(imgWeather);
       row.appendChild(weatherCell);
