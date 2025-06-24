@@ -110,15 +110,15 @@ function getWeatherForecastDaysData(dataWeek) {
       ? new Date(day.sunEvents.sunsetTime).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', timeZone })
       : "—";
 
-    const maxWind = Math.max(d.wind.speed, n.wind.speed);
+    const maxWind = Math.max(d.wind.speed.value, n.wind.speed.value);
     const maxWindGust = Math.max(d.wind.gust.value, n.wind.gust.value);
 
     const cellValues = [
       d.weatherCondition.description.text,
       `${sunrise} / ${sunset}`,
+      `${d.uvIndex}`,
       `${Math.round(day.minTemperature.degrees)}`,
       `${Math.round(day.maxTemperature.degrees)}`,
-      `${d.uvIndex}`,
       `${maxWind}`,
       `${maxWindGust}`,
       `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`
