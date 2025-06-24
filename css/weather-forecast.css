@@ -1,4 +1,4 @@
-.weather-forecast {
+#day-container {
   display: flex;
   gap: 5rem;
   margin-top: 2rem;
@@ -10,12 +10,6 @@
   max-width: 60%;
   min-width: 0;
 }
-
-/* #week-container-tab {
-  flex: 0 1 60%;
-  max-width: 60%;
-  min-width: 0;
-} */
 
 .container-graphs {
   flex: 0 1 40%;
