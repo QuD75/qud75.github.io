@@ -100,14 +100,6 @@ function fillTabDays() {
       tempCell.textContent = Math.round(entry.temp);
       row.appendChild(tempCell);
 
-      // Humidité
-      const humCell = document.createElement('td');
-      const humBg = getColorForHumidity(entry.hum);
-      humCell.style.backgroundColor = humBg;
-      humCell.style.color = getTextColorFromBackground(humBg);
-      humCell.textContent = entry.hum;
-      /* row.appendChild(humCell); */
-
       // Pression
       const pressureCell = document.createElement('td');
       pressureCell.textContent = Math.round(entry.pressure);
