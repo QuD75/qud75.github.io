@@ -106,7 +106,7 @@ function fillTabDays() {
       humCell.style.backgroundColor = humBg;
       humCell.style.color = getTextColorFromBackground(humBg);
       humCell.textContent = entry.hum;
-      row.appendChild(humCell);
+      /* row.appendChild(humCell); */
 
       // Pression
       const pressureCell = document.createElement('td');
