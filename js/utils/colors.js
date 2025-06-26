@@ -104,18 +104,30 @@ function getColorForUv(uv){
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function getColorForRain(prob) {
-  if (prob === 0) return 'rgba(135, 206, 250, 0.1)';  // très clair (presque transparent)
-  if (prob <= 10) return 'rgba(135, 206, 250, 0.2)';
-  if (prob <= 20) return 'rgba(135, 206, 250, 0.3)';
-  if (prob <= 30) return 'rgba(100, 149, 237, 0.4)';  // bleu cornflower clair
-  if (prob <= 40) return 'rgba(70, 130, 180, 0.5)';   // steelblue moyen
-  if (prob <= 50) return 'rgba(30, 144, 255, 0.6)';   // dodgerblue
-  if (prob <= 60) return 'rgba(25, 25, 112, 0.7)';    // midnightblue semi-transparent
-  if (prob <= 70) return 'rgba(0, 0, 205, 0.8)';      // mediumblue
-  if (prob <= 80) return 'rgba(0, 0, 139, 0.9)';      // darkblue
-  if (prob <= 90) return 'rgba(0, 0, 100, 0.95)';     // très foncé
-  return 'rgba(25, 25, 112, 1)';                      // bleu très foncé opaque
+function getColorForRain(precip) {
+  const max = 10; // précipitation max pour le dégradé (ajuster)
+  const p = Math.min(Math.max(precip, 0), max) / max; // normalisation 0-1
+
+  // Dégradé en 3 étapes:
+  // 0: blanc (255,255,255)
+  // 0.5: bleu moyen (70,130,180) - steelblue
+  // 1: violet foncé (75,0,130) - indigo
+
+  if (p <= 0.5) {
+    // interpolation blanc -> bleu moyen
+    const t = p / 0.5;
+    const r = Math.round(255 + t * (70 - 255));
+    const g = Math.round(255 + t * (130 - 255));
+    const b = Math.round(255 + t * (180 - 255));
+    return `rgb(${r},${g},${b})`;
+  } else {
+    // interpolation bleu moyen -> violet foncé
+    const t = (p - 0.5) / 0.5;
+    const r = Math.round(70 + t * (75 - 70));
+    const g = Math.round(130 + t * (0 - 130));
+    const b = Math.round(180 + t * (130 - 180));
+    return `rgb(${r},${g},${b})`;
+  }
 }
 
 function getTextColorFromBackground(bgColor) {

@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', () => {
 const grouped = {};
 
 function getWeatherForecastHoursData(dataDays){
-
   dataDays.forecastHours.forEach(h => {
 
     const yearApi = h.displayDateTime.year;
@@ -65,7 +64,7 @@ function getWeatherForecastHoursData(dataDays){
       windSpeed: h.wind.speed.value,
       windGust: h.wind.gust.value,
       windDirection: h.wind.direction.degrees,
-      rain: h.precipitation.probability.percent,
+      rain: h.precipitation.qpf.quantity,
       uvi: h.uvIndex,
       weather: h.weatherCondition.type,
       isDay: h.isDaytime,
@@ -201,8 +200,7 @@ function getWeatherForecastDaysData(dataWeek) {
     const maxTemp = Math.round(day.maxTemperature.degrees);
     const avgWind = Math.round((d.wind.speed.value + n.wind.speed.value) / 2);
     const windDirection = d.wind.direction.degrees;
-    const dayRain = d.precipitation.probability.percent || 0;
-    const nightRain = n.precipitation.probability.percent || 0;
+    const rain = d.precipitation.qpf.quantity + n.precipitation.probability.percent;
 
     // Ajouter l'en-tête du jour dans le thead
     const th = document.createElement('th');
@@ -261,12 +259,12 @@ function getWeatherForecastDaysData(dataWeek) {
     td3.append(spanWind, spanValue);
     tbodyRows[3].appendChild(td3);
 
-    // Ligne 4 : Probabilité pluie jour / nuit
+    // Ligne 4 : pluie
     const td4 = document.createElement('td');
-    const bgRain = getColorForRain(Math.max(dayRain, nightRain));
+    const bgRain = getColorForRain(rain);
     td4.style.backgroundColor = bgRain;
     td4.style.color = getTextColorFromBackground(bgRain);
-    td4.textContent = `${dayRain}% / ${nightRain}%`;
+    td4.textContent = `${rain} mm`;
     tbodyRows[4].appendChild(td4);
   });
 
