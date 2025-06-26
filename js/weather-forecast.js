@@ -202,15 +202,11 @@ function getWeatherForecastDaysData(dataWeek) {
   };
 
   days.forEach(day => {
+
+    console.log(tbodyRows);
+
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
-
-    function formatHour(date, timeZone = 'Europe/Paris') {
-      const localDate = new Date(date.toLocaleString('en-US', { timeZone }));
-      const hours = localDate.getHours();
-      const minutes = localDate.getMinutes().toString().padStart(2, '0');
-      return `${hours}h${minutes}`;
-    }
 
     const sunrise = day.sunEvents.sunriseTime
       ? formatHour(new Date(day.sunEvents.sunriseTime), timeZone)
