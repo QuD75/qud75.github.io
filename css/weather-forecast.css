@@ -36,6 +36,10 @@
   margin: 0 auto;
 }
 
+#forecast-week-table tr:not(:first-child) {
+  height: 3.2rem;
+}
+
 #forecast-day-table-container {
   flex: 0 1 60%;
   max-width: 60%;
