@@ -132,7 +132,7 @@
   display: inline-block;
   width: 2.5rem;
   height: 2.5rem;
-  line-height: 2.5rem; /* pour centrer verticalement le texte */
+  line-height: 2.5rem;
   border-radius: 50%;
   font-weight: bold;
   font-size: 0.9rem;
