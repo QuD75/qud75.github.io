@@ -146,7 +146,8 @@
   width: 3rem;
   height: 3rem;
   line-height: 2.5rem;
-  border-radius: 50%;
+  padding: 0.2em 0.8em;
+  border-radius: 999px;
   font-size: 0.8rem;
   text-align: center;
   user-select: none;
