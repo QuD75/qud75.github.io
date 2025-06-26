@@ -143,12 +143,11 @@
 
 .badge-rain {
   display: inline-block;
-  width: 2.5rem;
-  height: 2.5rem;
-  line-height: 2.5rem; /* pour centrer verticalement le texte */
+  width: 3rem;
+  height: 3rem;
+  line-height: 2.5rem;
   border-radius: 50%;
-  font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-align: center;
   user-select: none;
   margin: 0.4rem 0.4rem;
