@@ -34,10 +34,7 @@
 
 #forecast-week-table {
   margin: 0 auto;
-}
-
-#forecast-week-table tr:not(:first-child) {
-  height: 3.2rem;
+  height: 4rem;
 }
 
 #forecast-day-table-container {
