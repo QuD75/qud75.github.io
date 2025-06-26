@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lon = -2.52;
 
     const weatherDay = `${baseUrl}/hours:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
-    const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
+    const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=8&pageSize=8`;
     
     async function initForecast() {
 
@@ -183,7 +183,7 @@ function getWeatherForecastDaysData(dataWeek) {
     return `${h}h${m}`;
   };
 
-  days.forEach(day => {
+  days.slice(1).forEach(day => {
 
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
@@ -264,10 +264,9 @@ function getWeatherForecastDaysData(dataWeek) {
     const bgRain = getColorForRain(rain);
     td4.style.backgroundColor = bgRain;
     td4.style.color = getTextColorFromBackground(bgRain);
-    td4.textContent = `${rain} mm`;
+    td4.textContent = `${Math.round(rain)} mm`;
     tbodyRows[4].appendChild(td4);
   });
-
 }
 
 function createCharts() {
