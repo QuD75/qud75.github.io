@@ -183,6 +183,8 @@ function getWeatherForecastDaysData(dataWeek) {
     return `${h}h${m}`;
   };
 
+  console.log(days);
+
   days.slice(1).forEach(day => {
 
     const d = day.daytimeForecast;
