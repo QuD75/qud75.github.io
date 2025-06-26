@@ -203,8 +203,6 @@ function getWeatherForecastDaysData(dataWeek) {
 
   days.forEach(day => {
 
-    console.log(tbodyRows);
-
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
 
@@ -257,7 +255,7 @@ function getWeatherForecastDaysData(dataWeek) {
     spanMax.style.backgroundColor = getColorForTemperature(maxTemp);
     spanMax.style.color = getTextColorFromBackground(spanMax.style.backgroundColor);
     //td2.append(spanMin, spanMax);
-    //tbodyRows[2].appendChild(td2);
+    tbodyRows[2].appendChild(td2);
 
     // Ligne 3 : Vent moyen
     const td3 = document.createElement('td');
