@@ -249,7 +249,7 @@ function getWeatherForecastDaysData(dataWeek) {
     spanWind.style.backgroundColor = getColorForWindSpeed(avgWind);
     spanWind.style.color = getTextColorFromBackground(spanWind.style.backgroundColor);
     spanWind.textContent = '';
-    const iconName = getWindDirectionIconName(windDirection);
+    const iconName = getWindDirectionIcon(windDirection);
     const imgIcon = document.createElement('img');
     imgIcon.src = iconName;
     imgIcon.style.width = '1rem';
