@@ -227,7 +227,7 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ligne 2 : Températures min / max (badges)
     const td2 = document.createElement('td');
-    td2.classList.add('temp-badges');
+    //td2.classList.add('temp-badges');
     const spanTempMin = document.createElement('span');
     spanTempMin.className = 'badge';
     spanTempMin.textContent = `${minTemp}`;
@@ -243,7 +243,7 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ligne 3 : Vent moyen
     const td3 = document.createElement('td');
-    td3.classList.add('wind-badges');
+    //td3.classList.add('wind-badges');
     const spanWind = document.createElement('span');
     spanWind.className = 'badge';
     spanWind.style.backgroundColor = getColorForWindSpeed(avgWind);
@@ -263,6 +263,7 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ligne 4 : pluie
     const td4 = document.createElement('td');
+
     const bgRain = getColorForRain(rain);
     td4.style.backgroundColor = bgRain;
     td4.style.color = getTextColorFromBackground(bgRain);

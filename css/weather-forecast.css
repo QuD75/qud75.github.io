@@ -128,12 +128,6 @@
   filter: brightness(0.97);
 }
 
-.temp-badges {
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-}
-
 .badge {
   display: inline-block;
   width: 2.5rem;
