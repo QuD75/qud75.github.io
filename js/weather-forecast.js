@@ -162,23 +162,6 @@ function getWeatherForecastDaysData(dataWeek) {
   const theadRow = document.querySelector('#forecast-week-table thead tr');
   const tbodyRows = Array.from(document.querySelectorAll('#forecast-week-table tbody tr'));
 
-  // Vider colonnes entêtes sauf la première
-  while (theadRow.children.length > 1) {
-    theadRow.removeChild(theadRow.lastChild);
-  }
-  // Vider colonnes des lignes sauf la première
-  tbodyRows.forEach(row => {
-    while (row.children.length > 1) {
-      row.removeChild(row.lastChild);
-    }
-  });
-
-  // Nettoyage : ne garde que la première colonne dans chaque ligne
-  while (theadRow.children.length > 1) theadRow.removeChild(theadRow.lastChild);
-  tbodyRows.forEach(row => {
-    while (row.children.length > 1) row.removeChild(row.lastChild);
-  });
-
   const days = dataWeek.forecastDays;
   const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
 
@@ -238,7 +221,7 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ligne 1 : Lever / coucher soleil
     const td1 = document.createElement('td');
-    //td1.textContent = `${sunrise} - ${sunset}`;
+    td1.textContent = `${sunrise} - ${sunset}`;
     tbodyRows[1].appendChild(td1);
 
     // Ligne 2 : Températures min / max (badges)
