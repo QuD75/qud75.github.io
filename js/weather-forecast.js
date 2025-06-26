@@ -249,6 +249,13 @@ function getWeatherForecastDaysData(dataWeek) {
     spanWind.style.backgroundColor = getColorForWindSpeed(avgWind);
     spanWind.style.color = getTextColorFromBackground(spanWind.style.backgroundColor);
     spanWind.textContent = '';
+    const iconName = getWindDirectionIconName(windDirection);
+    const imgIcon = document.createElement('img');
+    imgIcon.src = iconName;
+    imgIcon.style.width = '1rem';
+    imgIcon.style.height = '1rem';
+    imgIcon.style.verticalAlign = 'middle';
+    spanWind.appendChild(imgIcon);
     const spanValue = document.createElement('span');
     spanValue.textContent = ` ${Math.round(avgWind / 5) * 5}`;
     td3.append(spanWind, spanValue);
