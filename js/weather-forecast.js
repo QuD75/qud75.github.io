@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
 
-      await fetchData(weatherWeek, 'weather_forecast_week', 0, getWeatherForecastDaysData);
+      await fetchData(weatherWeek, 'weather_forecast_week', 60, getWeatherForecastDaysData);
       
       fillTabDays();
       createCharts();
@@ -202,7 +202,7 @@ function getWeatherForecastDaysData(dataWeek) {
     const maxTemp = Math.round(day.maxTemperature.degrees);
     const avgWind = Math.round((d.wind.speed.value + n.wind.speed.value) / 2);
     const windDirection = d.wind.direction.degrees;
-    const rain = d.precipitation.qpf.quantity + n.precipitation.probability.percent;
+    const rain = d.precipitation.qpf.quantity + n.precipitation.qpf.quantity;
 
     // Ajouter l'en-tête du jour dans le thead
     const th = document.createElement('th');
