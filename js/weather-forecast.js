@@ -200,6 +200,7 @@ function getWeatherForecastDaysData(dataWeek) {
     const minTemp = Math.round(day.minTemperature.degrees);
     const maxTemp = Math.round(day.maxTemperature.degrees);
     const avgWind = Math.round((d.wind.speed.value + n.wind.speed.value) / 2);
+    const windDirection = d.wind.direction.degrees;
     const dayRain = d.precipitation.probability.percent || 0;
     const nightRain = n.precipitation.probability.percent || 0;
 
@@ -227,25 +228,28 @@ function getWeatherForecastDaysData(dataWeek) {
     // Ligne 2 : Températures min / max (badges)
     const td2 = document.createElement('td');
     td2.classList.add('temp-badges');
-    const spanMin = document.createElement('span');
-    spanMin.className = 'badge min';
-    spanMin.textContent = `${minTemp}`;
-    spanMin.style.backgroundColor = getColorForTemperature(minTemp);
-    spanMin.style.color = getTextColorFromBackground(spanMin.style.backgroundColor);
-    const spanMax = document.createElement('span');
-    spanMax.className = 'badge max';
-    spanMax.textContent = `${maxTemp}`;
-    spanMax.style.backgroundColor = getColorForTemperature(maxTemp);
-    spanMax.style.color = getTextColorFromBackground(spanMax.style.backgroundColor);
-    td2.append(spanMin, spanMax);
+    const spanTempMin = document.createElement('span');
+    spanTempMin.className = 'badge min';
+    spanTempMin.textContent = `${minTemp}`;
+    spanTempMin.style.backgroundColor = getColorForTemperature(minTemp);
+    spanTempMin.style.color = getTextColorFromBackground(spanTempMin.style.backgroundColor);
+    const spanTempMax = document.createElement('span');
+    spanTempMax.className = 'badge max';
+    spanTempMax.textContent = `${maxTemp}`;
+    spanTempMax.style.backgroundColor = getColorForTemperature(maxTemp);
+    spanTempMax.style.color = getTextColorFromBackground(spanTempMax.style.backgroundColor);
+    td2.append(spanTempMin, spanTempMax);
     tbodyRows[2].appendChild(td2);
 
     // Ligne 3 : Vent moyen
     const td3 = document.createElement('td');
-    const bgWind = getColorForWindSpeed(avgWind);
-    td3.style.backgroundColor = bgWind;
-    td3.style.color = getTextColorFromBackground(bgWind);
-    td3.textContent = Math.round(avgWind / 5) * 5;
+    td3.classList.add('wind-badges');
+    const spanWind = document.createElement('span');
+    spanWind.className = 'badge min';
+    spanWind.style.backgroundColor = getColorForWindSpeed(avgWind);
+    spanWind.style.color = getTextColorFromBackground(spanWind.style.backgroundColor);
+    spanWind.textContent = Math.round(avgWind / 5) * 5;
+    td3.append(spanWind);
     tbodyRows[3].appendChild(td3);
 
     // Ligne 4 : Probabilité pluie jour / nuit
