@@ -136,19 +136,13 @@
 
 .badge {
   display: inline-block;
-  padding: 0.4rem 0.6rem;
-  border-radius: 9999px; /* cercle ou ovale */
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem; /* pour centrer verticalement le texte */
+  border-radius: 50%;
   font-weight: bold;
   color: white;
   font-size: 0.9rem;
-  min-width: 2.5rem;
   text-align: center;
-}
-
-.badge.min {
-  background-color: #4a90e2; /* bleu froid */
-}
-
-.badge.max {
-  background-color: #f25c54; /* rouge chaud */
+  user-select: none;
 }

@@ -229,12 +229,12 @@ function getWeatherForecastDaysData(dataWeek) {
     const td2 = document.createElement('td');
     td2.classList.add('temp-badges');
     const spanTempMin = document.createElement('span');
-    spanTempMin.className = 'badge min';
+    spanTempMin.className = 'badge';
     spanTempMin.textContent = `${minTemp}`;
     spanTempMin.style.backgroundColor = getColorForTemperature(minTemp);
     spanTempMin.style.color = getTextColorFromBackground(spanTempMin.style.backgroundColor);
     const spanTempMax = document.createElement('span');
-    spanTempMax.className = 'badge max';
+    spanTempMax.className = 'badge';
     spanTempMax.textContent = `${maxTemp}`;
     spanTempMax.style.backgroundColor = getColorForTemperature(maxTemp);
     spanTempMax.style.color = getTextColorFromBackground(spanTempMax.style.backgroundColor);
@@ -245,7 +245,7 @@ function getWeatherForecastDaysData(dataWeek) {
     const td3 = document.createElement('td');
     td3.classList.add('wind-badges');
     const spanWind = document.createElement('span');
-    spanWind.className = 'badge min';
+    spanWind.className = 'badge';
     spanWind.style.backgroundColor = getColorForWindSpeed(avgWind);
     spanWind.style.color = getTextColorFromBackground(spanWind.style.backgroundColor);
     spanWind.textContent = Math.round(avgWind / 5) * 5;
