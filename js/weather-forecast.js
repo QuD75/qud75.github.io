@@ -248,16 +248,16 @@ function getWeatherForecastDaysData(dataWeek) {
     td2.classList.add('temp-badges');
     const spanMin = document.createElement('span');
     spanMin.className = 'badge min';
-    spanMin.textContent = `${minTemp}°`;
+    spanMin.textContent = `${minTemp}`;
     spanMin.style.backgroundColor = getColorForTemperature(minTemp);
     spanMin.style.color = getTextColorFromBackground(spanMin.style.backgroundColor);
     const spanMax = document.createElement('span');
     spanMax.className = 'badge max';
-    spanMax.textContent = `${maxTemp}°`;
+    spanMax.textContent = `${maxTemp}`;
     spanMax.style.backgroundColor = getColorForTemperature(maxTemp);
     spanMax.style.color = getTextColorFromBackground(spanMax.style.backgroundColor);
-    td2.append(spanMin, spanMax);
-    tbodyRows[2].appendChild(td2);
+    //td2.append(spanMin, spanMax);
+    //tbodyRows[2].appendChild(td2);
 
     // Ligne 3 : Vent moyen
     const td3 = document.createElement('td');
