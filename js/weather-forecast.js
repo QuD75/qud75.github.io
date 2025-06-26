@@ -162,6 +162,13 @@ function getWeatherForecastDaysData(dataWeek) {
   const table = document.getElementById("forecast-week-table");
   const theadRow = table.querySelector("thead > tr");
   const tbody = table.querySelector("tbody");
+  const tbodyRows = Array.from(tbody.rows);
+
+  // Nettoyage : ne garde que la première colonne dans chaque ligne
+  while (theadRow.children.length > 1) theadRow.removeChild(theadRow.lastChild);
+  tbodyRows.forEach(row => {
+    while (row.children.length > 1) row.removeChild(row.lastChild);
+  });
 
   const days = dataWeek.forecastDays;
   const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
@@ -176,88 +183,81 @@ function getWeatherForecastDaysData(dataWeek) {
     });
   };
 
-  days.forEach((day) => {
-    const tbodyRows = Array.from(tbody.rows);
+  const formatHour = (dateStr) => {
+    if (!dateStr) return "—";
+    const date = new Date(dateStr);
+    const localDate = new Date(date.toLocaleString("en-US", { timeZone }));
+    const h = localDate.getHours();
+    const m = localDate.getMinutes().toString().padStart(2, "0");
+    return `${h}h${m}`;
+  };
+
+  days.forEach(day => {
+    const d = day.daytimeForecast;
+    const n = day.nighttimeForecast;
+
+    const sunrise = formatHour(day.sunEvents.sunriseTime);
+    const sunset = formatHour(day.sunEvents.sunsetTime);
+    const minTemp = Math.round(day.minTemperature.degrees);
+    const maxTemp = Math.round(day.maxTemperature.degrees);
+    const avgWind = Math.round((d.wind.speed.value + n.wind.speed.value) / 2);
+    const dayRain = d.precipitation.probability.percent || 0;
+    const nightRain = n.precipitation.probability.percent || 0;
+
+    // === En-tête ===
     const th = document.createElement("th");
     th.textContent = formatDate(day.displayDate);
     theadRow.appendChild(th);
 
-    const d = day.daytimeForecast;
-    const n = day.nighttimeForecast;
+    // === Ligne 0 : Temps ===
+    const td0 = document.createElement("td");
+    const img = document.createElement("img");
+    img.classList.add("weather-week-icon");
+    img.src = `/icons/weather/day/${d.weatherCondition.type}.svg`;
+    img.alt = d.weatherCondition.type;
+    td0.appendChild(img);
+    tbodyRows[0].appendChild(td0);
 
-    function formatHour(date, timeZone = 'Europe/Paris') {
-      const localDate = new Date(date.toLocaleString('en-US', { timeZone }));
-      const hours = localDate.getHours();
-      const minutes = localDate.getMinutes().toString().padStart(2, '0');
-      return `${hours}h${minutes}`;
-    }
+    // === Ligne 1 : Lever / coucher ===
+    const td1 = document.createElement("td");
+    td1.textContent = `${sunrise} - ${sunset}`;
+    tbodyRows[1].appendChild(td1);
 
-    const sunrise = day.sunEvents.sunriseTime
-    ? formatHour(new Date(day.sunEvents.sunriseTime), timeZone)
-    : "—";
-  
-    const sunset = day.sunEvents.sunsetTime
-      ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
-      : "—";
+    // === Ligne 2 : Températures ===
+    const td2 = document.createElement("td");
+    td2.classList.add("temp-badges");
 
-    const avgwWind = (d.wind.speed.value + n.wind.speed.value) / 2;
+    const spanMin = document.createElement("span");
+    spanMin.className = "badge min";
+    spanMin.textContent = `${minTemp}°`;
+    spanMin.style.backgroundColor = getColorForTemperature(minTemp);
+    spanMin.style.color = getTextColorFromBackground(spanMin.style.backgroundColor);
 
-    const cellValues = [
-      d.weatherCondition.type,                                                                // 0
-      `${sunrise}  -  ${sunset}`,                                                             // 1                                                 // 2
-      `${day.minTemperature.degrees} - ${day.maxTemperature.degrees}`,                        // 2                                // 2                                                      // 3
-      `${avgwWind}`,                                                                          // 3                                                 // 6
-      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`   // 4
-    ];
+    const spanMax = document.createElement("span");
+    spanMax.className = "badge max";
+    spanMax.textContent = `${maxTemp}°`;
+    spanMax.style.backgroundColor = getColorForTemperature(maxTemp);
+    spanMax.style.color = getTextColorFromBackground(spanMax.style.backgroundColor);
 
-    cellValues.forEach((val, rowIndex) => {
-      const td = document.createElement("td");
-      td.textContent = val;
+    td2.append(spanMin, spanMax);
+    tbodyRows[2].appendChild(td2);
 
-      switch (rowIndex) {
-        case 0: {
-          td.textContent = '';
-          const imgWeather = document.createElement('img');
-          imgWeather.classList.add('weather-week-icon');
-          imgWeather.src = `/icons/weather/day/${val}.svg`;
-          td.appendChild(imgWeather);
-          break;
-        }
-        case 2: {
-          td.textContent = '';
-          const [tempMin, tempMax] = val.split(' - ');
-          td.classList.add('temp-badges');
-          const spanMin = document.createElement('span');
-          spanMin.className = 'badge min';
-          spanMin.textContent = `${Math.round(tempMin)}`;
-          const spanMax = document.createElement('span');
-          spanMax.className = 'badge max';
-          spanMax.textContent = `${Math.round(tempMax)}`;
-          td.append(spanMin, spanMax);
-          break;
-        }
-        case 3: {
-          const bgColor = getColorForWindSpeed(parseFloat(val));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          td.textContent = Math.round(val/5)*5;
-          break;
-        }
-        case 4: {
-          const [dayRaw, nightRaw] = val.split(' / ');
-          const dayProb = parseFloat(dayRaw.replace('%', '').trim());
-          const nightProb = parseFloat(nightRaw.replace('%', '').trim());
-          const bgColor = getColorForRain(Math.max(dayProb, nightProb));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          break;
-        }
-      }
+    // === Ligne 3 : Vent ===
+    const td3 = document.createElement("td");
+    const bgWind = getColorForWindSpeed(avgWind);
+    td3.style.backgroundColor = bgWind;
+    td3.style.color = getTextColorFromBackground(bgWind);
+    td3.textContent = Math.round(avgWind / 5) * 5;
+    tbodyRows[3].appendChild(td3);
 
-      tbodyRows[rowIndex].appendChild(td);
-    });
+    // === Ligne 4 : Pluie ===
+    const td4 = document.createElement("td");
+    const maxRain = Math.max(dayRain, nightRain);
+    const bgRain = getColorForRain(maxRain);
+    td4.style.backgroundColor = bgRain;
+    td4.style.color = getTextColorFromBackground(bgRain);
+    td4.textContent = `${dayRain} % / ${nightRain} %`;
+    tbodyRows[4].appendChild(td4);
   });
 }
 
