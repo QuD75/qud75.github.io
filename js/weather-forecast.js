@@ -248,8 +248,10 @@ function getWeatherForecastDaysData(dataWeek) {
     spanWind.className = 'badge';
     spanWind.style.backgroundColor = getColorForWindSpeed(avgWind);
     spanWind.style.color = getTextColorFromBackground(spanWind.style.backgroundColor);
-    spanWind.textContent = Math.round(avgWind / 5) * 5;
-    td3.append(spanWind);
+    spanWind.textContent = '';
+    const spanValue = document.createElement('span');
+    spanValue.textContent = ` ${Math.round(avgWind / 5) * 5}`;
+    td3.append(spanWind, spanValue);
     tbodyRows[3].appendChild(td3);
 
     // Ligne 4 : Probabilité pluie jour / nuit
