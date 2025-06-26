@@ -257,7 +257,7 @@ function getWeatherForecastDaysData(dataWeek) {
     imgIcon.style.verticalAlign = 'middle';
     spanWind.appendChild(imgIcon);
     const spanValue = document.createElement('span');
-    spanValue.textContent = ` ${Math.round(avgWind / 5) * 5}`;
+    spanValue.textContent = `${Math.round(avgWind / 5) * 5} km/h`;
     td3.append(spanWind, spanValue);
     tbodyRows[3].appendChild(td3);
 
