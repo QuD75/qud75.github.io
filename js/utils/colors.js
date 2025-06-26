@@ -104,30 +104,39 @@ function getColorForUv(uv){
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function getColorForRain(precip) {
-  const max = 10; // précipitation max pour le dégradé (ajuster)
-  const p = Math.min(Math.max(precip, 0), max) / max; // normalisation 0-1
+function getColorForRain(rain) {
+  // Palette des paliers
+  const palette = [
+    { rain: 0,  color: [230, 240, 255] },  // bleu très clair
+    { rain: 2,  color: [173, 216, 230] },  // bleu clair
+    { rain: 4,  color: [100, 149, 237] },  // bleu moyen (cornflowerblue)
+    { rain: 6,  color: [25,  25, 112]  },  // bleu foncé (midnightblue)
+    { rain: 8,  color: [10,  10,  80]  },  // bleu très foncé
+    { rain: 10, color: [138, 43, 226]  }   // violet (blueviolet)
+  ];
 
-  // Dégradé en 3 étapes:
-  // 0: blanc (255,255,255)
-  // 0.5: bleu moyen (70,130,180) - steelblue
-  // 1: violet foncé (75,0,130) - indigo
-
-  if (p <= 0.5) {
-    // interpolation blanc -> bleu moyen
-    const t = p / 0.5;
-    const r = Math.round(255 + t * (70 - 255));
-    const g = Math.round(255 + t * (130 - 255));
-    const b = Math.round(255 + t * (180 - 255));
-    return `rgb(${r},${g},${b})`;
-  } else {
-    // interpolation bleu moyen -> violet foncé
-    const t = (p - 0.5) / 0.5;
-    const r = Math.round(70 + t * (75 - 70));
-    const g = Math.round(130 + t * (0 - 130));
-    const b = Math.round(180 + t * (130 - 180));
-    return `rgb(${r},${g},${b})`;
+  // Si au-delà du max, retourne la dernière couleur
+  if (rain >= 10) {
+    const c = palette[palette.length - 1].color;
+    return `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
   }
+
+  // Cherche les 2 paliers autour de la valeur
+  for (let i = 0; i < palette.length - 1; i++) {
+    const p1 = palette[i];
+    const p2 = palette[i + 1];
+    if (rain >= p1.rain && rain < p2.rain) {
+      const t = (rain - p1.rain) / (p2.rain - p1.rain); // interpolation 0–1
+      const r = Math.round(p1.color[0] + t * (p2.color[0] - p1.color[0]));
+      const g = Math.round(p1.color[1] + t * (p2.color[1] - p1.color[1]));
+      const b = Math.round(p1.color[2] + t * (p2.color[2] - p1.color[2]));
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+  }
+
+  // Cas très improbable : fallback au premier
+  const c = palette[0].color;
+  return `rgb(${c[0]}, ${c[1]}, ${c[2]})`;
 }
 
 function getTextColorFromBackground(bgColor) {
