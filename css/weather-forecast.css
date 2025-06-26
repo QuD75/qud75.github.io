@@ -34,6 +34,10 @@
 
 #forecast-week-table {
   margin: 0 auto;
+  height: rem;
+}
+
+#forecast-week-table tr {
   height: 4rem;
 }
 
