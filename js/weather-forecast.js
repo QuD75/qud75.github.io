@@ -207,8 +207,8 @@ function getWeatherForecastDaysData(dataWeek) {
     const cellValues = [
       d.weatherCondition.type,                                                                // 0
       `${sunrise}  -  ${sunset}`,                                                             // 1                                                 // 2
-      `${day.minTemperature.degrees}`,                                            // 2
-      `${day.maxTemperature.degrees}`,                                            // 3
+      `${day.minTemperature.degrees}`,                                                        // 2
+      `${day.maxTemperature.degrees}`,                                                        // 3
       `${avgwWind}`,                                                                          // 4                                                 // 6
       `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`   // 5
     ];
@@ -235,14 +235,14 @@ function getWeatherForecastDaysData(dataWeek) {
           td.textContent = Math.round(val);
           break;
         }
-        case 3: {
+/*         case 3: {
           const bgColor = getColorForTemperature(parseFloat(val));
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
           td.style.color = textColor;
           td.textContent = Math.round(val);
           break;
-        }
+        } */
         case 4: {
           const bgColor = getColorForWindSpeed(parseFloat(val));
           const textColor = getTextColorFromBackground(bgColor);
