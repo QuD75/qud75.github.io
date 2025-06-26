@@ -227,11 +227,15 @@ function getWeatherForecastDaysData(dataWeek) {
           break;
         }
         case 2: {
-          const bgColor = getColorForTemperature(parseFloat(val));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          td.textContent = Math.round(val);
+          const [tempMin, tempMax] = val.split(' - ');
+          td.classList.add('temp-badges');
+          const spanMin = document.createElement('span');
+          spanMin.className = 'badge min';
+          spanMin.textContent = `${tempMin}`;
+          const spanMax = document.createElement('span');
+          spanMax.className = 'badge max';
+          spanMax.textContent = `${tempMax}`;
+          td.append(spanMin, spanMax);
           break;
         }
         case 3: {
@@ -254,7 +258,7 @@ function getWeatherForecastDaysData(dataWeek) {
         }
       }
 
-      if (rowIndex != 3) tbodyRows[rowIndex].appendChild(td);
+      tbodyRows[rowIndex].appendChild(td);
     });
   });
 }
