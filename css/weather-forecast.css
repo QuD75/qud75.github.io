@@ -166,3 +166,27 @@
   user-select: none;
   margin: 0.4rem 0.4rem;
 }
+
+.badge-sunrise {
+  background-color: #FFD700;  /* jaune doré */
+  color: #000;
+  display: inline-block;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.badge-sunset {
+  background-color: #FF8C00;  /* orange foncé */
+  color: #fff;
+  display: inline-block;
+  padding: 0.1em 0.6em;
+  border-radius: 999px;
+  font-size: 0.75em;
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1.2;
+}
