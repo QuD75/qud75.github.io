@@ -178,12 +178,11 @@ function getWeatherForecastDaysData(dataWeek) {
   };
 
   days.forEach((day) => {
+
     const th = document.createElement("th");
     th.textContent = formatDate(day.displayDate);
     theadRow.appendChild(th);
-  });
 
-  days.forEach((day) => {
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
 
