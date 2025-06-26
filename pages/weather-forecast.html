@@ -66,31 +66,20 @@
         <h2 style="display: none;">Prévisions des 7 prochains jours</h2>
         <div id="forecast-week" style="display: none;">
             <div id="forecast-week-table-container">
-                <table id="forecast-week-table" class="forecast-table">
+                <table id="forecast-week-table">
                     <thead>
                         <tr>
-                            <th>Prévision</th>
-                            <!-- Les <th> de chaque jour seront ajoutés dynamiquement ici -->
+                        <th>Type</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th>Temps (jour)</th>
-                        </tr>
-                        <tr>
-                            <th>Lever / coucher du soleil</th>
-                        </tr>
-                        <tr>
-                            <th>Température min / max (°C)</th>
-                        </tr>
-                        <tr>
-                            <th>Vent (km/h)</th>
-                        </tr>
-                        <tr>
-                            <th>Probabilité de pluie jour / nuit (%)</th>
-                        </tr>
+                        <tr><td>Temps</td></tr>
+                        <tr><td>Lever / coucher soleil</td></tr>
+                        <tr><td>Températures</td></tr>
+                        <tr><td>Vent moyen</td></tr>
+                        <tr><td>Probabilité pluie jour / nuit</td></tr>
                     </tbody>
-                </table>
+                    </table>
             </div>
             <div id="forecast-week-graphs" class="forecast-graphs">
                 <canvas id="chart-temperature-week" class="forecast-chart"></canvas>
