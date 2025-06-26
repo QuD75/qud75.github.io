@@ -162,7 +162,6 @@ function getWeatherForecastDaysData(dataWeek) {
   const table = document.getElementById("forecast-week-table");
   const theadRow = table.querySelector("thead > tr");
   const tbody = table.querySelector("tbody");
-  const tbodyRows = Array.from(tbody.rows);
 
   const days = dataWeek.forecastDays;
   const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
@@ -178,7 +177,7 @@ function getWeatherForecastDaysData(dataWeek) {
   };
 
   days.forEach((day) => {
-
+    const tbodyRows = Array.from(tbody.rows);
     const th = document.createElement("th");
     th.textContent = formatDate(day.displayDate);
     theadRow.appendChild(th);
