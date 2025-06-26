@@ -265,7 +265,7 @@ function getWeatherForecastDaysData(dataWeek) {
     spanRain.className = 'badge-rain'; 
     spanRain.style.backgroundColor = getColorForRain(rain);
     spanRain.style.color = getTextColorFromBackground(spanRain.style.backgroundColor);
-    spanWind.textContent = `${rain} mm`;
+    spanRain.textContent = `${rain} mm`;
     td4.append(spanRain);
     tbodyRows[4].appendChild(td4);
   });
