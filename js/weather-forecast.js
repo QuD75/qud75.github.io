@@ -207,10 +207,9 @@ function getWeatherForecastDaysData(dataWeek) {
     const cellValues = [
       d.weatherCondition.type,                                                                // 0
       `${sunrise}  -  ${sunset}`,                                                             // 1                                                 // 2
-      `${day.minTemperature.degrees}`,                                                        // 2
-      `${day.maxTemperature.degrees}`,                                                        // 3
-      `${avgwWind}`,                                                                          // 4                                                 // 6
-      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`   // 5
+      `${day.minTemperature.degrees} - ${day.maxTemperature.degrees}`,                        // 2                                // 2                                                      // 3
+      `${avgwWind}`,                                                                          // 3                                                 // 6
+      `${d.precipitation.probability.percent} % / ${n.precipitation.probability.percent} %`   // 4
     ];
 
     cellValues.forEach((val, rowIndex) => {
@@ -235,15 +234,7 @@ function getWeatherForecastDaysData(dataWeek) {
           td.textContent = Math.round(val);
           break;
         }
-/*         case 3: {
-          const bgColor = getColorForTemperature(parseFloat(val));
-          const textColor = getTextColorFromBackground(bgColor);
-          td.style.backgroundColor = bgColor;
-          td.style.color = textColor;
-          td.textContent = Math.round(val);
-          break;
-        } */
-        case 4: {
+        case 3: {
           const bgColor = getColorForWindSpeed(parseFloat(val));
           const textColor = getTextColorFromBackground(bgColor);
           td.style.backgroundColor = bgColor;
@@ -251,7 +242,7 @@ function getWeatherForecastDaysData(dataWeek) {
           td.textContent = Math.round(val/5)*5;
           break;
         }
-        case 5: {
+        case 4: {
           const [dayRaw, nightRaw] = val.split(' / ');
           const dayProb = parseFloat(dayRaw.replace('%', '').trim());
           const nightProb = parseFloat(nightRaw.replace('%', '').trim());
@@ -263,7 +254,7 @@ function getWeatherForecastDaysData(dataWeek) {
         }
       }
 
-      tbodyRows[rowIndex].appendChild(td);
+      if (rowIndex != 3) tbodyRows[rowIndex].appendChild(td);
     });
   });
 }
