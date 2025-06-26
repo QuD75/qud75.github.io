@@ -108,10 +108,10 @@ function getColorForRain(rain) {
   // Palette des paliers
   const palette = [
     { rain: 0,  color: [230, 240, 255] },  // bleu très clair
-    { rain: 2,  color: [173, 216, 230] },  // bleu clair
-    { rain: 4,  color: [100, 149, 237] },  // bleu moyen (cornflowerblue)
-    { rain: 6,  color: [25,  25, 112]  },  // bleu foncé (midnightblue)
-    { rain: 8,  color: [10,  10,  80]  },  // bleu très foncé
+    { rain: 1,  color: [173, 216, 230] },  // bleu clair
+    { rain: 2,  color: [100, 149, 237] },  // bleu moyen (cornflowerblue)
+    { rain: 4,  color: [25,  25, 112]  },  // bleu foncé (midnightblue)
+    { rain: 6,  color: [10,  10,  80]  },  // bleu très foncé
     { rain: 10, color: [138, 43, 226]  }   // violet (blueviolet)
   ];
 
