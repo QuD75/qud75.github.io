@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
       });
-      document.getElementById('forecast-day').style.display = 'flex';
+      document.getElementById('forecast-day').style.display = 'block';
       document.getElementById('forecast-week').style.display = 'block';
     }
   
