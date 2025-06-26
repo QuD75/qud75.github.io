@@ -237,7 +237,7 @@ function getWeatherForecastDaysData(dataWeek) {
     spanMax.textContent = `${maxTemp}`;
     spanMax.style.backgroundColor = getColorForTemperature(maxTemp);
     spanMax.style.color = getTextColorFromBackground(spanMax.style.backgroundColor);
-    //td2.append(spanMin, spanMax);
+    td2.append(spanMin, spanMax);
     tbodyRows[2].appendChild(td2);
 
     // Ligne 3 : Vent moyen
