@@ -141,8 +141,8 @@
   line-height: 2.5rem; /* pour centrer verticalement le texte */
   border-radius: 50%;
   font-weight: bold;
-  color: white;
   font-size: 0.9rem;
   text-align: center;
   user-select: none;
+  margin: 0.4rem 0.4rem;
 }
