@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
       }
 
-      await fetchData(weatherWeek, 'weather_forecast_week', 60, getWeatherForecastDaysData);
+      await fetchData(weatherWeek, 'weather_forecast_week', 0, getWeatherForecastDaysData);
       
       fillTabDays();
       createCharts();
