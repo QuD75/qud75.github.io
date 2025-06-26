@@ -56,17 +56,17 @@ function getColorForHumidity(hum){
 }
 
 function getColorForWindSpeed(speed) {
-  if (speed <= 12) return '#adebad';       // vert très clair
-  if (speed <= 19) return '#90ee90';       // vert clair
-  if (speed <= 25) return '#ffff99';       // jaune pâle (commence à 20 km/h)
-  if (speed <= 35) return '#ffd580';       // jaune/orangé clair
-  if (speed <= 45) return '#ffb347';       // orange clair
-  if (speed <= 55) return '#ff7f50';       // corail
-  if (speed <= 65) return '#ff6347';       // tomate
-  if (speed <= 75) return '#ff4500';       // orange rouge vif
-  if (speed <= 95) return '#ff0000';       // rouge vif
-  if (speed <= 115) return '#b22222';      // bordeaux
-  return '#800080';                        // violet foncé
+  if (speed <= 12) return '#00FF00';       // vert fluo
+  if (speed <= 19) return '#32CD32';       // vert citron plus vif
+  if (speed <= 25) return '#FFFF00';       // jaune pur
+  if (speed <= 35) return '#FFC300';       // jaune-orange intense
+  if (speed <= 45) return '#FF8C00';       // orange vif
+  if (speed <= 55) return '#FF5733';       // orange-rouge vif
+  if (speed <= 65) return '#FF3300';       // rouge-orangé saturé
+  if (speed <= 75) return '#FF0000';       // rouge pur
+  if (speed <= 95) return '#CC0000';       // rouge foncé
+  if (speed <= 115) return '#990099';      // violet intense
+  return '#8B00FF';                        // violet électrique (plus flashy que le précédent)
 }
 
 function getColorForUv(uv){
