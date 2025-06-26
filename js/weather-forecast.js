@@ -235,7 +235,7 @@ function getWeatherForecastDaysData(dataWeek) {
           const spanMax = document.createElement('span');
           spanMax.className = 'badge max';
           spanMax.textContent = `${tempMax}`;
-          td.append(spanMin, spanMax);
+          td.appendChild(spanMin, spanMax);
           break;
         }
         case 3: {
