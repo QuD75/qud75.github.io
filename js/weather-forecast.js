@@ -222,20 +222,20 @@ function getWeatherForecastDaysData(dataWeek) {
           const imgWeather = document.createElement('img');
           imgWeather.classList.add('weather-week-icon');
           imgWeather.src = `/icons/weather/day/${val}.svg`;
-          console.log(imgWeather.src);
           td.appendChild(imgWeather);
           break;
         }
         case 2: {
+          td.textContent = '';
           const [tempMin, tempMax] = val.split(' - ');
           td.classList.add('temp-badges');
           const spanMin = document.createElement('span');
           spanMin.className = 'badge min';
-          spanMin.textContent = `${tempMin}`;
+          spanMin.textContent = `${Math.round(tempMin)}`;
           const spanMax = document.createElement('span');
           spanMax.className = 'badge max';
-          spanMax.textContent = `${tempMax}`;
-          td.appendChild(spanMin, spanMax);
+          spanMax.textContent = `${Math.round(tempMax)}`;
+          td.append(spanMin, spanMax);
           break;
         }
         case 3: {
