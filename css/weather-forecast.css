@@ -101,11 +101,11 @@
   border-bottom: none;
 }
 
-.forecast-table th:first-child {
+.forecast-table thead th:first-child {
   border-top-left-radius: 12px;
 }
 
-.forecast-table th:last-child {
+.forecast-table thead th:last-child {
   border-top-right-radius: 12px;
 }
 
