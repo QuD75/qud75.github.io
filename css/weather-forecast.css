@@ -180,6 +180,9 @@
   h2 {
     font-size: 1.3rem;
   }
+  #forecast-day {
+    width: 100%;
+  }
   #forecast-day-table-container,
   .forecast-graphs {
     flex: none;
