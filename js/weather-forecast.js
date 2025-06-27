@@ -424,6 +424,6 @@ function createCharts() {
         categoryPercentage: 1 */
       }]
     },
-    ...commonOptions('Pluie (mm)')
+    ...commonOptions('Pluie (mm)', 'bar')
   });  
 }
