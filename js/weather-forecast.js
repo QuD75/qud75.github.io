@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lon = -2.52;
 
     const weatherDay = `${baseUrl}/hours:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}`;
-    const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=8&pageSize=8`;
+    const weatherWeek = `${baseUrl}/days:lookup?key=${apiKey}&location.latitude=${lat}&location.longitude=${lon}&days=7&pageSize=7`;
     
     async function initForecast() {
 
@@ -183,9 +183,7 @@ function getWeatherForecastDaysData(dataWeek) {
     return `${h}h${m}`;
   };
 
-  console.log(days);
-
-  days.slice(1).forEach(day => {
+  days.forEach(day => {
 
     const d = day.daytimeForecast;
     const n = day.nighttimeForecast;
