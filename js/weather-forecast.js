@@ -323,7 +323,7 @@ function createCharts() {
     }
   };
 
-  const commonOptions = (titleText, type = 'line') => ({
+  const commonOptions = (titleText, type = 'line', forceNonNegativeY = false) => ({
     type,
     options: {
       responsive: true,
@@ -357,7 +357,13 @@ function createCharts() {
               locale: fr
             }
           }
-        }
+        },
+        ...(forceNonNegativeY && {
+          y: {
+            beginAtZero: true,
+            min: 0
+          }
+        })
       }
     },
     plugins: [daySeparationPlugin]
@@ -374,7 +380,7 @@ function createCharts() {
         pointRadius: 0
       }]
     },
-    ...commonOptions('Température (°C)')
+    ...commonOptions('Température (°C)', 'line', false)
   });
 
   // Pression
@@ -387,7 +393,7 @@ function createCharts() {
         pointRadius: 0
       }]
     },
-    ...commonOptions('Pression (hPa)')
+    ...commonOptions('Pression (hPa)', 'line', false)
   });
 
   // Vent
@@ -406,12 +412,11 @@ function createCharts() {
         pointRadius: 0
       }]
     },
-    ...commonOptions('Vent (km/h)')
+    ...commonOptions('Vent (km/h)', 'line', true)
   });
 
   // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
-    type: 'bar',
     data: {
       datasets: [{
         label: 'Pluie',
@@ -419,11 +424,8 @@ function createCharts() {
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
         pointRadius: 0
-/*         borderWidth: 1,
-        barPercentage: 1,
-        categoryPercentage: 1 */
       }]
     },
-    ...commonOptions('Pluie (mm)')
+    ...commonOptions('Pluie (mm)', 'line', true)
   });  
 }
