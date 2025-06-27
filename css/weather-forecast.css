@@ -182,6 +182,7 @@
   }
   #forecast-day {
     width: 100%;
+    display: block;
   }
   #forecast-day-table-container,
   .forecast-graphs {
@@ -189,7 +190,6 @@
     max-width: none;
     min-width: auto;
     width: 100%;
-    flex-direction: column;
   }
   #forecast-week-table th {
     font-size: 0.5rem;
