@@ -411,18 +411,19 @@ function createCharts() {
 
   // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
-    type: 'bar',
+/*     type: 'bar', */
     data: {
       datasets: [{
         label: 'Pluie',
         data: rainData,
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
+        pointRadius: 0
+/*         borderWidth: 1,
         barPercentage: 1,
-        categoryPercentage: 1
+        categoryPercentage: 1 */
       }]
     },
-    ...commonOptions('Pluie (mm)', 'bar')
+    ...commonOptions('Pluie (mm)')
   });  
 }
