@@ -179,9 +179,14 @@
 
 @media (max-width: 768px) {
   h2 {
-    font-size: 1rem;
+    font-size: 1.3rem;
   }
   #forecast-day {
-  display: block;
-  } 
+    flex-direction: column;
+  }
+  #forecast-day-table-container,
+  .forecast-graphs {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
 }
