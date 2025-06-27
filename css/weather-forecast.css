@@ -192,6 +192,10 @@
     width: 100%;
   }
 
+  #forecast-day-table-container{
+    margin-bottom: 1rem;
+  }
+
   #forecast-week-table th {
     font-size: 0.5rem;
     width: 2rem;
