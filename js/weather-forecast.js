@@ -97,7 +97,7 @@ function fillTabDays() {
       const tempBg = getColorForTemperature(entry.temp);
       tempCell.style.backgroundColor = tempBg;
       tempCell.style.color = getTextColorFromBackground(tempBg);
-      tempCell.textContent = Math.round(entry.temp);
+      tempCell.textContent = `${Math.round(entry.temp)}°C`;
       row.appendChild(tempCell);
 
       // Pression
