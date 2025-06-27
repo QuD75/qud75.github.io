@@ -92,19 +92,6 @@
   font-size: 0.8rem;
 }
 
-@media (max-width: 768px) {
-  .forecast-table th,
-  .forecast-table td {
-    font-size: 2vw;
-  }
-
-  .forecast-table {
-    width: 100%;
-    table-layout: fixed;
-    word-wrap: break-word;
-  }
-}
-
 .forecast-table thead {
   background-color: #f5f5f5;
   font-weight: bold;
@@ -188,4 +175,13 @@
   font-size: 0.9rem;
   white-space: nowrap;
   line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1rem;
+  }
+  #forecast-day {
+  display: block;
+  } 
 }
