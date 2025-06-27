@@ -358,12 +358,16 @@ function createCharts() {
             }
           }
         },
-        ...(forceNonNegativeY && {
-          y: {
+        y: {
+          ...(forceNonNegativeY && {
             beginAtZero: true,
             min: 0
+          }),
+          ticks: {
+            callback: value => Number.isInteger(value) ? value : '',
+            stepSize: 1
           }
-        })
+        }
       }
     },
     plugins: [daySeparationPlugin]
