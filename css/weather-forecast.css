@@ -189,4 +189,12 @@
     max-width: 100%;
     flex: 1 1 100%;
   }
+  #forecast-week-table th {
+    font-size: 0.6rem;
+    width: 6rem;
+  }
+  #forecast-day-table th, td {
+    font-size: 0.6rem;
+    width: 6rem;
+  }
 }
