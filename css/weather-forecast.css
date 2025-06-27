@@ -180,32 +180,49 @@
   h2 {
     font-size: 1.3rem;
   }
+
   #forecast-day {
     width: 100%;
-    display: block;
   }
+
   #forecast-day-table-container,
   .forecast-graphs {
-    flex: none;
     max-width: none;
     min-width: auto;
     width: 100%;
   }
+
   #forecast-week-table th {
     font-size: 0.5rem;
     width: 2rem;
   }
-  #forecast-day-table th, td {
+
+  #forecast-day-table th,
+  #forecast-day-table td {
     font-size: 0.5rem;
   }
+
+  #forecast-day-table th {
+    font-size: 0;
+  }
+
+  #forecast-day-table th::before {
+    content: attr(data-mobile);
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
   .forecast-table th {
     padding: 5px 1px;
   }
+
   .forecast-table td {
     padding: 1px 1px;
   }
+
   .weather-day-icon {
     width: 1rem;
     height: 1rem;
   }
+
 }
