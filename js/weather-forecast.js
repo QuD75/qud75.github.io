@@ -366,7 +366,8 @@ function createCharts() {
           ticks: {
             callback: value => Number.isInteger(value) ? value : '',
             stepSize: 1
-          }
+          },
+          grace: '10%' // Ajoute un petit espace au-dessus de la plus grande valeur
         }
       }
     },
