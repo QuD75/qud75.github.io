@@ -411,7 +411,7 @@ function createCharts() {
 
   // Pluie (bar chart, sans tension)
   new Chart(document.getElementById('chart-rain-day'), {
-/*     type: 'bar', */
+    type: 'bar',
     data: {
       datasets: [{
         label: 'Pluie',
@@ -424,6 +424,6 @@ function createCharts() {
         categoryPercentage: 1 */
       }]
     },
-    ...commonOptions('Pluie (mm)', 'bar')
+    ...commonOptions('Pluie (mm)')
   });  
 }
