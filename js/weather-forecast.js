@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
       });
-      document.getElementById('forecast-day').style.display = 'flex';
+      const forecastDay = document.getElementById('forecast-day');
+      forecastDay.style.display = window.innerWidth <= 768 ? 'block' : 'flex';
       document.getElementById('forecast-week').style.display = 'block';
     }
   
