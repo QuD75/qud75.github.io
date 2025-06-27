@@ -204,4 +204,8 @@
   .forecast-table td {
     padding: 1px 1px;
   }
+  .weather-day-icon {
+    width: 1rem;
+    height: 1rem;
+  }
 }
