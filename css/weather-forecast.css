@@ -182,19 +182,18 @@
     font-size: 1.3rem;
   }
   #forecast-day {
-    flex-direction: column;
+    display: block;
   }
   #forecast-day-table-container,
   .forecast-graphs {
     max-width: 100%;
-    flex: 1 1 100%;
   }
   #forecast-week-table th {
-    font-size: 0.6rem;
-    width: 6rem;
+    font-size: 0.5rem;
+    width: 2rem;
   }
   #forecast-day-table th, td {
-    font-size: 0.6rem;
-    width: 6rem;
+    font-size: 0.5rem;
+    width: 2rem;
   }
 }
