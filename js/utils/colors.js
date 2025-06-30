@@ -107,12 +107,12 @@ function getColorForUv(uv){
 function getColorForRain(rain) {
   // Palette des paliers
   const palette = [
-    { rain: 0,  color: [245, 250, 255] },  // bleu très clair
-    { rain: 1,  color: [173, 216, 230] },  // bleu clair
-    { rain: 2,  color: [100, 149, 237] },  // bleu moyen (cornflowerblue)
-    { rain: 4,  color: [25,  25, 112]  },  // bleu foncé (midnightblue)
-    { rain: 6,  color: [10,  10,  80]  },  // bleu très foncé
-    { rain: 10, color: [138, 43, 226]  }   // violet (blueviolet)
+    { rain: 0,  color: [255,255,255] },
+    { rain: 1,  color: [0,215,248] },
+    { rain: 2,  color: [0,188,255] },
+    { rain: 4,  color: [0,131,255]  },
+    { rain: 6,  color: [0,19,255]  },
+    { rain: 10, color: [138, 43, 226]  }
   ];
 
   // Si au-delà du max, retourne la dernière couleur
