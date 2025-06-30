@@ -180,7 +180,7 @@
     font-size: 1.3rem;
   }
 
-  #forecast-day {
+  #forecast-day, #forecast-week {
     width: 100%;
   }
 
@@ -262,7 +262,7 @@
 
   .forecast-compact-values span {
     font-size: 0.8rem;
-    align-items: center;
+    align-content: center;
   }
 
   .forecast-compact-values img {
@@ -279,6 +279,11 @@
 
   .badge {
     width: 2rem;
+    height: 2rem;
+  }
+
+  .badge-rain {
+    width: rem;
     height: 2rem;
   }
 
