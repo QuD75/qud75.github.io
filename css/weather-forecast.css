@@ -153,6 +153,12 @@
   margin: 0.4rem 0.4rem;
 }
 
+.sun-times {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 0.4rem;
+}
+
 .badge-sunrise {
   background-color: #FFD700;  /* jaune doré */
   color: #000;
@@ -270,6 +276,13 @@
   .forecast-compact-values img {
     height: 1.5rem;
     width: 1.5rem;
+  }
+
+  .sun-times {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
   }
 
 }

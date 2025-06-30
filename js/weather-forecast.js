@@ -224,6 +224,8 @@ function getWeatherForecastDaysData(dataWeek) {
     tbodyRows[0].appendChild(td0);
 
     // Ligne 1 : Lever / coucher soleil
+    const divSun = document.createElement('div');
+    divSun.className = 'sun-times';
     const td1 = document.createElement('td');
     const spanSunrise = document.createElement('span');
     spanSunrise.className = 'badge-sunrise';
@@ -231,7 +233,8 @@ function getWeatherForecastDaysData(dataWeek) {
     const spanSunset = document.createElement('span');
     spanSunset.className = 'badge-sunset';
     spanSunset.textContent = sunset;
-    td1.append(spanSunrise, spanSunset);
+    divSun.append(spanSunrise, spanSunset);
+    td1.appendChild(divSun);
     tbodyRows[1].appendChild(td1);
 
     // Ligne 2 : Températures min / max (badges)
