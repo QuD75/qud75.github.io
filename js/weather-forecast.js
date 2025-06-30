@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('forecast-week').style.display = 'block';
       // Appelle la fonction après génération du tableau
       if (window.innerWidth <= 768) {
-        console.log("mobile detected");
         createVerticalMobileForecastTable();
       }
     }
@@ -305,7 +304,8 @@ function createVerticalMobileForecastTable() {
 
     // Pour chaque ligne, ajoute son label et la valeur de ce jour
     tbody.forEach(tr => {
-      const label = tr.querySelector('th')?.textContent;
+      const th = tr.querySelector('th');
+      const label = th?.getAttribute('data-mobile') || th?.textContent;
       const cells = tr.querySelectorAll('td');
       const valueCell = cells[dayIndex];
 
