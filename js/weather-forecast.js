@@ -278,6 +278,7 @@ function getWeatherForecastDaysData(dataWeek) {
 }
 
 function createVerticalMobileForecastTable() {
+  console.log("Responsive tab...")
   const table = document.getElementById('forecast-week-table');
   if (!table) return;
 
