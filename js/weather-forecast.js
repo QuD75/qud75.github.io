@@ -277,6 +277,56 @@ function getWeatherForecastDaysData(dataWeek) {
   });
 }
 
+function createVerticalMobileForecastTable() {
+  const table = document.getElementById('forecast-week-table');
+  const thead = table.querySelector('thead tr');
+  const tbody = table.querySelectorAll('tbody tr');
+
+  const dayNames = Array.from(thead.querySelectorAll('th')).slice(1); // Ignore le premier "Type"
+
+  const mobileContainer = document.createElement('div');
+  mobileContainer.className = 'forecast-week-mobile';
+
+  for (let i = 0; i < dayNames.length; i++) {
+    const dayBlock = document.createElement('div');
+    dayBlock.className = 'forecast-day-block';
+
+    const h3 = document.createElement('h3');
+    h3.textContent = dayNames[i].textContent;
+    dayBlock.appendChild(h3);
+
+    tbody.forEach(tr => {
+      const label = tr.querySelector('th')?.textContent;
+      const cell = tr.querySelectorAll('td')[i];
+      if (!label || !cell) return;
+
+      const rowDiv = document.createElement('div');
+      rowDiv.className = 'forecast-day-row';
+
+      const spanLabel = document.createElement('span');
+      spanLabel.className = 'label';
+      spanLabel.textContent = label;
+
+      const spanValue = document.createElement('span');
+      spanValue.className = 'value';
+      spanValue.innerHTML = cell.innerHTML;
+
+      rowDiv.append(spanLabel, spanValue);
+      dayBlock.appendChild(rowDiv);
+    });
+
+    mobileContainer.appendChild(dayBlock);
+  }
+
+  // Insère juste après le tableau d'origine
+  table.parentNode.insertBefore(mobileContainer, table.nextSibling);
+}
+
+// Appelle cette fonction uniquement sur mobile, après génération du tableau
+if (window.innerWidth <= 768) {
+  createVerticalMobileForecastTable();
+}
+
 function createCharts() {
   const tempData = [];
   const pressureData = [];
