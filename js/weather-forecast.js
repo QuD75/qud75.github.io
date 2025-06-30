@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('forecast-week').style.display = 'block';
       // Appelle la fonction après génération du tableau
       if (window.innerWidth <= 768) {
-        createVerticalMobileForecastTable();
+        createCompactMobileForecast();
       }
     }
   
@@ -281,55 +281,44 @@ function getWeatherForecastDaysData(dataWeek) {
   });
 }
 
-function createVerticalMobileForecastTable() {
+function createCompactMobileForecast() {
   const table = document.getElementById('forecast-week-table');
   if (!table) return;
 
   const thead = table.querySelector('thead tr');
   const tbody = table.querySelectorAll('tbody tr');
 
-  const dayHeaders = Array.from(thead.querySelectorAll('th')).slice(1); // ignore "Type"
+  const dayHeaders = Array.from(thead.querySelectorAll('th')).slice(1); // Ignore "Type"
 
   const mobileContainer = document.createElement('div');
-  mobileContainer.className = 'forecast-week-mobile';
+  mobileContainer.className = 'forecast-week-compact';
 
   for (let dayIndex = 0; dayIndex < dayHeaders.length; dayIndex++) {
     const dayBlock = document.createElement('div');
-    dayBlock.className = 'forecast-day-block';
+    dayBlock.className = 'forecast-compact-row';
 
-    // Ajoute le titre du jour
-    const dayTitle = document.createElement('h3');
-    dayTitle.textContent = dayHeaders[dayIndex].textContent;
-    dayBlock.appendChild(dayTitle);
+    // Titre : nom du jour
+    const h3 = document.createElement('h3');
+    h3.textContent = dayHeaders[dayIndex].textContent;
+    dayBlock.appendChild(h3);
 
-    // Pour chaque ligne, ajoute son label et la valeur de ce jour
+    // Regroupe toutes les valeurs de ce jour
+    const valuesDiv = document.createElement('div');
+    valuesDiv.className = 'forecast-compact-values';
+
     tbody.forEach(tr => {
-      const th = tr.querySelector('th');
-      const label = th?.getAttribute('data-mobile') || th?.textContent;
-      const cells = tr.querySelectorAll('td');
-      const valueCell = cells[dayIndex];
-
-      if (!label || !valueCell) return;
-
-      const row = document.createElement('div');
-      row.className = 'forecast-day-row';
-
-      const labelSpan = document.createElement('span');
-      labelSpan.className = 'label';
-      labelSpan.textContent = label;
-
-      const valueSpan = document.createElement('span');
-      valueSpan.className = 'value';
-      valueSpan.innerHTML = valueCell.innerHTML;
-
-      row.append(labelSpan, valueSpan);
-      dayBlock.appendChild(row);
+      const cell = tr.querySelectorAll('td')[dayIndex];
+      if (cell) {
+        const span = document.createElement('span');
+        span.innerHTML = cell.innerHTML; // copie le contenu tel quel (images, badges, etc.)
+        valuesDiv.appendChild(span);
+      }
     });
 
+    dayBlock.appendChild(valuesDiv);
     mobileContainer.appendChild(dayBlock);
   }
 
-  // Ajoute la version mobile après le tableau
   table.parentNode.insertBefore(mobileContainer, table.nextSibling);
 }
 

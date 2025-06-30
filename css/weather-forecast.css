@@ -234,50 +234,42 @@
   }
 
   #forecast-week-table {
-    display: none !important; /* bien forcer le masquage */
+    display: none !important;
   }
 
-  .forecast-week-mobile {
+  .forecast-week-compact {
     display: block;
+    margin-top: 2rem;
   }
 
-  .forecast-day-block {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    background-color: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    max-height: 20rem;
+  .forecast-compact-row {
+    border-bottom: 1px solid #ddd;
+    padding: 1rem 0;
   }
 
-  .forecast-day-block h3 {
+  .forecast-compact-row h3 {
     font-size: 1rem;
-    margin: 0 0 0.8rem 0;
-    text-align: center;
+    margin: 0 0 0.5rem;
+    text-align: left;
     text-transform: capitalize;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 0.4rem;
   }
 
-  .forecast-day-row {
+  .forecast-compact-values {
     display: flex;
-    justify-content: space-between;
-    padding: 0.3rem 0;
-    font-size: 0.9rem;
-    height: 2.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
   }
 
-  .forecast-day-row .label {
-    font-weight: bold;
-    color: #444;
-    align-content: center;
+  .forecast-compact-values span {
+    font-size: 0.8rem;
+    display: inline-flex;
+    align-items: center;
   }
 
-  .forecast-day-row .value {
-    text-align: right;
-    color: #222;
-    align-content: center;
+  .forecast-compact-values img {
+    height: 1.5rem;
+    width: 1.5rem;
   }
 
 }
