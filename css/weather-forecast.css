@@ -249,7 +249,7 @@
     margin-bottom: 1.5rem;
     background-color: #fff;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-    max-height: 15rem;
+    max-height: 20rem;
   }
 
   .forecast-day-block h3 {
@@ -272,12 +272,13 @@
   .forecast-day-row .label {
     font-weight: bold;
     color: #444;
-    align-items: center;
+    align-content: center;
   }
 
   .forecast-day-row .value {
     text-align: right;
     color: #222;
+    align-content: center;
   }
 
 }
