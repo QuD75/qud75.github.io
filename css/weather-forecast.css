@@ -239,7 +239,6 @@
 
   .forecast-week-mobile {
     display: block;
-    margin-top: 2rem;
   }
 
   .forecast-day-block {
@@ -266,7 +265,7 @@
     justify-content: space-between;
     padding: 0.3rem 0;
     font-size: 0.9rem;
-    height: 3rem;
+    height: 2.5rem;
   }
 
   .forecast-day-row .label {
