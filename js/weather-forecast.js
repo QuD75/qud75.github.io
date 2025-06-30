@@ -169,18 +169,17 @@ function getWeatherForecastDaysData(dataWeek) {
   const days = dataWeek.forecastDays;
   const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
 
-  const formatDate = (dateObj) => {
+  const formatDateClean = (dateObj) => {
     const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
 
-    const options = { weekday: 'long', day: 'numeric', timeZone };
-    const weekdayDay = date.toLocaleDateString('fr-FR', options);
-
-    const month = date.toLocaleDateString('fr-FR', {
+    const fullDate = date.toLocaleDateString('fr-FR', {
+      weekday: 'long',
+      day: 'numeric',
       month: 'long',
       timeZone
-    }).toLowerCase();
+    });
 
-    return `${weekdayDay} ${month}`;
+    return fullDate.toLowerCase(); // force tout en minuscules après
   };
 
   const formatHour = (dateStr) => {
@@ -213,7 +212,7 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ajouter l'en-tête du jour dans le thead
     const th = document.createElement('th');
-    th.textContent = formatDate(day.displayDate);
+    th.textContent = formatDateClean(day.displayDate);
     theadRow.appendChild(th);
 
     // Ajout des cellules dans chaque ligne du tbody
