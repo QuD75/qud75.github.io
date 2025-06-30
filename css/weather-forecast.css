@@ -257,7 +257,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    align-items: center;
+    margin-left: 0.5rem;
   }
 
   .forecast-compact-values span {
@@ -286,6 +286,7 @@
     width: auto;
     min-width: 3rem;
     text-align: center;
+    margin-right: 0rem;
   }
 
   .badge {
