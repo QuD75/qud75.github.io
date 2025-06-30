@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const forecastDay = document.getElementById('forecast-day');
       forecastDay.style.display = window.innerWidth <= 768 ? 'block' : 'flex';
       document.getElementById('forecast-week').style.display = 'block';
-      // Appelle la fonction après génération du tableau
       if (window.innerWidth <= 768) {
         createCompactMobileForecast();
       }
@@ -172,12 +171,16 @@ function getWeatherForecastDaysData(dataWeek) {
 
   const formatDate = (dateObj) => {
     const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
-    return date.toLocaleDateString('fr-FR', {
-      weekday: 'long',
-      day: 'numeric',
+
+    const options = { weekday: 'long', day: 'numeric', timeZone };
+    const weekdayDay = date.toLocaleDateString('fr-FR', options);
+
+    const month = date.toLocaleDateString('fr-FR', {
       month: 'long',
       timeZone
-    });
+    }).toLowerCase();
+
+    return `${weekdayDay} ${month}`;
   };
 
   const formatHour = (dateStr) => {
@@ -317,7 +320,7 @@ function createCompactMobileForecast() {
       const cell = tr.querySelectorAll('td')[dayIndex];
       if (cell) {
         const span = document.createElement('span');
-        span.innerHTML = cell.innerHTML; // copie le contenu tel quel (images, badges, etc.)
+        span.innerHTML = cell.innerHTML;
         valuesDiv.appendChild(span);
       }
     });
