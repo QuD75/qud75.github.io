@@ -138,7 +138,8 @@ function fillTabDays() {
       const rainBg = getColorForRain(entry.rain);
       rainCell.style.backgroundColor = rainBg;
       rainCell.style.color = getTextColorFromBackground(rainBg);
-      rainCell.textContent = entry.rain;
+      const rainRounded = Math.round(entry.rain * 10) / 10;
+      rainCell.textContent = `${(rainRounded % 1 === 0) ? rainRounded.toString() : rainRounded.toFixed(1)}`;
       row.appendChild(rainCell);
 
       // Uv
