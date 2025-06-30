@@ -35,6 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const forecastDay = document.getElementById('forecast-day');
       forecastDay.style.display = window.innerWidth <= 768 ? 'block' : 'flex';
       document.getElementById('forecast-week').style.display = 'block';
+      // Appelle la fonction après génération du tableau
+      if (window.innerWidth <= 768) {
+        console.log("mobile detected");
+        createVerticalMobileForecastTable();
+      }
     }
   
     initForecast();
@@ -278,7 +283,6 @@ function getWeatherForecastDaysData(dataWeek) {
 }
 
 function createVerticalMobileForecastTable() {
-  console.log("Responsive tab...")
   const table = document.getElementById('forecast-week-table');
   if (!table) return;
 
@@ -327,11 +331,6 @@ function createVerticalMobileForecastTable() {
 
   // Ajoute la version mobile après le tableau
   table.parentNode.insertBefore(mobileContainer, table.nextSibling);
-}
-
-// Appelle la fonction après génération du tableau
-if (window.innerWidth <= 768) {
-  createVerticalMobileForecastTable();
 }
 
 function createCharts() {
