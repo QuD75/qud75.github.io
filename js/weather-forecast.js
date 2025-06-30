@@ -279,50 +279,56 @@ function getWeatherForecastDaysData(dataWeek) {
 
 function createVerticalMobileForecastTable() {
   const table = document.getElementById('forecast-week-table');
+  if (!table) return;
+
   const thead = table.querySelector('thead tr');
   const tbody = table.querySelectorAll('tbody tr');
 
-  const dayNames = Array.from(thead.querySelectorAll('th')).slice(1); // Ignore le premier "Type"
+  const dayHeaders = Array.from(thead.querySelectorAll('th')).slice(1); // ignore "Type"
 
   const mobileContainer = document.createElement('div');
   mobileContainer.className = 'forecast-week-mobile';
 
-  for (let i = 0; i < dayNames.length; i++) {
+  for (let dayIndex = 0; dayIndex < dayHeaders.length; dayIndex++) {
     const dayBlock = document.createElement('div');
     dayBlock.className = 'forecast-day-block';
 
-    const h3 = document.createElement('h3');
-    h3.textContent = dayNames[i].textContent;
-    dayBlock.appendChild(h3);
+    // Ajoute le titre du jour
+    const dayTitle = document.createElement('h3');
+    dayTitle.textContent = dayHeaders[dayIndex].textContent;
+    dayBlock.appendChild(dayTitle);
 
+    // Pour chaque ligne, ajoute son label et la valeur de ce jour
     tbody.forEach(tr => {
       const label = tr.querySelector('th')?.textContent;
-      const cell = tr.querySelectorAll('td')[i];
-      if (!label || !cell) return;
+      const cells = tr.querySelectorAll('td');
+      const valueCell = cells[dayIndex];
 
-      const rowDiv = document.createElement('div');
-      rowDiv.className = 'forecast-day-row';
+      if (!label || !valueCell) return;
 
-      const spanLabel = document.createElement('span');
-      spanLabel.className = 'label';
-      spanLabel.textContent = label;
+      const row = document.createElement('div');
+      row.className = 'forecast-day-row';
 
-      const spanValue = document.createElement('span');
-      spanValue.className = 'value';
-      spanValue.innerHTML = cell.innerHTML;
+      const labelSpan = document.createElement('span');
+      labelSpan.className = 'label';
+      labelSpan.textContent = label;
 
-      rowDiv.append(spanLabel, spanValue);
-      dayBlock.appendChild(rowDiv);
+      const valueSpan = document.createElement('span');
+      valueSpan.className = 'value';
+      valueSpan.innerHTML = valueCell.innerHTML;
+
+      row.append(labelSpan, valueSpan);
+      dayBlock.appendChild(row);
     });
 
     mobileContainer.appendChild(dayBlock);
   }
 
-  // Insère juste après le tableau d'origine
+  // Ajoute la version mobile après le tableau
   table.parentNode.insertBefore(mobileContainer, table.nextSibling);
 }
 
-// Appelle cette fonction uniquement sur mobile, après génération du tableau
+// Appelle la fonction après génération du tableau
 if (window.innerWidth <= 768) {
   createVerticalMobileForecastTable();
 }

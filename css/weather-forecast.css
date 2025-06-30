@@ -62,7 +62,7 @@
 }
 
 .forecast-chart {
-  max-height: 20rem;
+  max-height: 12rem;
   max-width: 60rem;
 }
 
@@ -199,7 +199,6 @@
   #forecast-week-table th {
     font-size: 0.5rem;
     width: 2rem;
-    display: none;
   }
 
   #forecast-day-table th,
@@ -234,6 +233,10 @@
     height: 1rem;
   }
 
+  #forecast-week-table {
+    display: none !important; /* bien forcer le masquage */
+  }
+
   .forecast-week-mobile {
     display: block;
     margin-top: 2rem;
@@ -249,14 +252,12 @@
   }
 
   .forecast-day-block h3 {
-    margin-top: 0;
-    font-size: 1.1rem;
-    color: #333;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 0.4rem;
-    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    margin: 0 0 0.8rem 0;
     text-align: center;
     text-transform: capitalize;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 0.4rem;
   }
 
   .forecast-day-row {
@@ -268,12 +269,12 @@
 
   .forecast-day-row .label {
     font-weight: bold;
-    color: #666;
+    color: #444;
   }
 
   .forecast-day-row .value {
     text-align: right;
-    color: #333;
+    color: #222;
   }
 
 }
