@@ -179,7 +179,11 @@ function getWeatherForecastDaysData(dataWeek) {
       timeZone
     });
 
-    return fullDate.toLowerCase(); // force tout en minuscules après
+    console.log("Before: ", fullDate);
+    const fullDateLower = fullDate.toLowerCase();
+    console.log("After: ", fullDateLower);
+
+    return fullDateLower;
   };
 
   const formatHour = (dateStr) => {
