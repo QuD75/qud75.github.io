@@ -253,6 +253,8 @@ function getWeatherForecastDaysData(dataWeek) {
     tbodyRows[2].appendChild(td2);
 
     // Ligne 3 : Vent moyen
+    const divWind = document.createElement('div');
+    divWind.className = 'wind';
     const td3 = document.createElement('td');
     const spanWind = document.createElement('span');
     spanWind.className = 'badge';
@@ -268,7 +270,8 @@ function getWeatherForecastDaysData(dataWeek) {
     spanWind.appendChild(imgIcon);
     const spanValue = document.createElement('span');
     spanValue.textContent = `${Math.round(avgWind / 5) * 5} km/h`;
-    td3.append(spanWind, spanValue);
+    divWind.append(spanWind, spanValue);
+    td3.appendChild(divWind);
     tbodyRows[3].appendChild(td3);
 
     // Ligne 4 : pluie
