@@ -45,7 +45,7 @@ function getColorForTemperature(temp) {
     return `rgb(${colorStops[colorStops.length - 1].color.join(', ')})`;
 }
 
-function getColorForHumidity(hum){  
+function getColorForHumidity(hum) {  
     if (hum <= 30) {
       return 'rgb(255, 255, 255)';
     } else {
@@ -69,7 +69,7 @@ function getColorForWindSpeed(speed) {
   return '#8B00FF';                        // violet électrique (plus flashy que le précédent)
 }
 
-function getColorForUv(uv){
+function getColorForUv(uv) {
     // Tableau des couleurs clés du gradient arc-en-ciel (indigo à violet)
     const colors = [
         { r: 0,   g: 255, b: 255 },  // Cyan (4)
@@ -151,4 +151,4 @@ function getTextColorFromBackground(bgColor) {
     return yiq < 128 ? '#fff' : '#000';
 
 
-}  
+}
