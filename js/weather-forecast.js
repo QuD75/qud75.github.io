@@ -315,7 +315,7 @@ function createCompactMobileForecast() {
     const valuesDiv = document.createElement('div');
     valuesDiv.className = 'forecast-compact-values';
 
-    const classes = ['span-temp', 'span-sun', 'span-temp', 'span-wind', 'span-rain'];
+    const classes = ['span-weather', 'span-sun', 'span-temp', 'span-wind', 'span-rain'];
 
     tbody.forEach((tr, index) => {
       const cell = tr.querySelectorAll('td')[dayIndex];
@@ -325,7 +325,7 @@ function createCompactMobileForecast() {
 
         // Ajoute la classe descriptive si elle existe
         if (classes[index]) {
-          span.classList.add(classes[index]);
+          span.id = classes[index];
         }
 
         valuesDiv.appendChild(span);

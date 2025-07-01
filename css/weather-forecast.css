@@ -265,6 +265,26 @@
     align-content: center;
   }
 
+  #span-weather {
+    width: 20%;
+  }
+
+  #span-sun {
+    width: 20%;
+  }
+
+  #span-temp {
+    width: 20%;
+  }
+
+  #span-wind {
+    width: 20%;
+  }
+
+  #span-rain {
+    width: 20%;
+  }
+
   .sun-times, .wind {
     display: flex;
     flex-direction: column;
