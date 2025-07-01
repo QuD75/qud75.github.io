@@ -315,11 +315,19 @@ function createCompactMobileForecast() {
     const valuesDiv = document.createElement('div');
     valuesDiv.className = 'forecast-compact-values';
 
-    tbody.forEach(tr => {
+    const classes = ['span-temp', 'span-sun', 'span-temp', 'span-wind', 'span-rain'];
+
+    tbody.forEach((tr, index) => {
       const cell = tr.querySelectorAll('td')[dayIndex];
       if (cell) {
         const span = document.createElement('span');
         span.innerHTML = cell.innerHTML;
+
+        // Ajoute la classe descriptive si elle existe
+        if (classes[index]) {
+          span.classList.add(classes[index]);
+        }
+
         valuesDiv.appendChild(span);
       }
     });
