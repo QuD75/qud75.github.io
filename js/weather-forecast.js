@@ -219,7 +219,6 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ligne 0 : icône météo
     const td0 = document.createElement('td');
-    td0.className = 'weather';
     const imgWeather = document.createElement('img');
     imgWeather.src = `/icons/weather/day/${d.weatherCondition.type}.svg`;
     imgWeather.alt = d.weatherCondition.type;

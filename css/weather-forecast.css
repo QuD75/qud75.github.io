@@ -265,10 +265,10 @@
     align-content: center;
   }
 
-  .forecast-compact-values img {
+/*   .forecast-compact-values img {
     height: 1.5rem;
     width: 1.5rem;
-  }
+  } */
 
   .sun-times, .wind {
     display: flex;
