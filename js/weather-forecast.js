@@ -323,7 +323,6 @@ function createCompactMobileForecast() {
         const span = document.createElement('span');
         span.innerHTML = cell.innerHTML;
 
-        // Ajoute la classe descriptive si elle existe
         if (classes[index]) {
           span.id = classes[index];
         }
