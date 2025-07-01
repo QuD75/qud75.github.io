@@ -256,8 +256,6 @@
   .forecast-compact-values {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-left: 0.5rem;
   }
 
   .forecast-compact-values span {
@@ -285,6 +283,10 @@
     width: 18%;
   }
 
+  #badge-temp-min {
+    margin-right: 0.5rem;
+  }
+
   .sun-times, .wind {
     display: flex;
     flex-direction: column;
@@ -307,6 +309,7 @@
   .badge {
     width: 2rem;
     height: 2rem;
+    margin: 0rem 0rem;
   }
 
   .badge-rain {

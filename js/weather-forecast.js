@@ -244,11 +244,13 @@ function getWeatherForecastDaysData(dataWeek) {
     const td2 = document.createElement('td');
     const spanTempMin = document.createElement('span');
     spanTempMin.className = 'badge';
+    spanTempMin.id = 'badge-temp-min';
     spanTempMin.textContent = `${minTemp}`;
     spanTempMin.style.backgroundColor = getColorForTemperature(minTemp);
     spanTempMin.style.color = getTextColorFromBackground(spanTempMin.style.backgroundColor);
     const spanTempMax = document.createElement('span');
     spanTempMax.className = 'badge';
+    spanTempMax.id = 'badge-temp-max';
     spanTempMax.textContent = `${maxTemp}`;
     spanTempMax.style.backgroundColor = getColorForTemperature(maxTemp);
     spanTempMax.style.color = getTextColorFromBackground(spanTempMax.style.backgroundColor);
