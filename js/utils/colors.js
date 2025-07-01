@@ -107,7 +107,7 @@ function getColorForUv(uv){
 function getColorForRain(rain) {
   // Palette des paliers
   const palette = [
-    { rain: 0,  color: [255,255,255] },
+    { rain: 0,  color: [229,251,254] },
     { rain: 1,  color: [0,215,248] },
     { rain: 2,  color: [0,188,255] },
     { rain: 4,  color: [0,131,255]  },
