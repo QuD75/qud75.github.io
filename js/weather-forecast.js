@@ -228,7 +228,7 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ligne 1 : Lever / coucher soleil
     const divSun = document.createElement('div');
-    divSun.className = 'sun-times';
+    divSun.id = 'sun-times';
     const td1 = document.createElement('td');
     const spanSunrise = document.createElement('span');
     spanSunrise.id = 'badge-sunrise';
@@ -257,7 +257,7 @@ function getWeatherForecastDaysData(dataWeek) {
 
     // Ligne 3 : Vent moyen
     const divWind = document.createElement('div');
-    divWind.className = 'wind';
+    divWind.id = 'wind';
     const td3 = document.createElement('td');
     const spanWind = document.createElement('span');
     spanWind.className = 'badge';
@@ -278,6 +278,8 @@ function getWeatherForecastDaysData(dataWeek) {
     tbodyRows[3].appendChild(td3);
 
     // Ligne 4 : pluie
+    const divRain = document.createElement('div');
+    divRain.id = 'rain';
     const td4 = document.createElement('td');
     const spanRain = document.createElement('span');
     spanRain.className = 'badge'; 
@@ -285,7 +287,8 @@ function getWeatherForecastDaysData(dataWeek) {
     spanRain.style.color = getTextColorFromBackground(spanRain.style.backgroundColor);
     const rainRounded = Math.round(rain * 10) / 10;
     spanRain.textContent = `${(rainRounded % 1 === 0) ? rainRounded.toString() : rainRounded.toFixed(1)} mm`;
-    td4.append(spanRain);
+    divRain.appendChild(spanRain);
+    td4.appendChild(divRain);
     tbodyRows[4].appendChild(td4);
   });
 }
