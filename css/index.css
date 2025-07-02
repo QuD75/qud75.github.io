@@ -8,8 +8,7 @@ p {
   justify-content: center; /* centre horizontalement */
   align-items: center;     /* centre verticalement */
   overflow: visible;       /* autorise le dépassement */
-  height: 100px;           /* ou la hauteur souhaitée */
-  width: 100px;            /* ou la largeur souhaitée */
+  height: 350px;           /* ou la hauteur souhaitée */
   position: relative;      /* si besoin */
 }
 
