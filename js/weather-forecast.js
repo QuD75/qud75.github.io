@@ -2,7 +2,6 @@ import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 Chart.defaults.animation = false;
 
-//import { fr } from "date-fns/locale/fr";
 import "chartjs-adapter-date-fns";
 
 document.addEventListener('DOMContentLoaded', () => {
