@@ -1,2 +1,10 @@
 User-agent: *
+
+# Bloque les dossiers techniques (à adapter selon ton arborescence)
+Disallow: /pages/todo/
+
+# Autorise tout le reste
 Allow: /
+
+# Sitemap
+Sitemap: https://meteo-croisic.fr/sitemap.xml
