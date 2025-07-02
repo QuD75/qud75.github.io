@@ -302,12 +302,15 @@
     min-width: 2rem;
     text-align: center;
     margin-right: 0rem;
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    font-weight: normal;
   }
 
   .badge {
     width: min(3em, 8vw);
     height: min(3em, 8vw);
-/*     font-size: clamp(0.8rem, 2vw, 1.2rem); */
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    font-weight: normal;
     display: flex;
     justify-content: center;
     align-items: center;
