@@ -1,5 +1,4 @@
-const { Chart, registerables } = window.Chart;
-Chart.register(...registerables);
+const Chart = window.Chart;
 Chart.defaults.animation = false;
 
 document.addEventListener('DOMContentLoaded', () => {
