@@ -273,6 +273,7 @@
 
   #span-temp {
     width: 35%;
+    gap: 0.5rem;
   }
 
   #span-wind {
@@ -283,15 +284,10 @@
     width: 15%;
   }
 
-  #badge-temp-min {
-    margin-right: 0.5rem;
-    width: 40%;
-    height: 63%;
-  }
-
-  #badge-temp-max {
-    width: 40%;
-    height: 63%;
+  #badge-temp-min, #badge-temp-max {
+    width: min(2.5em, 8vw);
+    height: min(2.5em, 8vw);
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
   }
 
   .sun-times, .wind {
