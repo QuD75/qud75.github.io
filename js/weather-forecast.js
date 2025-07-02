@@ -417,7 +417,7 @@ function createCharts() {
           },
           adapters: {
             date: {
-              locale: fr
+              locale: undefined // ou ne pas mettre de locale, Chart.js prendra le navigateur
             }
           }
         },
