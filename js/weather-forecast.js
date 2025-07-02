@@ -283,6 +283,7 @@ function getWeatherForecastDaysData(dataWeek) {
     const td4 = document.createElement('td');
     const spanRain = document.createElement('span');
     spanRain.className = 'badge'; 
+    spanRain.id = 'badge-rain';
     spanRain.style.backgroundColor = getColorForRain(rain);
     spanRain.style.color = getTextColorFromBackground(spanRain.style.backgroundColor);
     const rainRounded = Math.round(rain * 10) / 10;

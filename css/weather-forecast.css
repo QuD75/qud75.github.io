@@ -140,6 +140,10 @@
   align-content: center;
 }
 
+#badge-rain {
+  font-weight: normal;
+}
+
 #sun-times {
     display: flex;
     flex-direction: row;
@@ -166,10 +170,6 @@
   font-size: 0.9rem;
   white-space: nowrap;
   line-height: 1.2;
-}
-
-#rain {
-  font-weight: normal !important;
 }
 
 @media (max-width: 768px) {
