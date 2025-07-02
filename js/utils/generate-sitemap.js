@@ -18,7 +18,17 @@ const sitemapTemplate = `
    <url>
       <loc>https://qud75.github.io/pages/weather-forecast.html</loc>
       <lastmod>${getCurrentDate()}</lastmod>
-      <priority>1.0</priority>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://qud75.github.io/pages/weather-station.html</loc>
+      <lastmod>${getCurrentDate()}</lastmod>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://qud75.github.io/pages/tides.html</loc>
+      <lastmod>${getCurrentDate()}</lastmod>
+      <priority>0.9</priority>
    </url>
    <!-- Ajoute d'autres URLs ici -->
 </urlset>
