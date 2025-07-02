@@ -131,8 +131,8 @@
   display: inline-block;
   border-radius: 50%;
   font-weight: bold;
-  width: min(3em, 8vw);
-  height: min(3em, 8vw);
+  width: 2.5rem;
+  height: 2.5rem;
   font-size: clamp(0.8rem, 2vw, 1.2rem);
   text-align: center;
   user-select: none;
