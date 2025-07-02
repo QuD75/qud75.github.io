@@ -1,4 +1,4 @@
-const FOOTER_VERSION = "v1"; // 🔁 Incrémente cette version à chaque changement
+const FOOTER_VERSION = "v2"; // 🔁 Incrémente cette version à chaque changement
 const footerKey = `cachedFooter_${FOOTER_VERSION}`;
 
 function loadFooter() {
