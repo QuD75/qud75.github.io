@@ -1,8 +1,6 @@
-import { Chart, registerables } from "chart.js";
+const { Chart, registerables } = window.Chart;
 Chart.register(...registerables);
 Chart.defaults.animation = false;
-
-import "chartjs-adapter-date-fns";
 
 document.addEventListener('DOMContentLoaded', () => {
 
