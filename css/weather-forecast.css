@@ -140,24 +140,18 @@
   align-content: center;
 }
 
-.badge-rain {
-  display: inline-block;
-  width: 3rem;
-  height: 2rem;
-  line-height: 2rem;
-  padding: 0.2rem;
-  border-radius: 9999px;
-  font-size: 0.9em;
-  text-align: center;
-  user-select: none;
-  margin: 0.4rem 0.4rem;
-}
+#sun-times {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
 
 #badge-sunrise {
   background-color: #FFD700;  /* jaune doré */
   color: #000;
   display: inline-block;
-  margin-right: 1rem;
 }
 
 #badge-sunset {
@@ -172,6 +166,10 @@
   font-size: 0.9rem;
   white-space: nowrap;
   line-height: 1.2;
+}
+
+#rain {
+  font-weight: normal;
 }
 
 @media (max-width: 768px) {
