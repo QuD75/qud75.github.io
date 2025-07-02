@@ -411,9 +411,13 @@ function createCharts() {
               day: "EEEE"
             }
           },
-          adapters: {
-            date: {
-              locale: undefined // ou ne pas mettre de locale, Chart.js prendra le navigateur
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day',
+              displayFormats: {
+                day: 'EEEE'
+              }
             }
           }
         },
