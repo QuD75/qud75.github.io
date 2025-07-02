@@ -1,4 +1,4 @@
-const HEADER_VERSION = "v1";
+const HEADER_VERSION = "v2";
 const headerKey = `cachedHeader_${HEADER_VERSION}`;
 
 function loadHeader() {
