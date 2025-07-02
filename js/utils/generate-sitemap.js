@@ -11,22 +11,22 @@ const sitemapTemplate = `
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>https://qud75.github.io/index.html</loc>
+      <loc>https://meteo-croisic.fr/index.html</loc>
       <lastmod>${getCurrentDate()}</lastmod>
       <priority>1.0</priority>
    </url>
    <url>
-      <loc>https://qud75.github.io/pages/weather-forecast.html</loc>
+      <loc>https://meteo-croisic.fr/pages/weather-forecast.html</loc>
       <lastmod>${getCurrentDate()}</lastmod>
       <priority>0.9</priority>
    </url>
    <url>
-      <loc>https://qud75.github.io/pages/weather-station.html</loc>
+      <loc>https://meteo-croisic.fr/pages/weather-station.html</loc>
       <lastmod>${getCurrentDate()}</lastmod>
       <priority>0.9</priority>
    </url>
    <url>
-      <loc>https://qud75.github.io/pages/tides.html</loc>
+      <loc>https://meteo-croisic.fr/pages/tides.html</loc>
       <lastmod>${getCurrentDate()}</lastmod>
       <priority>0.9</priority>
    </url>
