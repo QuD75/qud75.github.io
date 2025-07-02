@@ -49,6 +49,10 @@
   font-size: 0.8rem;
 }
 
+#forecast-day-table tbody tr {
+  height: 4rem;
+}
+
 #forecast-day-table-container {
   flex: 0 1 60%;
   max-width: 60%;
