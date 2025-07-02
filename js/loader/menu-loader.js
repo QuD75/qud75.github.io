@@ -1,4 +1,4 @@
-const MENU_VERSION = "v1";
+const MENU_VERSION = "v2";
 const menuKey = `cachedMenu_${MENU_VERSION}`;
 
 function loadMenu() {
