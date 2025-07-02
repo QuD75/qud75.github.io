@@ -34,12 +34,6 @@
     justify-content: center;
 }
 
-#logo-croisic {
-    width: 200px;
-    height: 200px;
-    object-fit: contain; /* pour bien garder les proportions */
-}
-
 .header-link {
     text-decoration: none;
     color: inherit;

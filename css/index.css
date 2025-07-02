@@ -1,3 +1,19 @@
 p {
     font-size: 1.3rem;
+    text-align: center;
+}
+
+#logo-croisic {
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;     /* centre verticalement */
+  overflow: visible;       /* autorise le dépassement */
+  height: 100px;           /* ou la hauteur souhaitée */
+  width: 100px;            /* ou la largeur souhaitée */
+  position: relative;      /* si besoin */
+}
+
+#logo-croisic img {
+  max-width: none;         /* enlève la limitation de taille */
+  max-height: none;
 }
