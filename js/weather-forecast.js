@@ -267,11 +267,10 @@ function getWeatherForecastDaysData(dataWeek) {
     const iconName = getWindDirectionIcon(windDirection);
     const imgIcon = document.createElement('img');
     imgIcon.src = iconName;
-    imgIcon.style.width = '1rem';
-    imgIcon.style.height = '1rem';
-    imgIcon.style.verticalAlign = 'middle';
+    imgIcon.id = 'wind-direction-arrow-week'
     spanWind.appendChild(imgIcon);
     const spanValue = document.createElement('span');
+    spanValue.id = 'wind-speed-value-week'
     spanValue.textContent = `${Math.round(avgWind / 5) * 5} km/h`;
     divWind.append(spanWind, spanValue);
     td3.appendChild(divWind);
