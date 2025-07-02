@@ -143,7 +143,7 @@
 
 #badge-rain {
   font-weight: normal;
-  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  font-size: clamp(0.7rem, 1vw, 0.9rem);
 }
 
 #sun-times {
@@ -181,7 +181,7 @@
 }
 
 #wind-speed-value-week {
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
