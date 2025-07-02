@@ -286,10 +286,12 @@
   #badge-temp-min {
     margin-right: 0.5rem;
     width: 40%;
+    height: 63%;
   }
 
   #badge-temp-max {
     width: 40%;
+    height: 63%;
   }
 
   .sun-times, .wind {
