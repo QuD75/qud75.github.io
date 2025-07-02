@@ -1,4 +1,8 @@
-const Chart = window.Chart;
+import { Chart, registerables } from 'chart.js';
+import 'chartjs-adapter-date-fns';
+import { fr } from 'date-fns/locale';
+
+Chart.register(...registerables);
 Chart.defaults.animation = false;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -408,16 +412,12 @@ function createCharts() {
           time: {
             unit: 'day',
             displayFormats: {
-              day: "EEEE"
+              day: 'EEEE'
             }
           },
-          x: {
-            type: 'time',
-            time: {
-              unit: 'day',
-              displayFormats: {
-                day: 'EEEE'
-              }
+          adapters: {
+            date: {
+              locale: fr
             }
           }
         },
