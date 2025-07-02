@@ -169,7 +169,7 @@
 }
 
 #rain {
-  font-weight: normal;
+  font-weight: normal !important;
 }
 
 @media (max-width: 768px) {
