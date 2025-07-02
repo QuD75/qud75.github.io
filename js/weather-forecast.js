@@ -231,10 +231,10 @@ function getWeatherForecastDaysData(dataWeek) {
     divSun.className = 'sun-times';
     const td1 = document.createElement('td');
     const spanSunrise = document.createElement('span');
-    spanSunrise.className = 'badge-sun';
+    spanSunrise.id = 'badge-sunrise';
     spanSunrise.textContent = sunrise;
     const spanSunset = document.createElement('span');
-    spanSunset.className = 'badge-sun';
+    spanSunset.id = 'badge-sunset';
     spanSunset.textContent = sunset;
     divSun.append(spanSunrise, spanSunset);
     td1.appendChild(divSun);
