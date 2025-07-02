@@ -272,8 +272,20 @@
   }
 
   #span-temp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 35%;
     gap: 0.5rem;
+  }
+
+  #badge-temp-min, #badge-temp-max {
+    width: min(2.5em, 8vw);
+    height: min(2.5em, 8vw);
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   #span-wind {
@@ -282,12 +294,6 @@
 
   #span-rain {
     width: 15%;
-  }
-
-  #badge-temp-min, #badge-temp-max {
-    width: min(2.5em, 8vw);
-    height: min(2.5em, 8vw);
-    font-size: clamp(0.8rem, 2vw, 1.2rem);
   }
 
   .sun-times, .wind {
