@@ -231,10 +231,10 @@ function getWeatherForecastDaysData(dataWeek) {
     divSun.className = 'sun-times';
     const td1 = document.createElement('td');
     const spanSunrise = document.createElement('span');
-    spanSunrise.className = 'badge-sunrise';
+    spanSunrise.className = 'badge-sun';
     spanSunrise.textContent = sunrise;
     const spanSunset = document.createElement('span');
-    spanSunset.className = 'badge-sunset';
+    spanSunset.className = 'badge-sun';
     spanSunset.textContent = sunset;
     divSun.append(spanSunrise, spanSunset);
     td1.appendChild(divSun);
@@ -244,13 +244,11 @@ function getWeatherForecastDaysData(dataWeek) {
     const td2 = document.createElement('td');
     const spanTempMin = document.createElement('span');
     spanTempMin.className = 'badge';
-    spanTempMin.id = 'badge-temp-min';
     spanTempMin.textContent = `${minTemp}`;
     spanTempMin.style.backgroundColor = getColorForTemperature(minTemp);
     spanTempMin.style.color = getTextColorFromBackground(spanTempMin.style.backgroundColor);
     const spanTempMax = document.createElement('span');
     spanTempMax.className = 'badge';
-    spanTempMax.id = 'badge-temp-max';
     spanTempMax.textContent = `${maxTemp}`;
     spanTempMax.style.backgroundColor = getColorForTemperature(maxTemp);
     spanTempMax.style.color = getTextColorFromBackground(spanTempMax.style.backgroundColor);
@@ -282,7 +280,7 @@ function getWeatherForecastDaysData(dataWeek) {
     // Ligne 4 : pluie
     const td4 = document.createElement('td');
     const spanRain = document.createElement('span');
-    spanRain.className = 'badge-rain'; 
+    spanRain.className = 'badge'; 
     spanRain.style.backgroundColor = getColorForRain(rain);
     spanRain.style.color = getTextColorFromBackground(spanRain.style.backgroundColor);
     const rainRounded = Math.round(rain * 10) / 10;

@@ -279,14 +279,14 @@
     gap: 0.5rem;
   }
 
-  #badge-temp-min, #badge-temp-max {
+/*   #badge-temp-min, #badge-temp-max {
     width: min(2.5em, 8vw);
     height: min(2.5em, 8vw);
     font-size: clamp(0.8rem, 2vw, 1.2rem);
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
 
   #span-wind {
     width: 15%;
@@ -304,8 +304,7 @@
     gap: 0.2rem;
   }
 
-  .sun-times .badge-sunrise,
-  .sun-times .badge-sunset {
+  .sun-times .badge-sun {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -316,14 +315,17 @@
   }
 
   .badge {
-    width: 2rem;
-    height: 2rem;
-    margin: 0rem 0rem;
+    width: min(2.5em, 8vw);
+    height: min(2.5em, 8vw);
+    font-size: clamp(0.8rem, 2vw, 1.2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .badge-rain {
-    width: 2rem;
-    height: 2rem;
-  }
+/*   .badge-rain {
+    width: min(2.5em, 8vw);
+    height: min(2.5em, 8vw);
+  } */
 
 }
