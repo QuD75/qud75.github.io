@@ -125,9 +125,8 @@
 }
 
 .weather-week-icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 1px;
+  width: 3rem;
+  height: 3rem;
   filter: brightness(0.97);
 }
 
@@ -155,8 +154,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-  }
+    gap: 0.5rem;
+}
 
 #badge-sunrise {
   background-color: #FFD700;  /* jaune doré */
@@ -173,7 +172,7 @@
 #badge-sunrise, #badge-sunset {
   padding: 0.1em 0.6em;
   border-radius: 999px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   white-space: nowrap;
   line-height: 1.2;
 }
