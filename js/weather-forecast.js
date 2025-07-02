@@ -215,8 +215,6 @@ function getWeatherForecastDaysData(dataWeek) {
     th.textContent = formatDateClean(day.displayDate);
     theadRow.appendChild(th);
 
-    // Ajout des cellules dans chaque ligne du tbody
-
     // Ligne 0 : icône météo
     const td0 = document.createElement('td');
     const imgWeather = document.createElement('img');
