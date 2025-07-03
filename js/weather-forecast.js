@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     Chart.register(...registerables);
     Chart.defaults.animation = false;
-    const fr = window.dateFns?.locale?.fr || window.dateFns?.localeFr;
 
     const apiKey = 'AIzaSyAusGSh1xC3ZT0_wXG-_7VbWWCnrO6tZFg';
     const baseUrl = 'https://weather.googleapis.com/v1/forecast';
