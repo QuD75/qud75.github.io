@@ -7,7 +7,7 @@ p {
   display: flex;
   justify-content: center; /* centre horizontalement */
   align-items: center;     /* centre verticalement */
-  overflow: visible;       /* autorise le dépassement */
+  overflow: hidden;       /* autorise le dépassement */
   height: 350px;           /* ou la hauteur souhaitée */
   position: relative;      /* si besoin */
 }
