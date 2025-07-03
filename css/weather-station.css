@@ -8,6 +8,7 @@
     grid-auto-rows: 1fr; /* même hauteur pour tous les blocs */
     gap: 2rem; /* écart horizontal ET vertical entre les blocs */
     margin-top: 3rem;
+    margin-bottom: 3rem;
 }
 
 .meteo-bloc {
