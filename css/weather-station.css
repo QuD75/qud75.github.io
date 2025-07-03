@@ -7,7 +7,7 @@
     grid-template-columns: repeat(3, 1fr); /* 3 blocs par ligne */
     grid-auto-rows: 1fr; /* même hauteur pour tous les blocs */
     gap: 2rem; /* écart horizontal ET vertical entre les blocs */
-    padding: 20px; /* espace autour de la grille si besoin */
+    margin-top: 3rem;
 }
 
 .meteo-bloc {
@@ -100,9 +100,7 @@
 }
 
 .chart-weather-station {
-    max-height: 20rem;
-    max-width: 60rem;
-    width: 100%;
+    max-width: 89%;
     border: 1px solid #ccc;
     margin-bottom: 20px;
 }
