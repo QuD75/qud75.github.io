@@ -3,24 +3,6 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-nav {
-  margin-top: 0.8rem;
-}
-
-nav a {
-  color: #a0e9ff;
-  text-decoration: none;
-  margin-right: 1.8rem;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-nav a:hover {
-  color: #fff;
-  border-bottom: 2px solid #a0e9ff;
-  padding-bottom: 2px;
-}
-
 main {
   flex: 1;
   display: flex;
@@ -29,20 +11,6 @@ main {
   justify-content: center;
   padding: 3rem 2rem;
   text-align: center;
-}
-
-main h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
-}
-
-main p {
-  max-width: 600px;
-  font-size: 1.1rem;
-  line-height: 1.5;
-  margin-bottom: 3rem;
-  color: #cceeff;
 }
 
 .buttons {
