@@ -193,10 +193,6 @@ function createLineChart(metric, containerId, label, data, labels, unit, color, 
         y: {
           ...chartOptions.scales.y,
           min: unit === "mm" ? 0 : undefined,
-          title: {
-            ...chartOptions.scales.y.title,
-            text: `${label} (${unit})`
-          }
         },
         x: chartOptions.scales.x
       }
