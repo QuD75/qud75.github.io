@@ -1,3 +1,9 @@
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
+Chart.defaults.animation = false;
+
+import "chartjs-adapter-date-fns";
+
 document.addEventListener('DOMContentLoaded', () => {
 
   const stationId = 'ILECRO29';
