@@ -1,15 +1,11 @@
+import { Chart, registerables } from "chart.js";
+Chart.register(...registerables);
+Chart.defaults.animation = false;
+
+import { fr } from "date-fns/locale/fr";
+import "chartjs-adapter-date-fns";
+
 document.addEventListener('DOMContentLoaded', () => {
-
-    const Chart = window.Chart;
-    const registerables = Chart.registerables;
-
-    if (!registerables) {
-      console.error('Chart.registerables is undefined');
-      return;
-    }
-
-    Chart.register(...registerables);
-    Chart.defaults.animation = false;
 
     const apiKey = 'AIzaSyAusGSh1xC3ZT0_wXG-_7VbWWCnrO6tZFg';
     const baseUrl = 'https://weather.googleapis.com/v1/forecast';
