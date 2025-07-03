@@ -16,13 +16,13 @@ main {
 }
 
 main h1 {
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
 
 main p {
     font-size: 1.3rem;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3.5rem;
 }
 
 .buttons {
@@ -33,7 +33,7 @@ main p {
 }
 
 .btn {
-  background: #00bbff;
+  background: #0077be;
   padding: 1rem 2rem;
   color: white;
   font-weight: 700;
@@ -46,7 +46,7 @@ main p {
 }
 
 .btn:hover {
-  background: #0088cc;
+  background: #02629c;
   box-shadow: 0 6px 14px rgba(0,136,204,0.6);
 }
 
