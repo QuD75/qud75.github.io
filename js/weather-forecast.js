@@ -1,6 +1,5 @@
-import { Chart, registerables } from 'chart.js';
-import 'chartjs-adapter-date-fns';
-import { fr } from 'date-fns/locale';
+import { Chart, registerables } from '/libs/chart.js';
+import '/libs/chartjs-adapter-date-fns.esm.js';
 
 Chart.register(...registerables);
 Chart.defaults.animation = false;
