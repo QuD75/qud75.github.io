@@ -1,8 +1,6 @@
-import { Chart, registerables } from '/libs/chart.esm.js';
-import '/libs/chartjs-adapter-date-fns.esm.js';
-
 Chart.register(...registerables);
 Chart.defaults.animation = false;
+const fr = window.dateFns.locale.fr;
 
 document.addEventListener('DOMContentLoaded', () => {
 
