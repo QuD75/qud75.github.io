@@ -1,6 +1,7 @@
+const { Chart, registerables } = window.Chart;
 Chart.register(...registerables);
 Chart.defaults.animation = false;
-const fr = window.dateFns.locale.fr;
+const fr = window.dateFns?.locale?.fr || window.dateFns?.localeFr;
 
 document.addEventListener('DOMContentLoaded', () => {
 
