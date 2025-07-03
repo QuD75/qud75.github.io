@@ -1,10 +1,16 @@
-const Chart = window.Chart;
-const registerables = Chart.registerables;
-Chart.register(...registerables);
-Chart.defaults.animation = false;
-const fr = window.dateFns?.locale?.fr || window.dateFns?.localeFr;
-
 document.addEventListener('DOMContentLoaded', () => {
+
+    const Chart = window.Chart;
+    const registerables = Chart.registerables;
+
+    if (!registerables) {
+      console.error('Chart.registerables is undefined');
+      return;
+    }
+
+    Chart.register(...registerables);
+    Chart.defaults.animation = false;
+    const fr = window.dateFns?.locale?.fr || window.dateFns?.localeFr;
 
     const apiKey = 'AIzaSyAusGSh1xC3ZT0_wXG-_7VbWWCnrO6tZFg';
     const baseUrl = 'https://weather.googleapis.com/v1/forecast';
