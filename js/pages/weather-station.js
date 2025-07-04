@@ -1,8 +1,8 @@
-import { Chart, registerables } from "chart.js";
+import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 Chart.defaults.animation = false;
 
-import "chartjs-adapter-date-fns";
+import 'chartjs-adapter-date-fns';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -26,27 +26,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const titre = document.getElementById('rain-title');
 
     if (window.innerWidth <= 768) {
-      titre.textContent = "Pluie";
+      titre.textContent = 'Pluie';
     } else {
-      titre.textContent = "Pluviométrie du jour";
+      titre.textContent = 'Pluviométrie du jour';
     }
   }
   updateRainTitle();
   window.addEventListener('resize', updateRainTitle);
 
-  const select = document.getElementById("plage");
-  const dayBloc = document.getElementById("day-chart");
-  const weekBloc = document.getElementById("week-chart");
+  const select = document.getElementById('plage');
+  const dayBloc = document.getElementById('day-chart');
+  const weekBloc = document.getElementById('week-chart');
 
   function toggleBlocs() {
     const selected = select.value;
 
-    if (selected === "day") {
-      dayBloc.style.display = "grid";
-      weekBloc.style.display = "none";
-    } else if (selected === "week") {
-      dayBloc.style.display = "none";
-      weekBloc.style.display = "grid";
+    if (selected === 'day') {
+      dayBloc.style.display = 'grid';
+      weekBloc.style.display = 'none';
+    } else if (selected === 'week') {
+      dayBloc.style.display = 'none';
+      weekBloc.style.display = 'grid';
     }
   }
 
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
   toggleBlocs();
 
   // Mettre à jour lors d’un changement
-  select.addEventListener("change", toggleBlocs);
+  select.addEventListener('change', toggleBlocs);
   
 });
 
@@ -73,37 +73,37 @@ function getWeatherStationData(data){
     const uvPercentage = Math.min((uv / 11) * 100, 100); // max 100%
 
     const text = formatRelativeTime(lastUpdate);
-    document.getElementById("update").textContent = `Dernière mise à jour : ${text}`;
+    document.getElementById('update').textContent = `Dernière mise à jour : ${text}`;
 
-    document.getElementById("temperature-valeur").innerHTML = `${temperature}&nbsp;<span class="unit-small">°C</span>`;
-    document.getElementById("temperature-valeur").style.color = getColorForTemperature(temperature);
-    document.getElementById("pression-valeur").innerHTML = `${Math.round(pression+7)}&nbsp;<span class="unit-small">hPa</span>`;
-    document.getElementById("humidite-valeur").innerHTML = `${humidite}&nbsp;<span class="unit-small">%</span>`;
-    document.getElementById("vent-valeur").innerHTML = `
+    document.getElementById('temperature-valeur').innerHTML = `${temperature}&nbsp;<span class='unit-small'>°C</span>`;
+    document.getElementById('temperature-valeur').style.color = getColorForTemperature(temperature);
+    document.getElementById('pression-valeur').innerHTML = `${Math.round(pression+7)}&nbsp;<span class='unit-small'>hPa</span>`;
+    document.getElementById('humidite-valeur').innerHTML = `${humidite}&nbsp;<span class='unit-small'>%</span>`;
+    document.getElementById('vent-valeur').innerHTML = `
         ${vent} km/h<br>
         ${windDGust} km/h (rafales)
     `;
-    document.getElementById("wind-arrow").style.transform = `rotate(${windDir}deg)`;
+    document.getElementById('wind-arrow').style.transform = `rotate(${windDir}deg)`;
     const index = Math.min(Math.floor(uv / 2), uvColors.length - 1);
     const gradientColors = uvColors.slice(0, index + 1);
     const fill = document.querySelector('.uv-bar-fill');
-    fill.style.background = `linear-gradient(to right, ${gradientColors.join(", ")})`;
+    fill.style.background = `linear-gradient(to right, ${gradientColors.join(', ')})`;
     fill.style.width = `${uvPercentage}%`;
-    document.getElementById("pluie-valeur").innerHTML = `${pluie.toFixed(1)}&nbsp;<span class="unit-small">mm</span>`;
+    document.getElementById('pluie-valeur').innerHTML = `${pluie.toFixed(1)}&nbsp;<span class='unit-small'>mm</span>`;
 }
 
 const uvColors = [
-    "#03eaff",  // UV 0-1 - bleu clair
-    "#0bff03",  // UV 2-3 - vert
-    "#fffb03",  // UV 4-5 - jaune
-    "#ff8b00",  // UV 6-7 - orange
-    "#ff0303",  // UV 8-9 - rouge
-    "#ff03fb"   // UV 10-11 - violet
+    '#03eaff',  // UV 0-1 - bleu clair
+    '#0bff03',  // UV 2-3 - vert
+    '#fffb03',  // UV 4-5 - jaune
+    '#ff8b00',  // UV 6-7 - orange
+    '#ff0303',  // UV 8-9 - rouge
+    '#ff03fb'   // UV 10-11 - violet
 ];
 
 function formatRelativeTime(dateString) {
     const now = new Date();
-    const past = new Date(dateString.replace(" ", "T")); // pour compatibilité ISO
+    const past = new Date(dateString.replace(' ', 'T')); // pour compatibilité ISO
     const diffInSeconds = Math.floor((now - past) / 1000);
   
     if (diffInSeconds < 60) {
@@ -144,7 +144,7 @@ const chartOptions = {
     x: {
       title: {
         display: true,
-        text: "Heure"
+        text: 'Heure'
       }
     }
   }
@@ -198,7 +198,7 @@ function createLineChart(metric, containerId, label, data, labels, unit, color, 
       scales: {
         y: {
           ...chartOptions.scales.y,
-          min: unit === "mm" ? 0 : undefined,
+          min: unit === 'mm' ? 0 : undefined,
         },
         x: chartOptions.scales.x
       }
@@ -208,41 +208,41 @@ function createLineChart(metric, containerId, label, data, labels, unit, color, 
 
 function createWeatherCharts(data, labelsFormatter, labelSuffix, period, smooth = false) {
   const labels = data.map(d => {
-    const dateStr = d.obsTimeLocal; // exemple: "2025-06-04 00:59:54"
-    const date = new Date(dateStr.replace(" ", "T")); // donne un objet Date valide
+    const dateStr = d.obsTimeLocal; // exemple: '2025-06-04 00:59:54'
+    const date = new Date(dateStr.replace(' ', 'T')); // donne un objet Date valide
     return labelsFormatter(date);
   });
 
   const extract = key => data.map(d => d[key] ?? d.metric?.[key] ?? 0);    
   const process = arr => smooth ? smoothData(arr) : arr;
 
-  createLineChart("temperature", `${period}TemperatureChart`, "Température", process(extract("tempAvg")), labels, "°C", {
-    border: "rgba(255, 99, 132, 1)",
-    background: "rgba(255, 99, 132, 0.2)"
+  createLineChart('temperature', `${period}TemperatureChart`, 'Température', process(extract('tempAvg')), labels, '°C', {
+    border: 'rgba(255, 99, 132, 1)',
+    background: 'rgba(255, 99, 132, 0.2)'
   }, `Température ${labelSuffix}`, period);
 
-  createLineChart("humidity", `${period}HumidityChart`, "Humidité", process(extract("humidityAvg")), labels, "%", {
-    border: "rgba(54, 162, 235, 1)",
-    background: "rgba(54, 162, 235, 0.2)"
+  createLineChart('humidity', `${period}HumidityChart`, 'Humidité', process(extract('humidityAvg')), labels, '%', {
+    border: 'rgba(54, 162, 235, 1)',
+    background: 'rgba(54, 162, 235, 0.2)'
   }, `Humidité ${labelSuffix}`, period);
 
-  createLineChart("pressure", `${period}PressureChart`, "Pression", process(extract("pressureMin")), labels, "hPa", {
-    border: "rgba(255, 206, 86, 1)",
-    background: "rgba(255, 206, 86, 0.2)"
+  createLineChart('pressure', `${period}PressureChart`, 'Pression', process(extract('pressureMin')), labels, 'hPa', {
+    border: 'rgba(255, 206, 86, 1)',
+    background: 'rgba(255, 206, 86, 0.2)'
   }, `Pression ${labelSuffix}`, period);
 
-  createLineChart("rain", `${period}RainChart`, "Pluie", process(extract("precipTotal")), labels, "mm", {
-    border: "rgba(75, 192, 192, 1)",
-    background: "rgba(75, 192, 192, 0.2)"
+  createLineChart('rain', `${period}RainChart`, 'Pluie', process(extract('precipTotal')), labels, 'mm', {
+    border: 'rgba(75, 192, 192, 1)',
+    background: 'rgba(75, 192, 192, 0.2)'
   }, `Pluie ${labelSuffix}`, period);
 }
 
 function createGraphsDay(hourlyData){
-    createWeatherCharts(hourlyData.observations, formatHour, "sur la journée", "day", true);
+    createWeatherCharts(hourlyData.observations, formatHour, 'sur la journée', 'day', true);
 }
 
 function createGraphsWeek(weeklyData){
-    createWeatherCharts(weeklyData.observations, formatDayHour, "sur la semaine", "week", true);
+    createWeatherCharts(weeklyData.observations, formatDayHour, 'sur la semaine', 'week', true);
 }
 
 function smoothData(data, windowSize = 3) {

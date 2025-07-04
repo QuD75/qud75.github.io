@@ -1,8 +1,8 @@
-const HEADER_VERSION = "v2";
+const HEADER_VERSION = 'v2';
 const headerKey = `cachedHeader_${HEADER_VERSION}`;
 
 function loadHeader() {
-  const headerContainer = document.getElementById("header-container");
+  const headerContainer = document.getElementById('header-container');
   if (!headerContainer) return;
 
   const cached = localStorage.getItem(headerKey);
@@ -11,9 +11,9 @@ function loadHeader() {
     return;
   }
 
-  fetch("/pages/header.html")
+  fetch('/pages/header.html')
     .then(response => {
-      if (!response.ok) throw new Error("Header not found");
+      if (!response.ok) throw new Error('Header not found');
       return response.text();
     })
     .then(html => {
@@ -21,14 +21,14 @@ function loadHeader() {
       localStorage.setItem(headerKey, html);
       // Nettoyage des anciennes versions
       Object.keys(localStorage).forEach(key => {
-        if (key.startsWith("cachedHeader_") && key !== headerKey) {
+        if (key.startsWith('cachedHeader_') && key !== headerKey) {
           localStorage.removeItem(key);
         }
       });
     })
     .catch(err => {
-      console.error("Erreur de chargement du header:", err);
+      console.error('Erreur de chargement du header:', err);
     });
 }
 
-document.addEventListener("DOMContentLoaded", loadHeader);
+document.addEventListener('DOMContentLoaded', loadHeader);

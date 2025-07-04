@@ -8,8 +8,8 @@ const getCurrentDate = () => {
 
 // Modèle pour le sitemap avec la date générée
 const sitemapTemplate = `
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
    <url>
       <loc>https://meteo-croisic.fr/index.html</loc>
       <lastmod>${getCurrentDate()}</lastmod>

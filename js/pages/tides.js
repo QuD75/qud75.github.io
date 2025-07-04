@@ -1,7 +1,7 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-    const target = document.getElementById("desktop-tides");
-    const wrapper = document.getElementById("tides-container");
+    const target = document.getElementById('desktop-tides');
+    const wrapper = document.getElementById('tides-container');
     const iframe = document.querySelector('#desktop-tides iframe');
 
     // Valeur de zoom maximale
@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Appliquer un zoom dégressif si ça déborde
     function applyAdaptiveZoom() {
         scale = 1.5;
-        target.style.transformOrigin = "top left";
+        target.style.transformOrigin = 'top left';
     
         while (scale > 0) {
             target.style.transform = `scale(${scale})`;
@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
   
     updateTimeline();
     applyAdaptiveZoom();
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
         applyAdaptiveZoom();
         updateTimeline();
     });
