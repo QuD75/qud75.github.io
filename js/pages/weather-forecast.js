@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       const forecastDay = document.getElementById('forecast-day-container');
       forecastDay.style.display = window.innerWidth <= 768 ? 'block' : 'flex';
-      document.getElementById('forecast-week').style.display = 'block';
+      document.getElementById('forecast-week-container').style.display = 'block';
       if (window.innerWidth <= 768) {
         createCompactMobileForecast();
       }
