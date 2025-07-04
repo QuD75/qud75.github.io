@@ -1,4 +1,4 @@
-#loading-message {
+#forecast-loading-message {
   font-size: 1rem;
   color: #555;
   animation: blink 2s infinite;
@@ -18,14 +18,14 @@
   50% { opacity: 0.4; }
 }
 
-#forecast-day {
+#forecast-day-container {
   gap: 5rem;
   margin-top: 2rem;
   margin-bottom: 3rem;
   width: 90%;
 }
 
-#forecast-week {
+#forecast-week-container {
   margin-top: 2rem;
   margin-bottom: 3rem;
   width: 90%;
@@ -87,11 +87,6 @@
 
 .forecast-table td {
   padding: 1px 1px;
-}
-
-.forecast-table th,
-.forecast-table td {
-  border: 0.5px solid #ccc;
 }
 
 .forecast-table thead {
@@ -159,13 +154,11 @@
 #badge-sunrise {
   background-color: #FFD700;  /* jaune doré */
   color: #000;
-  display: inline-block;
 }
 
 #badge-sunset {
   background-color: #FF8C00;  /* orange foncé */
   color: #fff;
-  display: inline-block;
 }
 
 #badge-sunrise, #badge-sunset {
@@ -174,6 +167,7 @@
   font-size: 1rem;
   white-space: nowrap;
   line-height: 1.2;
+  display: inline-block;
 }
 
 #wind-direction-arrow-week {
@@ -191,11 +185,11 @@
     font-size: 1.3rem;
   }
 
-  #loading-message {
+  #forecast-loading-message {
     font-size: 0.9rem;
   }
 
-  #forecast-day, #forecast-week {
+  #forecast-day-container, #forecast-week-container {
     width: 100%;
   }
 

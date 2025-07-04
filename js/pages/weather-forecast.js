@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fillTabDays();
       createCharts();
 
-      document.getElementById('loading-message').style.display = 'none';  
+      document.getElementById('forecast-loading-message').style.display = 'none';  
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
       });
@@ -77,7 +77,7 @@ function getWeatherForecastHoursData(dataDays){
 }
 
 function fillTabDays() {
-  const tbody = document.getElementById("day-forecast-body");
+  const tbody = document.getElementById("forecast-day-tbody");
 
   for (const [day, hours] of Object.entries(grouped)) {
     hours.forEach((entry, index) => {

@@ -21,21 +21,21 @@
     <main>
 
         <div id="vigilance-container" style="display: none;">
-            <div id="icon-container">
+            <div id="vigilance-icon-container">
                 <img id="vigilance-icon" />
             </div>
-            <div id="text-container">
+            <div id="vigilance-text-container">
                 <h2 id="vigilance-title"></h2>
                 <div id="vigilance-details"></div>
             </div>
         </div>
 
-        <div id="loading-message" style="display: block;">
+        <div id="forecast-loading-message" style="display: block;">
             Chargement des prévisions météo en cours...
         </div>
 
         <h2 style="display: none;">Prévisions des prochaines 48h</h2>
-        <div id="forecast-day" style="display: none;">
+        <div id="forecast-day-container" style="display: none;">
             <div id="forecast-day-table-container">
                 <table id="forecast-day-table" class="forecast-table">
                     <thead>
@@ -52,7 +52,7 @@
                             <th data-mobile="Temps">Temps</th>
                         </tr>
                     </thead>
-                    <tbody id="day-forecast-body"></tbody>
+                    <tbody id="forecast-day-tbody"></tbody>
                 </table>
             </div>
             <div id="forecast-day-graphs" class="forecast-graphs">
@@ -64,7 +64,7 @@
         </div>
 
         <h2 style="display: none;">Prévisions des 7 prochains jours</h2>
-        <div id="forecast-week" style="display: none;">
+        <div id="forecast-week-container" style="display: none;">
             <div id="forecast-week-table-container">
                 <table id="forecast-week-table" class="forecast-table">
                     <thead>
