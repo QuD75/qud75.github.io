@@ -141,7 +141,9 @@
 #badge-rain {
   font-weight: normal;
   font-size: clamp(0.7rem, 1vw, 0.9rem);
-  border-radius: 999px;
+  border-radius: 12px;
+  width: 4.5rem;
+  height: 1.5rem;
 }
 
 #sun-times {
