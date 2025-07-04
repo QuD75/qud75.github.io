@@ -143,6 +143,7 @@
   font-size: clamp(0.7rem, 1vw, 0.9rem);
   border-radius: 12px;
   width: 4.5rem;
+  max-width: 75%;
   height: 1.5rem;
 }
 
