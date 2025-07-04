@@ -9,7 +9,6 @@
   border-radius: 8px;
   position: fixed;
   top: 10rem;
-  left: 0;
   width: 100%;
   z-index: 1000;
 }
@@ -190,6 +189,10 @@
 @media (max-width: 1024px) {
   h2 {
     font-size: 1.3rem;
+  }
+
+  #loading-message {
+    font-size: 0.9rem;
   }
 
   #forecast-day, #forecast-week {
