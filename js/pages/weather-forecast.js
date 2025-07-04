@@ -1,9 +1,9 @@
-import { Chart, registerables } from "chart.js";
+import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 Chart.defaults.animation = false;
 
-import { fr } from "date-fns/locale/fr";
-import "chartjs-adapter-date-fns";
+import { fr } from 'date-fns/locale/fr';
+import 'chartjs-adapter-date-fns';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
       });
-      const forecastDay = document.getElementById('forecast-day');
+      const forecastDay = document.getElementById('forecast-day-container');
       forecastDay.style.display = window.innerWidth <= 768 ? 'block' : 'flex';
       document.getElementById('forecast-week').style.display = 'block';
       if (window.innerWidth <= 768) {
@@ -77,7 +77,7 @@ function getWeatherForecastHoursData(dataDays){
 }
 
 function fillTabDays() {
-  const tbody = document.getElementById("forecast-day-tbody");
+  const tbody = document.getElementById('forecast-day-tbody');
 
   for (const [day, hours] of Object.entries(grouped)) {
     hours.forEach((entry, index) => {
@@ -167,7 +167,7 @@ function getWeatherForecastDaysData(dataWeek) {
   const tbodyRows = Array.from(document.querySelectorAll('#forecast-week-table tbody tr'));
 
   const days = dataWeek.forecastDays;
-  const timeZone = dataWeek.timeZone?.id || "Europe/Paris";
+  const timeZone = dataWeek.timeZone?.id || 'Europe/Paris';
 
   const formatDateClean = (dateObj) => {
     const date = new Date(Date.UTC(dateObj.year, dateObj.month - 1, dateObj.day));
@@ -183,11 +183,11 @@ function getWeatherForecastDaysData(dataWeek) {
   };
 
   const formatHour = (dateStr) => {
-    if (!dateStr) return "—";
+    if (!dateStr) return '—';
     const date = new Date(dateStr);
-    const localDate = new Date(date.toLocaleString("en-US", { timeZone }));
+    const localDate = new Date(date.toLocaleString('en-US', { timeZone }));
     const h = localDate.getHours();
-    const m = localDate.getMinutes().toString().padStart(2, "0");
+    const m = localDate.getMinutes().toString().padStart(2, '0');
     return `${h}h${m}`;
   };
 
@@ -198,11 +198,11 @@ function getWeatherForecastDaysData(dataWeek) {
 
     const sunrise = day.sunEvents.sunriseTime
       ? formatHour(new Date(day.sunEvents.sunriseTime), timeZone)
-      : "—";
+      : '—';
 
     const sunset = day.sunEvents.sunsetTime
       ? formatHour(new Date(day.sunEvents.sunsetTime), timeZone)
-      : "—";
+      : '—';
 
     const minTemp = Math.round(day.minTemperature.degrees);
     const maxTemp = Math.round(day.maxTemperature.degrees);
@@ -298,7 +298,7 @@ function createCompactMobileForecast() {
   const thead = table.querySelector('thead tr');
   const tbody = table.querySelectorAll('tbody tr');
 
-  const dayHeaders = Array.from(thead.querySelectorAll('th')).slice(1); // Ignore "Type"
+  const dayHeaders = Array.from(thead.querySelectorAll('th')).slice(1);
 
   const mobileContainer = document.createElement('div');
   mobileContainer.className = 'forecast-week-compact';
@@ -443,8 +443,8 @@ function createCharts() {
       datasets: [{
         label: 'Température',
         data: tempData,
-        borderColor: "rgba(255, 99, 132, 1)",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
         pointRadius: 0
       }]
     },
@@ -470,13 +470,13 @@ function createCharts() {
       datasets: [{
         label: 'Vent moyen',
         data: windData,
-        borderColor: "rgba(255, 206, 86, 1)",
+        borderColor: 'rgba(255, 206, 86, 1)',
         pointRadius: 0
       },
       {
         label: 'Vent rafales',
         data: windGustData,
-        borderColor: "rgb(255, 94, 0)",
+        borderColor: 'rgb(255, 94, 0)',
         pointRadius: 0
       }]
     },
