@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function initForecast() {
 
-      const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 30, getWeatherForecastHoursData);
+      const firstPageData = await fetchData(weatherDay, 'weather_forecast_day', 120, getWeatherForecastHoursData);
       if (firstPageData.nextPageToken) {
         const weatherApiNextPage = `${weatherDay}&pageToken=${firstPageData.nextPageToken}`;
-        await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 30, getWeatherForecastHoursData);
+        await fetchData(weatherApiNextPage, 'weather_forecast_day_next_page', 120, getWeatherForecastHoursData);
       }
 
-      await fetchData(weatherWeek, 'weather_forecast_week', 60, getWeatherForecastDaysData);
+      await fetchData(weatherWeek, 'weather_forecast_week', 120, getWeatherForecastDaysData);
       
       fillTabDays();
       createCharts();
