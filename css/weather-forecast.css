@@ -278,27 +278,27 @@
   }
 
   #span-weather {
-    width: 15%;
+    width: 16%;
   }
 
   #span-sun {
-    width: 18%;
+    width: 20%;
   }
 
   #span-temp {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35%;
+    width: 28%;
     gap: 0.4rem;
   }
 
   #span-wind {
-    width: 16%;
+    width: 18%;
   }
 
   #span-rain {
-    width: 16%;
+    width: 18%;
   }
 
   #sun-times, #wind, #rain {
@@ -331,6 +331,10 @@
     justify-content: center;
     align-items: center;
     margin: 0rem 0rem;
+  }
+
+  #wind-speed-value-week {
+    font-size: 0.7rem;
   }
 
 }
