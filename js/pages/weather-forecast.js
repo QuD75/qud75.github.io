@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       fillTabDays();
       createCharts();
 
+      await sleep(1000000);
       document.getElementById('loading-message').style.display = 'none';  
       document.querySelectorAll('h2').forEach(h2 => {
         h2.style.display = 'block';
